@@ -39,5 +39,3 @@ hi! link operator         Operator
 let b:current_syntax = "lfile"
 
 
-" info for bfile
-" BrobMode <- ("oaiset" / "oai" / "mprocess" / "mailtrg" / "usergroup" / "ujson" / "lookup" / "history" / "meta" / "listattribute" / "listidentity" / "listdownloadtype" / "cg" / "loi" / "search" / "listsorttype" / "nodeattribute" / "listconversion") {

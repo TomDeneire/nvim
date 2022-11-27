@@ -164,6 +164,7 @@ endfunction
   call s:hi('MumpsFName',                       s:blue, '',       '',          '')
   call s:hi('MumpsLabelName',                       s:green, '',       s:bold,          '')
   call s:hi('MumpsIntrinsicFunction',                       s:cyan, '',       s:italic,          '')
+  call s:hi('BfileValue',                       s:white, '',       '',          '')
 
   " LSP
   call s:hi('LspDiagnosticsDefaultError',         '',       '',       '',          '')
