@@ -33,10 +33,10 @@ require('telescope').setup{
     -- Now the picker_config_key will be applied every time you call this
     -- builtin picker
 	find_files = {
-		 disable_devicons = true,
+		 disable_devicons = false,
 		 sorting_strategy = "ascending"},
 	live_grep = {
-		 disable_devicons = true,
+		 disable_devicons = false,
 		 sorting_strategy = "ascending"}
   },
   extensions = {

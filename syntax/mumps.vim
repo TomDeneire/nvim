@@ -1,7 +1,7 @@
 " Mumps syntax file
 " Language:	MUMPS (Brocade .m files)
 " Maintainer:	Tom Deneire, tomdeneire@gmail.com
-" Last change:	02 June 2001
+" Last change:	25 November 2022
 
 " related formatting, jas 24Sept03 - experimental
 set lbr

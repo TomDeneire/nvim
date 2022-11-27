@@ -3,7 +3,7 @@ if exists('g:vscode')
     :set ignorecase
     :set nohlsearch
 else
-    " Full Neovim
+    " Neovim
     "
     "Plugins
     call plug#begin(stdpath('data') . '/plugged')
@@ -121,6 +121,18 @@ else
 	  endif
 	endfunction
 
+	function! GrepPattern()
+      let workspace = getcwd()
+      let pattern = input("Grep_pattern=", "*.")
+	  if (matchstr(workspace, "/brocade/source/data")) == ""
+         let g:greppattern = pattern
+         :lua require("telescope.builtin").live_grep({live_command={"rg","--smart-case","--files"}, no_ignore=true, no_ignore_parent=true, cwd="/home/tdeneire/projects/code", glob_pattern=vim.g.greppattern})
+	  else
+         let g:greppattern = pattern
+         :lua require("telescope.builtin").live_grep({live_command={"rg","--smart-case","--files"}, no_ignore=true, no_ignore_parent=true, cwd="/home/tdeneire/projects/brocade/source/data", glob_pattern=vim.g.greppattern})
+	  endif
+	endfunction
+
     function! QtechNGComparePrevious()
         !export CURRENT_FILE=%:p && export QPATH=$(qtechng file tell $CURRENT_FILE --jsonpath='$..DATA..qpath' --unquote) && export PREVIOUS=$(qtechng registry get "qtechng-releases" | awk '{print $(NF-1)}') && mkdir -p $PREVIOUS && cd $PREVIOUS && qtechng source co $QPATH --version=$PREVIOUS && meld $PREVIOUS/$(qtechng file tell $CURRENT_FILE --jsonpath='$..DATA..relpath' --unquote) $CURRENT_FILE
     endfunction
@@ -132,6 +144,8 @@ else
     nmap <silent> <c-p> :call FindInWorkSpace()<CR>
 	nmap <silent> <c-f> :call GrepInWorkSpace()<CR>
 	nmap <silent> <c-D> <cmd>lua vim.lsp.buf.definition()<CR>
+    nmap <silent> <leader>term :ToggleTerm dir=getcwd()<CR>
+    nmap <silent> <leader>grep :call GrepPattern()<CR>
 
 	"tabline
 	:set showtabline=2
