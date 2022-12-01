@@ -36,7 +36,7 @@ syn match     objectcode        contained / [A-Za-z0-9]*[\.]*[A-Za-z0-9]*/
 syn match     objectlabel       contained /\$[$]*[A-Za-z0-9]*:/ contains=object,value
 syn match     object            contained /\$[A-Za-z0-9]*/
 syn match     value             contained /\$$[A-Za-z0-9]*/
-syn match     operator          contained "[«»]"
+syn match     operator          contained "[«»()]"
 
 " The default methods for highlighting.  Can be overridden later
 hi! link objectcodelabel  MumpsLabel

@@ -17,18 +17,22 @@ else
     " Make sure you use single quotes
 
 	" Various
-    Plug 'nvim-tree/nvim-tree.lua'
-    Plug 'nvim-lua/plenary.nvim'
-    Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
-    Plug 'nvim-neo-tree/neo-tree.nvim'
-    Plug 'nvim-lua/plenary.nvim'
-    Plug 'kyazdani42/nvim-web-devicons'
-    Plug 'MunifTanjim/nui.nvim'
-    Plug 'nvim-lualine/lualine.nvim'
     Plug 'lukas-reineke/indent-blankline.nvim'
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'ThePrimeagen/vim-be-good'
     Plug 'godlygeek/tabular'
+    " Tree
+    Plug 'nvim-tree/nvim-tree.lua'
+    " Lualine
+    Plug 'nvim-lualine/lualine.nvim'
+    " Treesitter
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'p00f/nvim-ts-rainbow'
+    " Telescope
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+    Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+    " Devicons 
+    Plug 'kyazdani42/nvim-web-devicons'
 	" Easy (un)commenting
     Plug 'preservim/nerdcommenter'
 	" Git
@@ -57,6 +61,7 @@ else
     Plug 'martinsione/darkplus.nvim'
     Plug 'arcticicestudio/nord-vim'
     Plug 'mhartington/oceanic-next'
+    Plug 'joshdick/onedark.vim'
 
     " Initialize plugin system
     " - Automatically executes `filetype plugin indent on` and `syntax enable`.
@@ -80,7 +85,7 @@ else
 	vmap <c-k> 10k
 	
 	"qtechng mappings
-	nmap <c-b> :!qtechng file ci<CR>
+	nmap <c-b> :!qtechng file ci %:p<CR>
 	nmap <c-o> :!qtechng file refresh<CR>
 	
     "colorscheme
@@ -137,8 +142,13 @@ else
         !export CURRENT_FILE=%:p && export QPATH=$(qtechng file tell $CURRENT_FILE --jsonpath='$..DATA..qpath' --unquote) && export PREVIOUS=$(qtechng registry get "qtechng-releases" | awk '{print $(NF-1)}') && mkdir -p $PREVIOUS && cd $PREVIOUS && qtechng source co $QPATH --version=$PREVIOUS && meld $PREVIOUS/$(qtechng file tell $CURRENT_FILE --jsonpath='$..DATA..relpath' --unquote) $CURRENT_FILE
     endfunction
 
+    function! QtechNGShowInGit()
+        !export CURRENT_FILE=%:p && export URL=$(qtechng file tell $CURRENT_FILE --jsonpath='$..DATA..vcurl' --unquote) && google-chrome-stable $URL
+    endfunction
+
     "qtechng mappings
     nmap <silent> <leader>qp :call QtechNGComparePrevious()<CR>
+    nmap <silent> <leader>qg :call QtechNGShowInGit()<CR>
 
     "mappings after lua init
     nmap <silent> <c-p> :call FindInWorkSpace()<CR>
@@ -146,10 +156,11 @@ else
 	nmap <silent> <c-D> <cmd>lua vim.lsp.buf.definition()<CR>
     nmap <silent> <leader>term :ToggleTerm dir=getcwd()<CR>
     nmap <silent> <leader>grep :call GrepPattern()<CR>
+    nmap <silent> <leader>old :Telescope oldfiles<CR>
 
 	"tabline
 	:set showtabline=2
-    nmap <silent> tn :tabnew<CR>:NvimTreeToggle<CR>
+    nmap <silent> tn :tabnew<CR>:NvimTreeToggle<CR>:NvimTreeRefresh<CR>
     nmap <silent> tl :+tabnext<CR>
     nmap <silent> th :-tabnext<CR>
     nmap <silent> tt :NvimTreeToggle<CR>

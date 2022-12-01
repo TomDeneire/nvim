@@ -21,19 +21,10 @@ require('spunkshui.tree')
 -- Telescope
 require('spunkshui.telescope')
 
--- Lualine
-require('spunkshui.lualine')
-
 vim.opt.list = true
 
 -- Indent blankline
 require('spunkshui.blankline')
-
--- LSP configs
-require('spunkshui.lsp')
-
--- Treesitter
-require('spunkshui.treesitter')
 
 -- Terminal
 require('spunkshui.terminal')

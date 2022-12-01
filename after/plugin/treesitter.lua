@@ -46,7 +46,7 @@ require'nvim-treesitter.configs'.setup {
     extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
     max_file_lines = nil, -- Do not enable for files with more than n lines, int
     -- colors = {}, -- table of hex strings
-	colors = {
+    colors = {
       "#68a0b0",
       "#946EaD",
       "#c7aA6D",
@@ -57,14 +57,14 @@ require'nvim-treesitter.configs'.setup {
       -- "Salmon",
       -- "LawnGreen",
     },
-    termcolors = {
-      "Gold",
-      "Orchid",
-      "DodgerBlue",
-      "Cornsilk",
-      "Salmon",
-      "LawnGreen",
-	} 
+    -- termcolors = {
+    --   "Gold",
+    --   "Orchid",
+    --   "DodgerBlue",
+    --   "Cornsilk",
+    --   "Salmon",
+    --   "LawnGreen",
+    -- },
 	-- table of colour name strings
   },
 }
