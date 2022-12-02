@@ -27,6 +27,14 @@
   endif
 "}}}
 " {{{ Colors
+" FYI you can also use termcolors like:
+    " --   "Gold",
+    " --   "Orchid",
+    " --   "DodgerBlue",
+    " --   "Cornsilk",
+    " --   "Salmon",
+    " --   "LawnGreen",
+" reminder: check for list
   let s:base00 = ['#1f1f1f', '235']
   let s:base01 = ['#343d46', '237']
   let s:base02 = ['#4f5b66', '240']

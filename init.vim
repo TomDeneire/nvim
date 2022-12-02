@@ -37,10 +37,15 @@ else
     Plug 'preservim/nerdcommenter'
 	" Git
 	Plug 'airblade/vim-gitgutter'
+    " Mason
+    Plug 'williamboman/mason.nvim'
+    Plug 'williamboman/mason-lspconfig.nvim'
 	" Lsp
     Plug 'neovim/nvim-lspconfig'
     Plug 'kabouzeid/nvim-lspinstall'
-	" Syntax
+    Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
+    Plug 'onsails/lspkind.nvim'
+    " Syntax
     Plug 'preservim/vim-markdown'
     Plug 'vim-python/python-syntax'
     " Autocomplete plugs
@@ -62,6 +67,7 @@ else
     Plug 'arcticicestudio/nord-vim'
     Plug 'mhartington/oceanic-next'
     Plug 'joshdick/onedark.vim'
+    Plug 'bluz71/vim-moonfly-colors'
 
     " Initialize plugin system
     " - Automatically executes `filetype plugin indent on` and `syntax enable`.
@@ -157,10 +163,12 @@ else
     nmap <silent> <leader>term :ToggleTerm dir=getcwd()<CR>
     nmap <silent> <leader>grep :call GrepPattern()<CR>
     nmap <silent> <leader>old :Telescope oldfiles<CR>
+    nmap <silent> <leader>def :Lspsaga peek_definition<CR>
 
 	"tabline
 	:set showtabline=2
-    nmap <silent> tn :tabnew<CR>:NvimTreeToggle<CR>:NvimTreeRefresh<CR>
+    nmap <silent> tn :tabnew<CR>
+    " nmap <silent> tn :tabnew<CR>:NvimTreeToggle<CR>:NvimTreeRefresh<CR>
     nmap <silent> tl :+tabnext<CR>
     nmap <silent> th :-tabnext<CR>
     nmap <silent> tt :NvimTreeToggle<CR>
@@ -203,10 +211,10 @@ else
 
 	
 	"autohover
-	:set updatetime=1000
-    autocmd CursorHold *.py lua vim.lsp.buf.hover()
-    autocmd CursorHold *.go lua vim.lsp.buf.hover()
-    autocmd CursorHold *.js lua vim.lsp.buf.hover()
+	" :set updatetime=1000
+    " autocmd CursorHold *.py lua vim.lsp.buf.hover()
+    " autocmd CursorHold *.go lua vim.lsp.buf.hover()
+    " autocmd CursorHold *.js lua vim.lsp.buf.hover()
 
     "autoformat
     autocmd BufWritePost *.py lua vim.lsp.buf.format()
@@ -264,11 +272,5 @@ else
     " Enable NERDCommenterToggle to check all selected lines is commented or not 
     let g:NERDToggleCheckAllLines = 1
     vmap <silent> cc :call nerdcommenter#Comment('x', 'toggle')<CR>
-
-    " Show file tree
-    :NvimTreeOpen
-    " editor focus (doesn't work yet)
-    :wincmd l
-
 
 endif
