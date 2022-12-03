@@ -1,7 +1,7 @@
 " =====================================================================
-" Spunkshui theme for (neo)vim
+" Dark+ theme for (neo)vim
 " Author: Tom Deneire
-" Based on: OceanicNext (https://github.com/mhartington/oceanic-next)
+" Based on: VSCode Dark+
 " =====================================================================
 
 " {{{ Setup
@@ -36,7 +36,6 @@
     " --   "LawnGreen",
 " reminder: check for list
   let s:base00 = ['#1e1e1e', '235']
-  " let s:base00 = ['#1f1f1f', '235']
   let s:base01 = ['#343d46', '237']
   let s:base02 = ['#4f5b66', '240']
   let s:base03 = ['#65737e', '243']
@@ -45,14 +44,17 @@
   let s:base06 = ['#cdd3de', '252']
   " base07 is for normal text
   let s:base07 = ['#d4d4d4', '253']
-  let s:blue   = ['#569cd6', '68']
-  let s:red    = ['#f44747', '203']
-  let s:orange = ['#ce9178', '209']
+  let s:blue   = ['#6699cc', '68']
+  let s:red    = ['#ec5f67', '203']
+  let s:orange = ['#f99157', '209']
+  let s:yellow = ['#dcdcaa', '221']
   let s:gold   = ['#ffd700', '221']
-  let s:yellow = ['#fac863', '221']
-  let s:green  = ['#99c794', '114']
-  let s:cyan   = ['#62b3b2', '73']
-  let s:purple = ['#c594c5', '176']
+  let s:green  = ['#6A9955', '114']
+  let s:lightgreen  = ['#99c794', '114']
+  let s:cyan = ['#4ec9b0', '73']
+  let s:brightblue   = ['#9cdcfe', '73']
+  "let s:cyan   = ['#62b3b2', '73']
+  let s:purple = ['#c586c0', '176']
   let s:brown  = ['#ce9178', '209']
   let s:white  = ['#ffffff', '15']
   let s:none   = ['NONE',    'NONE']
@@ -135,8 +137,8 @@ endfunction
   call s:hi('Conditional',                        s:purple, '',       '',          '')
   call s:hi('Constant',                           s:blue, '',       '',          '')
   call s:hi('Define',                             s:purple, '',       '',          '')
-  call s:hi('Delimiter',                          s:yellow,  '',       '',          '')
-  call s:hi('Float',                              s:green, '',       '',          '')
+  call s:hi('Delimiter',                          s:orange,  '',       '',          '')
+  call s:hi('Float',                              s:lightgreen, '',       '',          '')
   call s:hi('Function',                           s:yellow,   '',       '',          '')
 
   call s:hi('Identifier',                         s:blue,   '',       '',          '')
@@ -144,8 +146,9 @@ endfunction
   call s:hi('Keyword',                            s:blue, '',       '',          '')
 
   call s:hi('Label',                              s:yellow, '',       '',          '')
-  call s:hi('Number',                             s:green, '',       '',          '')
-  call s:hi('Operator',                           s:yellow, '',       '',          '')
+  call s:hi('Number',                             s:lightgreen, '',       '',          '')
+  call s:hi('Operator',                           s:gold, '',       '',          '')
+  " call s:hi('Operator',                           s:yellow, '',       '',          '')
   call s:hi('PreProc',                            s:yellow, '',       '',          '')
   call s:hi('Repeat',                             s:purple, '',       '',          '')
   call s:hi('Special',                            s:cyan,   '',       '',          '')
@@ -156,9 +159,9 @@ endfunction
   call s:hi('Structure',                          s:purple, '',       '',          '')
   call s:hi('Tag',                                s:yellow, '',       '',          '')
   call s:hi('Todo',                               s:yellow, s:base01, '',          '')
-  call s:hi('Type',                               s:green, '',       '',          '')
+  call s:hi('Type',                               s:lightgreen, '',       '',          '')
   call s:hi('Typedef',                            s:yellow, '',       '',          '')
-  call s:hi('Normal',                             s:base07, '',       '',          '')
+  call s:hi('Normal',                       s:base07, '',       '',          '')
 
   " MUMPS
   call s:hi('MumpsCommand',                       s:base07, '',       s:italic,          '')
@@ -168,9 +171,9 @@ endfunction
   call s:hi('MumpsGlobalName',                       s:blue, '',       '',          '')
   call s:hi('MumpsMacro',                       s:blue, '',       s:italic,          '')
   call s:hi('MumpsPName',                       s:blue, '',       s:italic,          '')
-  call s:hi('MumpsUName',                       s:cyan, '',       s:bold,          '')
+  call s:hi('MumpsUName',                       s:brightblue, '',       s:bold,          '')
   call s:hi('MumpsFName',                       s:blue, '',       '',          '')
-  call s:hi('MumpsLabelName',                       s:green, '',       s:bold,          '')
+  call s:hi('MumpsLabelName',                       s:cyan, '',       s:bold,          '')
   call s:hi('MumpsIntrinsicFunction',                       s:cyan, '',       s:italic,          '')
   call s:hi('BfileValue',                       s:white, '',       '',          '')
   call s:hi('DfileInstruction',                       s:white, '',       s:bold,          '')
@@ -200,7 +203,7 @@ endfunction
   call s:hi('TSPunctDelimiter',                   s:base07, '',       '',          '')
   call s:hi('TSParameter',                        s:base07, '',       '',          '')
   call s:hi('TSType',                             s:blue,   '',       '',          '')
-  call s:hi('TSFunction',                         s:yellow,   '',       '',          '')
+  call s:hi('TSFunction',                         s:cyan,   '',       '',          '')
 
   call s:hi('TSTagDelimiter',                     s:cyan,   '',       '',          '')
   call s:hi('TSProperty',                         s:yellow, '',       '',          '')

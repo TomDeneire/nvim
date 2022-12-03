@@ -35,6 +35,8 @@ else
     Plug 'kyazdani42/nvim-web-devicons'
 	" Easy (un)commenting
     Plug 'preservim/nerdcommenter'
+    " Undotree
+    Plug 'mbbill/undotree'
 	" Git
 	Plug 'airblade/vim-gitgutter'
     " Mason
@@ -45,6 +47,8 @@ else
     Plug 'kabouzeid/nvim-lspinstall'
     Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
     Plug 'onsails/lspkind.nvim'
+    Plug 'ray-x/lsp_signature.nvim'
+  "let s:brown  = ['#ab7967', '137']
     " Syntax
     Plug 'preservim/vim-markdown'
     Plug 'vim-python/python-syntax'
@@ -68,6 +72,7 @@ else
     Plug 'mhartington/oceanic-next'
     Plug 'joshdick/onedark.vim'
     Plug 'bluz71/vim-moonfly-colors'
+    Plug 'navarasu/onedark.nvim'
 
     " Initialize plugin system
     " - Automatically executes `filetype plugin indent on` and `syntax enable`.
@@ -89,6 +94,7 @@ else
 	nmap <c-k> 10k
 	vmap <c-j> 10j
 	vmap <c-k> 10k
+    nnoremap <F5> :UndotreeToggle<CR>
 	
 	"qtechng mappings
 	nmap <c-b> :!qtechng file ci %:p<CR>
@@ -101,6 +107,7 @@ else
 	let g:python_version_2 = 0
 	let g:python_highlight_all = 1
     colorscheme spunkshui
+    "colorscheme dark+
 
     if (has("termguicolors"))
         set termguicolors
