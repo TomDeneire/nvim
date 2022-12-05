@@ -185,7 +185,6 @@ else
 	"tabline
 	:set showtabline=2
     nnoremap <silent> tn :tabnew<CR>
-    " nnoremap <silent> tn :tabnew<CR>:NvimTreeToggle<CR>:NvimTreeRefresh<CR>
     nnoremap <silent> tl :+tabnext<CR>
     nnoremap <silent> th :-tabnext<CR>
     nnoremap <silent> tt :NvimTreeToggle<CR>

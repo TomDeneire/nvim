@@ -5,10 +5,10 @@ autocmd FileType mumps setlocal expandtab shiftwidth=1 softtabstop=1
 "functions
 function! Indent()
     let wordUnderCursor = expand("<cword>")
+    let current_line = getline(".")
+    let indent_level = split(current_line," ")
+    let indent_begin = indent_level[0]
     if (wordUnderCursor == "d") || (wordUnderCursor == "q")
-        let current_line = getline(".")
-        let indent_level = split(current_line," ")
-        let indent_begin = indent_level[0]
         if (wordUnderCursor == "d")
             if matchstr(indent_begin, ".") == "."
                 let indent = " " . indent_begin . ". "
@@ -19,13 +19,17 @@ function! Indent()
         if (wordUnderCursor == "q")
             if indent_begin[0] == "."
                 let indent_minus_one = len(indent_begin)-2
-                let indent = " " . indent_begin[0:indent_minus_one] . " "
+                if indent_minus_one == -1
+                    let indent = " "
+                else
+                    let indent = " " . indent_begin[0:indent_minus_one] . " "
+                endif
             else
                 let indent = " "
             endif
         endif
     else
-        let indent=" "
+        let indent = " " . indent_begin . " "
     endif
     call append(line("."), indent)
     let curpos=getcurpos()
