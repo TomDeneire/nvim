@@ -12,7 +12,8 @@ syn case    ignore
 syn region    comment       start=/\/\// end=/\n/
 syn region    macrocodeline    oneline start="^macro" end=/\:/ contains=macrocodelabel,macrocode,macroargs
 syn region    macroargs     oneline start="(" end=")" contains=operator,macroarg
-syn region    macroline        start=/    / keepend end=/$/ contains=macrosynopsis,macroexample,macroparam,operator,macrostartend,macroinstruction
+syn region    macroline        start=/    / keepend end=/$/ contains=macrosynopsis,macroexample,macroparam,operator,macrostartend,macroinstruction,macrostring
+syn region    macrostring oneline start=/"/ end=/"/
 syn region    macroinstruction contained start="    «" end="»$"
 
 " Matches
@@ -35,5 +36,6 @@ hi! link macroparam          Keyword
 hi! link macroinstruction    DfileInstruction
 hi! link comment             Comment
 hi! link operator            Operator
+hi! link macrostring         String
 
 let b:current_syntax = "dfile"

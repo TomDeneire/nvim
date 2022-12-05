@@ -4,25 +4,34 @@ autocmd FileType mumps setlocal expandtab shiftwidth=1 softtabstop=1
 
 "functions
 function! Indent()
-    echo "hallo"
-    "let thisline = line(".")
-	"let previousline = thisline - 1
-	"echo getline(previousline)
-    "let l:wordUnderCursor = expand("<cword>")
-	"echo l:wordUnderCursor
-	" if wordUnderCursor == "d"
-	"     let current_line = getline(".")
-	"     let indent_line = " ..."
-	"     call append(line(".")-1, indent_line)
-	"     let curpos=getcurpos()
-	"     let curpos[1] -= 1
-	"     "call setpos(".", curpos)
-    " else
-	"     call append(line(".")-1, " ")
-	"     let curpos=getcurpos()
-	"     let curpos[1] -= 1
-	"     "call setpos(".", curpos)
-    " endif
+    let wordUnderCursor = expand("<cword>")
+    if (wordUnderCursor == "d") || (wordUnderCursor == "q")
+        let current_line = getline(".")
+        let indent_level = split(current_line," ")
+        let indent_begin = indent_level[0]
+        if (wordUnderCursor == "d")
+            if matchstr(indent_begin, ".") == "."
+                let indent = " " . indent_begin . ". "
+            else
+                let indent = " . "
+            endif
+        endif
+        if (wordUnderCursor == "q")
+            if indent_begin[0] == "."
+                let indent_minus_one = len(indent_begin)-2
+                let indent = " " . indent_begin[0:indent_minus_one] . " "
+            else
+                let indent = " "
+            endif
+        endif
+    else
+        let indent=" "
+    endif
+    call append(line("."), indent)
+    let curpos=getcurpos()
+    let curpos[1] += 1
+    call setpos(".", curpos)
+    call feedkeys("A")
 endfunction
 
 
@@ -35,4 +44,5 @@ function! Define()
     endif
 endfunction
 
-"autocmd FileType mumps nnoremap <c-d> :call Define()<CR>
+autocmd FileType mumps inoremap <TAB> .
+autocmd FileType mumps imap <CR> <ESC>:call Indent()<CR>

@@ -48,7 +48,6 @@ else
     Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
     Plug 'onsails/lspkind.nvim'
     Plug 'ray-x/lsp_signature.nvim'
-  "let s:brown  = ['#ab7967', '137']
     " Syntax
     Plug 'preservim/vim-markdown'
     Plug 'vim-python/python-syntax'
@@ -82,18 +81,18 @@ else
     "   syntax off            " Disable syntax highlighting
 
     "basic mappings
-    imap jj <Esc>
-    nmap <c-a> ggVG
-    nmap <silent> <c-i> :lua vim.lsp.buf.hover()<CR>
-    nmap <silent> <c-s> :w<CR>
-    imap <silent> <c-s> <Esc> :w<CR>
-    nmap <c-v> "*p
-    imap <c-v> <Esc>"*pa
-    vmap <c-c> "+y
-	nmap <c-j> 10j
-	nmap <c-k> 10k
-	vmap <c-j> 10j
-	vmap <c-k> 10k
+    inoremap jj <Esc>
+    nnoremap <c-a> ggVG
+    nnoremap <silent> <c-i> :lua vim.lsp.buf.hover()<CR>
+    nnoremap <silent> <c-s> :w<CR>
+    inoremap <silent> <c-s> <Esc> :w<CR>
+    nnoremap <c-v> "*p
+    inoremap <c-v> <Esc>"*pa
+    vnoremap <c-c> "+y
+	nnoremap <c-j> 10j
+	nnoremap <c-k> 10k
+	vnoremap <c-j> 10j
+	vnoremap <c-k> 10k
     nnoremap <F5> :UndotreeToggle<CR>
 	
 	
@@ -167,29 +166,29 @@ else
     endfunction
 
     "qtechng mappings
-    nmap <silent> <leader>qp :call QtechNGComparePrevious()<CR>
-    nmap <silent> <leader>qg :call QtechNGShowInGit()<CR>
-	nmap <c-b> :!qtechng file ci %:p<CR>
-	nmap <c-o> :!qtechng file refresh<CR>
-    nmap <c-m> :call DefineMacro()<CR>
+    nnoremap <silent> <leader>qp :call QtechNGComparePrevious()<CR>
+    nnoremap <silent> <leader>qg :call QtechNGShowInGit()<CR>
+	nnoremap <c-b> :!qtechng file ci %:p<CR>
+	nnoremap <c-o> :!qtechng file refresh<CR>
+    nnoremap <c-m> :call DefineMacro()<CR>
 
     "mappings after lua init
-    nmap <silent> <c-p> :call FindInWorkSpace()<CR>
-	nmap <silent> <c-f> :call GrepInWorkSpace()<CR>
-	nmap <silent> <c-D> <cmd>lua vim.lsp.buf.definition()<CR>
-    nmap <silent> <leader>term :ToggleTerm dir=getcwd()<CR>
-    nmap <silent> <leader>grep :call GrepPattern()<CR>
-    nmap <silent> <leader>old :Telescope oldfiles<CR>
-    nmap <silent> <leader>def :Lspsaga peek_definition<CR>
-    nmap <silent> <leader>rn :Lspsaga rename<CR>
+    nnoremap <silent> <c-p> :call FindInWorkSpace()<CR>
+	nnoremap <silent> <c-f> :call GrepInWorkSpace()<CR>
+	nnoremap <silent> <c-D> <cmd>lua vim.lsp.buf.definition()<CR>
+    nnoremap <silent> <leader>term :ToggleTerm dir=getcwd()<CR>
+    nnoremap <silent> <leader>grep :call GrepPattern()<CR>
+    nnoremap <silent> <leader>old :Telescope oldfiles<CR>
+    nnoremap <silent> <leader>def :Lspsaga peek_definition<CR>
+    nnoremap <silent> <leader>rn :Lspsaga rename<CR>
 
 	"tabline
 	:set showtabline=2
-    nmap <silent> tn :tabnew<CR>
-    " nmap <silent> tn :tabnew<CR>:NvimTreeToggle<CR>:NvimTreeRefresh<CR>
-    nmap <silent> tl :+tabnext<CR>
-    nmap <silent> th :-tabnext<CR>
-    nmap <silent> tt :NvimTreeToggle<CR>
+    nnoremap <silent> tn :tabnew<CR>
+    " nnoremap <silent> tn :tabnew<CR>:NvimTreeToggle<CR>:NvimTreeRefresh<CR>
+    nnoremap <silent> tl :+tabnext<CR>
+    nnoremap <silent> th :-tabnext<CR>
+    nnoremap <silent> tt :NvimTreeToggle<CR>
 
 	" function MyTabLine()
 	"   let s = ''

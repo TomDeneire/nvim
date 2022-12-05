@@ -33,12 +33,16 @@ syn region  xfileTagLine     oneline start="^screen" end=":" contains=xfileTag,o
 syn region  xfileTagLine     oneline start="^format" end=":" contains=xfileTag,operator
 syn region  xfileTagLine     oneline start="^text" end=":" contains=xfileTag,operator
 syn region  xfileComment     oneline start="^//" end=/\n/
-syn region  macro            oneline start=/[mx]4_[A-Za-z0-9]*(/ end=")" contains=macroName
-syn region  macro            oneline start=/[mx]4_[A-Za-z0-9]*/ end=/\n/ contains=macroName
-syn match   macroName   contained /[mx]4_[a-zA-Z0-9]*/
-syn match   macroArg    contained /([A-Za-z0-9.\s]*)/ contains=mumpsFName,mumpsPName,mumpsFName,macro
+
+syn match   macro            /[mx]4_[A-Za-z0-9]*(.*)/ contains=macroName,macroArgs
+syn match   macro            /[mx]4_[A-Za-z0-9]*\n/ contains=macroName
+syn match   macroName        contained /[mx]4_[a-zA-Z0-9]*/
+syn match   macroArgs        contained /(.*)/ contains=mumpsFName,mumpsPName,mumpsFName,macroLiteral,operator
+syn match   macroLiteral     contained /[a-zA-Z0-9]*/
+
 syn match   xfileTag      contained / [@\$a-zA-Z0-9]*/
-syn match   operator      contained /[\(\)]/
+syn match   xfileTemplateKey /$[A-Za-z0-9]*/
+syn match   operator      contained /[\(\):=.*,]/
 syn match   mumpsPName	/\<\CP[A|D|G][A-Za-z0-9]*/
 syn match   mumpsUName	/\<\CU[A|D|G][A-Za-z0-9]*/
 syn match   mumpsFName	/\<\CF[A|D|G][A-Za-z0-9]*/
@@ -345,15 +349,15 @@ hi def link htmlCommentError	   htmlError
 hi def link htmlTagError	   htmlError
 hi def link htmlEvent		   javaScript
 hi def link htmlError		   Error
+hi def link xfileTemplateKey	   Special
 hi def link xfileTagLine	   MumpsLabel
 hi def link xfileTag	           MumpsLabelName
 hi def link macroName	           MumpsMacro
-hi def link macroArg	           Normal
 hi def link operator	           Operator
 hi def link xfileComment	   Comment
-hi def link mumpsPName		MumpsPName
-hi def link mumpsUName		MumpsUName
-hi def link mumpsFName		MumpsFName
+hi def link mumpsPName		   MumpsPName
+hi def link mumpsUName		   MumpsUName
+hi def link mumpsFName		   MumpsFName
 
 hi def link javaScript		   Special
 hi def link javaScriptExpression   javaScript
