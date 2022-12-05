@@ -175,6 +175,7 @@ endfunction
   call s:hi('BfileValue',                       s:white, '',       '',          '')
   call s:hi('DfileInstruction',                       s:white, '',       s:bold,          '')
   call s:hi('DfileMacroLabel',                       s:blue, '',       s:bold,          '')
+  call s:hi('DfileSpecial',                       s:yellow, '',       '',          '')
 
   " LSP
   call s:hi('LspDiagnosticsDefaultError',         '',       '',       '',          '')

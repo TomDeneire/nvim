@@ -96,9 +96,6 @@ else
 	vmap <c-k> 10k
     nnoremap <F5> :UndotreeToggle<CR>
 	
-	"qtechng mappings
-	nmap <c-b> :!qtechng file ci %:p<CR>
-	nmap <c-o> :!qtechng file refresh<CR>
 	
     "colorscheme
     syntax on
@@ -159,9 +156,22 @@ else
         !export CURRENT_FILE=%:p && export URL=$(qtechng file tell $CURRENT_FILE --jsonpath='$..DATA..vcurl' --unquote) && google-chrome-stable $URL
     endfunction
 
+    function! DefineMacro()
+        " function to lookup m4_isLOI
+        let g:macro_name = expand("<cword>")
+        let g:macro_find = "echo $(qtechng registry get qtechng-work-dir)$(qtechng object list " . g:macro_name . " --jsonpath='$..DATA..source' --unquote)"
+        let g:macro_file = system(g:macro_find)
+        let g:macro_def = split(g:macro_name, "m4_")[0]
+        let g:macro_open = "+/" . g:macro_def . " " . g:macro_file
+        :execute 'tabnew' g:macro_open
+    endfunction
+
     "qtechng mappings
     nmap <silent> <leader>qp :call QtechNGComparePrevious()<CR>
     nmap <silent> <leader>qg :call QtechNGShowInGit()<CR>
+	nmap <c-b> :!qtechng file ci %:p<CR>
+	nmap <c-o> :!qtechng file refresh<CR>
+    nmap <c-m> :call DefineMacro()<CR>
 
     "mappings after lua init
     nmap <silent> <c-p> :call FindInWorkSpace()<CR>
@@ -171,6 +181,7 @@ else
     nmap <silent> <leader>grep :call GrepPattern()<CR>
     nmap <silent> <leader>old :Telescope oldfiles<CR>
     nmap <silent> <leader>def :Lspsaga peek_definition<CR>
+    nmap <silent> <leader>rn :Lspsaga rename<CR>
 
 	"tabline
 	:set showtabline=2

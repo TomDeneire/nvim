@@ -154,6 +154,8 @@ if not vim.g.vscode
         }
       }
     }
+    require'lspconfig'.pyright.setup{on_attach = on_attach, capabilities = capabilities}
+
     require'lspconfig'.marksman.setup{on_attach = on_attach, capabilities = capabilities}
 
     require'lspconfig'.gopls.setup{on_attach = on_attach, capabilities = capabilities}
@@ -218,5 +220,5 @@ if not vim.g.vscode
       select_signature_key = nil, -- cycle to next signature, e.g. '<M-n>' function overloading
       move_cursor_key = nil, -- imap, use nvim_set_current_win to move cursor between current win and floating
     }
-    require "lsp_signature".setup(cfg)
+    -- require "lsp_signature".setup(cfg)
 end

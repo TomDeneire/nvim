@@ -29,8 +29,8 @@ syn match     operator         contained "[«»\(\):]"
 hi! link macrocodelabel      DfileMacroLabel
 hi! link macrocode           MumpsLabelName
 hi! link macroarg            Keyword
-hi! link macrosynopsis       Special
-hi! link macroexample        Special
+hi! link macrosynopsis       DfileSpecial
+hi! link macroexample        DfileSpecial
 hi! link macroparam          Keyword
 hi! link macroinstruction    DfileInstruction
 hi! link comment             Comment
