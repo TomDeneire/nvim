@@ -29,7 +29,11 @@ function! Indent()
             endif
         endif
     else
-        let indent = " " . indent_begin . " "
+        if indent_begin[0] == "."
+            let indent = " " . indent_begin . " "
+        else
+            let indent = " "
+        endif
     endif
     call append(line("."), indent)
     let curpos=getcurpos()
@@ -39,14 +43,6 @@ function! Indent()
 endfunction
 
 
-function! Define()
-    let g:wordUnderCursor = expand("<cword>")
-    if (matchstr(g:wordUnderCursor, "m4_")) != ""
-        :lua require("telescope.builtin").live_grep({hidden=true, cwd="/home/tdeneire/projects/brocade/source/data/", glob_pattern="*.d"})
-    else
-        :lua require("telescope.builtin").find_files({hidden=true, search_file=vim.api.nvim_get_var("wordUnderCursor")})
-    endif
-endfunction
-
 autocmd FileType mumps inoremap <TAB> .
+autocmd FileType mumps inoremap <c-l> s nr=""<CR>f  s nr=$O(x,nr) q:nr=""  d<CR>
 autocmd FileType mumps imap <CR> <ESC>:call Indent()<CR>

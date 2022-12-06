@@ -34,9 +34,7 @@
     " --   "Cornsilk",
     " --   "Salmon",
     " --   "LawnGreen",
-" reminder: check for list
   let s:base00 = ['#1e1e1e', '235']
-  " let s:base00 = ['#1f1f1f', '235']
   let s:base01 = ['#343d46', '237']
   let s:base02 = ['#4f5b66', '240']
   let s:base03 = ['#65737e', '243']
@@ -170,6 +168,7 @@ endfunction
   call s:hi('MumpsPName',                       s:blue, '',       s:italic,          '')
   call s:hi('MumpsUName',                       s:cyan, '',       s:bold,          '')
   call s:hi('MumpsFName',                       s:blue, '',       '',          '')
+  call s:hi('MumpsDoGoLabel',                       s:green, '',       s:italic,          '')
   call s:hi('MumpsLabelName',                       s:green, '',       s:bold,          '')
   call s:hi('MumpsIntrinsicFunction',                       s:cyan, '',       s:italic,          '')
   call s:hi('BfileValue',                       s:white, '',       '',          '')

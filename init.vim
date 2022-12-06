@@ -31,7 +31,7 @@ else
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-    " Devicons 
+    " Devicons
     Plug 'kyazdani42/nvim-web-devicons'
 	" Easy (un)commenting
     Plug 'preservim/nerdcommenter'
@@ -94,8 +94,7 @@ else
 	vnoremap <c-j> 10j
 	vnoremap <c-k> 10k
     nnoremap <F5> :UndotreeToggle<CR>
-	
-	
+
     "colorscheme
     syntax on
     let g:spunkshui_next_terminal_bold = 1
@@ -103,7 +102,6 @@ else
 	let g:python_version_2 = 0
 	let g:python_highlight_all = 1
     colorscheme spunkshui
-    "colorscheme dark+
 
     if (has("termguicolors"))
         set termguicolors
@@ -111,7 +109,6 @@ else
 
 	"remove tildes
 	highlight! EndOfBuffer ctermbg=bg ctermfg=bg guibg=bg guifg=bg
-
 
 	"lua init
     lua require("init")
@@ -156,7 +153,6 @@ else
     endfunction
 
     function! DefineMacro()
-        " function to lookup m4_isLOI
         let g:macro_name = expand("<cword>")
         let g:macro_find = "echo $(qtechng registry get qtechng-work-dir)$(qtechng object list " . g:macro_name . " --jsonpath='$..DATA..source' --unquote)"
         let g:macro_file = system(g:macro_find)
@@ -225,12 +221,19 @@ else
 
 	":set tabline=%!MyTabLine()
 
-	
+
 	"autohover
 	" :set updatetime=1000
     " autocmd CursorHold *.py lua vim.lsp.buf.hover()
     " autocmd CursorHold *.go lua vim.lsp.buf.hover()
     " autocmd CursorHold *.js lua vim.lsp.buf.hover()
+
+    " remove trailing whitespace
+    autocmd BufWritePost *.vim lua Trim_trailing_whitespace()
+    autocmd BufWritePost *.py lua Trim_trailing_whitespace()
+    autocmd BufWritePost *.lua lua Trim_trailing_whitespace()
+    autocmd BufWritePost *.go lua Trim_trailing_whitespace()
+    autocmd BufWritePost *.js lua Trim_trailing_whitespace()
 
     "autoformat
     autocmd BufWritePost *.py lua vim.lsp.buf.format()
@@ -246,11 +249,6 @@ else
     :set nohlsearch
     :set ignorecase
 
-"    hi Normal guibg=NONE ctermbg=NONE
-"    hi LineNr guibg=NONE ctermbg=NONE
-"    hi SignColumn guibg=NONE ctermbg=NONE
-"    hi EndOfBuffer guibg=NONE ctermbg=NONE
-
     "line numbers
     :set number
     :set relativenumber
@@ -262,12 +260,12 @@ else
     :set nofoldenable
     :set conceallevel=0
 
-	"tabstop
+	" default tabstop
 	:set expandtab
 	:set shiftwidth=4
 	:set tabstop=4
 
-	" Commenting
+	" commenting
 	filetype plugin on
     " Create default mappings
     let g:NERDCreateDefaultMappings = 1
@@ -285,7 +283,7 @@ else
     let g:NERDCommentEmptyLines = 1
     " Enable trimming of trailing whitespace when uncommenting
     let g:NERDTrimTrailingWhitespace = 1
-    " Enable NERDCommenterToggle to check all selected lines is commented or not 
+    " Enable NERDCommenterToggle to check all selected lines is commented or not
     let g:NERDToggleCheckAllLines = 1
     vmap <silent> cc :call nerdcommenter#Comment('x', 'toggle')<CR>
 

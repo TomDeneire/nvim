@@ -195,7 +195,7 @@ if not vim.g.vscode
 
       close_timeout = 4000, -- close floating window after ms when laster parameter is entered
       fix_pos = false,  -- set to true, the floating window will not auto-close until finish all parameters
-      hint_enable = true, -- virtual hint enable
+      hint_enable = false, -- virtual hint enable
       hint_prefix = "🐼 ",  -- Panda for parameter, NOTE: for the terminal not support emoji, might crash
       hint_scheme = "String",
       hi_parameter = "LspSignatureActiveParameter", -- how your parameter will be highlight
@@ -220,5 +220,5 @@ if not vim.g.vscode
       select_signature_key = nil, -- cycle to next signature, e.g. '<M-n>' function overloading
       move_cursor_key = nil, -- imap, use nvim_set_current_win to move cursor between current win and floating
     }
-    -- require "lsp_signature".setup(cfg)
+    require "lsp_signature".setup(cfg)
 end
