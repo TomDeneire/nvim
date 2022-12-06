@@ -4,6 +4,7 @@ autocmd FileType mumps setlocal expandtab shiftwidth=1 softtabstop=1
 
 "functions
 function! Indent()
+    echo filetype?
     let wordUnderCursor = expand("<cword>")
     let current_line = getline(".")
     let indent_level = split(current_line," ")
@@ -43,6 +44,6 @@ function! Indent()
 endfunction
 
 
-autocmd FileType mumps inoremap <TAB> .
-autocmd FileType mumps inoremap <c-l> s nr=""<CR>f  s nr=$O(x,nr) q:nr=""  d<CR>
-autocmd FileType mumps imap <CR> <ESC>:call Indent()<CR>
+autocmd FileType mumps inoremap <buffer> <TAB> .
+autocmd FileType mumps inoremap <buffer> <c-l> s nr=""<CR>f  s nr=$O(x,nr) q:nr=""  d<CR>
+autocmd FileType mumps imap <buffer> <CR> <ESC>:call Indent()<CR>
