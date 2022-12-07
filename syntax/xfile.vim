@@ -24,7 +24,7 @@ unlet b:current_syntax
 syn case ignore
 
 " mark illegal characters
-syn match htmlError "[<>&]"
+" syn match htmlError "[<>&]"
 
 
 " tags
@@ -171,7 +171,7 @@ else
   syn region htmlComment matchgroup=htmlComment start=+<!--\%(-\?>\)\@!+	end=+--!\?>+	contains=htmlCommentNested,@htmlPreProc,@Spell keepend
   " Idem 8.2.4.49: nested comment is parser error, except <!--> is all right
   syn match htmlCommentNested contained "<!-->\@!"
-  syn match htmlCommentError  contained "[^><!]"
+  " syn match htmlCommentError  contained "[^><!]"
 endif
 syn region htmlComment	start=+<!DOCTYPE+	end=+>+ keepend
 
@@ -336,19 +336,19 @@ if !exists("html_no_rendering")
 endif
 
 hi def link htmlPreStmt		   PreProc
-hi def link htmlPreError	   Error
+" hi def link htmlPreError	   Error
 hi def link htmlPreProc		   PreProc
 hi def link htmlPreAttr		   String
 hi def link htmlPreProcAttrName    PreProc
-hi def link htmlPreProcAttrError   Error
+" hi def link htmlPreProcAttrError   Error
 hi def link htmlString		   String
 hi def link htmlStatement	   Statement
 hi def link htmlComment		   Comment
-hi def link htmlCommentNested	   htmlError
-hi def link htmlCommentError	   htmlError
-hi def link htmlTagError	   htmlError
+" hi def link htmlCommentNested	   htmlError
+" hi def link htmlCommentError	   htmlError
+" hi def link htmlTagError	   htmlError
 hi def link htmlEvent		   javaScript
-hi def link htmlError		   Error
+" hi def link htmlError		   Error
 hi def link xfileTemplateKey	   Special
 hi def link xfileTagLine	   MumpsLabel
 hi def link xfileTag	           MumpsLabelName

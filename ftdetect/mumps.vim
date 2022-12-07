@@ -30,6 +30,7 @@ function! Indent()
             endif
         endif
     else
+        " to do: normal linebreak!
         if indent_begin[0] == "."
             let indent = " " . indent_begin . " "
         else
@@ -46,4 +47,4 @@ endfunction
 
 autocmd FileType mumps inoremap <buffer> <TAB> .
 autocmd FileType mumps inoremap <buffer> <c-l> s nr=""<CR>f  s nr=$O(x,nr) q:nr=""  d<CR>
-autocmd FileType mumps imap <buffer> <CR> <ESC>:call Indent()<CR>
+" autocmd FileType mumps imap <buffer> <CR> <ESC>:call Indent()<CR>

@@ -54,7 +54,8 @@ syn match mumpsForOperator	contained /s /
 syn match mumpsForOperator	contained / q/
 syn match mumpsForOperator	contained /  d/
 
-syn match mumpsDoGo           contained /[dg]\s[\%]*[A-Za-z0-9]*[\^[A-Za-z0-9]*]*[\(.*\)]*/ contains=mumpsDoGoCmd,mumpsDoGoLabel,mumpsMacroArgs
+syn match mumpsDoGo           contained /[dg]\s[\@]*[\%]*[A-Za-z0-9]*[\^[A-Za-z0-9]*]*[\(.*\)]*/ contains=mumpsDoGoCmd,mumpsDoGoLabel,mumpsMacroArgs,mumpsDoGoIndirect
+syn match mumpsDoGoIndirect        contained "@"
 syn match mumpsDoGoCmd        contained /[dg]/
 syn match mumpsDoGoLabel      contained /\s[\%]*[A-Za-z0-9]*[\^[A-Za-z0-9]*]*/
 
@@ -168,6 +169,7 @@ hi! link mumpsString		String
 hi! link mumpsNumber		Number
 hi! link mumpsOperator	Operator
 hi! link mumpsLabelColon	Operator
+hi! link mumpsDoGoIndirect	Operator
 hi! link mumpsComment		Comment
 hi! link mumpsPostOperator	Special
 hi! link mumpsMacro		MumpsMacro

@@ -234,6 +234,7 @@ else
     autocmd BufWritePost *.lua lua Trim_trailing_whitespace()
     autocmd BufWritePost *.go lua Trim_trailing_whitespace()
     autocmd BufWritePost *.js lua Trim_trailing_whitespace()
+    autocmd BufWritePost *.x lua Trim_trailing_whitespace()
 
     "autoformat
     autocmd BufWritePost *.py lua vim.lsp.buf.format()
