@@ -168,13 +168,14 @@ endfunction
   call s:hi('MumpsPName',                       s:blue, '',       s:italic,          '')
   call s:hi('MumpsUName',                       s:cyan, '',       s:bold,          '')
   call s:hi('MumpsFName',                       s:blue, '',       '',          '')
-  call s:hi('MumpsDoGoLabel',                       s:green, '',       s:italic,          '')
+  call s:hi('MumpsDoGoLabel',                       s:cyan, '',       s:italic,          '')
   call s:hi('MumpsLabelName',                       s:green, '',       s:bold,          '')
   call s:hi('MumpsIntrinsicFunction',                       s:cyan, '',       s:italic,          '')
   call s:hi('BfileValue',                       s:white, '',       '',          '')
   call s:hi('DfileInstruction',                       s:white, '',       s:bold,          '')
   call s:hi('DfileMacroLabel',                       s:blue, '',       s:bold,          '')
-  call s:hi('DfileSpecial',                       s:yellow, '',       '',          '')
+  call s:hi('DfileSynopsis',                       s:purple, '',       '',          '')
+  call s:hi('DfileExample',                       s:yellow, '',       '',          '')
 
   " LSP
   call s:hi('LspDiagnosticsDefaultError',         '',       '',       '',          '')

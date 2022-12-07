@@ -239,6 +239,7 @@ else
     "autoformat
     autocmd BufWritePost *.py lua vim.lsp.buf.format()
     autocmd BufWritePost *.go lua vim.lsp.buf.format()
+    autocmd BufWritePost *.go lua vim.lsp.buf.code_action()
     autocmd BufWritePost *.js lua vim.lsp.buf.format()
     autocmd BufWritePost *.m :silent !qtechng file format --inplace %:p
     autocmd BufWritePost *.d :silent !qtechng file format --inplace %:p
