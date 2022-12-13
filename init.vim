@@ -59,7 +59,7 @@ else
     Plug 'hrsh7th/nvim-cmp'
     Plug 'hrsh7th/cmp-vsnip'
     Plug 'hrsh7th/vim-vsnip'
-	" Terminal
+    " Terminal
 	Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 	" Bufferline
 	Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
@@ -94,6 +94,7 @@ else
 	vnoremap <c-j> 10j
 	vnoremap <c-k> 10k
     nnoremap <F5> :UndotreeToggle<CR>
+    nnoremap <c-[> <c-^>
 
     "colorscheme
     syntax on
@@ -114,7 +115,7 @@ else
     lua require("init")
 
 	"functions
-	function! FindInWorkSpace()
+	function FindInWorkSpace()
       let workspace = getcwd()
 	  if (matchstr(workspace, "/brocade/source/data")) == ""
          :lua require("telescope.builtin").find_files({hidden=true, find_command={"rg","--smart-case","--files"}, no_ignore=true, no_ignore_parent=true, cwd="/home/tdeneire/projects/code"})
@@ -123,7 +124,7 @@ else
 	  endif
 	endfunction
 
-	function! GrepInWorkSpace()
+	function GrepInWorkSpace()
       let workspace = getcwd()
 	  if (matchstr(workspace, "/brocade/source/data")) == ""
          :lua require("telescope.builtin").live_grep({live_command={"rg","--smart-case","--files"}, no_ignore=true, no_ignore_parent=true, cwd="/home/tdeneire/projects/code"})
@@ -132,7 +133,7 @@ else
 	  endif
 	endfunction
 
-	function! GrepPattern()
+	function GrepPattern()
       let workspace = getcwd()
       let pattern = input("Grep_pattern=", "*.")
 	  if (matchstr(workspace, "/brocade/source/data")) == ""
@@ -144,15 +145,15 @@ else
 	  endif
 	endfunction
 
-    function! QtechNGComparePrevious()
+    function QtechNGComparePrevious()
         !export CURRENT_FILE=%:p && export QPATH=$(qtechng file tell $CURRENT_FILE --jsonpath='$..DATA..qpath' --unquote) && export PREVIOUS=$(qtechng registry get "qtechng-releases" | awk '{print $(NF-1)}') && mkdir -p $PREVIOUS && cd $PREVIOUS && qtechng source co $QPATH --version=$PREVIOUS && meld $PREVIOUS/$(qtechng file tell $CURRENT_FILE --jsonpath='$..DATA..relpath' --unquote) $CURRENT_FILE
     endfunction
 
-    function! QtechNGShowInGit()
+    function QtechNGShowInGit()
         !export CURRENT_FILE=%:p && export URL=$(qtechng file tell $CURRENT_FILE --jsonpath='$..DATA..vcurl' --unquote) && google-chrome-stable $URL
     endfunction
 
-    function! DefineMacro()
+    function DefineMacro()
         let g:macro_name = expand("<cword>")
         let g:macro_find = "echo $(qtechng registry get qtechng-work-dir)$(qtechng object list " . g:macro_name . " --jsonpath='$..DATA..source' --unquote)"
         let g:macro_file = system(g:macro_find)
@@ -177,6 +178,7 @@ else
     nnoremap <silent> <leader>old :Telescope oldfiles<CR>
     nnoremap <silent> <leader>def :Lspsaga peek_definition<CR>
     nnoremap <silent> <leader>rn :Lspsaga rename<CR>
+    nnoremap <silent> <leader>black :!black %:p<CR>
 
 	"tabline
 	:set showtabline=2
@@ -222,12 +224,6 @@ else
 	":set tabline=%!MyTabLine()
 
 
-	"autohover
-	" :set updatetime=1000
-    " autocmd CursorHold *.py lua vim.lsp.buf.hover()
-    " autocmd CursorHold *.go lua vim.lsp.buf.hover()
-    " autocmd CursorHold *.js lua vim.lsp.buf.hover()
-
     " remove trailing whitespace
     autocmd BufWritePost *.vim lua Trim_trailing_whitespace()
     autocmd BufWritePost *.py lua Trim_trailing_whitespace()
@@ -236,11 +232,13 @@ else
     autocmd BufWritePost *.js lua Trim_trailing_whitespace()
     autocmd BufWritePost *.x lua Trim_trailing_whitespace()
 
+
     "autoformat
     autocmd BufWritePost *.py lua vim.lsp.buf.format()
     autocmd BufWritePost *.go lua vim.lsp.buf.format()
     autocmd BufWritePost *.go lua vim.lsp.buf.code_action()
     autocmd BufWritePost *.js lua vim.lsp.buf.format()
+    autocmd BufWritePost *.js lua vim.lsp.buf.code_action()
     autocmd BufWritePost *.m :silent !qtechng file format --inplace %:p
     autocmd BufWritePost *.d :silent !qtechng file format --inplace %:p
     autocmd BufWritePost *.i :silent !qtechng file format --inplace %:p

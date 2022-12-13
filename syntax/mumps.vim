@@ -3,6 +3,10 @@
 " Maintainer:	Tom Deneire, tomdeneire@gmail.com
 " Last change:	6 December 2022
 
+if exists('b:current_syntax')
+    finish
+endif
+
 " related formatting, jas 24Sept03 - experimental
 set lbr
 set breakat=\ ,
