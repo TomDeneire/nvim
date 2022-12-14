@@ -1,5 +1,4 @@
 -- General lua settings for neovim
-vim.g.mapleader = ' '
 
 -- buffer-scoped
 vim.opt.autoindent = true
@@ -9,6 +8,7 @@ vim.opt.cursorline = true
 
 -- global scope
 vim.opt.autowrite = true
+vim.opt.list = true
 
 vim.wo.colorcolumn = '80'
 
@@ -21,8 +21,6 @@ require('spunkshui.tree')
 -- Telescope
 require('spunkshui.telescope')
 
-vim.opt.list = true
-
 -- Indent blankline
 require('spunkshui.blankline')
 
@@ -32,12 +30,14 @@ require('spunkshui.terminal')
 -- Bufferline
 require('spunkshui.bufferline')
 
-require("spunkshui.hello")
+-- General utils
+require("spunkshui.utils")
 
--- (source editorconfig.nvim)
-function Trim_trailing_whitespace()
-    local view = vim.fn.winsaveview()
-    vim.api.nvim_command("silent! undojoin")
-    vim.api.nvim_command("silent keepjumps keeppatterns %s/\\s\\+$//e")
-    return vim.fn.winrestview(view)
-end
+-- QtechNG
+require("spunkshui.qtechng")
+
+-- keymappings
+require('spunkshui.keymappings')
+
+-- Greeting
+require("spunkshui.hello")

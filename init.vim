@@ -81,8 +81,6 @@ else
     "   syntax off            " Disable syntax highlighting
 
     "basic mappings
-    inoremap jj <Esc>
-    nnoremap <c-a> ggVG
     nnoremap <silent> <c-i> :lua vim.lsp.buf.hover()<CR>
     nnoremap <silent> <c-s> :w<CR>
     inoremap <silent> <c-s> <Esc> :w<CR>
@@ -95,6 +93,8 @@ else
 	vnoremap <c-k> 10k
     nnoremap <F5> :UndotreeToggle<CR>
     nnoremap <c-[> <c-^>
+    nnoremap <leader>all :tab ba<CR> :NvimTreeToggle<CR>
+    nnoremap <leader>flake :cexpr system("flake8 " . shellescape(expand("%")))<CR> :copen<CR>
 
     "colorscheme
     syntax on
@@ -162,11 +162,23 @@ else
         :execute 'tabnew' g:macro_open
     endfunction
 
+    function JumpToRoutine()
+        "d %CSV^ucsvsbld($file,$exec,$delimiter,$mode,$encoding,$fieldnames)»
+        "«s $error=$$%ChckTyp^barsrou($type,$context,$user)»"
+        let mrou = expand("<cWORD>")
+        let g:mrou = split(mrou, "(")[0]
+        :lua JumpToRou()
+        let g:mfile = system(g:jumpexe)
+        let g:mfile_open = "+/" . g:mlabel . " " . g:mfile
+        :execute 'tabnew' g:mfile_open
+    endfunction
+
     "qtechng mappings
     nnoremap <silent> <leader>qp :call QtechNGComparePrevious()<CR>
     nnoremap <silent> <leader>qg :call QtechNGShowInGit()<CR>
 	nnoremap <c-b> :!qtechng file ci %:p<CR>
 	nnoremap <c-o> :!qtechng file refresh<CR>
+    nnoremap <leader>rou :call JumpToRoutine()<CR>
     nnoremap <c-m> :call DefineMacro()<CR>
 
     "mappings after lua init
@@ -232,13 +244,13 @@ else
     autocmd BufWritePost *.js lua Trim_trailing_whitespace()
     autocmd BufWritePost *.x lua Trim_trailing_whitespace()
 
-
     "autoformat
     autocmd BufWritePost *.py lua vim.lsp.buf.format()
     autocmd BufWritePost *.go lua vim.lsp.buf.format()
     autocmd BufWritePost *.go lua vim.lsp.buf.code_action()
     autocmd BufWritePost *.js lua vim.lsp.buf.format()
     autocmd BufWritePost *.js lua vim.lsp.buf.code_action()
+    autocmd BufWritePost *.lua lua vim.lsp.buf.format()
     autocmd BufWritePost *.m :silent !qtechng file format --inplace %:p
     autocmd BufWritePost *.d :silent !qtechng file format --inplace %:p
     autocmd BufWritePost *.i :silent !qtechng file format --inplace %:p
