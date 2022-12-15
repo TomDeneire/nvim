@@ -15,7 +15,8 @@ vim.g.mapleader = ' '
 -- nnoremap <leader>all :tab ba<CR> :NvimTreeToggle<CR>
 -- nnoremap <leader>flake :cexpr system("flake8 " . shellescape(expand("%")))<CR> :copen<CR>
 
-vim.keymap.set("i", "<Esc>", "jj")
+vim.keymap.set("i", "jj", "<Esc>")
 vim.keymap.set("n", "<c-a>", "ggVG")
 -- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 -- vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+-- vim.keymap.set("n", "<C-h>", function() ui.nav_file(1) end)

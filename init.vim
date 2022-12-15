@@ -48,6 +48,7 @@ else
     Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
     Plug 'onsails/lspkind.nvim'
     Plug 'ray-x/lsp_signature.nvim'
+    Plug 'jose-elias-alvarez/null-ls.nvim'
     " Syntax
     Plug 'preservim/vim-markdown'
     Plug 'vim-python/python-syntax'
@@ -65,13 +66,8 @@ else
 	Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
 	" Colorschemes
 	Plug 'ellisonleao/gruvbox.nvim'
-    Plug 'tanvirtin/monokai.nvim'
     Plug 'martinsione/darkplus.nvim'
-    Plug 'arcticicestudio/nord-vim'
     Plug 'mhartington/oceanic-next'
-    Plug 'joshdick/onedark.vim'
-    Plug 'bluz71/vim-moonfly-colors'
-    Plug 'navarasu/onedark.nvim'
 
     " Initialize plugin system
     " - Automatically executes `filetype plugin indent on` and `syntax enable`.
@@ -93,7 +89,7 @@ else
 	vnoremap <c-k> 10k
     nnoremap <F5> :UndotreeToggle<CR>
     nnoremap <c-[> <c-^>
-    nnoremap <leader>all :tab ba<CR> :NvimTreeToggle<CR>
+    nnoremap <leader>tab :tab ba<CR> :NvimTreeToggle<CR>
     nnoremap <leader>flake :cexpr system("flake8 " . shellescape(expand("%")))<CR> :copen<CR>
 
     "colorscheme
@@ -251,6 +247,9 @@ else
     autocmd BufWritePost *.js lua vim.lsp.buf.format()
     autocmd BufWritePost *.js lua vim.lsp.buf.code_action()
     autocmd BufWritePost *.lua lua vim.lsp.buf.format()
+    autocmd BufWritePost *.html lua vim.lsp.buf.format()
+    autocmd BufWritePost *.xml lua vim.lsp.buf.format()
+    autocmd BufWritePost *.json lua vim.lsp.buf.format()
     autocmd BufWritePost *.m :silent !qtechng file format --inplace %:p
     autocmd BufWritePost *.d :silent !qtechng file format --inplace %:p
     autocmd BufWritePost *.i :silent !qtechng file format --inplace %:p
