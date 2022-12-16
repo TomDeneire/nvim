@@ -29,7 +29,23 @@ vim.g.python_highlight_all = 1
 vim.opt.foldenable = false
 vim.opt.conceallevel = 0
 
+-- autocmd('TextYankPost', {
+--     group = yank_group,
+--     pattern = '*',
+--     callback = function()
+--         vim.highlight.on_yank({
+--             higroup = 'IncSearch',
+--             timeout = 40,
+--         })
+--     end,
+-- })
 --
+-- autocmd({"BufWritePre"}, {
+--     group = ThePrimeagenGroup,
+--     pattern = "*",
+--     command = "%s/\\s\\+$//e",
+-- })
+
 -- Nvim-web-devicons
 require('spunkshui.devicons')
 

@@ -84,13 +84,6 @@ else
     nnoremap <c-[> <c-^>
     vmap <silent> cc :call nerdcommenter#Comment('x', 'toggle')<CR>
 
-    "colorscheme
-    syntax on
-    colorscheme spunkshui
-
-	"remove tildes
-	highlight! EndOfBuffer ctermbg=bg ctermfg=bg guibg=bg guifg=bg
-
 	"lua init
     lua require("init")
 
