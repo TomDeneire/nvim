@@ -49,9 +49,6 @@ else
     Plug 'onsails/lspkind.nvim'
     Plug 'ray-x/lsp_signature.nvim'
     Plug 'jose-elias-alvarez/null-ls.nvim'
-    " Syntax
-    Plug 'preservim/vim-markdown'
-    Plug 'vim-python/python-syntax'
     " Autocomplete plugs
     Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'hrsh7th/cmp-buffer'
@@ -60,6 +57,9 @@ else
     Plug 'hrsh7th/nvim-cmp'
     Plug 'hrsh7th/cmp-vsnip'
     Plug 'hrsh7th/vim-vsnip'
+    " Syntax
+    Plug 'preservim/vim-markdown'
+    Plug 'vim-python/python-syntax'
     " Terminal
 	Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 	" Bufferline
@@ -76,21 +76,11 @@ else
     "   filetype indent off   " Disable file-type-specific indentation
     "   syntax off            " Disable syntax highlighting
 
-    "basic mappings
-    nnoremap <silent> <c-i> :lua vim.lsp.buf.hover()<CR>
-    nnoremap <silent> <c-s> :w<CR>
-    inoremap <silent> <c-s> <Esc> :w<CR>
+    "mappings (difficult in Lua)
     nnoremap <c-v> "*p
     inoremap <c-v> <Esc>"*pa
     vnoremap <c-c> "+y
-	nnoremap <c-j> 10j
-	nnoremap <c-k> 10k
-	vnoremap <c-j> 10j
-	vnoremap <c-k> 10k
-    nnoremap <F5> :UndotreeToggle<CR>
     nnoremap <c-[> <c-^>
-    nnoremap <leader>tab :tab ba<CR> :NvimTreeToggle<CR>
-    nnoremap <leader>flake :cexpr system("flake8 " . shellescape(expand("%")))<CR> :copen<CR>
 
     "colorscheme
     syntax on
@@ -172,65 +162,16 @@ else
     "qtechng mappings
     nnoremap <silent> <leader>qp :call QtechNGComparePrevious()<CR>
     nnoremap <silent> <leader>qg :call QtechNGShowInGit()<CR>
-	nnoremap <c-b> :!qtechng file ci %:p<CR>
-	nnoremap <c-o> :!qtechng file refresh<CR>
     nnoremap <leader>rou :call JumpToRoutine()<CR>
     nnoremap <c-m> :call DefineMacro()<CR>
 
     "mappings after lua init
     nnoremap <silent> <c-p> :call FindInWorkSpace()<CR>
 	nnoremap <silent> <c-f> :call GrepInWorkSpace()<CR>
-	nnoremap <silent> <c-D> <cmd>lua vim.lsp.buf.definition()<CR>
-    nnoremap <silent> <leader>term :ToggleTerm dir=getcwd()<CR>
     nnoremap <silent> <leader>grep :call GrepPattern()<CR>
-    nnoremap <silent> <leader>old :Telescope oldfiles<CR>
-    nnoremap <silent> <leader>def :Lspsaga peek_definition<CR>
-    nnoremap <silent> <leader>rn :Lspsaga rename<CR>
-    nnoremap <silent> <leader>black :!black %:p<CR>
 
 	"tabline
 	:set showtabline=2
-    nnoremap <silent> tn :tabnew<CR>
-    nnoremap <silent> tl :+tabnext<CR>
-    nnoremap <silent> th :-tabnext<CR>
-    nnoremap <silent> tt :NvimTreeToggle<CR>
-
-	" function MyTabLine()
-	"   let s = ''
-	"   for i in range(tabpagenr('$'))
-	"     " select the highlighting
-	"     if i + 1 == tabpagenr()
-	"       let s ..= '%#TabLineSel#'
-	"     else
-	"       let s ..= '%#TabLine#'
-	"     endif
-    "
-	"     " set the tab page number (for mouse clicks)
-	"     let s ..= '%' .. (i + 1) .. 'T'
-    "
-	"     " the label is made by MyTabLabel()
-	"     let s ..= ' %{MyTabLabel(' .. (i + 1) .. ')} '
-	"   endfor
-    "
-	"   " after the last tab fill with TabLineFill and reset tab page nr
-	"   let s ..= '%#TabLineFill#%T'
-    "
-	"   " right-align the label to close the current tab page
-	"   if tabpagenr('$') > 1
-	"     let s ..= '%=%#TabLine#%999Xclose'
-	"   endif
-    "
-	"   return s
-	" endfunction
-    "
-	" function MyTabLabel(n)
-	"   let buflist = tabpagebuflist(a:n)
-	"   let winnr = tabpagewinnr(a:n)
-	"   return bufname(buflist[winnr - 1])
-	" endfunction
-
-	":set tabline=%!MyTabLine()
-
 
     " remove trailing whitespace
     autocmd BufWritePost *.vim lua Trim_trailing_whitespace()
@@ -296,6 +237,5 @@ else
     let g:NERDTrimTrailingWhitespace = 1
     " Enable NERDCommenterToggle to check all selected lines is commented or not
     let g:NERDToggleCheckAllLines = 1
-    vmap <silent> cc :call nerdcommenter#Comment('x', 'toggle')<CR>
 
 endif

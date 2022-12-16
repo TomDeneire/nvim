@@ -39,5 +39,3 @@ require("spunkshui.qtechng")
 -- keymappings
 require('spunkshui.keymappings')
 
--- Greeting
-require("spunkshui.hello")
