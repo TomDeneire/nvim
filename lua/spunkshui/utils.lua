@@ -6,16 +6,3 @@ function Trim_trailing_whitespace()
     return vim.fn.winrestview(view)
 end
 
--- "functions
--- function FindInWorkSpace()
---   let workspace = getcwd()
---   if (matchstr(workspace, "/brocade/source/data")) == ""
---      :lua require("telescope.builtin").find_files({hidden=true, find_command={"rg","--smart-case","--files"}, no_ignore=true, no_ignore_parent=true, cwd="/home/tdeneire/projects/code"})
---   else
---      :lua require("telescope.builtin").find_files({hidden=true, find_command={"rg","--smart-case","--files"}, no_ignore=true, no_ignore_parent=true, cwd="/home/tdeneire/projects/brocade/source/data"})
---   endif
--- endfunction
-
-function FindInWorkSpace2()
-    local workspace = "a"
-end

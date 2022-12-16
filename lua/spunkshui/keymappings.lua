@@ -23,13 +23,20 @@ vim.keymap.set("n", "<leader>term", "<cmd>:ToggleTerm dir=getcwd()<CR>")
 vim.keymap.set("n", "<leader>def", "<cmd>silent :Lspsaga peek_definition<CR>")
 vim.keymap.set("n", "<leader>rn", "<cmd>silent :Lspsaga rename<CR>")
 vim.keymap.set("n", "<leader>all", ":tab ba<CR> :NvimTreeToggle<CR>")
-vim.keymap.set("v", "<leader>cc", "<cmd>silent :call nerdcommenter#Comment('x', 'toggle')<CR>")
 
 -- qtechng
 vim.keymap.set("n", "<c-b>", ":!qtechng file ci %:p<CR>")
 vim.keymap.set("n", "<c-o>", ":!qtechng file refresh<CR>")
+-- vim.keymap.set("n", "<c-m>", "<cmd>silent lua DefineMacro()<CR>")
+local git_cmd = "<cmd>silent !export CURRENT_FILE=%:p && export URL=$(qtechng file tell $CURRENT_FILE --jsonpath='$..DATA..vcurl' --unquote) && google-chrome-stable $URL<CR>"
+vim.keymap.set("n", "<leader>qg", git_cmd)
+local compare_previous_cmd = "<cmd>silent !export CURRENT_FILE=%:p && export QPATH=$(qtechng file tell $CURRENT_FILE --jsonpath='$..DATA..qpath' --unquote) && export PREVIOUS=$(qtechng registry get qtechng-releases | awk '{print $(NF-1)}') && mkdir -p $PREVIOUS && cd $PREVIOUS && qtechng source co $QPATH --version=$PREVIOUS && meld $PREVIOUS/$(qtechng file tell $CURRENT_FILE --jsonpath='$..DATA..relpath' --unquote) $CURRENT_FILE<CR>"
+vim.keymap.set("n", "<leader>qp", compare_previous_cmd)
 
 -- other
+vim.keymap.set("n", "<c-p>", "<cmd>silent lua FindInWorkSpace()<CR>")
+vim.keymap.set("n", "<c-f>", "<cmd>silent lua GrepInWorkSpace()<CR>")
+vim.keymap.set("n", "<leader>grep", "<cmd>silent lua GrepPattern()<CR>")
 vim.keymap.set("n", "<leader>flake", ':cexpr system("flake8 " . shellescape(expand("%")))<CR> :copen<CR>')
 vim.keymap.set("n", "<leader>black", "<cmd>silent :!black %:p<CR>")
 

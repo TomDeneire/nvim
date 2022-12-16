@@ -1,17 +1,35 @@
--- General lua settings for neovim
+-- General settings
 
--- buffer-scoped
 vim.opt.autoindent = true
-
--- window-scoped
 vim.opt.cursorline = true
-
--- global scope
 vim.opt.autowrite = true
 vim.opt.list = true
+vim.opt.hlsearch = false
+vim.opt.termguicolors = true
+vim.opt.showtabline = 2
+vim.opt.ignorecase = true
+vim.opt.autochdir = true
+
+-- line numbers
+vim.opt.nu = true
+vim.opt.relativenumber = true
+
+-- tabsettings
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
 
 vim.wo.colorcolumn = '80'
 
+vim.g.python_version_2 = 0
+vim.g.python_highlight_all = 1
+
+-- for markdown
+vim.opt.foldenable = false
+vim.opt.conceallevel = 0
+
+--
 -- Nvim-web-devicons
 require('spunkshui.devicons')
 
@@ -38,4 +56,3 @@ require("spunkshui.qtechng")
 
 -- keymappings
 require('spunkshui.keymappings')
-

@@ -1,5 +1,6 @@
 if exists('g:vscode')
     " VSCode extension
+    "
     :set ignorecase
     :set nohlsearch
 else
@@ -81,63 +82,17 @@ else
     inoremap <c-v> <Esc>"*pa
     vnoremap <c-c> "+y
     nnoremap <c-[> <c-^>
+    vmap <silent> cc :call nerdcommenter#Comment('x', 'toggle')<CR>
 
     "colorscheme
     syntax on
-    let g:spunkshui_next_terminal_bold = 1
-    let g:spunkshui_next_terminal_italic = 1
-	let g:python_version_2 = 0
-	let g:python_highlight_all = 1
     colorscheme spunkshui
-
-    if (has("termguicolors"))
-        set termguicolors
-    endif
 
 	"remove tildes
 	highlight! EndOfBuffer ctermbg=bg ctermfg=bg guibg=bg guifg=bg
 
 	"lua init
     lua require("init")
-
-	"functions
-	function FindInWorkSpace()
-      let workspace = getcwd()
-	  if (matchstr(workspace, "/brocade/source/data")) == ""
-         :lua require("telescope.builtin").find_files({hidden=true, find_command={"rg","--smart-case","--files"}, no_ignore=true, no_ignore_parent=true, cwd="/home/tdeneire/projects/code"})
-	  else
-         :lua require("telescope.builtin").find_files({hidden=true, find_command={"rg","--smart-case","--files"}, no_ignore=true, no_ignore_parent=true, cwd="/home/tdeneire/projects/brocade/source/data"})
-	  endif
-	endfunction
-
-	function GrepInWorkSpace()
-      let workspace = getcwd()
-	  if (matchstr(workspace, "/brocade/source/data")) == ""
-         :lua require("telescope.builtin").live_grep({live_command={"rg","--smart-case","--files"}, no_ignore=true, no_ignore_parent=true, cwd="/home/tdeneire/projects/code"})
-	  else
-         :lua require("telescope.builtin").live_grep({live_command={"rg","--smart-case","--files"}, no_ignore=true, no_ignore_parent=true, cwd="/home/tdeneire/projects/brocade/source/data"})
-	  endif
-	endfunction
-
-	function GrepPattern()
-      let workspace = getcwd()
-      let pattern = input("Grep_pattern=", "*.")
-	  if (matchstr(workspace, "/brocade/source/data")) == ""
-         let g:greppattern = pattern
-         :lua require("telescope.builtin").live_grep({live_command={"rg","--smart-case","--files"}, no_ignore=true, no_ignore_parent=true, cwd="/home/tdeneire/projects/code", glob_pattern=vim.g.greppattern})
-	  else
-         let g:greppattern = pattern
-         :lua require("telescope.builtin").live_grep({live_command={"rg","--smart-case","--files"}, no_ignore=true, no_ignore_parent=true, cwd="/home/tdeneire/projects/brocade/source/data", glob_pattern=vim.g.greppattern})
-	  endif
-	endfunction
-
-    function QtechNGComparePrevious()
-        !export CURRENT_FILE=%:p && export QPATH=$(qtechng file tell $CURRENT_FILE --jsonpath='$..DATA..qpath' --unquote) && export PREVIOUS=$(qtechng registry get "qtechng-releases" | awk '{print $(NF-1)}') && mkdir -p $PREVIOUS && cd $PREVIOUS && qtechng source co $QPATH --version=$PREVIOUS && meld $PREVIOUS/$(qtechng file tell $CURRENT_FILE --jsonpath='$..DATA..relpath' --unquote) $CURRENT_FILE
-    endfunction
-
-    function QtechNGShowInGit()
-        !export CURRENT_FILE=%:p && export URL=$(qtechng file tell $CURRENT_FILE --jsonpath='$..DATA..vcurl' --unquote) && google-chrome-stable $URL
-    endfunction
 
     function DefineMacro()
         let g:macro_name = expand("<cword>")
@@ -160,18 +115,8 @@ else
     endfunction
 
     "qtechng mappings
-    nnoremap <silent> <leader>qp :call QtechNGComparePrevious()<CR>
-    nnoremap <silent> <leader>qg :call QtechNGShowInGit()<CR>
     nnoremap <leader>rou :call JumpToRoutine()<CR>
     nnoremap <c-m> :call DefineMacro()<CR>
-
-    "mappings after lua init
-    nnoremap <silent> <c-p> :call FindInWorkSpace()<CR>
-	nnoremap <silent> <c-f> :call GrepInWorkSpace()<CR>
-    nnoremap <silent> <leader>grep :call GrepPattern()<CR>
-
-	"tabline
-	:set showtabline=2
 
     " remove trailing whitespace
     autocmd BufWritePost *.vim lua Trim_trailing_whitespace()
@@ -197,45 +142,7 @@ else
     autocmd BufWritePost *.b :silent !qtechng file format --inplace %:p
     autocmd BufWritePost *.l :silent !qtechng file format --inplace %:p
 
-    " search options
-    :set nohlsearch
-    :set ignorecase
-
-    "line numbers
-    :set number
-    :set relativenumber
-
-    " change cwd automatically
-    :set autochdir
-
-    " markdown settings
-    :set nofoldenable
-    :set conceallevel=0
-
-	" default tabstop
-	:set expandtab
-	:set shiftwidth=4
-	:set tabstop=4
-
 	" commenting
 	filetype plugin on
-    " Create default mappings
-    let g:NERDCreateDefaultMappings = 1
-    " Add spaces after comment delimiters by default
-    let g:NERDSpaceDelims = 1
-    " Use compact syntax for prettified multi-line comments
-    let g:NERDCompactSexyComs = 1
-    " Align line-wise comment delimiters flush left instead of following code indentation
-    let g:NERDDefaultAlign = 'left'
-    " Set a language to use its alternate delimiters by default
-    let g:NERDAltDelims_java = 1
-    " Add your own custom formats or override the defaults
-    let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
-    " Allow commenting and inverting empty lines (useful when commenting a region)
-    let g:NERDCommentEmptyLines = 1
-    " Enable trimming of trailing whitespace when uncommenting
-    let g:NERDTrimTrailingWhitespace = 1
-    " Enable NERDCommenterToggle to check all selected lines is commented or not
-    let g:NERDToggleCheckAllLines = 1
 
 endif
