@@ -9,7 +9,7 @@ syn sync    minlines=0
 syn case    ignore
 
 " Regions
-syn region    comment       start=/\/\// end=/\n/
+syn region    comment           start=/\/\// end=/\n/
 syn region    objectcodeline    oneline start="" end=/\:/ contains=objectcodelabel,objectcode
 syn region    objectline        start=/    / keepend end=/$/ contains=objectlabel,operator
 
@@ -41,7 +41,7 @@ syn match     operator          contained "[«»()]"
 " The default methods for highlighting.  Can be overridden later
 hi! link objectcodelabel  MumpsLabel
 hi! link objectcode       MumpsLabelName
-hi! link object           Constant 
+hi! link object           Constant
 hi! link comment          Comment
 hi! link operator         Operator
 hi! link value            BfileValue
