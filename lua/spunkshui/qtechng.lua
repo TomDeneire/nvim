@@ -41,9 +41,17 @@ end
 
 function SourceList()
     local pattern = vim.fn.input("Search string = ", "")
-    local cmd = ':cexpr system("qtechng source list --jsonpath=$..DATA..fileurl --needle=' ..
-        pattern .. '")'
-    vim.cmd(cmd)
-    local opencmd = ":copen"
-    vim.cmd(opencmd)
+    local listcmd = "qtechng source list --jsonpath=$..DATA..fileurl --needle=" ..
+        pattern .. " | awk -F 'file://' '{print $2}' | awk -F '\"' '{print $1}'"
+    local result = vim.fn.system(listcmd)
+    local t = {}
+    for str in string.gmatch(result, "([^" .. "\n" .. "]+)") do
+        table.insert(t, str)
+    end
+    if next(t) then
+        vim.fn.setqflist({}, " ", {
+            lines = t
+        })
+        vim.cmd("copen")
+    end
 end
