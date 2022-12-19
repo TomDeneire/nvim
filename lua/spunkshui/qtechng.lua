@@ -38,3 +38,12 @@ function DefineMacro()
     local cmd = ":execute 'tabnew' " .. macro_open
     vim.cmd(cmd)
 end
+
+function SourceList()
+    local pattern = vim.fn.input("Search string = ", "")
+    local cmd = ':cexpr system("qtechng source list --jsonpath=$..DATA..fileurl --needle=' ..
+        pattern .. '")'
+    vim.cmd(cmd)
+    local opencmd = ":copen"
+    vim.cmd(opencmd)
+end

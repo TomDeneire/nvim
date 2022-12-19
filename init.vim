@@ -111,30 +111,6 @@ else
     nnoremap <leader>rou :call JumpToRoutine()<CR>
     nnoremap <c-m> :call DefineMacro()<CR>
 
-    " remove trailing whitespace
-    autocmd BufWritePost *.vim lua Trim_trailing_whitespace()
-    autocmd BufWritePost *.py lua Trim_trailing_whitespace()
-    autocmd BufWritePost *.lua lua Trim_trailing_whitespace()
-    autocmd BufWritePost *.go lua Trim_trailing_whitespace()
-    autocmd BufWritePost *.js lua Trim_trailing_whitespace()
-    autocmd BufWritePost *.x lua Trim_trailing_whitespace()
-
-    "autoformat
-    autocmd BufWritePost *.py lua vim.lsp.buf.format()
-    autocmd BufWritePost *.go lua vim.lsp.buf.format()
-    autocmd BufWritePost *.go lua vim.lsp.buf.code_action()
-    autocmd BufWritePost *.js lua vim.lsp.buf.format()
-    autocmd BufWritePost *.js lua vim.lsp.buf.code_action()
-    autocmd BufWritePost *.lua lua vim.lsp.buf.format()
-    autocmd BufWritePost *.html lua vim.lsp.buf.format()
-    autocmd BufWritePost *.xml lua vim.lsp.buf.format()
-    autocmd BufWritePost *.json lua vim.lsp.buf.format()
-    autocmd BufWritePost *.m :silent !qtechng file format --inplace %:p
-    autocmd BufWritePost *.d :silent !qtechng file format --inplace %:p
-    autocmd BufWritePost *.i :silent !qtechng file format --inplace %:p
-    autocmd BufWritePost *.b :silent !qtechng file format --inplace %:p
-    autocmd BufWritePost *.l :silent !qtechng file format --inplace %:p
-
 	" commenting
 	filetype plugin on
 

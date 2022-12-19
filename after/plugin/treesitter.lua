@@ -40,10 +40,10 @@ then
             -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
             -- Using this option may slow down your editor, and you may see some duplicate highlights.
             -- Instead of true it can also be a list of languages
-            additional_vim_regex_highlighting = true,
+            additional_vim_regex_highlighting = false,
         },
         rainbow = {
-            enable = true,
+            enable = false,
             disable = { "go" },
             -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
             extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean

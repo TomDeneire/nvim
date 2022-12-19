@@ -32,6 +32,7 @@ local git_cmd = "<cmd>silent !export CURRENT_FILE=%:p && export URL=$(qtechng fi
 vim.keymap.set("n", "<leader>qg", git_cmd)
 local compare_previous_cmd = "<cmd>silent !export CURRENT_FILE=%:p && export QPATH=$(qtechng file tell $CURRENT_FILE --jsonpath='$..DATA..qpath' --unquote) && export PREVIOUS=$(qtechng registry get qtechng-releases | awk '{print $(NF-1)}') && mkdir -p $PREVIOUS && cd $PREVIOUS && qtechng source co $QPATH --version=$PREVIOUS && meld $PREVIOUS/$(qtechng file tell $CURRENT_FILE --jsonpath='$..DATA..relpath' --unquote) $CURRENT_FILE<CR>"
 vim.keymap.set("n", "<leader>qp", compare_previous_cmd)
+vim.keymap.set("n", "<leader>qs", "<cmd>lua SourceList()<CR>")
 
 -- other
 vim.keymap.set("n", "<c-p>", "<cmd>silent lua FindInWorkSpace()<CR>")
