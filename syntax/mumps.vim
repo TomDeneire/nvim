@@ -46,7 +46,7 @@ syn match mumpsMacroParamId	contained /$/
 syn region  mumpsPostCondition	contained oneline start=/:/hs=s+1 end=/[ \t]/re=e-1,he=e-1,me=e-1 end=/$/ contains=mumpsPostOperator,@mumpsExpr
 syn match mumpsPostOperator contained /:/
 
-syn region  mumpsArgsSeg	contained oneline start=/[ \t]/lc=1 end=/[ \t]\+/ end=/$/ contains=@mumpsExpr,",",mumpsPostCondition
+syn region  mumpsArgsSeg	contained oneline start=/[ \t]/lc=1 end=/[ \t]\+/ end=/$/ contains=@mumpsExpr,mumpsPostCondition
 
 syn match   mumpsLineStart      contained /^[ \t][. \t]*/
 syn match   mumpsLineStart      contained /^[%A-Za-z][^ \t;]*[. \t]*/ contains=mumpsBrocLabel,mumpsDotLevel
@@ -162,7 +162,6 @@ hi! link mumpsPostCondition	MumpsVariable
 hi! link mumpsCmd		Statement
 hi! link mumpsArgsSeg		MumpsVariable
 hi! link mumpsExpr		PreProc
-" hi! link mumpsVar		MumpsGlobalName
 hi! link mumpsGlobalName	MumpsGlobalName
 hi! link mumpsParen           MumpsVariable
 hi! link mumpsSubs            MumpsVariable
@@ -195,4 +194,3 @@ hi! link mumpsDoGoLabel         MumpsDoGoLabel
 
 let b:current_syntax = "mumps"
 
-" vim: ts=8

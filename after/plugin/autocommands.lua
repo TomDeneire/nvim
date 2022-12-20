@@ -30,4 +30,29 @@ then
         command = "silent! !qtechng file format --inplace %:p",
     })
 
+    -- MUMPS
+    vim.api.nvim_create_autocmd("FileType", {
+        pattern = "mumps",
+        command = [[inoremap <buffer> <TAB> .]]
+    })
+
+    vim.api.nvim_create_autocmd("FileType", {
+        pattern = "mumps",
+        command = [[inoremap <buffer> <c-l> s nr=""<CR>f  s nr=$O(x,nr) q:nr=""  d]]
+    })
+
+    vim.api.nvim_create_autocmd("FileType", {
+        pattern = "mumps",
+        command = [[inoremap <buffer> <CR> <ESC>:lua MumpsIndent()<CR>]]
+    })
+
+    vim.api.nvim_create_autocmd("FileType", {
+        pattern = "mumps",
+        command = [[inoremap <buffer> <c-r> <CR>]]
+    })
+
+    vim.api.nvim_create_autocmd("FileType", {
+        pattern = "mumps",
+        command = [[setlocal expandtab shiftwidth=1 softtabstop=1]]
+    })
 end
