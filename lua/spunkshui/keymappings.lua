@@ -27,11 +27,10 @@ vim.keymap.set("n", "<leader>all", ":tab ba<CR> :NvimTreeToggle<CR>")
 -- qtechng
 vim.keymap.set("n", "<c-b>", ":!qtechng file ci %:p<CR>")
 vim.keymap.set("n", "<c-o>", ":!qtechng file refresh<CR>")
--- vim.keymap.set("n", "<c-m>", "<cmd>silent lua DefineMacro()<CR>")
-local git_cmd = "<cmd>silent !export CURRENT_FILE=%:p && export URL=$(qtechng file tell $CURRENT_FILE --jsonpath='$..DATA..vcurl' --unquote) && google-chrome-stable $URL<CR>"
-vim.keymap.set("n", "<leader>qg", git_cmd)
-local compare_previous_cmd = "<cmd>silent !export CURRENT_FILE=%:p && export QPATH=$(qtechng file tell $CURRENT_FILE --jsonpath='$..DATA..qpath' --unquote) && export PREVIOUS=$(qtechng registry get qtechng-releases | awk '{print $(NF-1)}') && mkdir -p $PREVIOUS && cd $PREVIOUS && qtechng source co $QPATH --version=$PREVIOUS && meld $PREVIOUS/$(qtechng file tell $CURRENT_FILE --jsonpath='$..DATA..relpath' --unquote) $CURRENT_FILE<CR>"
-vim.keymap.set("n", "<leader>qp", compare_previous_cmd)
+vim.keymap.set("n", "<leader>rou", "<cmd>silent lua JumpToRou()<CR>")
+vim.keymap.set("n", "<c-m>", "<cmd>silent lua DefineMacro()<CR>")
+vim.keymap.set("n", "<leader>qg", "<cmd>silent lua OpenInGit()<CR>")
+vim.keymap.set("n", "<leader>qp", "<cmd>silent lua ComparePrevious()<CR>")
 vim.keymap.set("n", "<leader>qs", "<cmd>lua SourceList()<CR>")
 
 -- other
@@ -45,6 +44,3 @@ vim.keymap.set("n", "<leader>black", "<cmd>silent :!black %:p<CR>")
 -- vim.keymap.set("n", "<c-v>", '"*p')
 -- vim.keymap.set("i", "<c-v>", '<ESC> "*pa')
 -- vim.keymap.set("v", "<c-c>", '"+y')
--- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
--- vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
--- vim.keymap.set("n", "<C-h>", function() ui.nav_file(1) end)

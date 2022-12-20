@@ -87,31 +87,7 @@ else
 	"lua init
     lua require("init")
 
-    function DefineMacro()
-        let g:macro_name = expand("<cword>")
-        let g:macro_find = "echo $(qtechng registry get qtechng-work-dir)$(qtechng object list " . g:macro_name . " --jsonpath='$..DATA..source' --unquote)"
-        let g:macro_file = system(g:macro_find)
-        let g:macro_def = split(g:macro_name, "m4_")[0]
-        let g:macro_open = "+/" . g:macro_def . " " . g:macro_file
-        :execute 'tabnew' g:macro_open
-    endfunction
-
-    function JumpToRoutine()
-        "d %CSV^ucsvsbld($file,$exec,$delimiter,$mode,$encoding,$fieldnames)»
-        "«s $error=$$%ChckTyp^barsrou($type,$context,$user)»"
-        let mrou = expand("<cWORD>")
-        let g:mrou = split(mrou, "(")[0]
-        :lua JumpToRou()
-        let g:mfile = system(g:jumpexe)
-        let g:mfile_open = "+/" . g:mlabel . " " . g:mfile
-        :execute 'tabnew' g:mfile_open
-    endfunction
-
-    "qtechng mappings
-    nnoremap <leader>rou :call JumpToRoutine()<CR>
-    nnoremap <c-m> :call DefineMacro()<CR>
-
-	" commenting
+	"commenting
 	filetype plugin on
 
 endif

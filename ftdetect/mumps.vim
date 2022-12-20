@@ -4,7 +4,6 @@ autocmd FileType mumps setlocal expandtab shiftwidth=1 softtabstop=1
 
 "functions
 function! Indent()
-    echo filetype?
     let wordUnderCursor = expand("<cword>")
     let current_line = getline(".")
     let indent_level = split(current_line," ")
