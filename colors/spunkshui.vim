@@ -84,7 +84,7 @@ endfunction
   call s:hi('Exception',                          s:red,    '',       '',          '')
   call s:hi('FoldColumn',                         s:blue,   s:base00, '',          '')
   call s:hi('Folded',                             s:base03, s:base01, '',    '')
-  call s:hi('IncSearch',                          s:base01, s:orange, 'NONE',      '')
+  call s:hi('IncSearch',                          s:base01, s:base07, 'NONE',      '')
   call s:hi('Italic',                             '',       '',       s:italic,    '')
 
   call s:hi('Macro',                              s:red,    '',       '',          '')
