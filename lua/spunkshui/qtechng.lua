@@ -74,45 +74,54 @@ function ComparePrevious()
 end
 
 function MumpsIndent()
-    local wordUnderCursor = vim.fn.expand("<cword>")
+    local linepos = vim.fn.getcurpos()
+    local posinline = linepos[3]
     local current_line = vim.fn.getline(".")
-    local indent_level = Split(current_line, " ")
-    local indent_begin = indent_level[1]
-    local indent = ""
-    if indent_begin ~= nil then
-        if (wordUnderCursor == "d") or (wordUnderCursor == "q") then
-            if wordUnderCursor == "d" then
-                if string.sub(indent_begin, 1, 1) == "." then
-                    indent = " " .. indent_begin .. ". "
+    local linelength = string.len(current_line)
+    if posinline == linelength then
+        -- cursor at end of the line
+        local wordUnderCursor = vim.fn.expand("<cword>")
+        local indent_level = Split(current_line, " ")
+        local indent_begin = indent_level[1]
+        local indent = ""
+        if indent_begin ~= nil then
+            if (wordUnderCursor == "d") or (wordUnderCursor == "q") then
+                if wordUnderCursor == "d" then
+                    if string.sub(indent_begin, 1, 1) == "." then
+                        indent = " " .. indent_begin .. ". "
+                    else
+                        indent = " . "
+                    end
                 else
-                    indent = " . "
+                    if string.sub(indent_begin, 1, 1) == "." then
+                        local indent_minus_one = string.len(indent_begin) - 1
+                        print(indent_minus_one)
+                        if indent_minus_one < 1 then
+                            indent = " "
+                        else
+                            indent = " " .. string.sub(indent_begin, 1, indent_minus_one) .. " "
+                        end
+                    else
+                        indent = " "
+                    end
                 end
             else
                 if string.sub(indent_begin, 1, 1) == "." then
-                    local indent_minus_one = string.len(indent_begin) - 1
-                    print(indent_minus_one)
-                    if indent_minus_one < 1 then
-                        indent = " "
-                    else
-                        indent = " " .. string.sub(indent_begin, 1, indent_minus_one) .. " "
-                    end
+                    indent = " " .. indent_begin .. " "
                 else
                     indent = " "
                 end
             end
-        else
-            -- to do: normal enter!
-            if string.sub(indent_begin, 1, 1) == "." then
-                indent = " " .. indent_begin .. " "
-            else
-                indent = " "
-            end
         end
+        local line = vim.fn.line(".")
+        vim.fn.append(line, indent)
+        local curpos = vim.fn.getcurpos()
+        curpos[2] = curpos[2] + 1
+        vim.fn.setpos(".", curpos)
+        vim.fn.feedkeys("A")
+    else
+        -- cursor within the line
+        vim.fn.feedkeys("a")
+        vim.fn.feedkeys("\n")
     end
-    local line = vim.fn.line(".")
-    vim.fn.append(line, indent)
-    local curpos = vim.fn.getcurpos()
-    curpos[2] = curpos[2] + 1
-    vim.fn.setpos(".", curpos)
-    vim.fn.feedkeys("A")
 end

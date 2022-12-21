@@ -9,7 +9,13 @@ vim.g.NERDDefaultAlign = 'left'
 -- Set a language to use its alternate delimiters by default
 vim.g.NERDAltDelims_java = 1
 -- Add your own custom formats or override the defaults
-vim.g.NERDCustomDelimiters = {}
+--local delims = {}
+--local mumps = {}
+--mumps["left"] = ";"
+--mumps["right"] = ""
+--delims["mumps"] = mumps
+--vim.g.NERDCustomDelimiters = delims
+--vim.cmd("let g:NERDCustomDelimiters = { 'mumps': { 'left': ';','right': '' } }<CR>")
 -- Allow commenting and inverting empty lines (useful when commenting a region)
 vim.g.NERDCommentEmptyLines = 1
 -- Enable trimming of trailing whitespace when uncommenting

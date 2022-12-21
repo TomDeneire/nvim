@@ -49,10 +49,5 @@ end
 
     vim.api.nvim_create_autocmd("FileType", {
         pattern = "mumps",
-        command = [[inoremap <buffer> <c-r> <CR>]]
-    })
-
-    vim.api.nvim_create_autocmd("FileType", {
-        pattern = "mumps",
         command = [[setlocal expandtab shiftwidth=1 softtabstop=1]]
     })
