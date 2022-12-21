@@ -1,5 +1,6 @@
-if not vim.g.vscode
-then
+if vim.g.vscode then
+    return
+end
 
     -- Highlight on yank
     vim.api.nvim_create_autocmd("TextYankPost", {
@@ -55,4 +56,3 @@ then
         pattern = "mumps",
         command = [[setlocal expandtab shiftwidth=1 softtabstop=1]]
     })
-end

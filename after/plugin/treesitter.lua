@@ -1,5 +1,6 @@
-if not vim.g.vscode
-then
+if vim.g.vscode then
+    return
+end
     -- Treesitter
     require 'nvim-treesitter.configs'.setup {
         -- A list of parser names, or "all"
@@ -67,4 +68,3 @@ then
             -- },
         },
     }
-end

@@ -1,5 +1,6 @@
-if not vim.g.vscode
-    then
+if vim.g.vscode then
+    return
+end
     -- Lualine
 
     require('lualine').setup {
@@ -42,4 +43,3 @@ if not vim.g.vscode
       inactive_winbar = {},
       extensions = {}
     }
-end

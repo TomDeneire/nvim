@@ -1,5 +1,6 @@
-if not vim.g.vscode
-then
+if vim.g.vscode then
+    return
+end
     -- first setup mason
 
     require("mason").setup()
@@ -223,4 +224,3 @@ then
         move_cursor_key = nil, -- imap, use nvim_set_current_win to move cursor between current win and floating
     }
     require "lsp_signature".setup(cfg)
-end

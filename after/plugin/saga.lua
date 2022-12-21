@@ -1,5 +1,6 @@
-if not vim.g.vscode
-    then
+if vim.g.vscode then
+    return
+end
     local keymap = vim.keymap.set
     local saga = require('lspsaga')
 
@@ -54,4 +55,3 @@ if not vim.g.vscode
     -- keymap("n", "<A-d>", "<cmd>Lspsaga open_floaterm lazygit<CR>", { silent = true })
     -- close floaterm
     keymap("t", "<A-d>", [[<C-\><C-n><cmd>Lspsaga close_floaterm<CR>]], { silent = true })
-end

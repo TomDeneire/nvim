@@ -1,6 +1,7 @@
+if vim.g.vscode then
+    return
+end
 -- null-ls (only used for formatting)
-if not vim.g.vscode
-then
     local null_ls = require("null-ls")
 
     null_ls.setup({
@@ -8,4 +9,3 @@ then
             null_ls.builtins.formatting.xmlformat,
         },
     })
-end
