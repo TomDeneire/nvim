@@ -10,7 +10,7 @@ syn case    ignore
 
 " Regions
 syn region    comment           start=/\/\// end=/\n/
-syn region    objectcodeline    oneline start="" end=/\:/ contains=objectcodelabel,objectcode
+syn region    objectcodeline    oneline start=/[a-z]/ end=/\:/ contains=objectcodelabel,objectcode
 syn region    objectline        start=/    / keepend end=/$/ contains=objectlabel,operator
 
 " Matches

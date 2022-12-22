@@ -39,7 +39,7 @@ end
 
     vim.api.nvim_create_autocmd("FileType", {
         pattern = "mumps",
-        command = [[inoremap <buffer> <c-l> s nr=""<CR>f  s nr=$O(x,nr) q:nr=""  d]]
+        command = [[inoremap <buffer> <c-l> s nr=""<CR>f  s nr=$O(x(nr)) q:nr=""  d]]
     })
 
     vim.api.nvim_create_autocmd("FileType", {
@@ -49,5 +49,5 @@ end
 
     vim.api.nvim_create_autocmd("FileType", {
         pattern = "mumps",
-        command = [[setlocal expandtab shiftwidth=1 softtabstop=1]]
+        command = [[setlocal expandtab shiftwidth=1 softtabstop=1 nowrap]]
     })

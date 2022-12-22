@@ -44,6 +44,7 @@
   " base07 is for normal text
   let s:base07 = ['#d4d4d4', '253']
   let s:blue   = ['#569cd6', '68']
+  let s:brightblue   = ['#7bbad8', '73']
   let s:red    = ['#f44747', '203']
   let s:orange = ['#ce9178', '209']
   let s:gold   = ['#ffd700', '221']
@@ -165,9 +166,9 @@ endfunction
   call s:hi('MumpsFormalArgs',                       s:blue, '',       '',          '')
   call s:hi('MumpsGlobalName',                       s:blue, '',       '',          '')
   call s:hi('MumpsMacro',                       s:blue, '',       s:italic,          '')
-  call s:hi('MumpsPName',                       s:blue, '',       s:italic,          '')
+  call s:hi('MumpsPName',                       s:brightblue, '',       s:italic,          '')
   call s:hi('MumpsUName',                       s:cyan, '',       s:bold,          '')
-  call s:hi('MumpsFName',                       s:blue, '',       '',          '')
+  call s:hi('MumpsFName',                       s:brightblue, '',       s:bold,          '')
   call s:hi('MumpsDoGoLabel',                       s:cyan, '',       s:italic,          '')
   call s:hi('MumpsLabelName',                       s:green, '',       s:bold,          '')
   call s:hi('MumpsIntrinsicFunction',                       s:cyan, '',       s:italic,          '')

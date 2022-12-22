@@ -161,6 +161,8 @@ end
 
     require 'lspconfig'.gopls.setup { on_attach = on_attach, capabilities = capabilities }
 
+    require 'lspconfig'.vimls.setup { on_attach = on_attach, capabilities = capabilities }
+
     require 'lspconfig'.tsserver.setup {
         capabilities = capabilities,
         on_attach = on_attach,
