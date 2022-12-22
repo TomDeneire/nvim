@@ -17,7 +17,7 @@ syn region  mLabelLine      oneline start=/^[sub|def|fn]/ end=":" contains=mLabe
 syn region  mString         oneline start=/"/ skip=/""/ excludenl end=/"/ contained
 syn region  mMacro          oneline start="m4_" end=")" contained contains=mMacroName,mMacroArgs
 syn region  mMacroArgs      oneline start="(" end=")" contained contains=mParams,mOperator,mString,mNumber,mPName,mUName,mFName,mCName,mGlobalName,mDoGoContained
-syn region  mLine           oneline start=/^\s/ end=/$/ contains=mString,mOperator,mComment,mCommand,mNumber,mFunction,mFunctionLabel,mMacro,mPName,mUName,mFName,mCName,mGlobalName,mDoGo,mMacroSingle
+syn region  mLine           oneline start=/^\s/ end=/$/ contains=mString,mOperator,mComment,mCommand,mZcommand,mNumber,mFunction,mFunctionLabel,mMacro,mPName,mUName,mFName,mCName,mGlobalName,mDoGo,mMacroSingle
 
 " Matches
 syn match   mLabelCode      /[sub|def|fn]/ contained
@@ -25,8 +25,17 @@ syn match   mLabelLabel     / [%a-zA-Z0-9]*/ contained
 syn match   mLabelArgs      /([a-zA-Z0-9][,a-zA-Z0-9]*)/ contained contains=mOperator,mPName
 syn match   mOperator       "[+,\_\-*/=&#$!'\\\]\[<>?@\(/)«»:. ]" contained contains=mParentheses
 syn match   mParentheses    "[()]" contained
-syn match   mCommand        " [bdefghijklmnrsuvxq][ :]" contained contains=mOperator
+syn match   mCommand        " [bcdefghijklmnrsuvwxq][ :]" contained contains=mOperator
+syn match   mCommand        / tr / contained
+syn match   mCommand        / tc / contained
+syn match   mCommand        / tro / contained
+syn match   mCommand        / tre / contained
+syn match   mCommand        / ts / contained
 syn match   mCommand        / [dq]$/ contained
+syn keyword mZcommand       contained za[llocate] zb[reak] zcom[pile] zc[ontinue] zd[eallocate]
+syn keyword mZcommand       contained zed[it] zg[oto] zh[elp] zl[ink] zm[essage] zp[rint]
+syn keyword mZcommand       contained zsh[ow] zst[ep] zsy[stem] ztc[ommit] zts[tart]
+syn keyword mZcommand       contained zwi[thdraw] zwr[ite]
 syn match   mDoGoCommand    /[dg] / contained
 syn match   mNumber         /[0-9][0-9]*/ contained
 syn match   mFunction       /$[a-zA-Z]/ contained
@@ -45,6 +54,7 @@ syn match   mDoGoContained  contained /[dg] [%a-zA-Z0-9][\^a-zA-Z0-9]*/ contains
 syn match   mDoGoLabel      contained /[%a-zA-Z0-9][\^a-zA-Z0-9][\^a-zA-Z0-9]*/
 syn match   mLabelEnd       contained ":"
 
+
 " Highlights
 hi! link mComment       Comment
 hi! link mLabelLine     Normal
@@ -56,6 +66,7 @@ hi! link mParentheses   Operator
 hi! link mParamLabel    Operator
 hi! link mLabelEnd      Operator
 hi! link mCommand       MumpsCommand
+hi! link mZcommand       MumpsCommand
 hi! link mNumber        Number
 hi! link mFunction      MumpsIntrinsicFunction
 hi! link mFunctionLabel MumpsIntrinsicFunction
