@@ -46,7 +46,7 @@
   let s:blue   = ['#569cd6', '68']
   let s:brightblue   = ['#7bbad8', '73']
   let s:red    = ['#f44747', '203']
-  let s:orange = ['#ce9178', '209']
+  let s:orange = ['#ed872d', '209']
   let s:gold   = ['#ffd700', '221']
   let s:yellow = ['#fac863', '221']
   let s:green  = ['#99c794', '114']
@@ -162,12 +162,11 @@ endfunction
   " MUMPS
   call s:hi('MumpsCommand',                       s:base07, '',       s:italic,          '')
   call s:hi('MumpsLabel',                       s:blue, '',       s:bold,          '')
-  call s:hi('MumpsVariable',                       s:base07, '',       '',          '')
-  call s:hi('MumpsFormalArgs',                       s:blue, '',       '',          '')
   call s:hi('MumpsGlobalName',                       s:blue, '',       '',          '')
   call s:hi('MumpsMacro',                       s:blue, '',       s:italic,          '')
   call s:hi('MumpsPName',                       s:brightblue, '',       s:italic,          '')
   call s:hi('MumpsUName',                       s:cyan, '',       s:bold,          '')
+  call s:hi('MumpsCName',                       s:base04, '',       '',          '')
   call s:hi('MumpsFName',                       s:brightblue, '',       s:bold,          '')
   call s:hi('MumpsDoGoLabel',                       s:cyan, '',       s:italic,          '')
   call s:hi('MumpsLabelName',                       s:green, '',       s:bold,          '')
