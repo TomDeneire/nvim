@@ -1,4 +1,13 @@
 ---@diagnostic disable: undefined-global
+
+--REGISTRY GLOBALS
+
+OS_SEP = "$(qtechng registry get os-sep)"
+WORK_DIR = "$(qtechng registry get qtechng-work-dir)"
+SUPPORT_DIR = "$(qtechng registry get qtechng-support-dir)"
+
+-- FUNCTIONS
+
 function Split(mystring, delim)
     local t = {}
     for str in string.gmatch(mystring, "([^" .. delim .. "]+)") do
@@ -19,13 +28,13 @@ function JumpToRou()
     if l[2] ~= nil then
         mlabel = l[2]
     end
-    local mfile = t[2]
-    local jumpcmd = "echo $(qtechng registry get qtechng-work-dir)$(qtechng registry get os-sep)$(jq -r '." ..
-        '"' ..
-        mfile ..
-        '.m"' ..
-        "' $(qtechng registry get qtechng-support-dir)/m_unique_map.json)$(qtechng registry get os-sep)" ..
-        mfile .. ".m"
+    local mfile = t[2] .. ".m"
+    local jumpcmd = "echo "
+    jumpcmd = jumpcmd .. WORK_DIR
+    jumpcmd = jumpcmd .. OS_SEP
+    jumpcmd = jumpcmd .. "$(jq -r '." .. '"' .. mfile .. '"' .. "' "
+    jumpcmd = jumpcmd .. SUPPORT_DIR .. OS_SEP .. "m_unique_map.json)"
+    jumpcmd = jumpcmd .. OS_SEP .. mfile
     local resultfile = vim.fn.system(jumpcmd)
     local cmd = "tabnew +/" .. mlabel .. " " .. resultfile
     vim.cmd(cmd)
@@ -33,12 +42,19 @@ end
 
 function DefineMacro()
     -- m4_getCensorType
-    local macro_name = vim.fn.expand("<cword>")
-    local macro_find = "echo $(qtechng registry get qtechng-work-dir)$(qtechng object list " ..
-        macro_name .. " --jsonpath='$..DATA..source' --unquote)"
-    local macro_file = vim.fn.system(macro_find)
-    local t = Split(macro_name, "m4_")
-    local macro_def = t[1]
+    local wordUnderCursor = vim.fn.expand("<cword>")
+    if string.find(wordUnderCursor, "m4_") == nil then
+        return
+    end
+    local t = Split(wordUnderCursor, "m4_")
+    local macro_name = t[1]
+    local macrocmd = "echo "
+    macrocmd = macrocmd .. WORK_DIR
+    macrocmd = macrocmd .. "$(jq -r ." .. '"' .. macro_name .. '" '
+    macrocmd = macrocmd .. SUPPORT_DIR .. OS_SEP .. "m4_map.json)"
+    local macro_file = vim.fn.system(macrocmd)
+    local m = Split(macro_name, "m4_")
+    local macro_def = m[1]
     local cmd = "tabnew +/" .. macro_def .. " " .. macro_file
     vim.cmd(cmd)
 end
