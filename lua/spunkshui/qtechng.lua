@@ -80,12 +80,23 @@ function SourceList()
 end
 
 function OpenInGit()
-    local cmd = "!export CURRENT_FILE=%:p && export URL=$(qtechng file tell $CURRENT_FILE --jsonpath='$..DATA..vcurl' --unquote) && google-chrome-stable $URL"
-    vim.cmd(cmd)
+    local current_file = vim.fn.expand("%:p")
+    local gitcmd = "!google-chrome-stable $(qtechng file tell " .. current_file
+    gitcmd = gitcmd .. " --jsonpath='$..DATA..vcurl' --unquote)"
+    vim.cmd(gitcmd)
 end
 
 function ComparePrevious()
-    local cmd = "!export CURRENT_FILE=%:p && export QPATH=$(qtechng file tell $CURRENT_FILE --jsonpath='$..DATA..qpath' --unquote) && export PREVIOUS=$(qtechng registry get qtechng-releases | awk '{print $(NF-1)}') && mkdir -p $PREVIOUS && cd $PREVIOUS && qtechng source co $QPATH --version=$PREVIOUS && meld $PREVIOUS/$(qtechng file tell $CURRENT_FILE --jsonpath='$..DATA..relpath' --unquote) $CURRENT_FILE"
+    local current_file = vim.fn.expand("%:p")
+    local cmd = "!export QPATH=$(qtechng file tell " .. current_file
+    cmd = cmd .. " --jsonpath='$..DATA..qpath' --unquote) "
+    cmd = cmd .. "&& export PREVIOUS=$(qtechng registry get qtechng-releases "
+    cmd = cmd .. "| awk '{print $(NF-1)}') "
+    cmd = cmd .. "&& mkdir -p $PREVIOUS && cd $PREVIOUS && "
+    cmd = cmd .. "qtechng source co $QPATH --version=$PREVIOUS "
+    cmd = cmd .. "&& meld $PREVIOUS/$(qtechng file tell " .. current_file
+    cmd = cmd .. " --jsonpath='$..DATA..relpath' --unquote) "
+    cmd = cmd .. current_file
     vim.cmd(cmd)
 end
 
