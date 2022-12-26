@@ -1,3 +1,7 @@
+if vim.g.vscode then
+    return
+end
+
 -- nvim-tree
 -- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1

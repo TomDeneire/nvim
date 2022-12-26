@@ -69,6 +69,8 @@ else
 	Plug 'ellisonleao/gruvbox.nvim'
     Plug 'martinsione/darkplus.nvim'
     Plug 'mhartington/oceanic-next'
+    " Whichkey
+    Plug 'folke/which-key.nvim'
 
     " Initialize plugin system
     " - Automatically executes `filetype plugin indent on` and `syntax enable`.

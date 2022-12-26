@@ -18,6 +18,7 @@ vim.keymap.set("n", "th", "<cmd>silent :-tabnext<CR>")
 -- plugins
 vim.keymap.set("n", "tt", "<cmd>silent :NvimTreeToggle<CR>")
 vim.keymap.set("n", "<leader>old", "<cmd>silent :Telescope oldfiles<CR>")
+vim.keymap.set("n", "<leader>ca", "<cmd>silent lua vim.lsp.buf.code_action()<CR>")
 vim.keymap.set("n", "<c-D>", "<cmd>lua vim.lsp.buf.definition()<CR>")
 vim.keymap.set("n", "<leader>term", "<cmd>:ToggleTerm dir=getcwd()<CR>")
 vim.keymap.set("n", "<leader>def", "<cmd>silent :Lspsaga peek_definition<CR>")

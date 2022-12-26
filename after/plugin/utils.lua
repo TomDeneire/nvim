@@ -1,3 +1,7 @@
+if vim.g.vscode then
+    return
+end
+
 -- (source editorconfig.nvim)
 function Trim_trailing_whitespace()
     local view = vim.fn.winsaveview()
@@ -5,4 +9,3 @@ function Trim_trailing_whitespace()
     vim.api.nvim_command("silent keepjumps keeppatterns %s/\\s\\+$//e")
     return vim.fn.winrestview(view)
 end
-

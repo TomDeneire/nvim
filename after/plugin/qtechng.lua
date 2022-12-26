@@ -1,3 +1,7 @@
+if vim.g.vscode then
+    return
+end
+
 ---@diagnostic disable: undefined-global
 
 --REGISTRY GLOBALS
@@ -19,7 +23,10 @@ end
 function JumpToRou()
     --"d %CSV^ucsvsbld($file,$exec,$delimiter,$mode,$encoding,$fieldnames)»
     --"«s $error=$$%ChckTyp^barsrou($type,$context,$user)»"
+    -- action = "d %Lst^blicjapi"
     local mroutine = vim.fn.expand("<cWORD>")
+    mroutine = string.gsub(mroutine, "'", "")
+    mroutine = string.gsub(mroutine, '"', "")
     local m = Split(mroutine, "(")
     mroutine = m[1]
     local t = Split(mroutine, "^")

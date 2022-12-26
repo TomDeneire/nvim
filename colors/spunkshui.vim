@@ -34,7 +34,9 @@
     " --   "Cornsilk",
     " --   "Salmon",
     " --   "LawnGreen",
-  let s:base00 = ['#1e1e1e', '235']
+  " let s:base00 = ['#1e1e1e', '235']
+  " let s:base01 = ['#4a4a4a', '237']
+  let s:base00 = ['#2a2a2a', '235']
   let s:base01 = ['#343d46', '237']
   let s:base02 = ['#4f5b66', '240']
   let s:base03 = ['#65737e', '243']
@@ -55,6 +57,26 @@
   let s:brown  = ['#ce9178', '209']
   let s:white  = ['#ffffff', '15']
   let s:none   = ['NONE',    'NONE']
+
+  " OceanicNext colors
+  " let s:base00 = ['#1b2b34', '235']
+  " let s:base01 = ['#343d46', '237']
+  " let s:base02 = ['#4f5b66', '240']
+  " let s:base03 = ['#65737e', '243']
+  " let s:base04 = ['#a7adba', '145']
+  " let s:base05 = ['#c0c5ce', '251']
+  " let s:base06 = ['#cdd3de', '252']
+  " let s:base07 = ['#d8dee9', '253']
+  " let s:red    = ['#ec5f67', '203']
+  " let s:orange = ['#f99157', '209']
+  " let s:yellow = ['#fac863', '221']
+  " let s:green  = ['#99c794', '114']
+  " let s:cyan   = ['#62b3b2', '73']
+  " let s:blue   = ['#6699cc', '68']
+  " let s:purple = ['#c594c5', '176']
+  " let s:brown  = ['#ab7967', '137']
+  " let s:white  = ['#ffffff', '15']
+  " let s:none   = ['NONE',    'NONE']
 
 " }}}
 " {{{ Highlight function
@@ -201,7 +223,7 @@ endfunction
   call s:hi('TSPunctDelimiter',                   s:base07, '',       '',          '')
   call s:hi('TSParameter',                        s:base07, '',       '',          '')
   call s:hi('TSType',                             s:blue,   '',       '',          '')
-  call s:hi('TSFunction',                         s:yellow,   '',       '',          '')
+  call s:hi('TSFunction',                         s:purple,   '',       '',          '')
 
   call s:hi('TSTagDelimiter',                     s:cyan,   '',       '',          '')
   call s:hi('TSProperty',                         s:yellow, '',       '',          '')
@@ -396,3 +418,76 @@ else
 
 endif
 
+"Treesitter syntax elements
+  "["annotation"] = "TSAnnotation",
+  " ["attribute"] = "TSAttribute",
+  " ["boolean"] = "TSBoolean",
+  " ["character"] = "TSCharacter",
+  " ["character.special"] = "TSCharacterSpecial",
+  " ["comment"] = "TSComment",
+  " ["conditional"] = "TSConditional",
+  " ["constant"] = "TSConstant",
+  " ["constant.builtin"] = "TSConstBuiltin",
+  " ["constant.macro"] = "TSConstMacro",
+  " ["constructor"] = "TSConstructor",
+  " ["debug"] = "TSDebug",
+  " ["define"] = "TSDefine",
+  " ["error"] = "TSError",
+  " ["exception"] = "TSException",
+  " ["field"] = "TSField",
+  " ["float"] = "TSFloat",
+  " ["function"] = "TSFunction",
+  " ["function.call"] = "TSFunctionCall",
+  " ["function.builtin"] = "TSFuncBuiltin",
+  " ["function.macro"] = "TSFuncMacro",
+  " ["include"] = "TSInclude",
+  " ["keyword"] = "TSKeyword",
+  " ["keyword.function"] = "TSKeywordFunction",
+  " ["keyword.operator"] = "TSKeywordOperator",
+  " ["keyword.return"] = "TSKeywordReturn",
+  " ["label"] = "TSLabel",
+  " ["method"] = "TSMethod",
+  " ["method.call"] = "TSMethodCall",
+  " ["namespace"] = "TSNamespace",
+  " ["none"] = "TSNone",
+  " ["number"] = "TSNumber",
+  " ["operator"] = "TSOperator",
+  " ["parameter"] = "TSParameter",
+  " ["parameter.reference"] = "TSParameterReference",
+  " ["preproc"] = "TSPreProc",
+  " ["property"] = "TSProperty",
+  " ["punctuation.delimiter"] = "TSPunctDelimiter",
+  " ["punctuation.bracket"] = "TSPunctBracket",
+  " ["punctuation.special"] = "TSPunctSpecial",
+  " ["repeat"] = "TSRepeat",
+  " ["storageclass"] = "TSStorageClass",
+  " ["string"] = "TSString",
+  " ["string.regex"] = "TSStringRegex",
+  " ["string.escape"] = "TSStringEscape",
+  " ["string.special"] = "TSStringSpecial",
+  " ["symbol"] = "TSSymbol",
+  " ["tag"] = "TSTag",
+  " ["tag.attribute"] = "TSTagAttribute",
+  " ["tag.delimiter"] = "TSTagDelimiter",
+  " ["text"] = "TSText",
+  " ["text.strong"] = "TSStrong",
+  " ["text.emphasis"] = "TSEmphasis",
+  " ["text.underline"] = "TSUnderline",
+  " ["text.strike"] = "TSStrike",
+  " ["text.title"] = "TSTitle",
+  " ["text.literal"] = "TSLiteral",
+  " ["text.uri"] = "TSURI",
+  " ["text.math"] = "TSMath",
+  " ["text.reference"] = "TSTextReference",
+  " ["text.environment"] = "TSEnvironment",
+  " ["text.environment.name"] = "TSEnvironmentName",
+  " ["text.note"] = "TSNote",
+  " ["text.warning"] = "TSWarning",
+  " ["text.danger"] = "TSDanger",
+  " ["todo"] = "TSTodo",
+  " ["type"] = "TSType",
+  " ["type.builtin"] = "TSTypeBuiltin",
+  " ["type.qualifier"] = "TSTypeQualifier",
+  " ["type.definition"] = "TSTypeDefinition",
+  " ["variable"] = "TSVariable",
+  " ["variable.builtin"] = "TSVariableBuiltin",
