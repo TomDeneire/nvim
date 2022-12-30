@@ -20,6 +20,14 @@ function Split(mystring, delim)
     return t
 end
 
+function Length(mytable)
+    local length = 0
+    for _ in pairs(mytable) do
+        length = length + 1
+    end
+    return length
+end
+
 function JumpToRou()
     --"d %CSV^ucsvsbld($file,$exec,$delimiter,$mode,$encoding,$fieldnames)»
     --"«s $error=$$%ChckTyp^barsrou($type,$context,$user)»"
@@ -84,6 +92,16 @@ function SourceList()
         })
         require("telescope.builtin").quickfix({ fname_width = 100 })
     end
+end
+
+function MacroList()
+    require("telescope.builtin").live_grep(
+        { hidden = true,
+            find_command = { "rg", "--smart-case", "--files" },
+            no_ignore = true,
+            no_ignore_parent = true,
+            search_dirs = { "/home/tdeneire/Dropbox/brocade/support/m4_nvim.txt" },
+        })
 end
 
 function OpenInGit()

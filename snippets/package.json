@@ -1,0 +1,49 @@
+{
+	"name": "Brocade-snippets",
+	"contributes": {
+		"snippets": [
+			{
+				"language": [
+					"mumps"
+				],
+				"path": "./mumps.json"
+			},
+			{
+				"language": [
+					"bfile"
+				],
+				"path": "./bfile.json"
+			},
+			{
+				"language": [
+					"dfile"
+				],
+				"path": "./dfile.json"
+			},
+			{
+				"language": [
+					"ifile"
+				],
+				"path": "./ifile.json"
+			},
+			{
+				"language": [
+					"lfile"
+				],
+				"path": "./lfile.json"
+			},
+			{
+				"language": [
+					"mfile"
+				],
+				"path": "./mfile.json"
+			},
+			{
+				"language": [
+					"xfile"
+				],
+				"path": "./xfile.json"
+			}
+		]
+	}
+}

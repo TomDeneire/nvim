@@ -33,6 +33,7 @@ vim.keymap.set("n", "<c-m>", "<cmd>silent lua DefineMacro()<CR>")
 vim.keymap.set("n", "<leader>qg", "<cmd>silent lua OpenInGit()<CR>")
 vim.keymap.set("n", "<leader>qp", "<cmd>silent lua ComparePrevious()<CR>")
 vim.keymap.set("n", "<leader>qs", "<cmd>lua SourceList()<CR>")
+vim.keymap.set("n", "<leader>qm", "<cmd>lua MacroList()<CR>")
 
 -- other
 vim.keymap.set("n", "<c-p>", "<cmd>silent lua FindInWorkSpace()<CR>")
