@@ -7,7 +7,7 @@ vim.opt.termguicolors = true
 require('bufferline').setup {
     highlights = { buffer_selected = { italic = false } },
     options = {
-        mode = "tabs", -- set to "tabs" to only show tabpages instead
+        -- mode = "tabs", -- set to "tabs" to only show tabpages instead
         numbers = "none",
         --	    close_command = "bdelete! %d",       -- can be a string | function, see "Mouse actions"
         --	    right_mouse_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
@@ -35,7 +35,7 @@ require('bufferline').setup {
         --	    end,
         max_name_length = 18,
         max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
-        truncate_names = true, -- whether or not tab names should be truncated
+        truncate_names = false, -- whether or not tab names should be truncated
         tab_size = 18,
         diagnostics = false,
         --	    diagnostics_update_in_insert = false,
@@ -83,7 +83,7 @@ require('bufferline').setup {
         --	    -- [focused and unfocused]. eg: { '|', '|' }
         --	    separator_style = "slant" | "thick" | "thin" | { 'any', 'any' },
         separator_style = "thin",
-        enforce_regular_tabs = true,
+        enforce_regular_tabs = false,
         always_show_bufferline = true,
         --	    hover = {
         --		enabled = true,

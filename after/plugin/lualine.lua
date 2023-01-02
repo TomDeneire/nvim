@@ -24,8 +24,8 @@ require('lualine').setup {
     },
     sections = {
         lualine_a = { 'mode' },
-        lualine_b = { 'branch', 'diff', 'diagnostics' },
-        lualine_c = { "vim.fn.expand('%:p')", 'diff' },
+        lualine_b = { 'diff', 'diagnostics' },
+        lualine_c = { "vim.fn.expand('%:p')" },
         lualine_x = { 'encoding', 'fileformat', 'filetype' },
         lualine_y = { 'progress' },
         lualine_z = { 'location' }
@@ -38,7 +38,7 @@ require('lualine').setup {
         lualine_y = {},
         lualine_z = {}
     },
-    tabline = {    },
+    tabline = {},
     winbar = {},
     inactive_winbar = {},
     extensions = {}

@@ -8,6 +8,7 @@ vim.opt.termguicolors = true
 vim.opt.showtabline = 2
 vim.opt.ignorecase = true
 vim.opt.autochdir = true
+vim.opt.linebreak = true
 
 -- line numbers
 vim.opt.nu = true

@@ -74,6 +74,8 @@ else
     Plug 'mhartington/oceanic-next'
     " Whichkey
     Plug 'folke/which-key.nvim'
+    " Center screen
+    Plug 'shortcuts/no-neck-pain.nvim', { 'tag': '*' }
 
     " Initialize plugin system
     " - Automatically executes `filetype plugin indent on` and `syntax enable`.
@@ -82,7 +84,7 @@ else
     "   filetype indent off   " Disable file-type-specific indentation
     "   syntax off            " Disable syntax highlighting
 
-    "mappings (difficult in Lua)
+    "mappings (different result in Lua)
     nnoremap <c-v> "*p
     inoremap <c-v> <Esc>"*pa
     vnoremap <c-c> "+y

@@ -7,7 +7,7 @@ end
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
+require("nvim-tree").setup {
     auto_reload_on_write = true,
     create_in_closed_folder = false,
     disable_netrw = false,
@@ -15,10 +15,10 @@ require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
     hijack_netrw = true,
     hijack_unnamed_buffer_when_opening = false,
     ignore_buffer_on_setup = false,
-    open_on_setup = true,
-    open_on_setup_file = true,
-    open_on_tab = true,
-    focus_empty_on_setup = true,
+    open_on_setup = false,
+    open_on_setup_file = false,
+    open_on_tab = false,
+    focus_empty_on_setup = false,
     ignore_buf_on_tab_change = {},
     sort_by = "case-sensitive",
     root_dirs = {},
@@ -31,7 +31,7 @@ require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
     select_prompts = false,
     view = {
         adaptive_size = false,
-        centralize_selection = false,
+        centralize_selection = true,
         width = 50,
         hide_root_folder = false,
         side = "left",
@@ -46,15 +46,15 @@ require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
             },
         },
         float = {
-            enable = false,
+            enable = true,
             quit_on_focus_loss = true,
             open_win_config = {
                 relative = "editor",
                 border = "rounded",
-                width = 50,
-                height = 50,
-                row = 100,
-                col = 100,
+                width = 120,
+                height = 20,
+                row = 40,
+                col = 45,
             },
         },
     },
@@ -221,4 +221,4 @@ require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
             watcher = false,
         },
     },
-} -- END_DEFAULT_OPTS
+}

@@ -11,9 +11,8 @@ vim.keymap.set("v", "<c-j>", "10j")
 vim.keymap.set("n", "<c-k>", "10k")
 vim.keymap.set("v", "<c-k>", "10k")
 vim.keymap.set("n", "<F5>", ":UndotreeToggle<CR>")
-vim.keymap.set("n", "tn", "<cmd>silent :tabnew<CR>")
-vim.keymap.set("n", "tl", "<cmd>silent :+tabnext<CR>")
-vim.keymap.set("n", "th", "<cmd>silent :-tabnext<CR>")
+vim.keymap.set("n", "tl", "<cmd>silent :bn<CR>")
+vim.keymap.set("n", "th", "<cmd>silent :bp<CR>")
 
 -- plugins
 vim.keymap.set("n", "tt", "<cmd>silent :NvimTreeToggle<CR>")
