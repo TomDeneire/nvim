@@ -101,6 +101,7 @@ function MacroList()
             no_ignore = true,
             no_ignore_parent = true,
             search_dirs = { "/home/tdeneire/Dropbox/brocade/support/m4_nvim.txt" },
+            disable_coordinates = true,
         })
 end
 

@@ -5,6 +5,7 @@ end
 vim.opt.termguicolors = true
 
 require('bufferline').setup {
+    highlights = { buffer_selected = { italic = false } },
     options = {
         mode = "tabs", -- set to "tabs" to only show tabpages instead
         numbers = "none",
@@ -13,7 +14,7 @@ require('bufferline').setup {
         --	    left_mouse_command = "buffer %d",    -- can be a string | function, see "Mouse actions"
         --	    middle_mouse_command = nil,          -- can be a string | function, see "Mouse actions"
         --	    indicator = {
-        --		icon = '▎', -- this should be omitted if indicator style is not 'icon'
+        -- icon = '▎', -- this should be omitted if indicator style is not 'icon'
         --		style = 'icon' | 'underline' | 'none',
         --	    },
         buffer_close_icon = '',
@@ -75,7 +76,7 @@ require('bufferline').setup {
         show_buffer_close_icons = false,
         show_buffer_default_icon = true, -- whether or not an unrecognised filetype should show a default icon
         show_close_icon = false,
-        show_tab_indicators = true,
+        show_tab_indicators = false,
         --	    show_duplicate_prefix = true | false, -- whether to show duplicate buffer prefix
         --	    persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
         --	    -- can also be a table containing 2 custom separators
