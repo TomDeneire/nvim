@@ -32,6 +32,7 @@ else
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+    Plug 'nvim-telescope/telescope-file-browser.nvim'
     " Devicons
     Plug 'kyazdani42/nvim-web-devicons'
 	" Easy (un)commenting
@@ -69,7 +70,6 @@ else
 	" Bufferline
 	Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
 	" Colorschemes
-	Plug 'ellisonleao/gruvbox.nvim'
     Plug 'martinsione/darkplus.nvim'
     Plug 'mhartington/oceanic-next'
     " Whichkey

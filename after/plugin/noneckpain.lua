@@ -68,7 +68,7 @@ require("no-neck-pain").setup({
         left = NoNeckPain.bufferOptions,
         --- Options applied to the `right` buffer, the options defined here overrides the ones at the root of the `buffers` level.
         --- See |NoNeckPain.bufferOptions|.
-        right = NoNeckPain.bufferOptions,
+        right = { enabled = false },
     },
     -- lists supported integrations that might clash with `no-neck-pain.nvim`'s behavior
     integrations = {
@@ -130,3 +130,4 @@ NoNeckPain.bufferOptions = {
         linebreak = true,
     },
 }
+

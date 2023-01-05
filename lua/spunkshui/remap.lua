@@ -15,7 +15,7 @@ vim.keymap.set("n", "tl", "<cmd>silent :bn<CR>")
 vim.keymap.set("n", "th", "<cmd>silent :bp<CR>")
 
 -- plugins
-vim.keymap.set("n", "tt", "<cmd>silent :NvimTreeToggle<CR>")
+vim.keymap.set("n", "tt", "<cmd>silent :Telescope file_browser<CR>")
 vim.keymap.set("n", "<leader>old", "<cmd>silent :Telescope oldfiles<CR>")
 vim.keymap.set("n", "<leader>ca", "<cmd>silent lua vim.lsp.buf.code_action()<CR>")
 vim.keymap.set("n", "<c-D>", "<cmd>lua vim.lsp.buf.definition()<CR>")
