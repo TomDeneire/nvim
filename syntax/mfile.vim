@@ -1,5 +1,5 @@
-" Mumps syntax file
-" Language:     MUMPS (Brocade .m files)
+" Brocade .m syntax file
+" Language:     Brocade .m files (MUMPS)
 " Maintainer:   Tom Deneire, tomdeneire@gmail.com
 " Last change:  22 December 2022
 
@@ -12,7 +12,7 @@ syn clear
 
 " Line Structure
 syn region  mComment        oneline start="^//" end=/$/
-syn region  mComment        oneline start=";" end=/$/ contained
+syn region  mComment        oneline start=";" end=/$/ contained contains=mPragmaLine
 syn region  mLabelLine      oneline start=/^[sub|def|fn]/ end=":" contains=mLabelCode,mLabelLabel,mLabelArgs,mLabelEnd
 syn region  mString         oneline start=/"/ skip=/""/ excludenl end=/"/ contained
 syn region  mMacro          oneline start="m4_" end=")" contained contains=mMacroName,mMacroArgs
@@ -39,11 +39,12 @@ syn keyword mZcommand       contained zwi[thdraw] zwr[ite]
 syn match   mDoGoCommand    /[dg] / contained
 syn match   mNumber         /[0-9][0-9]*/ contained
 syn match   mFunction       /$[a-zA-Z]*/ contained
-syn match   mFunctionLabel  /$$[a-zA-Z]*/ contained
+syn match   mFunctionLabel  /$$[a-zA-Z%]*/ contained
 syn match   mPName          /\<\CP[A|D|G][A-Za-z0-9]*/ contained
 syn match   mUName          contained /\<\CU[A|D|G][A-Za-z0-9]*/
 syn match   mFName          contained /\<\CF[A|D|G][A-Za-z0-9]*/
 syn match   mCName          contained /\<\CC[A|D|G][A-Za-z0-9]*/
+syn match   mRName          contained /\<\CR[A|D|G][A-Za-z0-9]*/
 syn match   mGlobalName     contained /\^[A-Z0-9]*/
 syn match   mMacroName      contained /m4_[a-zA-Z0-9]*/
 syn match   mMacroSingle    contained /m4_[a-zA-Z0-9]*[, \n]/ contains=mMacroName
@@ -53,7 +54,9 @@ syn match   mDoGo           contained / [dg] [%a-zA-Z0-9][\^a-zA-Z0-9]*/ contain
 syn match   mDoGoContained  contained /[dg] [%a-zA-Z0-9][\^a-zA-Z0-9]*/ contains=mDoGoCommand,mDoGoLabel
 syn match   mDoGoLabel      contained /[%a-zA-Z0-9][\^a-zA-Z0-9][\^a-zA-Z0-9]*/
 syn match   mLabelEnd       contained ":"
-
+syn match   mPragmaLine     contained ";pragma [a-zA-Z0-9 ,]*" contains=mPragma,mRName,mOperator
+syn match   mPragma         contained ";pragma [a-zA-Z0-9]*" contains=mPragmaType
+syn match   mPragmaType     contained " [a-zA-Z0-9]*"
 
 " Highlights
 hi! link mComment       Comment
@@ -66,7 +69,7 @@ hi! link mParentheses   Operator
 hi! link mParamLabel    Operator
 hi! link mLabelEnd      Operator
 hi! link mCommand       MumpsCommand
-hi! link mZcommand       MumpsCommand
+hi! link mZcommand      MumpsCommand
 hi! link mNumber        Number
 hi! link mFunction      MumpsIntrinsicFunction
 hi! link mFunctionLabel MumpsIntrinsicFunction
@@ -74,7 +77,10 @@ hi! link mPName         MumpsPName
 hi! link mUName         MumpsUName
 hi! link mFName         MumpsFName
 hi! link mCName         MumpsCName
+hi! link mRName         MumpsGlobalName
 hi! link mGlobalName    MumpsGlobalName
 hi! link mMacroName     MumpsMacro
 hi! link mDoGoLabel     MumpsDoGoLabel
 hi! link mDoGoCommand   MumpsCommand
+hi! link mPragma        Function
+hi! link mPragmaType    Function

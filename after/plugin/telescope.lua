@@ -63,7 +63,8 @@ require('telescope').setup {
         file_browser = {
             theme = "ivy",
             hijack_netrw = true,
-            dir_icon = ""
+            dir_icon = "",
+            hidden = true,
         }
     }
 }

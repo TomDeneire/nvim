@@ -33,21 +33,21 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 
 -- MUMPS
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "mumps",
+    pattern = "mfile",
     command = [[inoremap <buffer> <TAB> .]]
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "mumps",
+    pattern = "mfile",
     command = [[inoremap <buffer> <c-l> s nr=""<CR>f  s nr=$O(x(nr)) q:nr=""  d]]
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "mumps",
+    pattern = "mfile",
     command = [[inoremap <buffer> <CR> <ESC>:lua MumpsIndent()<CR>]]
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "mumps",
+    pattern = "mfile",
     command = [[setlocal expandtab shiftwidth=1 softtabstop=1 nowrap]]
 })

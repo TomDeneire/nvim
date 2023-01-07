@@ -24,8 +24,6 @@ vim.keymap.set("n", "<leader>def", "<cmd>silent :Lspsaga peek_definition<CR>")
 vim.keymap.set("n", "<leader>rn", "<cmd>silent :Lspsaga rename<CR>")
 vim.keymap.set("n", "<leader>all", ":tab ba<CR> :NvimTreeToggle<CR>")
 vim.keymap.set("n", "<leader>tree", "<cmd>silent :LSoutlineToggle<CR>")
-vim.keymap.set("n", "<leader>ls",
-    '<cmd>lua require("telescope.builtin").find_files({no_ignore = true, no_ignore_parent = true})<CR>')
 
 -- qtechng
 vim.keymap.set("n", "<c-b>", ":!qtechng file ci %:p<CR>")
