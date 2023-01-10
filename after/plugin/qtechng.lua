@@ -51,7 +51,7 @@ function JumpToRou()
     jumpcmd = jumpcmd .. SUPPORT_DIR .. OS_SEP .. "m_unique_map.json)"
     jumpcmd = jumpcmd .. OS_SEP .. mfile
     local resultfile = vim.fn.system(jumpcmd)
-    local cmd = "tabnew +/" .. mlabel .. " " .. resultfile
+    local cmd = "e +/" .. mlabel .. " " .. resultfile
     vim.cmd(cmd)
 end
 
@@ -70,7 +70,7 @@ function DefineMacro()
     local macro_file = vim.fn.system(macrocmd)
     local m = Split(macro_name, "m4_")
     local macro_def = m[1]
-    local cmd = "tabnew +/" .. macro_def .. " " .. macro_file
+    local cmd = "e +/" .. macro_def .. " " .. macro_file
     vim.cmd(cmd)
 end
 

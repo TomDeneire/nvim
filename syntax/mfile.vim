@@ -22,7 +22,7 @@ syn region  mLine           oneline start=/^\s/ end=/$/ contains=mString,mOperat
 " Matches
 syn match   mLabelCode      /[sub|def|fn]/ contained
 syn match   mLabelLabel     / [%a-zA-Z0-9]*/ contained
-syn match   mLabelArgs      /([a-zA-Z0-9][,a-zA-Z0-9]*)/ contained contains=mOperator,mPName
+syn match   mLabelArgs      /([a-zA-Z0-9][ ,a-zA-Z0-9]*)/ contained contains=mOperator,mPName
 syn match   mOperator       "[+,\_\-*/=&#$!'\\\]\[<>?@\(/)«»:. ]" contained contains=mParentheses
 syn match   mParentheses    "[()]" contained
 syn match   mCommand        " [bcdefghijklmnrsuvwxq][ :]" contained contains=mOperator
@@ -83,4 +83,4 @@ hi! link mMacroName     MumpsMacro
 hi! link mDoGoLabel     MumpsDoGoLabel
 hi! link mDoGoCommand   MumpsCommand
 hi! link mPragma        Function
-hi! link mPragmaType    Function
+hi! link mPragmaType    Special

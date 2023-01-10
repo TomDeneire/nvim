@@ -141,20 +141,6 @@ local on_attach = function(client, bufnr)
 end
 
 
-require 'lspconfig'.pylsp.setup {
-    capabilities = capabilities,
-    on_attach = on_attach,
-    settings = {
-        pylsp = {
-            plugins = {
-                pycodestyle = {
-                    ignore = { 'W391' },
-                    maxLineLength = 100
-                }
-            }
-        }
-    }
-}
 require 'lspconfig'.pyright.setup { on_attach = on_attach, capabilities = capabilities }
 
 require 'lspconfig'.marksman.setup { on_attach = on_attach, capabilities = capabilities }
