@@ -23,8 +23,8 @@ vim.keymap.set("n", "<leader>f", "<cmd> lua vim.lsp.buf.format { async = true }<
 vim.keymap.set("n", "<leader>term", "<cmd>:ToggleTerm dir=getcwd()<CR>")
 vim.keymap.set("n", "<leader>def", "<cmd>silent :Lspsaga peek_definition<CR>")
 vim.keymap.set("n", "<leader>rn", "<cmd>silent :Lspsaga rename<CR>")
-vim.keymap.set("n", "<leader>all", ":tab ba<CR> :NvimTreeToggle<CR>")
 vim.keymap.set("n", "<leader>tree", "<cmd>silent :LSoutlineToggle<CR>")
+vim.keymap.set("n", "<leader>git", "<cmd>silent :LazyGit<CR>")
 
 -- qtechng
 vim.keymap.set("n", "<c-b>", ":!qtechng file ci %:p<CR>")

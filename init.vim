@@ -41,6 +41,7 @@ else
     Plug 'mbbill/undotree'
 	" Git
 	Plug 'airblade/vim-gitgutter'
+    Plug 'kdheepak/lazygit.nvim'
     " Mason
     Plug 'williamboman/mason.nvim'
     Plug 'williamboman/mason-lspconfig.nvim'

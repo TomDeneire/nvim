@@ -30,6 +30,7 @@ vim.wo.colorcolumn = '80'
 
 vim.g.python_version_2 = 0
 vim.g.python_highlight_all = 1
+vim.g.python3_host_prog = '/home/tdeneire/bin/py3'
 
 -- for markdown
 vim.opt.foldenable = false

@@ -34,7 +34,7 @@ saga.init_lsp_saga(
         -- same as nvim-lightbulb but async
         code_action_lightbulb = {
             enable = true,
-            enable_in_insert = true,
+            enable_in_insert = false,
             cache_code_action = true,
             sign = true,
             update_time = 150,
