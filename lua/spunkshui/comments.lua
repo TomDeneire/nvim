@@ -10,10 +10,10 @@ vim.g.NERDDefaultAlign = 'left'
 vim.g.NERDAltDelims_java = 1
 -- Add your own custom formats or override the defaults
 local delims = {}
-local mumps = {}
-mumps["left"] = ";"
-mumps["right"] = ""
-delims["mumps"] = mumps
+local mfile = {}
+mfile["left"] = ";"
+mfile["right"] = ""
+delims["mfile"] = mfile
 vim.g.NERDCustomDelimiters = delims
 -- Allow commenting and inverting empty lines (useful when commenting a region)
 vim.g.NERDCommentEmptyLines = 1

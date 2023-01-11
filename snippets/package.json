@@ -4,9 +4,9 @@
 		"snippets": [
 			{
 				"language": [
-					"mumps"
+					"mfile"
 				],
-				"path": "./mumps.json"
+				"path": "./mfile.json"
 			},
 			{
 				"language": [
