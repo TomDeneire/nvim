@@ -27,7 +27,7 @@ vim.keymap.set("n", "<leader>tree", "<cmd>silent :LSoutlineToggle<CR>")
 vim.keymap.set("n", "<leader>lg", "<cmd>silent :LazyGit<CR>")
 
 -- qtechng
-vim.keymap.set("n", "<c-b>", ":!qtechng file ci %:p<CR>")
+vim.keymap.set("n", "<c-b>", ":!qtechng file ci<CR>")
 vim.keymap.set("n", "<c-o>", ":!qtechng file refresh<CR>")
 vim.keymap.set("n", "<leader>rou", "<cmd>silent lua JumpToRou()<CR>")
 vim.keymap.set("n", "<c-m>", "<cmd>silent lua DefineMacro()<CR>")
@@ -41,7 +41,7 @@ vim.keymap.set("n", "<c-p>", "<cmd>silent lua FindInWorkSpace()<CR>")
 vim.keymap.set("n", "<c-f>", "<cmd>silent lua GrepInWorkSpace()<CR>")
 vim.keymap.set("n", "<leader>grep", "<cmd>silent lua GrepPattern()<CR>")
 vim.keymap.set("n", "<leader>flake", ':cexpr system("flake8 " . shellescape(expand("%")))<CR> :copen<CR>')
-vim.keymap.set("n", "<leader>black", "<cmd>silent :!black %:p<CR>")
+vim.keymap.set("n", "<leader>black", "<cmd>silent :!black %:p --config=/home/tdeneire/.config/black/pyproject.toml<CR>")
 
 -- vim.keymap.set("n", "<c-[>", "c-^")
 -- vim.keymap.set("n", "<c-v>", '"*p')
