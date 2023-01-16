@@ -15,8 +15,8 @@ mfile["left"] = ";"
 mfile["right"] = ""
 delims["mfile"] = mfile
 local xfile = {}
-mfile["left"] = "//"
-mfile["right"] = ""
+xfile["left"] = "//"
+xfile["right"] = ""
 delims["xfile"] = xfile
 vim.g.NERDCustomDelimiters = delims
 -- Allow commenting and inverting empty lines (useful when commenting a region)
