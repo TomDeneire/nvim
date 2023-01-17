@@ -13,7 +13,10 @@ vim.keymap.set("v", "<c-k>", "10k")
 vim.keymap.set("n", "<F5>", ":UndotreeToggle<CR>")
 vim.keymap.set("n", "tl", "<cmd>silent :bn<CR>")
 vim.keymap.set("n", "th", "<cmd>silent :bp<CR>")
-
+vim.keymap.set("n", "<c-v>", '"*p')
+vim.keymap.set("i", "<c-v>", '<ESC> "*pa')
+vim.keymap.set("v", "<c-c>", '"+y')
+--
 -- plugins
 vim.keymap.set("n", "tt", "<cmd>silent :Telescope file_browser<CR>")
 vim.keymap.set("n", "<leader>old", "<cmd>silent :Telescope oldfiles<CR>")
@@ -36,7 +39,7 @@ vim.keymap.set("n", "<leader>qp", "<cmd>silent lua ComparePrevious()<CR>")
 vim.keymap.set("n", "<leader>qs", "<cmd>lua SourceList()<CR>")
 vim.keymap.set("n", "<leader>qm", "<cmd>lua MacroList()<CR>")
 vim.keymap.set("v", "<leader>qt", ":norm xi .<CR>")
-vim.keymap.set("n", "<leader>qn", "mnviwy?^ n<CR>A,<ESC>pviwy`n")
+vim.keymap.set("n", "<leader>qn", "mnviwy?^ n <CR>A,<ESC>pviwy`n")
 
 -- other
 vim.keymap.set("n", "<c-p>", "<cmd>silent lua FindInWorkSpace()<CR>")
@@ -44,8 +47,3 @@ vim.keymap.set("n", "<c-f>", "<cmd>silent lua GrepInWorkSpace()<CR>")
 vim.keymap.set("n", "<leader>grep", "<cmd>silent lua GrepPattern()<CR>")
 vim.keymap.set("n", "<leader>flake", ':cexpr system("flake8 " . shellescape(expand("%")))<CR> :copen<CR>')
 vim.keymap.set("n", "<leader>black", "<cmd>silent :!black %:p --config=/home/tdeneire/.config/black/pyproject.toml<CR>")
-
--- vim.keymap.set("n", "<c-[>", "c-^")
--- vim.keymap.set("n", "<c-v>", '"*p')
--- vim.keymap.set("i", "<c-v>", '<ESC> "*pa')
--- vim.keymap.set("v", "<c-c>", '"+y')

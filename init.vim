@@ -86,9 +86,6 @@ else
     "   syntax off            " Disable syntax highlighting
 
     "mappings (different result in Lua)
-    nnoremap <c-v> "*p
-    inoremap <c-v> <Esc>"*pa
-    vnoremap <c-c> "+y
     nnoremap <c-[> <c-^>
     vmap <silent> cc :call nerdcommenter#Comment('x', 'toggle')<CR>
 
