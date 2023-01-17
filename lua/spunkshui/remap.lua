@@ -35,6 +35,8 @@ vim.keymap.set("n", "<leader>qg", "<cmd>silent lua OpenInGit()<CR>")
 vim.keymap.set("n", "<leader>qp", "<cmd>silent lua ComparePrevious()<CR>")
 vim.keymap.set("n", "<leader>qs", "<cmd>lua SourceList()<CR>")
 vim.keymap.set("n", "<leader>qm", "<cmd>lua MacroList()<CR>")
+vim.keymap.set("v", "<leader>qt", ":norm xi .<CR>")
+vim.keymap.set("n", "<leader>qn", "mnviwy?^ n<CR>A,<ESC>pviwy`n")
 
 -- other
 vim.keymap.set("n", "<c-p>", "<cmd>silent lua FindInWorkSpace()<CR>")
