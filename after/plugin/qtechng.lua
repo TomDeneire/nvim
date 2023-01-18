@@ -13,6 +13,7 @@ SUPPORT_DIR = "$(qtechng registry get qtechng-support-dir)"
 -- FUNCTIONS
 
 function Split(mystring, delim)
+    -- to do: pattern matcht ook op single "m"! (zie vb. 2)
     local t = {}
     for str in string.gmatch(mystring, "([^" .. delim .. "]+)") do
         table.insert(t, str)
