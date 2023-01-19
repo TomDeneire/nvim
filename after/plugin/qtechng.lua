@@ -12,13 +12,38 @@ SUPPORT_DIR = "$(qtechng registry get qtechng-support-dir)"
 
 -- FUNCTIONS
 
-function Split(mystring, delim)
+function Split2(mystring, delim)
     -- to do: pattern matcht ook op single "m"! (zie vb. 2)
     local t = {}
     for str in string.gmatch(mystring, "([^" .. delim .. "]+)") do
         table.insert(t, str)
     end
     return t
+end
+
+function Split(mystring, delim)
+
+    -- to do: rigourous testing
+    -- before you can promote to general split!
+
+    local result = {}
+    local start = 1
+
+    while (true) do
+        local _, pos = string.find(mystring, delim, start, true)
+        if pos == nil then
+            local rest = string.sub(mystring, start, string.len(mystring))
+            table.insert(result, rest)
+            break
+        else
+            local matchlen = pos - string.len(delim)
+            local part = string.sub(mystring, start, matchlen)
+            start = pos + 1
+            table.insert(result, part)
+        end
+    end
+
+    return result
 end
 
 function Length(mytable)
@@ -57,21 +82,27 @@ function JumpToRou()
 end
 
 function DefineMacro()
-    -- m4_getCensorType
+    -- m4_getCensorType(type,loi)
+    -- m4_documentElementInputDate()
+    -- m4_zever
     local wordUnderCursor = vim.fn.expand("<cword>")
     if string.find(wordUnderCursor, "m4_") == nil then
         return
     end
     local t = Split(wordUnderCursor, "m4_")
-    local macro_name = t[1]
+    local macro_name = t[2]
     local macrocmd = "echo "
     macrocmd = macrocmd .. WORK_DIR
     macrocmd = macrocmd .. "$(jq -r ." .. '"' .. macro_name .. '" '
     macrocmd = macrocmd .. SUPPORT_DIR .. OS_SEP .. "m4_map.json)"
     local macro_file = vim.fn.system(macrocmd)
-    local m = Split(macro_name, "m4_")
-    local macro_def = m[1]
-    local cmd = "e +/" .. macro_def .. " " .. macro_file
+    local macro_file_len = string.len(macro_file)
+    local exists = string.sub(macro_file, macro_file_len - 4, macro_file_len)
+    exists = string.gsub(exists, "\n", "")
+    if exists == "null" then
+        return
+    end
+    local cmd = "e +/" .. macro_name .. " " .. macro_file
     vim.cmd(cmd)
 end
 
@@ -136,7 +167,7 @@ function MumpsIndent()
         -- cursor at end of the line
         local wordUnderCursor = vim.fn.expand("<cword>")
         local indent_level = Split(current_line, " ")
-        local indent_begin = indent_level[1]
+        local indent_begin = indent_level[2]
         local indent = ""
         if indent_begin ~= nil then
             if (wordUnderCursor == "d") or (wordUnderCursor == "q") then

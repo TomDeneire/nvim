@@ -14,9 +14,8 @@ vim.keymap.set("n", "<F5>", ":UndotreeToggle<CR>")
 vim.keymap.set("n", "tl", "<cmd>silent :bn<CR>")
 vim.keymap.set("n", "th", "<cmd>silent :bp<CR>")
 vim.keymap.set("n", "<c-v>", '"*p')
-vim.keymap.set("i", "<c-v>", '<ESC> "*pa')
 vim.keymap.set("v", "<c-c>", '"+y')
---
+
 -- plugins
 vim.keymap.set("n", "tt", "<cmd>silent :Telescope file_browser<CR>")
 vim.keymap.set("n", "<leader>old", "<cmd>silent :Telescope oldfiles<CR>")
