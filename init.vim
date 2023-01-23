@@ -70,6 +70,8 @@ else
 	Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 	" Bufferline
 	Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
+    " Buffer delete
+    Plug 'echasnovski/mini.bufremove', { 'branch': 'stable' }
 	" Colorschemes
     Plug 'martinsione/darkplus.nvim'
     Plug 'mhartington/oceanic-next'

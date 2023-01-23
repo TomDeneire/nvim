@@ -13,6 +13,7 @@ vim.keymap.set("v", "<c-k>", "10k")
 vim.keymap.set("n", "<F5>", ":UndotreeToggle<CR>")
 vim.keymap.set("n", "tl", "<cmd>silent :bn<CR>")
 vim.keymap.set("n", "th", "<cmd>silent :bp<CR>")
+vim.keymap.set("n", "td", "<cmd>silent lua MiniBufremove.delete()<CR>")
 vim.keymap.set("n", "<c-v>", '"*p')
 vim.keymap.set("v", "<c-c>", '"+y')
 
