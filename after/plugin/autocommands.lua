@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 
 -- Autoformat
 vim.api.nvim_create_autocmd("BufWritePost", {
-    pattern = { "*.py", "*.lua", "*.go", "*.js", "*.xml", ".html", ".json" },
+    pattern = { "*.py", "*.lua", "*.go", "*.js", "*.xml", "*.html", "*.json" },
     command = "silent! lua vim.lsp.buf.format()",
 })
 
@@ -27,7 +27,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 
 -- Qtechng file format
 vim.api.nvim_create_autocmd("BufWritePost", {
-    pattern = { "*.m", "*.l", "*.x", "*.i", "*.b", ".d" },
+    pattern = { "*.m", "*.l", "*.x", "*.i", "*.b", "*.d" },
     command = "silent! !qtechng file format --inplace %:p",
 })
 

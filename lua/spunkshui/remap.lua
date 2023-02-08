@@ -19,6 +19,7 @@ vim.keymap.set("v", "<c-c>", '"+y')
 
 -- plugins
 vim.keymap.set("n", "tt", "<cmd>silent :Telescope file_browser<CR>")
+vim.keymap.set("n", "ff", "<cmd>silent :Telescope live_grep<CR>")
 vim.keymap.set("n", "<leader>old", "<cmd>silent :Telescope oldfiles<CR>")
 vim.keymap.set("n", "<leader>ca", "<cmd>silent lua vim.lsp.buf.code_action()<CR>")
 vim.keymap.set("n", "<c-D>", "<cmd>lua vim.lsp.buf.definition()<CR>")

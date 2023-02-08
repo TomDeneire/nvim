@@ -25,7 +25,7 @@ require('lualine').setup {
     sections = {
         lualine_a = { 'mode' },
         lualine_b = { 'diff', 'diagnostics' },
-        lualine_c = { "vim.fn.expand('%:p')" },
+        lualine_c = { 'branch',"vim.fn.expand('%:p')" },
         lualine_x = { 'encoding', 'filetype' },
         lualine_y = {},
         lualine_z = { 'progress' }
