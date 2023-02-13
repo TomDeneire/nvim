@@ -29,6 +29,7 @@ vim.keymap.set("n", "<leader>def", "<cmd>silent :Lspsaga peek_definition<CR>")
 vim.keymap.set("n", "<leader>rn", "<cmd>silent :Lspsaga rename<CR>")
 vim.keymap.set("n", "<leader>tree", "<cmd>silent :LSoutlineToggle<CR>")
 vim.keymap.set("n", "<leader>lg", "<cmd>silent :LazyGit<CR>")
+vim.keymap.set("n", "<leader>trouble", "<cmd>silent :TroubleToggle<CR>")
 
 -- qtechng
 vim.keymap.set("n", "<c-b>", ":!qtechng file ci<CR>")
