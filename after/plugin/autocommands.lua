@@ -2,11 +2,21 @@ if vim.g.vscode then
     return
 end
 
+-- Globals
+LSP_files = { "*.py", "*.lua", "*.go", "*.js", "*.xml", "*.html", "*.json" }
+QtechNG_files = { "*.m", "*.l", "*.x", "*.i", "*.b", "*.d" }
+
 -- LSP diagnostics in notify
 vim.api.nvim_create_autocmd("BufEnter", {
+    pattern = LSP_files,
+    command = "silent! lua Diagnostics()",
+})
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = LSP_files,
     command = "silent! lua Diagnostics()",
 })
 vim.api.nvim_create_autocmd("BufWritePost", {
+    pattern = LSP_files,
     command = "silent! lua Diagnostics()",
 })
 
@@ -23,7 +33,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 
 -- Autoformat
 vim.api.nvim_create_autocmd("BufWritePost", {
-    pattern = { "*.py", "*.lua", "*.go", "*.js", "*.xml", "*.html", "*.json" },
+    pattern = LSP_files,
     command = "silent! lua vim.lsp.buf.format()",
 })
 
@@ -35,7 +45,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 
 -- Qtechng file format
 vim.api.nvim_create_autocmd("BufWritePost", {
-    pattern = { "*.m", "*.l", "*.x", "*.i", "*.b", "*.d" },
+    pattern = QtechNG_files,
     command = "silent! !qtechng file format --inplace %:p",
 })
 
