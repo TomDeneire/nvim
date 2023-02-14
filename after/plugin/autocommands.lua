@@ -2,6 +2,14 @@ if vim.g.vscode then
     return
 end
 
+-- LSP diagnostics in notify
+vim.api.nvim_create_autocmd("BufEnter", {
+    command = "silent! lua Diagnostics()",
+})
+vim.api.nvim_create_autocmd("BufWritePost", {
+    command = "silent! lua Diagnostics()",
+})
+
 -- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
     command = "silent! lua vim.highlight.on_yank()",

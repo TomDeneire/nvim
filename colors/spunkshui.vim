@@ -367,6 +367,7 @@ endfunction
   call s:hi('CocDiagnosticsHint',                 s:cyan,   '',       '',          '')
   call s:hi('CocSelectedText',                    s:purple, '',       '',          '')
   call s:hi('CocCodeLens',                        s:base04, '',       '',          '')
+
 " }}}
 " {{{ Terminal
 if has('nvim')

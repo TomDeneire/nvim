@@ -79,10 +79,9 @@ else
     Plug 'folke/which-key.nvim'
     " Center screen
     Plug 'shortcuts/no-neck-pain.nvim', { 'tag': '*' }
+    " Notifications
     Plug 'rcarriga/nvim-notify'
-    " Trouble
-    Plug 'folke/trouble.nvim'
-    
+
     " Initialize plugin system
     " - Automatically executes `filetype plugin indent on` and `syntax enable`.
     call plug#end()
