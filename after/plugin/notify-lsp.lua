@@ -8,6 +8,16 @@ Severity = { warn = vim.diagnostic.severity.WARN,
     hint = vim.diagnostic.severity.HINT,
     error = vim.diagnostic.severity.ERROR }
 
+-- Diagnostic icons
+Icons = {
+    debug = "",
+    error = "",
+    hint = "",
+    trace = "✎",
+    warn = ""
+}
+
+-- Split up longer lines by inserting newlines
 function InsertNewLines(message)
     message = string.gsub(message, "\n", " ")
     message = string.gsub(message, "\r\n", " ")
@@ -30,6 +40,8 @@ function InsertNewLines(message)
     if string.sub(new_message, 1, 1) == " " then
         new_message = string.sub(new_message, 2, string.len(new_message))
     end
+    local first = string.sub(new_message, 1, 1)
+    new_message = string.upper(first) .. string.sub(new_message, 2, string.len(new_message))
     return new_message
 end
 
@@ -51,7 +63,11 @@ function notify_lsp_diagnostics(config)
                     local code_clean = string.gsub(code[1], " ", "")
                     if config.exclude_codes[code_clean] == nil then
                         local message = InsertNewLines(diagnostic.message)
-                        local n = diagnostic.lnum + 1 .. ": " .. message
+                        local n = ""
+                        if config.notify_options.render == "minimal" then
+                            n = Icons[level] .. " "
+                        end
+                        n = n .. diagnostic.lnum + 1 .. ": " .. message
                         if j ~= Length(diagnostics) then
                             n = n .. "\n"
                         end
@@ -79,8 +95,8 @@ severity_levels["error"] = true
 local options = {
     title = "LSP diagnostics",
     render = "minimal", -- "default", "minimal", "simple", "compact"
-    animate = "static", -- "fade_in_slide_out", "fade", "slide", "static",
-    timeout = false, -- boolean, int
+    animate = "static", -- "fade_in_slide_out", "fade", "slide", "static"
+    timeout = false -- boolean, int
 }
 
 Config = {
