@@ -8,6 +8,31 @@ Severity = { warn = vim.diagnostic.severity.WARN,
     hint = vim.diagnostic.severity.HINT,
     error = vim.diagnostic.severity.ERROR }
 
+function InsertNewLines(message)
+    message = string.gsub(message, "\n", " ")
+    message = string.gsub(message, "\r\n", " ")
+    message = string.gsub(message, "\t", " ")
+    if string.len(message) < 50 then
+        return message
+    end
+    local new_message = ""
+    local line = ""
+    local words = Split(message, " ")
+    for i in pairs(words) do
+        if string.len(line) > 50 then
+            new_message = new_message .. line .. "\n"
+            line = ""
+        end
+        line = line .. " " .. words[i]
+    end
+    new_message = new_message .. " " .. line
+    new_message = string.gsub(new_message, "  ", " ")
+    if string.sub(new_message, 1, 1) == " " then
+        new_message = string.sub(new_message, 2, string.len(new_message))
+    end
+    return new_message
+end
+
 -- Show notifications
 function notify_lsp_diagnostics(config)
     -- Clear previous notifications
@@ -16,17 +41,18 @@ function notify_lsp_diagnostics(config)
     -- Handle LSP diagnostic severity_levels
     for level in pairs(config.severity_levels) do
         if config.severity_levels[level] == true then
-            local notifications = vim.diagnostic.get(
+            local diagnostics = vim.diagnostic.get(
                 0, { severity = Severity[level] })
-            if notifications ~= nil then
+            if diagnostics ~= nil then
                 local notify_textbox = ""
-                for j in pairs(notifications) do
-                    local d = notifications[j]
-                    local code = Split(d.message, " ")
+                for j in pairs(diagnostics) do
+                    local diagnostic = diagnostics[j]
+                    local code = Split(diagnostic.message, " ")
                     local code_clean = string.gsub(code[1], " ", "")
                     if config.exclude_codes[code_clean] == nil then
-                        local n = d.lnum + 1 .. ": " .. d.message
-                        if j ~= Length(notifications) then
+                        local message = InsertNewLines(diagnostic.message)
+                        local n = diagnostic.lnum + 1 .. ": " .. message
+                        if j ~= Length(diagnostics) then
                             n = n .. "\n"
                         end
                         notify_textbox = notify_textbox .. n
@@ -54,7 +80,7 @@ local options = {
     title = "LSP diagnostics",
     render = "minimal", -- "default", "minimal", "simple", "compact"
     animate = "static", -- "fade_in_slide_out", "fade", "slide", "static",
-    timeout = false -- boolean, int
+    timeout = false, -- boolean, int
 }
 
 Config = {

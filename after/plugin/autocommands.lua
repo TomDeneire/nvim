@@ -8,15 +8,12 @@ QtechNG_files = { "*.m", "*.l", "*.x", "*.i", "*.b", "*.d" }
 
 -- LSP diagnostics in notify
 vim.api.nvim_create_autocmd("BufEnter", {
-    pattern = LSP_files,
     command = "silent! lua Diagnostics()",
 })
 vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = LSP_files,
     command = "silent! lua Diagnostics()",
 })
 vim.api.nvim_create_autocmd("BufWritePost", {
-    pattern = LSP_files,
     command = "silent! lua Diagnostics()",
 })
 
