@@ -12,13 +12,14 @@ Severity = { warn = vim.diagnostic.severity.WARN,
 Icons = {
     debug = "",
     error = "",
+    info = "",
     hint = "",
     trace = "✎",
     warn = ""
 }
 
 -- Split up longer lines by inserting newlines
-function InsertNewLines(message)
+local function insertNewLines(message)
     message = string.gsub(message, "\n", " ")
     message = string.gsub(message, "\r\n", " ")
     message = string.gsub(message, "\t", " ")
@@ -46,7 +47,7 @@ function InsertNewLines(message)
 end
 
 -- Show notifications
-function notify_lsp_diagnostics(config)
+local function notify_lsp_diagnostics(config)
     -- Clear previous notifications
     local notify = require("notify")
     notify.dismiss()
@@ -62,7 +63,7 @@ function notify_lsp_diagnostics(config)
                     local code = Split(diagnostic.message, " ")
                     local code_clean = string.gsub(code[1], " ", "")
                     if config.exclude_codes[code_clean] == nil then
-                        local message = InsertNewLines(diagnostic.message)
+                        local message = insertNewLines(diagnostic.message)
                         local n = ""
                         if config.notify_options.render == "minimal" then
                             n = Icons[level] .. " "
@@ -83,30 +84,36 @@ function notify_lsp_diagnostics(config)
 end
 
 -- User config
-local exclude_codes = {} -- e.g. E501
-exclude_codes["E501"] = true
+local function get_user_config()
 
-local severity_levels = {} -- info, hint, warn, error
-severity_levels["info"] = false
-severity_levels["hint"] = false
-severity_levels["warn"] = true
-severity_levels["error"] = true
+    local exclude_codes = {} -- e.g. E501
+    exclude_codes["E501"] = true
 
-local options = {
-    title = "LSP diagnostics",
-    render = "minimal", -- "default", "minimal", "simple", "compact"
-    animate = "static", -- "fade_in_slide_out", "fade", "slide", "static"
-    timeout = false -- boolean, int
-}
+    local severity_levels = {} -- info, hint, warn, error
+    severity_levels["info"] = false
+    severity_levels["hint"] = false
+    severity_levels["warn"] = true
+    severity_levels["error"] = true
 
-Config = {
-    exclude_codes = exclude_codes,
-    severity_levels = severity_levels,
-    notify_options = options
-}
+    local options = {
+        title = "LSP diagnostics",
+        render = "minimal", -- "default", "minimal", "simple", "compact"
+        animate = "static", -- "fade_in_slide_out", "fade", "slide", "static"
+        timeout = false -- boolean, int
+    }
 
+    local config = {
+        exclude_codes = exclude_codes,
+        severity_levels = severity_levels,
+        notify_options = options
+    }
+
+    return config
+end
 
 -- Display LSP diagnostics with nvim-notify
 function Diagnostics()
-    notify_lsp_diagnostics(Config)
+
+    local config = get_user_config()
+    notify_lsp_diagnostics(config)
 end
