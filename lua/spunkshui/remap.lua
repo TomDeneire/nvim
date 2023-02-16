@@ -42,6 +42,8 @@ vim.keymap.set("n", "<leader>qs", "<cmd>lua SourceList()<CR>")
 vim.keymap.set("n", "<leader>qm", "<cmd>lua MacroList()<CR>")
 vim.keymap.set("v", "<leader>qt", ":norm xi .<CR>")
 vim.keymap.set("n", "<leader>qn", "mnviwy?^ n <CR>A,<ESC>pviwy`n")
+vim.keymap.set("n", "<leader>ql",
+    ":!qtechng file list --changed --cwd=$(qtechng registry get qtechng-work-dir) --recurse | jq -r .DATA[0].qpath<CR>")
 
 -- other
 vim.keymap.set("n", "<c-p>", "<cmd>silent lua FindInWorkSpace()<CR>")

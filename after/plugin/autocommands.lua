@@ -3,19 +3,8 @@ if vim.g.vscode then
 end
 
 -- Globals
-LSP_files = { "*.py", "*.lua", "*.go", "*.js", "*.xml", "*.html", "*.json" }
+LSP_files = { "*.lua", "*.go", "*.js", "*.xml", "*.html", "*.json" }
 QtechNG_files = { "*.m", "*.l", "*.x", "*.i", "*.b", "*.d" }
-
--- LSP diagnostics in notify
-vim.api.nvim_create_autocmd("BufEnter", {
-    command = "silent! lua Diagnostics()",
-})
-vim.api.nvim_create_autocmd("BufWritePre", {
-    command = "silent! lua Diagnostics()",
-})
-vim.api.nvim_create_autocmd("BufWritePost", {
-    command = "silent! lua Diagnostics()",
-})
 
 -- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
