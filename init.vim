@@ -81,8 +81,8 @@ else
     Plug 'shortcuts/no-neck-pain.nvim', { 'tag': '*' }
     " Notifications
     Plug 'rcarriga/nvim-notify'
-    Plug '~/projects/code/lua/lsp-notify.nvim'
-    
+    Plug '~/projects/code/lua/notify-diagnostics.nvim'
+
     " Initialize plugin system
     " - Automatically executes `filetype plugin indent on` and `syntax enable`.
     call plug#end()
