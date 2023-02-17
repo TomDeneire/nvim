@@ -13,7 +13,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- Trim trailing whitespace
 vim.api.nvim_create_autocmd("BufWritePost", {
-    pattern = { "*.vim", "*.py", "*.lua", "*.go", "*.js", "*.x" },
+    pattern = { "*.vim", "*.py", "*.lua", "*.go", "*.js", "*.x", "*.rst" },
     command = "silent! lua Trim_trailing_whitespace()",
 })
 

@@ -73,7 +73,7 @@ require('telescope').load_extension('fzf')
 
 require('telescope').load_extension('file_browser')
 
-function GetFindDir()
+local function getfinddir()
     local workspace = vim.fn.getcwd()
     local brocadedir = "/brocade/source/data"
     local qtechng_work_dir = "/home/tdeneire/projects/brocade/source/data"
@@ -86,33 +86,39 @@ function GetFindDir()
 end
 
 function FindInWorkSpace()
-    local find_dir = GetFindDir()
+    local find_dir = getfinddir()
     require("telescope.builtin").find_files(
-        { hidden = true,
+        {
+            hidden = true,
             find_command = { "rg", "--smart-case", "--files" },
             no_ignore = true,
             no_ignore_parent = true,
-            cwd = find_dir })
+            cwd = find_dir
+        })
 end
 
 function GrepInWorkSpace()
-    local find_dir = GetFindDir()
+    local find_dir = getfinddir()
     require("telescope.builtin").live_grep(
-        { hidden = true,
+        {
+            hidden = true,
             find_command = { "rg", "--smart-case", "--files" },
             no_ignore = true,
             no_ignore_parent = true,
-            cwd = find_dir })
+            cwd = find_dir
+        })
 end
 
 function GrepPattern()
-    local find_dir = GetFindDir()
+    local find_dir = getfinddir()
     local pattern = vim.fn.input("Grep_pattern=", "*.")
     require("telescope.builtin").live_grep(
-        { hidden = true,
+        {
+            hidden = true,
             find_command = { "rg", "--smart-case", "--files" },
             no_ignore = true,
             no_ignore_parent = true,
             cwd = find_dir,
-            glob_pattern = pattern })
+            glob_pattern = pattern
+        })
 end

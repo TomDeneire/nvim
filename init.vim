@@ -21,8 +21,6 @@ else
     Plug 'lukas-reineke/indent-blankline.nvim'
     Plug 'ThePrimeagen/vim-be-good'
     Plug 'godlygeek/tabular'
-    " Tree
-    Plug 'nvim-tree/nvim-tree.lua'
     " Lualine
     Plug 'nvim-lualine/lualine.nvim'
     " Treesitter
@@ -48,7 +46,6 @@ else
 	" Lsp
     Plug 'neovim/nvim-lspconfig'
     Plug 'kabouzeid/nvim-lspinstall'
-    Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
     Plug 'onsails/lspkind.nvim'
     Plug 'ray-x/lsp_signature.nvim'
     Plug 'jose-elias-alvarez/null-ls.nvim'
@@ -81,7 +78,7 @@ else
     Plug 'shortcuts/no-neck-pain.nvim', { 'tag': '*' }
     " Notifications
     Plug 'rcarriga/nvim-notify'
-    Plug '~/projects/code/lua/notify-diagnostics.nvim'
+    Plug 'tomdeneire/notify-diagnostics.nvim'
 
     " Initialize plugin system
     " - Automatically executes `filetype plugin indent on` and `syntax enable`.
