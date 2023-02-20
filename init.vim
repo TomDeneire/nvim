@@ -38,7 +38,8 @@ else
     " Undotree
     Plug 'mbbill/undotree'
 	" Git
-	Plug 'airblade/vim-gitgutter'
+    Plug 'lewis6991/gitsigns.nvim'
+    " ddfdf
     Plug 'kdheepak/lazygit.nvim'
     " Mason
     Plug 'williamboman/mason.nvim'

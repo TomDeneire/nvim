@@ -38,3 +38,4 @@ vim.opt.conceallevel = 0
 
 -- for which_key
 vim.opt.timeoutlen = 500
+
