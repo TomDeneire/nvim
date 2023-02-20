@@ -78,7 +78,7 @@ else
     Plug 'shortcuts/no-neck-pain.nvim', { 'tag': '*' }
     " Notifications
     Plug 'rcarriga/nvim-notify'
-    Plug 'tomdeneire/notify-diagnostics.nvim'
+    Plug '~/projects/code/lua/notify-diagnostics.nvim'
 
     " Initialize plugin system
     " - Automatically executes `filetype plugin indent on` and `syntax enable`.
