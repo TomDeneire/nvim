@@ -1,3 +1,7 @@
+if vim.g.vscode then
+    return
+end
+
 -- General settings
 vim.opt.autoindent = true
 vim.opt.cursorline = true
@@ -49,3 +53,5 @@ local cmd = "vmap <silent> cc :call nerdcommenter#Comment('x', 'toggle')<CR>"
 vim.cmd(cmd)
 cmd = "nnoremap <c-[> <c-^>"
 vim.cmd(cmd)
+
+return {}

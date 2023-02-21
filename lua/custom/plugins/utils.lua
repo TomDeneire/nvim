@@ -10,3 +10,4 @@ function Trim_trailing_whitespace()
     return vim.fn.winrestview(view)
 end
 
+return {}

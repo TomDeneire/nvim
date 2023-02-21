@@ -3,3 +3,5 @@ if vim.g.vscode then
 end
 
 require('mini.bufremove').setup()
+
+return {}

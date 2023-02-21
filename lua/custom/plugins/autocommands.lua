@@ -60,3 +60,5 @@ vim.api.nvim_create_autocmd("FileType", {
     pattern = "mfile",
     command = [[setlocal expandtab shiftwidth=1 softtabstop=1 nowrap]]
 })
+
+return {}

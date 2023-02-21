@@ -9,3 +9,5 @@ vim.g.syntax_on = 1
 
 -- removes tildes
 vim.cmd("highlight! EndOfBuffer ctermbg=bg ctermfg=bg guibg=bg guifg=bg")
+
+return {}

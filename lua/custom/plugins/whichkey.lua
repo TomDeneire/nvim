@@ -76,3 +76,5 @@ require 'which-key'.setup {
         },
     }
 }
+
+return {}

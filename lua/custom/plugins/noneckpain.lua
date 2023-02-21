@@ -131,3 +131,4 @@ NoNeckPain.bufferOptions = {
     },
 }
 
+return {}

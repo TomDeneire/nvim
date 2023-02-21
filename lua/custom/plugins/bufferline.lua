@@ -96,3 +96,5 @@ require('bufferline').setup {
         --	    end
     }
 }
+
+return {}

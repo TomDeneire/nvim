@@ -53,10 +53,11 @@ require('lazy').setup({
 
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
-    dependencies = { 'hrsh7th/cmp-nvim-lsp',
+    dependencies = {
+      'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-cmdline',
-    'hrsh7th/cmp-buffer',
-    'L3MON4D3/LuaSnip',
+      'hrsh7th/cmp-buffer',
+      'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
       'onsails/lspkind.nvim' },
   },
@@ -85,12 +86,50 @@ require('lazy').setup({
 
   { -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
+    opts = {
+    options = {
+        icons_enabled = true,
+        theme = 'auto',
+        component_separators = { left = '|', right = '  ' },
+        section_separators = { left = '  ', right = '  ' },
+        disabled_filetypes = {
+            statusline = {},
+            winbar = {},
+        },
+        ignore_focus = {},
+        always_divide_middle = true,
+        globalstatus = false,
+        refresh = {
+            statusline = 1000,
+            tabline = 1000,
+            winbar = 1000,
+        }
+    },
+    sections = {
+        lualine_a = { 'mode' },
+        lualine_b = { 'diff', 'diagnostics' },
+        lualine_c = { 'branch', "vim.fn.expand('%:p')" },
+        lualine_x = { 'encoding', 'filetype' },
+        lualine_y = {},
+        lualine_z = { 'progress' }
+    },
+    inactive_sections = {
+        lualine_a = {},
+        lualine_b = { 'branch' },
+        lualine_c = {},
+        lualine_x = { 'fileformat' },
+        lualine_y = { 'location' },
+        lualine_z = {}
+    },
+    tabline = {},
+    winbar = {},
+    inactive_winbar = {},
+    extensions = {}
+    }
   },
 
   { -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help indent_blankline.txt`
   },
 
   -- Fuzzy Finder (files, lsp, etc)
@@ -136,7 +175,7 @@ require('lazy').setup({
   --
   --    An additional note is that if you only copied in the `init.lua`, you can just comment this line
   --    to get rid of the warning telling you that there are not plugins in `lua/custom/plugins/`.
-  --{ import = 'custom.plugins' },
+  { import = 'custom.plugins' },
 }, {})
 
 -- Enable telescope fzf native, if installed
@@ -145,6 +184,8 @@ pcall(require('telescope').load_extension, 'fzf')
 
 -- Setup neovim lua configuration
 require('neodev').setup()
+
+
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

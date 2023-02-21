@@ -192,3 +192,5 @@ cmp.setup.cmdline(':', {
 
 -- disable virtual text (because of LSP diagnostics in notify)
 vim.diagnostic.config({ virtual_text = false })
+
+return {}

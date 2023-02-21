@@ -210,3 +210,5 @@ function MumpsIndent()
         vim.fn.feedkeys("\n")
     end
 end
+
+return {}

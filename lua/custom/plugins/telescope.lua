@@ -122,3 +122,5 @@ function GrepPattern()
             glob_pattern = pattern
         })
 end
+
+return {}

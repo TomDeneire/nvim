@@ -1,3 +1,7 @@
+if vim.g.vscode then
+    return
+end
+
 vim.g.mapleader = ' '
 
 -- basic
@@ -53,3 +57,5 @@ vim.keymap.set("n", "<c-f>", "<cmd>silent lua GrepInWorkSpace()<CR>")
 vim.keymap.set("n", "<leader>grep", "<cmd>silent lua GrepPattern()<CR>")
 vim.keymap.set("n", "<leader>flake", ':cexpr system("flake8 " . shellescape(expand("%")))<CR> :copen<CR>')
 vim.keymap.set("n", "<leader>black", "<cmd>silent :!black %:p --config=/home/tdeneire/.config/black/pyproject.toml<CR>")
+
+return {}

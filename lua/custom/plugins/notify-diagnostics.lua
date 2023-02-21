@@ -3,3 +3,5 @@ if vim.g.vscode then
 end
 
 require("notify-diagnostics").setup({ exclude_codes = { E501 = true } })
+
+return {}

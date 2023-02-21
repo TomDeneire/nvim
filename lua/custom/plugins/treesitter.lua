@@ -44,27 +44,6 @@ require 'nvim-treesitter.configs'.setup {
         -- (do not disable this!)
         additional_vim_regex_highlighting = true,
     },
-    rainbow = {
-        enable = false,
-        disable = { "go" },
-        -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-        extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-        max_file_lines = nil, -- Do not enable for files with more than n lines, int
-        colors = {
-            "#fac863",
-            "#c594c5",
-            "#6699cc",
-            "#d4d4d4",
-            "#ab7967",
-            "#99c794",
-        },
-        -- termcolors = {
-        --   "Gold",
-        --   "Orchid",
-        --   "DodgerBlue",
-        --   "Cornsilk",
-        --   "Salmon",
-        --   "LawnGreen",
-        -- },
-    },
 }
+
+return {}
