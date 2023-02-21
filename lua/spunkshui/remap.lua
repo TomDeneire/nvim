@@ -3,7 +3,7 @@ vim.g.mapleader = ' '
 -- basic
 vim.keymap.set("i", "jj", "<Esc>")
 vim.keymap.set("n", "<c-a>", "ggVG")
-vim.keymap.set("n", "<c-i>", "<cmd>silent lua vim.lsp.buf.hover()<CR>")
+vim.keymap.set("n", "<c-i>", vim.lsp.buf.hover)
 vim.keymap.set("n", "<c-s>", ":w<CR>")
 vim.keymap.set("i", "<c-s>", "<ESC> :w<CR>")
 vim.keymap.set("n", "<c-j>", "10j")
@@ -17,17 +17,21 @@ vim.keymap.set("n", "td", "<cmd>silent lua MiniBufremove.delete()<CR>")
 vim.keymap.set("n", "<c-v>", '"*p')
 vim.keymap.set("v", "<c-c>", '"+y')
 
+-- Remap for dealing with word wrap
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
 -- plugins
 vim.keymap.set("n", "tt", "<cmd>silent :Telescope file_browser<CR>")
 vim.keymap.set("n", "ff", "<cmd>silent :Telescope live_grep<CR>")
-vim.keymap.set("n", "<leader>old", "<cmd>silent :Telescope oldfiles<CR>")
-vim.keymap.set("n", "<leader>ca", "<cmd>silent lua vim.lsp.buf.code_action()<CR>")
-vim.keymap.set("n", "<c-D>", "<cmd>lua vim.lsp.buf.definition()<CR>")
+vim.keymap.set("n", "<leader>old", require('telescope.builtin').oldfiles)
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
+vim.keymap.set("n", "<c-D>", vim.lsp.buf.definition)
 vim.keymap.set("n", "<leader>f", "<cmd> lua vim.lsp.buf.format { async = true }<CR>")
 vim.keymap.set("n", "<leader>term", "<cmd>:ToggleTerm dir=getcwd()<CR>")
-vim.keymap.set("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
 vim.keymap.set("n", "<leader>lg", "<cmd>silent :LazyGit<CR>")
-vim.keymap.set("n", "<leader>lsp", "<cmd>silent lua vim.diagnostic.open_float()<CR>")
+vim.keymap.set("n", "<leader>lsp", vim.diagnostic.open_float)
 
 -- qtechng
 vim.keymap.set("n", "<c-b>", ":!qtechng file ci<CR>")

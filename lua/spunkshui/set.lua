@@ -7,8 +7,11 @@ vim.opt.hlsearch = false
 vim.opt.termguicolors = true
 vim.opt.showtabline = 2
 vim.opt.ignorecase = true
+vim.o.smartcase = true
 vim.opt.autochdir = true
 vim.opt.linebreak = true
+vim.o.clipboard = 'unnamedplus'
+vim.o.breakindent = true
 
 -- line numbers
 vim.opt.nu = true
@@ -36,6 +39,13 @@ vim.g.python3_host_prog = '/home/tdeneire/bin/py3'
 vim.opt.foldenable = false
 vim.opt.conceallevel = 0
 
--- for which_key
-vim.opt.timeoutlen = 500
+-- Decrease update time
+vim.o.updatetime = 250
+vim.o.timeout = true
+vim.o.timeoutlen = 500
 
+-- Vim style remappings (don't work in pure Lua)
+local cmd = "vmap <silent> cc :call nerdcommenter#Comment('x', 'toggle')<CR>"
+vim.cmd(cmd)
+cmd = "nnoremap <c-[> <c-^>"
+vim.cmd(cmd)

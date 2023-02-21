@@ -89,13 +89,13 @@ else
     "   syntax off            " Disable syntax highlighting
 
     "mappings (different result in Lua)
-    nnoremap <c-[> <c-^>
-    vmap <silent> cc :call nerdcommenter#Comment('x', 'toggle')<CR>
+    "nnoremap <c-[> <c-^>
+    "vmap <silent> cc :call nerdcommenter#Comment('x', 'toggle')<CR>
 
 	"lua init
     lua require("init")
 
 	"commenting
-	filetype plugin on
+	"filetype plugin on
 
 endif

@@ -7,8 +7,13 @@ LSP_files = { "*.lua", "*.go", "*.js", "*.xml", "*.html", "*.json" }
 QtechNG_files = { "*.m", "*.l", "*.x", "*.i", "*.b", "*.d" }
 
 -- Highlight on yank
-vim.api.nvim_create_autocmd("TextYankPost", {
-    command = "silent! lua vim.highlight.on_yank()",
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = '*',
 })
 
 -- Trim trailing whitespace
