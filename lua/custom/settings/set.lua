@@ -54,4 +54,8 @@ vim.cmd(cmd)
 cmd = "nnoremap <c-[> <c-^>"
 vim.cmd(cmd)
 
+-- Disable macro recording
+local cmd = "map q <Nop>"
+vim.cmd(cmd)
+
 return {}

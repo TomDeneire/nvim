@@ -2,6 +2,10 @@ if vim.g.vscode then
     return
 end
 
-require("notify-diagnostics").setup({ exclude_codes = { E501 = true } })
-
-return {}
+return {
+    'tomdeneire/notify-diagnostics.nvim',
+    dependencies = { 'rcarriga/nvim-notify' },
+    config = function()
+        require("notify-diagnostics").setup({ exclude_codes = { E501 = true } })
+    end
+}

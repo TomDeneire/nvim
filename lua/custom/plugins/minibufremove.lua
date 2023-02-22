@@ -2,6 +2,10 @@ if vim.g.vscode then
     return
 end
 
-require('mini.bufremove').setup()
-
-return {}
+return {
+    'echasnovski/mini.bufremove',
+    version = '*',
+    config = function()
+        require('mini.bufremove').setup()
+    end
+}

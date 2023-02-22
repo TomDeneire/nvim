@@ -1,4 +1,7 @@
--- lsp signature
+if vim.g.vscode then
+    return
+end
+
 local cfg = {
     debug = false, -- set to true to enable debug logging
     log_path = vim.fn.stdpath("cache") .. "/lsp_signature.log", -- log dir when debug is on
@@ -45,6 +48,9 @@ local cfg = {
     move_cursor_key = nil, -- imap, use nvim_set_current_win to move cursor between current win and floating
 }
 
-require "lsp_signature".setup(cfg)
-
-return {}
+return {
+    'ray-x/lsp_signature.nvim',
+    config = function()
+        require "lsp_signature".setup(cfg)
+    end
+}

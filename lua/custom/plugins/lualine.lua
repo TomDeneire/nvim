@@ -2,8 +2,6 @@ if vim.g.vscode then
     return
 end
 
--- Lualine (does not seem to work here, only in init.lua)
-
 return {
     'nvim-lualine/lualine.nvim',
     config = function()
