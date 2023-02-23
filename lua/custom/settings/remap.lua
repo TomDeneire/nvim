@@ -31,13 +31,12 @@ vim.keymap.set("n", "ff", "<cmd>silent :Telescope live_grep<CR>")
 vim.keymap.set("n", "<leader>old", require('telescope.builtin').oldfiles)
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
 vim.keymap.set("n", "<c-D>", vim.lsp.buf.definition)
-vim.keymap.set("n", "<leader>f", "<cmd> lua vim.lsp.buf.format { async = true }<CR>")
-vim.keymap.set("n", "<leader>term", "<cmd>:ToggleTerm dir=getcwd()<CR>")
+vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
 vim.keymap.set("n", "<leader>lg", "<cmd>silent :LazyGit<CR>")
 vim.keymap.set("n", "<leader>lsp", vim.diagnostic.open_float)
 
--- qtechng
+-- qtechng (to do: refactor Lua functions to local functions like below)
 vim.keymap.set("n", "<c-b>", ":!qtechng file ci<CR>")
 vim.keymap.set("n", "<c-o>", ":!qtechng file refresh<CR>")
 vim.keymap.set("n", "<leader>rou", "<cmd>silent lua JumpToRou()<CR>")
@@ -51,11 +50,21 @@ vim.keymap.set("n", "<leader>qn", "mnviwy?^ n <CR>A,<ESC>pviwy`n")
 vim.keymap.set("n", "<leader>ql",
     ":!qtechng file list --changed --cwd=$(qtechng registry get qtechng-work-dir) --recurse | jq -r .DATA[0].qpath<CR>")
 
+
+-- toggle term
+local Terminal = require('toggleterm.terminal').Terminal
+local newterm  = Terminal:new({ cwd = vim.fn.getcwd(), hidden = true })
+
+function _term_toggle()
+    newterm:toggle()
+end
+
+vim.api.nvim_set_keymap("n", "<leader>term", "<cmd>lua _term_toggle()<CR>", { noremap = true, silent = true })
+
 -- other
 vim.keymap.set("n", "<c-p>", "<cmd>silent lua FindInWorkSpace()<CR>")
 vim.keymap.set("n", "<c-f>", "<cmd>silent lua GrepInWorkSpace()<CR>")
 vim.keymap.set("n", "<leader>grep", "<cmd>silent lua GrepPattern()<CR>")
 vim.keymap.set("n", "<leader>flake", ':cexpr system("flake8 " . shellescape(expand("%")))<CR> :copen<CR>')
 vim.keymap.set("n", "<leader>black", "<cmd>silent :!black %:p --config=/home/tdeneire/.config/black/pyproject.toml<CR>")
-
 return {}

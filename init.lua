@@ -70,7 +70,7 @@ local opts = {
       init = " ",
       import = " ",
       keys = " ",
-      lazy = "★",
+      lazy = "💤",
       loaded = "●",
       not_loaded = "○",
       plugin = " ",
@@ -225,8 +225,7 @@ local plugins = {
   -- `config = true` is the same as `require(...).setup()
   { 'mbbill/undotree' },
   { 'kyazdani42/nvim-web-devicons',              config = true },
-  { 'lukas-reineke/indent-blankline.nvim' },
-  { 'akinsho/toggleterm.nvim',                   tag = "*",    config = true },
+  { 'akinsho/toggleterm.nvim',                   tag = "*",    config = true, lazy = true },
   -- Load custom plugins from lua/custom/plugins with specific setup
   { import = 'custom.plugins' },
   -- Load custom settings from lua/custom/settings
