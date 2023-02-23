@@ -196,7 +196,6 @@ local plugins = {
       'saadparwaiz1/cmp_luasnip',
       'onsails/lspkind.nvim' },
   },
-  -- Fuzzy Finder (files, lsp, etc)
   { 'nvim-telescope/telescope.nvim',
     version = '*', dependencies = { 'nvim-lua/plenary.nvim' } },
   -- Fuzzy Finder Algorithm which requires local dependencies to be built.
@@ -212,15 +211,6 @@ local plugins = {
     end,
   },
   { 'nvim-telescope/telescope-file-browser.nvim' },
-  { -- Highlight, edit, and navigate code
-    'nvim-treesitter/nvim-treesitter',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-    },
-    config = function()
-      pcall(require('nvim-treesitter.install').update { with_sync = true })
-    end,
-  },
   -- Miscellaneous plugins that don't require specific setup.
   -- `config = true` is the same as `require(...).setup()
   { 'mbbill/undotree' },

@@ -27,7 +27,7 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 
 -- plugins
 vim.keymap.set("n", "tt", "<cmd>silent :Telescope file_browser<CR>")
-vim.keymap.set("n", "ff", "<cmd>silent :Telescope live_grep<CR>")
+vim.keymap.set("n", "ff", require('telescope.builtin').live_grep)
 vim.keymap.set("n", "<leader>old", require('telescope.builtin').oldfiles)
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
 vim.keymap.set("n", "<c-D>", vim.lsp.buf.definition)
