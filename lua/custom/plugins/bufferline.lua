@@ -4,6 +4,7 @@ end
 
 return {
     'akinsho/bufferline.nvim',
+    event = "VeryLazy",
     config = function()
         require('bufferline').setup {
             highlights = { buffer_selected = { italic = false } },

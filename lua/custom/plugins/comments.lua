@@ -4,6 +4,7 @@ end
 
 return {
     'preservim/nerdcommenter',
+    event = "BufReadPost",
     config = function()
         -- Create default mappings
         vim.g.NERDCreateDefaultMappings = 0

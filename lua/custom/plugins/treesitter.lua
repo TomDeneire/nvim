@@ -5,14 +5,29 @@ end
 return
 {
     'nvim-treesitter/nvim-treesitter',
-    dependencies = {
-        'nvim-treesitter/nvim-treesitter-textobjects',
-    },
+    version = false, -- last release is way too old and doesn't work on Windows
+    build = ":TSUpdate",
+    event = { "BufReadPost", "BufNewFile" },
     config = function()
         pcall(require('nvim-treesitter.install').update { with_sync = true })
         require 'nvim-treesitter.configs'.setup {
             -- A list of parser names, or "all"
-            ensure_installed = { all },
+            ensure_installed = {
+                "bash",
+                "go",
+                "html",
+                "javascript",
+                "json",
+                "lua",
+                "markdown",
+                "markdown_inline",
+                "python",
+                "regex",
+                "tsx",
+                "typescript",
+                "vim",
+                "yaml",
+            },
 
             -- Install parsers synchronously (only applied to `ensure_installed`)
             sync_install = false,

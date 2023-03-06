@@ -167,14 +167,18 @@ local opts = {
 local plugins = {
   -- NOTE: First, some plugins that don't require any configuration
   -- Git related plugins
-  'tpope/vim-fugitive',
-  'tpope/vim-rhubarb',
+  { 'tpope/vim-fugitive',
+    event = "BufReadPost" },
+  { 'tpope/vim-rhubarb',
+    event = "BufReadPost" },
   -- Detect tabstop and shiftwidth automatically
-  'tpope/vim-sleuth',
+  { 'tpope/vim-sleuth',
+    event = "BufReadPost" },
   -- NOTE: This is where your plugins related to LSP can be installed.
   -- The configuration is done later on in lua/custom/plugins/lsp.lua
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
+    event = "BufReadPost",
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
       'williamboman/mason.nvim',
@@ -186,6 +190,7 @@ local plugins = {
   },
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
+    event = "BufReadPost",
     dependencies = {
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-cmdline',
@@ -195,6 +200,7 @@ local plugins = {
       'onsails/lspkind.nvim' },
   },
   { 'nvim-telescope/telescope.nvim',
+    event = "VeryLazy",
     version = '*', dependencies = { 'nvim-lua/plenary.nvim' } },
   -- Fuzzy Finder Algorithm which requires local dependencies to be built.
   -- Only load if `make` is available. Make sure you have the system
@@ -203,15 +209,17 @@ local plugins = {
     'nvim-telescope/telescope-fzf-native.nvim',
     -- NOTE: If you are having trouble with this installation,
     --       refer to the README for telescope-fzf-native for more instructions.
+    event = "VeryLazy",
     build = 'make',
     cond = function()
       return vim.fn.executable 'make' == 1
     end,
   },
-  { 'nvim-telescope/telescope-file-browser.nvim' },
+  { 'nvim-telescope/telescope-file-browser.nvim',
+    event = "VeryLazy" },
   -- Miscellaneous plugins that don't require specific setup.
   -- `config = true` is the same as `require(...).setup()
-  { 'nvim-tree/nvim-web-devicons',               config = true },
+  { 'nvim-tree/nvim-web-devicons', config = true },
   -- Load custom plugins from lua/custom/plugins with specific setup
   { import = 'custom.plugins' },
   -- Load custom settings from lua/custom/settings
