@@ -13,7 +13,7 @@ return {
             autostart = true,
             sources = {
                 null_ls.builtins.formatting.xmlformat,
-                null_ls.builtins.formatting.prettier,
+                null_ls.builtins.formatting.prettier
             },
         })
     end

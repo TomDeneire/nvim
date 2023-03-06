@@ -169,7 +169,6 @@ local plugins = {
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
-  'kdheepak/lazygit.nvim',
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
   -- NOTE: This is where your plugins related to LSP can be installed.
@@ -212,7 +211,7 @@ local plugins = {
   { 'nvim-telescope/telescope-file-browser.nvim' },
   -- Miscellaneous plugins that don't require specific setup.
   -- `config = true` is the same as `require(...).setup()
-  { 'kyazdani42/nvim-web-devicons',              config = true },
+  { 'nvim-tree/nvim-web-devicons',               config = true },
   -- Load custom plugins from lua/custom/plugins with specific setup
   { import = 'custom.plugins' },
   -- Load custom settings from lua/custom/settings

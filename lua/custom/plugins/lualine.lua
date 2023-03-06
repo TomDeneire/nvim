@@ -2,8 +2,15 @@ if vim.g.vscode then
     return
 end
 
+local branch = {
+    'branch',
+    icon = ''
+}
+
 return {
     'nvim-lualine/lualine.nvim',
+    dependencies =
+    { 'nvim-tree/nvim-web-devicons' },
     config = function()
         require("lualine").setup {
             options = {
@@ -27,7 +34,7 @@ return {
             sections = {
                 lualine_a = { 'mode' },
                 lualine_b = { 'diff', 'diagnostics' },
-                lualine_c = { 'branch', "vim.fn.expand('%:p')" },
+                lualine_c = { branch, "vim.fn.expand('%:p')" },
                 lualine_x = { 'encoding', 'filetype' },
                 lualine_y = {},
                 lualine_z = { 'progress' }

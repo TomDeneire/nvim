@@ -3,7 +3,7 @@ if vim.g.vscode then
 end
 
 -- Globals
-LSP_files = { "*.lua", "*.go", "*.js", "*.xml", "*.html", "*.json" }
+LSP_files = { "*.lua", "*.go", "*.js", "*.xml", "*.html", "*.json", "*.ts" }
 QtechNG_files = { "*.m", "*.l", "*.x", "*.i", "*.b", "*.d" }
 
 -- Highlight on yank
