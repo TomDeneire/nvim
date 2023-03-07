@@ -166,19 +166,14 @@ local opts = {
 -- Define Lazy plugins
 local plugins = {
   -- NOTE: First, some plugins that don't require any configuration
-  -- Git related plugins
-  { 'tpope/vim-fugitive',
-    event = "BufReadPost" },
-  { 'tpope/vim-rhubarb',
-    event = "BufReadPost" },
   -- Detect tabstop and shiftwidth automatically
   { 'tpope/vim-sleuth',
-    event = "BufReadPost" },
+    event = "BufReadPre" },
   -- NOTE: This is where your plugins related to LSP can be installed.
   -- The configuration is done later on in lua/custom/plugins/lsp.lua
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
-    event = "BufReadPost",
+    event = "BufReadPre",
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
       'williamboman/mason.nvim',
@@ -190,7 +185,7 @@ local plugins = {
   },
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
-    event = "BufReadPost",
+    event = "BufReadPre",
     dependencies = {
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-cmdline',

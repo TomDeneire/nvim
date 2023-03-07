@@ -50,7 +50,7 @@ local cfg = {
 
 return {
     'ray-x/lsp_signature.nvim',
-    event = "BufReadPost",
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
         require "lsp_signature".setup(cfg)
     end
