@@ -152,9 +152,16 @@ cmp.setup {
     sources = {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
-        { name = 'buffer' },
+        -- { name = 'buffer' },
     },
 }
+
+-- Set configuration for specific filetypes
+cmp.setup.filetype('mfile', {
+    sources = cmp.config.sources({
+        { name = 'buffer' },
+    })
+})
 
 cmp.setup.cmdline({ '/', '?' }, {
     mapping = cmp.mapping.preset.cmdline(),

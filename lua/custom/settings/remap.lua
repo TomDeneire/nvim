@@ -13,6 +13,8 @@ vim.keymap.set("n", "<c-k>", "10k")
 vim.keymap.set("v", "<c-k>", "10k")
 vim.keymap.set("n", "tl", "<cmd>silent :bn<CR>")
 vim.keymap.set("n", "th", "<cmd>silent :bp<CR>")
+vim.keymap.set("n", "tn", "<cmd>silent :enew<CR>")
+vim.keymap.set("n", "<leader>n", "<cmd>silent :noh<CR>")
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })

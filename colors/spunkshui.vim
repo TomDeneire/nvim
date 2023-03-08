@@ -115,7 +115,7 @@ endfunction
   call s:hi('ModeMsg',                            s:green,  '',       '',          '')
   call s:hi('MoreMsg',                            s:green,  '',       '',          '')
   call s:hi('Question',                           s:blue,   '',       '',          '')
-  call s:hi('Search',                             s:base03, s:yellow, '',          '')
+  call s:hi('Search',                             s:base01, s:base07, 'NONE',      '')
   call s:hi('SpecialKey',                         s:base03, '',       '',          '')
   call s:hi('TooLong',                            s:red,    '',       '',          '')
   call s:hi('Underlined',                         s:red,    '',       '',          '')
