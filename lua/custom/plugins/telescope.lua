@@ -75,11 +75,15 @@ require('telescope').load_extension('file_browser')
 
 local function getfinddir()
     local workspace = vim.fn.getcwd()
-    local brocadedir = "/brocade/source/data"
+    local sourcedir = "/brocade/source/data"
+    local packagesdir = "/brocade/packages"
     local qtechng_work_dir = "/home/tdeneire/projects/brocade/source/data"
+    local packages_work_dir = "/home/tdeneire/projects/brocade/packages"
     local projects_work_dir = "/home/tdeneire/projects/code"
-    if string.find(workspace, brocadedir) ~= nil then
+    if string.find(workspace, sourcedir) ~= nil then
         return qtechng_work_dir
+    elseif string.find(workspace, packagesdir) ~= nil then
+        return packages_work_dir
     else
         return projects_work_dir
     end
