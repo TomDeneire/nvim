@@ -159,6 +159,7 @@ cmp.setup {
 -- Set configuration for specific filetypes
 cmp.setup.filetype('mfile', {
     sources = cmp.config.sources({
+        { name = 'luasnip' },
         { name = 'buffer' },
     })
 })
@@ -206,4 +207,6 @@ cmp.setup.cmdline(':', {
 -- disable virtual text (because of LSP diagnostics in notify)
 vim.diagnostic.config({ virtual_text = false })
 
+-- load custom snippets
+require("luasnip.loaders.from_vscode").lazy_load({ paths = "~/.config/nvim/snippets" })
 return {}
