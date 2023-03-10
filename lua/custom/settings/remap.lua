@@ -31,7 +31,6 @@ vim.keymap.set("n", "<c-i>", vim.lsp.buf.hover)
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
 vim.keymap.set("n", "<c-D>", vim.lsp.buf.definition)
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
-vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
 vim.keymap.set("n", "<leader>lsp", vim.diagnostic.open_float)
 
 -- QtechNG functions (to do: refactor Lua functions to local functions like below)
