@@ -39,7 +39,7 @@ syn keyword mZcommand       contained zwi[thdraw] zwr[ite]
 syn match   mDoGoCommand    /[dg] / contained
 syn match   mNumber         /[0-9][0-9]*/ contained
 syn match   mFunction       /$[a-zA-Z]*/ contained
-syn match   mFunctionLabel  /$$[a-zA-Z%]*/ contained
+syn match   mFunctionLabel  /$$[a-zA-Z%^]*/ contained
 syn match   mPName          /\<\CP[A|D|G][A-Za-z0-9]*/ contained
 syn match   mUName          contained /\<\CU[A|D|G][A-Za-z0-9]*/
 syn match   mFName          contained /\<\CF[A|D|G][A-Za-z0-9]*/

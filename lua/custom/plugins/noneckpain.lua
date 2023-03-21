@@ -1,10 +1,6 @@
-if vim.g.vscode then
-    return
-end
-
 return {
     'shortcuts/no-neck-pain.nvim',
- version = "*",
+    version = "*",
     config = function()
         require("no-neck-pain").setup({
             -- Prints useful logs about what event are triggered, and reasons actions are executed.

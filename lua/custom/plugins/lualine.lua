@@ -1,7 +1,3 @@
-if vim.g.vscode then
-    return
-end
-
 local branch = {
     'branch',
     icon = ''
@@ -11,7 +7,8 @@ return {
     'nvim-lualine/lualine.nvim',
     event = "VeryLazy",
     dependencies =
-    { 'nvim-tree/nvim-web-devicons' },
+    { 'nvim-tree/nvim-web-devicons',
+    },
     config = function()
         require("lualine").setup {
             options = {
@@ -49,7 +46,14 @@ return {
                 lualine_z = {}
             },
             tabline = {},
-            winbar = {},
+            winbar = {
+                lualine_a = {},
+                lualine_b = {},
+                lualine_c = {},
+                lualine_x = {},
+                lualine_y = {},
+                lualine_z = {}
+            },
             inactive_winbar = {},
             extensions = {}
         }

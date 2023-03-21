@@ -1,3 +1,7 @@
+if vim.g.vscode then
+  return
+end
+
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
@@ -215,6 +219,7 @@ local plugins = {
   -- Miscellaneous plugins that don't require specific setup.
   -- `config = true` is the same as `require(...).setup()
   { 'nvim-tree/nvim-web-devicons', config = true },
+  { 'axieax/typo.nvim',            config = true },
   -- Load custom plugins from lua/custom/plugins with specific setup
   { import = 'custom.plugins' },
   -- Load custom settings from lua/custom/settings

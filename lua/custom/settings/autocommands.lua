@@ -1,7 +1,3 @@
-if vim.g.vscode then
-    return
-end
-
 -- Globals
 LSP_files = { "*.lua", "*.go", "*.js", "*.xml", "*.html", "*.json", "*.ts" }
 QtechNG_files = { "*.m", "*.l", "*.x", "*.i", "*.b", "*.d" }

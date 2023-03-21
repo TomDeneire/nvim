@@ -1,7 +1,3 @@
-if vim.g.vscode then
-    return
-end
-
 vim.g.spunkshui_next_terminal_bold = 1
 vim.g.spunkshui_next_terminal_italic = 1
 vim.cmd.colorscheme("spunkshui")

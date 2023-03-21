@@ -1,7 +1,3 @@
-if vim.g.vscode then
-    return
-end
-
 -- null-ls (only used for formatting)
 
 return {

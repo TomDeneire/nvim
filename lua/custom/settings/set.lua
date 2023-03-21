@@ -1,7 +1,3 @@
-if vim.g.vscode then
-    return
-end
-
 -- General settings
 vim.opt.autoindent = true
 vim.opt.cursorline = true

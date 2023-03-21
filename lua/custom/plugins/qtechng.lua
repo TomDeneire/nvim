@@ -1,7 +1,3 @@
-if vim.g.vscode then
-    return
-end
-
 ---@diagnostic disable: undefined-global
 
 --REGISTRY GLOBALS
@@ -22,7 +18,6 @@ function Split2(mystring, delim)
 end
 
 function Split(mystring, delim)
-
     -- to do: rigourous testing
     -- before you can promote to general split!
 
@@ -128,7 +123,8 @@ end
 
 function MacroList()
     require("telescope.builtin").live_grep(
-        { hidden = true,
+        {
+            hidden = true,
             find_command = { "rg", "--smart-case", "--files" },
             no_ignore = true,
             no_ignore_parent = true,

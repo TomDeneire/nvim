@@ -1,8 +1,3 @@
-if vim.g.vscode then
-    return
-end
-
-
 function _term_toggle()
     local Terminal = require('toggleterm.terminal').Terminal
     local newterm  = Terminal:new({ cwd = vim.fn.getcwd(), hidden = true })

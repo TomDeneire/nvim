@@ -1,7 +1,3 @@
-if vim.g.vscode then
-    return
-end
-
 return {
     'akinsho/bufferline.nvim',
     event = "VeryLazy",

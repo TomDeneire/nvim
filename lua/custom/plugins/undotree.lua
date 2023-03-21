@@ -1,7 +1,3 @@
-if vim.g.vscode then
-    return
-end
-
 return {
     "jiaoshijie/undotree",
     lazy = true,

@@ -1,7 +1,3 @@
-if vim.g.vscode then
-    return
-end
-
 -- (source editorconfig.nvim)
 function Trim_trailing_whitespace()
     local view = vim.fn.winsaveview()

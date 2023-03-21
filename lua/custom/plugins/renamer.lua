@@ -1,7 +1,3 @@
-if vim.g.vscode then
-    return
-end
-
 return {
     'filipdutescu/renamer.nvim',
     branch = 'master',
@@ -23,7 +19,7 @@ return {
             -- The maximum width of the popup
             max_width = 45,
             -- Whether or not to shown a border around the popup
-            border = false,
+            border = true,
             -- The characters which make up the border
             border_chars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
             -- Whether or not to highlight the current word references through LSP
