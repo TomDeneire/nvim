@@ -12,7 +12,7 @@ return {
             width = 120,
             -- Set globally to Neovim, it allows you to toggle the enable/disable state.
             -- When `false`, the mapping is not created.
-            toggleMapping = "<Leader>np",
+            toggleMapping = false,
             -- Disables NNP if the last valid buffer in the list has been closed.
             disableOnLastBuffer = false,
             -- When `true`, disabling NNP kills every split/vsplit buffers except the main NNP buffer.
@@ -129,6 +129,9 @@ return {
                 wrap = true,
                 linebreak = true,
             },
+            -- remove keymaps because they conflict with '<leader>n' which disables highlight
+            vim.keymap.del('n', '<leader>n='),
+            vim.keymap.del('n', '<leader>n-'),
         }
     end
 }
