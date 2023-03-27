@@ -10,12 +10,15 @@ endif
 " Remove any old syntax stuff hanging around
 syn clear
 
+" MUMPS word characters
+syntax iskeyword @,48-57,192-255
+
 " Line Structure
 syn region  mComment        oneline start="^//" end=/$/
 syn region  mComment        oneline start=";" end=/$/ contained contains=mPragmaLine
 syn region  mLabelLine      oneline start=/^[sub|def|fn]/ end=":" contains=mLabelCode,mLabelLabel,mLabelArgs,mLabelEnd
 syn region  mString         oneline start=/"/ skip=/""/ excludenl end=/"/ contained
-syn region  mMacro          oneline start="m4_" end=")" contained contains=mMacroName,mMacroArgs
+syn region  mMacro          oneline keepend start="m4_" end=")" contained contains=mMacroName,mMacroArgs
 syn region  mMacroArgs      oneline start="(" end=")" contained contains=mParams,mOperator,mString,mNumber,mPName,mUName,mFName,mCName,mGlobalName,mDoGoContained,mFunction
 syn region  mLine           oneline start=/^\s/ end=/$/ contains=mString,mOperator,mComment,mCommand,mZcommand,mNumber,mFunction,mFunctionLabel,mMacro,mPName,mUName,mFName,mCName,mGlobalName,mDoGo,mMacroSingle
 
@@ -40,7 +43,7 @@ syn match   mDoGoCommand    /[dg] / contained
 syn match   mNumber         /[0-9][0-9]*/ contained
 syn match   mFunction       /$[a-zA-Z]*/ contained
 syn match   mFunctionLabel  /$$[a-zA-Z%^]*/ contained
-syn match   mPName          /\<\CP[A|D|G][A-Za-z0-9]*/ contained
+syn match   mPName          contained /\<\CP[A|D|G][A-Za-z0-9]*/
 syn match   mUName          contained /\<\CU[A|D|G][A-Za-z0-9]*/
 syn match   mFName          contained /\<\CF[A|D|G][A-Za-z0-9]*/
 syn match   mCName          contained /\<\CC[A|D|G][A-Za-z0-9]*/
