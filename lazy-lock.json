@@ -18,7 +18,7 @@
   "neodev.nvim": { "branch": "main", "commit": "a81e749d0fe8429cd340b2e40f274b344bef42ac" },
   "nerdcommenter": { "branch": "master", "commit": "d069f7fb562fb9eb6911fe23cda7aca2a387043e" },
   "no-neck-pain.nvim": { "branch": "main", "commit": "719b3211f3e4002461546b5e3e5c9ebcc541ffc2" },
-  "notify-diagnostics.nvim": { "branch": "dev", "commit": "dd47d6b10e24438f8ed20d2660dbba0faafec4c6" },
+  "notify-diagnostics.nvim": { "branch": "dev", "commit": "497ce1c66fdbd143a4e3ff0cf80de0a7271a0890" },
   "null-ls.nvim": { "branch": "main", "commit": "689cdd78f70af20a37b5309ebc287ac645ae4f76" },
   "nvim-cmp": { "branch": "main", "commit": "d3a2833c118843859c667f64b6169e22bffe13d0" },
   "nvim-lspconfig": { "branch": "master", "commit": "91998cef4b1ae3a624901d0f9c894409db24e760" },

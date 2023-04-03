@@ -97,7 +97,7 @@ function DefineMacro()
     if exists == "null" then
         return
     end
-    local cmd = "e +/" .. macro_name .. " " .. macro_file
+    local cmd = "e +/" .. macro_name .. "( " .. macro_file
     vim.cmd(cmd)
 end
 
