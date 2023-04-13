@@ -1,7 +1,3 @@
-if vim.g.vscode then
-    return
-end
-
 return {
     'tomdeneire/notify-diagnostics.nvim',
     event = { "BufReadPost", "BufNewFile" },
