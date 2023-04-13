@@ -1,29 +1,48 @@
-local function on_attach(on_attach)
-    vim.api.nvim_create_autocmd("LspAttach", {
-        callback = function(args)
-            local buffer = args.buf
-            local client = vim.lsp.get_client_by_id(args.data.client_id)
-            on_attach(client, buffer)
-        end,
-    })
-end
-
 return
 {
     "SmiteshP/nvim-navic",
     init = function()
         vim.g.navic_silence = true
-        on_attach(function(client, buffer)
-            if client.server_capabilities.documentSymbolProvider then
-                require("nvim-navic").attach(client, buffer)
-            end
-        end)
     end,
     opts = function()
         return {
+            icons = {
+                File          = " ",
+                Module        = " ",
+                Namespace     = " ",
+                Package       = " ",
+                Class         = " ",
+                Method        = " ",
+                Property      = " ",
+                Field         = " ",
+                Constructor   = " ",
+                Enum          = "練",
+                Interface     = "練",
+                Function      = " ",
+                Variable      = " ",
+                Constant      = " ",
+                String        = " ",
+                Number        = " ",
+                Boolean       = "◩ ",
+                Array         = " ",
+                Object        = " ",
+                Key           = " ",
+                Null          = "ﳠ ",
+                EnumMember    = " ",
+                Struct        = " ",
+                Event         = " ",
+                Operator      = " ",
+                TypeParameter = " ",
+            },
+            lsp = {
+                auto_attach = true,
+                preference = nil,
+            },
+            depth_limit_indicator = "..",
+            safe_output = true,
             separator = " ",
             highlight = false,
-            depth_limit = 5
+            depth_limit = 0
         }
     end,
 }
