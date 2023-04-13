@@ -160,7 +160,7 @@ endfunction
   call s:hi('Float',                              s:green, '',       '',          '')
   call s:hi('Function',                           s:yellow,   '',       '',          '')
 
-  call s:hi('Identifier',                         s:blue,   '',       '',          '')
+  call s:hi('Identifier',                         s:base07,   '',       '',          '')
   call s:hi('Include',                            s:purple,   '',       '',          '')
   call s:hi('Keyword',                            s:blue, '',       '',          '')
 
