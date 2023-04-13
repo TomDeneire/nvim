@@ -3,6 +3,15 @@ local branch = {
     icon = ''
 }
 
+local function get_winbar()
+    local navic = require "nvim-navic"
+    if navic.is_available() then
+        return navic.get_location()
+    else
+        return ""
+    end
+end
+
 return {
     'nvim-lualine/lualine.nvim',
     event = "VeryLazy",
@@ -47,9 +56,9 @@ return {
             },
             tabline = {},
             winbar = {
-                lualine_a = {},
+                lualine_a = { 'filetype' },
                 lualine_b = {},
-                lualine_c = {},
+                lualine_c = { get_winbar },
                 lualine_x = {},
                 lualine_y = {},
                 lualine_z = {}
