@@ -173,6 +173,7 @@ local plugins = {
   -- Detect tabstop and shiftwidth automatically
   { 'tpope/vim-sleuth',
     event = "BufReadPre" },
+  { 'folke/tokyonight.nvim',       config = true, branch = 'main' },
   -- NOTE: This is where your plugins related to LSP can be installed.
   -- The configuration is done later on in lua/custom/plugins/lsp.lua
   { -- LSP Configuration & Plugins
