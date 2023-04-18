@@ -12,6 +12,7 @@ vim.opt.autochdir = true
 vim.opt.linebreak = true
 vim.o.clipboard = 'unnamedplus'
 vim.o.breakindent = true
+vim.o.background = ""
 
 -- line numbers
 vim.opt.nu = true

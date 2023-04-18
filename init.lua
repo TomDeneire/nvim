@@ -173,7 +173,6 @@ local plugins = {
   -- Detect tabstop and shiftwidth automatically
   { 'tpope/vim-sleuth',
     event = "BufReadPre" },
-  { 'folke/tokyonight.nvim',       config = true, branch = 'main' },
   -- NOTE: This is where your plugins related to LSP can be installed.
   -- The configuration is done later on in lua/custom/plugins/lsp.lua
   { -- LSP Configuration & Plugins
@@ -232,6 +231,9 @@ require('lazy').setup(plugins, opts)
 
 -- Setup neovim lua configuration
 require('neodev').setup()
+
+-- Colorscheme
+ChangeColorScheme("kanagawa-dragon")
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

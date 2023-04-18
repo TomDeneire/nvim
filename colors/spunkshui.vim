@@ -228,7 +228,6 @@ endfunction
   call s:hi('TSTagDelimiter',                     s:cyan,   '',       '',          '')
   call s:hi('TSProperty',                         s:yellow, '',       '',          '')
   call s:hi('TSMethod',                           s:blue,   '',       '',          '')
-  call s:hi('TSParameter',                        s:yellow, '',       '',          '')
   call s:hi('TSConstructor',                      s:base07, '',       '',          '')
   call s:hi('TSVariable',                         s:base07, '',       '',          '')
   call s:hi('TSOperator',                         s:base07, '',       '',          '')
