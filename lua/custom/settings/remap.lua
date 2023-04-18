@@ -46,6 +46,7 @@ vim.keymap.set("n", "<leader>ql",
 -- Other function
 vim.keymap.set("n", "<c-p>", "<cmd>silent lua FindInWorkSpace()<CR>")
 vim.keymap.set("n", "<c-f>", "<cmd>silent lua GrepInWorkSpace()<CR>")
+vim.keymap.set("v", "<leader>s", "y :lua GrepYanked()<CR>")
 vim.keymap.set("n", "<leader>grep", "<cmd>silent lua GrepPattern()<CR>")
 vim.keymap.set("n", "<leader>flake", ':cexpr system("flake8 " . shellescape(expand("%")))<CR> :copen<CR>')
 vim.keymap.set("n", "<leader>black", "<cmd>silent :!black %:p --config=/home/tdeneire/.config/black/pyproject.toml<CR>")

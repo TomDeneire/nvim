@@ -109,6 +109,21 @@ function GrepInWorkSpace()
         })
 end
 
+function GrepYanked()
+    local text = vim.fn.getreg("")
+    text = string.lower(text)
+    local find_dir = getfinddir()
+    require("telescope.builtin").grep_string(
+        {
+            hidden = true,
+            find_command = { "rg", "--smart-case", "--files" },
+            no_ignore = true,
+            no_ignore_parent = true,
+            cwd = find_dir,
+            search = text
+        })
+end
+
 function GrepPattern()
     local find_dir = getfinddir()
     local pattern = vim.fn.input("Grep_pattern=", "*.")
