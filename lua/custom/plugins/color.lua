@@ -1,21 +1,38 @@
-local bg                   = "#2a2a2a"
-local bg2                  = '#343d46'
-local white                = "#d4d4d4"
-local blue                 = '#569cd6'
-local brightblue           = '#7bbad8'
-local red                  = '#f44747'
-local orange               = '#ed872d'
-local yellow               = '#fac863'
-local green                = '#99c794'
-local cyan                 = '#62b3b2'
-local purple               = '#c594c5'
-local brown                = '#ce9178'
-local brightwhite          = '#ffffff'
-local grey                 = '#a7adba'
-local selection            = '#2D4F67'
-local line                 = '#393836'
+-- Spunkshui colors
+local bg          = "#2a2a2a"
+local white       = "#d4d4d4"
+local blue        = '#569cd6'
+local brightblue  = '#7bbad8'
+local red         = '#f44747'
+local orange      = '#ed872d'
+local yellow      = '#fac863'
+local green       = '#99c794'
+local cyan        = '#62b3b2'
+local purple      = '#c594c5'
+local brown       = '#ce9178'
+local brightwhite = '#ffffff'
+local grey        = '#a7adba'
+local selection   = '#2D4F67'
+local line_hl     = '#393836'
 
-local spunkshui_color_opts = {
+-- Kanagawa colors
+-- local bg          = "#2a2a2a"
+-- local white       = "#DCD7BA"       -- fujiWhite
+-- local blue        = '#7FB4CA'       -- springBlue
+-- local brightblue  = '#A3D4D5'       -- lightBlue
+-- local red         = '#C34043'       -- autumnRed
+-- local orange      = '#FF9E3B'       -- roninYellow
+-- local yellow      = '#DCA561'       -- autumnYellow
+-- local green       = '#76946A'       -- autumnGreen
+-- local cyan        = '#7AA89F'       -- waveAqua2
+-- local purple      = '#957FB8'       -- oniViolet
+-- local brown       = '#FFA066'       -- surimiOrange
+-- local brightwhite = "#DCD7BA"       -- fujiWhite
+-- local grey        = '#717C7C'       -- katanaGray
+-- local selection   = '#2D4F67'
+-- local line_hl     = '#393836'
+
+local color_opts  = {
     keywordStyle = { italic = false },
     undercurl = false,
     transparent = false,
@@ -31,14 +48,13 @@ local spunkshui_color_opts = {
                     bg_m2 = bg,
                     bg_m1 = bg,
                     bg = bg,
-                    bg_p1 = line,
-                    bg_p2 = line, -- current line
+                    bg_p1 = line_hl,
+                    bg_p2 = line_hl, -- current line
                     bg_search = selection,
                     bg_visual = selection,
                     fg = white,
                     fg_dim = white,
-                    pmenu = { fg = white, bg = bg },
-                    float = { fg = white, bg = bg }
+                    pmenu = { fg = white },
                 }
             }
         }
@@ -52,12 +68,12 @@ local spunkshui_color_opts = {
             CursorLineNr = { fg = white, bold = false },
             IncSearch = { fg = white, bg = selection },
             Search = { fg = white, bg = selection },
-            NormalFloat = { bg = line }, -- e.g. whichkey
+            NormalFloat = { fg = white, bg = line_hl }, -- e.g. whichkey
             FloatBorder = { bg = "none" },
             FloatTitle = { bg = "none" },
-            NormalDark = { fg = white, bg = "none" },
-            LazyNormal = { bg = line, fg = white },
-            MasonNormal = { bg = line, fg = white },
+            NormalDark = { fg = white, bg = cyan },
+            LazyNormal = { bg = line_hl, fg = white },
+            MasonNormal = { bg = line_hl, fg = white },
             TelescopeTitle = { fg = white },
             TelescopePromptNormal = { bg = bg },
             TelescopePromptBorder = { fg = white, bg = bg },
@@ -130,10 +146,9 @@ local spunkshui_color_opts = {
             ["@string.special"] = { fg = red, bold = false },
             Structure = { fg = green, bold = true },
             ["@symbol"] = { fg = cyan, bold = false },
-            ["@tag"] = { fg = yellow },
+            ["@tag"] = { fg = red },
             ["@tag.attribute"] = { fg = yellow },
             ["@tag.delimiter"] = { fg = yellow },
-            HtmlTagname = { fg = cyan, italic = true, bold = false },
             Term = { fg = white },
             Text = { fg = white },
             ["@text.strong"] = { fg = white, bold = true },
@@ -245,4 +260,4 @@ function ChangeColorScheme(color)
 end
 
 return {
-    { 'rebelot/kanagawa.nvim', config = true, opts = spunkshui_color_opts } }
+    { 'rebelot/kanagawa.nvim', config = true, opts = color_opts } }
