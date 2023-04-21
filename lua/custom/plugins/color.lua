@@ -67,6 +67,7 @@ local color_opts  = {
             CursorLineNR = { fg = white, bold = false },
             CursorLineNr = { fg = white, bold = false },
             IncSearch = { fg = white, bg = selection },
+            MatchParen = { fg = orange },
             Search = { fg = white, bg = selection },
             NormalFloat = { fg = white, bg = line_hl }, -- e.g. whichkey
             FloatBorder = { bg = "none" },
@@ -113,7 +114,7 @@ local color_opts  = {
             Include = { fg = purple },
             Keyword = { fg = blue },
             ["@keyword.function"] = { fg = blue },
-            ["@keyword.operator"] = { fg = yellow },
+            ["@keyword.operator"] = { fg = blue, bold = false },
             ["@keyword.return"] = { fg = purple, bold = true },
             ["@keyword.luap"] = { fg = red },
             Label = { fg = yellow },
