@@ -21,6 +21,7 @@ vim.keymap.set("n", "<leader>lg", "<cmd>silent :LazyGit<CR>")
 vim.keymap.set("n", "tt", "<cmd>silent :Telescope file_browser<CR>")
 vim.keymap.set("n", "ff", require('telescope.builtin').live_grep)
 vim.keymap.set("n", "<leader>old", require('telescope.builtin').oldfiles)
+vim.keymap.set("n", "<leader>ses", "<cmd>lua RestoreSession()<cr>")
 
 -- LSP
 vim.keymap.set("n", "<c-i>", vim.lsp.buf.hover)
