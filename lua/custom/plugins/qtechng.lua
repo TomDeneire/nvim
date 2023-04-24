@@ -135,7 +135,7 @@ end
 
 function OpenInGit()
     local current_file = vim.fn.expand("%:p")
-    local gitcmd = "!google-chrome-stable $(qtechng file tell " .. current_file
+    local gitcmd = "!sensible-browser $(qtechng file tell " .. current_file
     gitcmd = gitcmd .. " --jsonpath='$..DATA..vcurl' --unquote)"
     vim.cmd(gitcmd)
 end
