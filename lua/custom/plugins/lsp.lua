@@ -161,6 +161,24 @@ cmp.setup.filetype('mfile', {
         { name = 'buffer' },
     })
 })
+cmp.setup.filetype('bfile', {
+    sources = cmp.config.sources({
+        { name = 'luasnip' },
+        { name = 'buffer' },
+    })
+})
+cmp.setup.filetype('lfile', {
+    sources = cmp.config.sources({
+        { name = 'luasnip' },
+        { name = 'buffer' },
+    })
+})
+cmp.setup.filetype('xfile', {
+    sources = cmp.config.sources({
+        { name = 'luasnip' },
+        { name = 'buffer' },
+    })
+})
 
 cmp.setup.cmdline({ '/', '?' }, {
     mapping = cmp.mapping.preset.cmdline(),
