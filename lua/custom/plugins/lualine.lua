@@ -12,6 +12,10 @@ local function get_winbar()
     end
 end
 
+local disable_extension = {
+    sections = { lualine_a = {} }, filetypes = { 'no-neck-pain' }
+}
+
 return {
     'nvim-lualine/lualine.nvim',
     event = "VeryLazy",
@@ -64,7 +68,7 @@ return {
                 lualine_z = {}
             },
             inactive_winbar = {},
-            extensions = {}
+            extensions = { disable_extension },
         }
     end
 }
