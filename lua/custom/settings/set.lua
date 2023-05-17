@@ -50,6 +50,8 @@ local cmd = "vmap <silent> cc :call nerdcommenter#Comment('x', 'toggle')<CR>"
 vim.cmd(cmd)
 cmd = "nnoremap <c-[> <c-^>"
 vim.cmd(cmd)
+cmd = "inoremap <c-s> <ESC>:w<CR>"
+vim.cmd(cmd)
 
 -- Disable macro recording
 local cmd = "map q <Nop>"

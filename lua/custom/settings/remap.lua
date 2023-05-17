@@ -2,7 +2,6 @@
 vim.keymap.set("i", "jj", "<Esc>")
 vim.keymap.set("n", "<c-a>", "ggVG")
 vim.keymap.set("n", "<c-s>", ":w<CR>")
-vim.keymap.set("i", "<c-s>", "<ESC> :w<CR>")
 vim.keymap.set("n", "<c-j>", "10j")
 vim.keymap.set("v", "<c-j>", "10j")
 vim.keymap.set("n", "<c-k>", "10k")
