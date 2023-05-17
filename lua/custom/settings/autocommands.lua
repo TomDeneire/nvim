@@ -1,5 +1,7 @@
 -- Globals
-LSP_files = { "*.lua", "*.go", "*.js", "*.xml", "*.html", "*.md", "*.json", "*.ts", "*.rst", "*.vim" }
+LSP_files = { "*.lua", "*.go", "*.js", "*.xml", "*.html",
+    "*.md", "*.json", "*.ts", "*.rst", "*.vim", "*.hs" }
+
 QtechNG_files = { "*.m", "*.l", "*.x", "*.i", "*.b", "*.d" }
 
 -- Highlight on yank
