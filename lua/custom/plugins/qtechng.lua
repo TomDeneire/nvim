@@ -122,14 +122,13 @@ function SourceList()
 end
 
 function MacroList()
-    require("telescope.builtin").live_grep(
+    require("telescope.builtin").find_files(
         {
             hidden = true,
             find_command = { "rg", "--smart-case", "--files" },
             no_ignore = true,
             no_ignore_parent = true,
-            search_dirs = { "/home/tdeneire/Dropbox/brocade/support/m4_nvim.txt" },
-            disable_coordinates = true,
+            cwd = "/home/tdeneire/Dropbox/brocade/support/macros"
         })
 end
 
