@@ -13,6 +13,7 @@ vim.opt.linebreak = true
 vim.o.clipboard = 'unnamedplus'
 vim.o.breakindent = true
 vim.o.background = ""
+vim.wo.colorcolumn = '80'
 
 -- line numbers
 vim.opt.nu = true
@@ -30,8 +31,7 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
-vim.wo.colorcolumn = '80'
-
+-- python settings
 vim.g.python_version_2 = 0
 vim.g.python_highlight_all = 1
 vim.g.python3_host_prog = '/home/tdeneire/bin/py3'
