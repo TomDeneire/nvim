@@ -20,15 +20,9 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     command = "silent! lua Trim_trailing_whitespace()",
 })
 
--- -- Autoformat
-vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = LSP_files,
-    command = "silent! lua vim.lsp.buf.format()",
-})
-
 -- Code action
 vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = { "*.go", "*.js" },
+    pattern = { "*.go", "*.js", "*.hs" },
     command = "silent! lua vim.lsp.buf.code_action()",
 })
 
