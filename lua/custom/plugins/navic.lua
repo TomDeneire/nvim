@@ -20,7 +20,7 @@ return
                 Interface     = "練",
                 Function      = " ",
                 Variable      = " ",
-                Constant      = " ",
+                Constant      = "C ",
                 String        = " ",
                 Number        = " ",
                 Boolean       = "◩ ",
