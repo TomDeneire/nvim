@@ -41,6 +41,16 @@ function Split(mystring, delim)
     return result
 end
 
+function RStrip(mystring, delim)
+    local length = string.len(mystring)
+    local minus_one = string.sub(mystring, 1, length - 1)
+    if minus_one .. delim == mystring then
+        return RStrip(minus_one, delim)
+    else
+        return mystring
+    end
+end
+
 function Length(mytable)
     local length = 0
     for _ in pairs(mytable) do
@@ -56,6 +66,8 @@ function JumpToRou()
     local mroutine = vim.fn.expand("<cWORD>")
     mroutine = string.gsub(mroutine, "'", "")
     mroutine = string.gsub(mroutine, '"', "")
+    mroutine = string.gsub(mroutine, 'm4_Routine.', "")
+    mroutine = RStrip(mroutine, ")")
     local m = Split(mroutine, "(")
     mroutine = m[1]
     local t = Split(mroutine, "^")
