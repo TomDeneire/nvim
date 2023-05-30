@@ -168,16 +168,9 @@ local opts = {
 
 -- Define Lazy plugins
 local plugins = {
-  -- NOTE: First, some plugins that don't require any configuration
-  -- Detect tabstop and shiftwidth automatically
-  {
-    'tpope/vim-sleuth',
-    event = "BufReadPre"
-  },
-  -- NOTE: This is where your plugins related to LSP can be installed.
-  -- The configuration is done later on in lua/custom/plugins/lsp.lua
   {
     -- LSP Configuration & Plugins
+    -- The configuration is done later on in lua/custom/plugins/lsp.lua
     'neovim/nvim-lspconfig',
     event = "BufReadPre",
     dependencies = {
@@ -201,6 +194,7 @@ local plugins = {
       'saadparwaiz1/cmp_luasnip',
       'onsails/lspkind.nvim' },
   },
+  -- Telescope
   {
     'nvim-telescope/telescope.nvim',
     event = "VeryLazy",
@@ -224,25 +218,22 @@ local plugins = {
     'nvim-telescope/telescope-file-browser.nvim',
     event = "VeryLazy"
   },
-  -- Miscellaneous plugins that don't require specific setup.
-  -- `config = true` is the same as `require(...).setup()
-  { 'nvim-tree/nvim-web-devicons', config = true },
-  { 'axieax/typo.nvim',            config = true },
-  -- Load custom plugins from lua/custom/plugins with specific setup
-  { import = 'custom.plugins' },
-  -- Load custom settings from lua/custom/settings
-  { import = 'custom.settings' },
+  -- Load custom settings and plugins
+  { import = 'modules.settings' },
+  { import = 'modules.editor' },
+  { import = 'modules.lsp' },
+  { import = 'modules.qtechng' },
+  { import = 'modules.ui' },
+  { import = 'modules.utils' },
 }
 
--- Load packages
+-- Load Lazy plugins
 require('lazy').setup(plugins, opts)
-
--- Setup neovim lua configuration
-require('neodev').setup()
 
 -- Colorscheme
 ChangeColorScheme("kanagawa-dragon")
 
 -- The line beneath this is called `modeline`. See `:help modeline`
+-- vim: ts=2 sts=2 sw=2 et
 -- vim: ts=2 sts=2 sw=2 et
 -- vim: ts=2 sts=2 sw=2 et
