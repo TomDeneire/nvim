@@ -3,6 +3,11 @@ local branch = {
     icon = ''
 }
 
+local diff = {
+    'diff',
+    color = { bg = '#393836' }
+}
+
 local function get_winbar()
     local navic = require "nvim-navic"
     if navic.is_available() then
@@ -44,20 +49,20 @@ return {
             },
             sections = {
                 lualine_a = { 'mode' },
-                lualine_b = { 'diff', 'diagnostics' },
+                lualine_b = { diff, 'diagnostics' },
                 lualine_c = { branch, "vim.fn.expand('%:p')" },
                 lualine_x = { 'encoding', 'filetype' },
                 lualine_y = {},
                 lualine_z = { 'progress' }
             },
-            inactive_sections = {
-                lualine_a = {},
-                lualine_b = { 'branch' },
-                lualine_c = {},
-                lualine_x = { 'fileformat' },
-                lualine_y = { 'location' },
-                lualine_z = {}
-            },
+            -- inactive_sections = {
+            --     lualine_a = {},
+            --     lualine_b = { 'branch' },
+            --     lualine_c = {},
+            --     lualine_x = { 'fileformat' },
+            --     lualine_y = { 'location' },
+            --     lualine_z = {}
+            -- },
             tabline = {},
             winbar = {
                 lualine_a = { 'filetype' },
