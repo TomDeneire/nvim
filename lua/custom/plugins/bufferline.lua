@@ -1,29 +1,32 @@
+local colors = { bg = "#393836", fg = "#a7adba" }
+
 return {
     'akinsho/bufferline.nvim',
     event = "VeryLazy",
     config = function()
-        require('bufferline').setup {
-            highlights = { buffer_selected = { italic = false } },
+        local bufferline = require('bufferline')
+        bufferline.setup {
             options = {
+                style_preset = bufferline.style_preset.no_italic,
                 -- mode = "tabs", -- set to "tabs" to only show tabpages instead
                 numbers = "none",
                 --	    close_command = "bdelete! %d",       -- can be a string | function, see "Mouse actions"
                 --	    right_mouse_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
                 --	    left_mouse_command = "buffer %d",    -- can be a string | function, see "Mouse actions"
                 --	    middle_mouse_command = nil,          -- can be a string | function, see "Mouse actions"
-                --	    indicator = {
-                -- icon = '▎', -- this should be omitted if indicator style is not 'icon'
-                --		style = 'icon' | 'underline' | 'none',
-                --	    },
+                indicator = {
+                    -- icon = '▎', -- this should be omitted if indicator style is not 'icon'
+                    style = 'none',
+                },
                 buffer_close_icon = '',
                 modified_icon = '●',
                 close_icon = '',
                 left_trunc_marker = '',
                 right_trunc_marker = '',
-                --	    --- name_formatter can be used to change the buffer's label in the bufferline.
-                --	    --- Please note some names can/will break the
-                --	    --- bufferline so use this at your discretion knowing that it has
-                --	    --- some limitations that will *NOT* be fixed.
+                --- name_formatter can be used to change the buffer's label in the bufferline.
+                --- Please note some names can/will break the
+                --- bufferline so use this at your discretion knowing that it has
+                --- some limitations that will *NOT* be fixed.
                 --	    name_formatter = function(buf)  -- buf contains:
                 --		  -- name                | str        | the basename of the active file
                 --		  -- path                | str        | the full path of the active file
@@ -35,9 +38,16 @@ return {
                 max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
                 truncate_names = false, -- whether or not tab names should be truncated
                 tab_size = 18,
+                custom_areas = {
+                    left = function()
+                        return {
+                            { text = "    " },
+                        }
+                    end
+                },
                 diagnostics = false,
                 --	    diagnostics_update_in_insert = false,
-                --	    -- The diagnostics indicator can be set to nil to keep the buffer name highlight but delete the highlighting
+                -- The diagnostics indicator can be set to nil to keep the buffer name highlight but delete the highlighting
                 --	    diagnostics_indicator = function(count, level, diagnostics_dict, context)
                 --		return "("..count..")"
                 --	    end,
@@ -69,10 +79,9 @@ return {
                 --		    separator = true
                 --		}
                 --	    },
-                color_icons = true, -- whether or not to add the filetype icon highlights
+                color_icons = true,       -- whether or not to add the filetype icon highlights
                 show_buffer_icons = true, -- disable filetype icons for buffers
                 show_buffer_close_icons = false,
-                show_buffer_default_icon = true, -- whether or not an unrecognised filetype should show a default icon
                 show_close_icon = false,
                 show_tab_indicators = false,
                 --	    show_duplicate_prefix = true | false, -- whether to show duplicate buffer prefix
@@ -92,7 +101,139 @@ return {
                 --		-- add custom logic
                 --		return buffer_a.modified > buffer_b.modified
                 --	    end
-            }
+            },
+            highlights = {
+                fill = {
+                    bg = colors.bg,
+                },
+                background = {
+                    bg = colors.bg,
+                },
+                tab = {
+                    bg = colors.bg,
+                },
+                tab_close = {
+                    bg = colors.bg,
+                },
+                tab_selected = {
+                    bg = colors.bg,
+                },
+                tab_separator = {
+                    fg = colors.bg,
+                    bg = colors.bg,
+                },
+                tab_separator_selected = {
+                    fg = colors.bg,
+                    bg = colors.bg,
+                    sp = colors.fg,
+                },
+                close_button = {
+                    bg = colors.bg,
+                    fg = colors.fg,
+                },
+                close_button_visible = {
+                    bg = colors.bg,
+                    fg = colors.fg,
+                },
+                close_button_selected = {
+                    bg = colors.bg,
+                    fg = colors.fg,
+                },
+                buffer_visible = {
+                    bg = colors.bg,
+                },
+                buffer_selected = {
+                    bg = colors.bg,
+                },
+                numbers = {
+                    bg = colors.bg,
+                },
+                numbers_visible = {
+                    bg = colors.bg,
+                },
+                numbers_selected = {
+                    bg = colors.bg,
+                },
+                hint = {
+                    bg = colors.bg,
+                },
+                error = {
+                    bg = colors.bg,
+                },
+                warning = {
+                    bg = colors.bg,
+                },
+                diagnostic = {
+                    bg = colors.bg,
+                },
+                info = {
+                    bg = colors.bg,
+                },
+                modified = {
+                    bg = colors.bg,
+                },
+                modified_visible = {
+                    bg = colors.bg,
+                },
+                modified_selected = {
+                    bg = colors.bg,
+                },
+                duplicate = {
+                    fg = colors.fg,
+                    bg = colors.bg,
+                },
+                duplicate_visible = {
+                    fg = colors.fg,
+                    bg = colors.bg,
+                },
+                separator = {
+                    fg = colors.bg,
+                    bg = colors.bg,
+                },
+                separator_selected = {
+                    fg = colors.bg,
+                    bg = colors.bg,
+                },
+                separator_visible = {
+                    fg = colors.bg,
+                    bg = colors.bg,
+                },
+                offset_separator = {
+                    fg = colors.bg,
+                    bg = colors.bg,
+                },
+                duplicate_selected = {
+                    fg = "",
+                    bg = colors.bg,
+                    italic = true,
+                },
+                indicator_visible = {
+                    fg = "",
+                    bg = colors.bg,
+                },
+                indicator_selected = {
+                    fg = "",
+                    bg = colors.bg,
+                },
+                pick_selected = {
+                    fg = "",
+                    bg = colors.bg,
+                    bold = true,
+                    italic = true,
+                },
+                pick_visible = {
+                    fg = "",
+                    bg = colors.bg,
+                    bold = true,
+                    italic = true,
+                },
+                pick = {
+                    fg = "",
+                    bg = colors.bg,
+                    bold = true,
+                    italic = true,
+                },
+            },
         }
     end
 }
