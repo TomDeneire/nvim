@@ -134,14 +134,14 @@ end
 
 function OpenInGit()
     local current_file = vim.fn.expand("%:p")
-    local gitcmd = "!sensible-browser $(qtechng file tell " .. current_file
+    local gitcmd = "sensible-browser $(qtechng file tell " .. current_file
     gitcmd = gitcmd .. " --jsonpath='$..DATA..vcurl' --unquote)"
-    vim.cmd(gitcmd)
+    io.popen(gitcmd)
 end
 
 function ComparePrevious()
     local current_file = vim.fn.expand("%:p")
-    local cmd = "!export QPATH=$(qtechng file tell " .. current_file
+    local cmd = "export QPATH=$(qtechng file tell " .. current_file
     cmd = cmd .. " --jsonpath='$..DATA..qpath' --unquote) "
     cmd = cmd .. "&& export PREVIOUS=$(qtechng registry get qtechng-releases "
     cmd = cmd .. "| awk '{print $(NF-1)}') "
@@ -150,7 +150,7 @@ function ComparePrevious()
     cmd = cmd .. "&& meld $PREVIOUS/$(qtechng file tell " .. current_file
     cmd = cmd .. " --jsonpath='$..DATA..relpath' --unquote) "
     cmd = cmd .. current_file
-    vim.cmd(cmd)
+    io.popen(cmd)
 end
 
 function MumpsIndent()
