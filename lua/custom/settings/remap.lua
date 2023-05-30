@@ -51,8 +51,8 @@ vim.keymap.set("n", "<c-f>", "<cmd>silent lua GrepInWorkSpace()<CR>", { desc = '
 vim.keymap.set("v", "<leader>s", "y :lua GrepYanked()<CR>", { desc = 'Yank and grep in current workspace' })
 vim.keymap.set("n", "<leader>grep", "<cmd>silent lua GrepPattern()<CR>", { desc = 'Grep in files with pattern' })
 vim.keymap.set("n", "<leader>flake", ':cexpr system("flake8 " . shellescape(expand("%")))<CR> :copen<CR>',
-{ desc = 'Flake8' })
+    { desc = 'Flake8' })
 vim.keymap.set("n", "<leader>black", "<cmd>silent :!black %:p --config=/home/tdeneire/.config/black/pyproject.toml<CR>",
-{ desc = 'Format with Black' })
+    { desc = 'Format with Black' })
 
 return {}
