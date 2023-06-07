@@ -49,28 +49,14 @@ end
 --  Add any additional override configuration in the following tables. They will be passed to
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
-    gopls = {
-        analyses = {
-            unusedparams = true,
-        },
-        hints = {
-            assignVariableTypes = true,
-            compositeLiteralFields = true,
-            compositeLiteralTypes = true,
-            constantValues = true,
-            functionTypeParameters = true,
-            parameterNames = true,
-            rangeVariableTypes = true,
-        },
-        staticcheck = true,
-        semanticTokens = true,
-    },
+    gopls = {},
     pylsp = {},
     marksman = {},
     rust_analyzer = {},
     tsserver = {},
     vimls = {},
     hls = {},
+    elixirls = {},
     lua_ls = {
         Lua = {
             workspace = { checkThirdParty = false },
@@ -96,6 +82,10 @@ mason_lspconfig.setup {
     ensure_installed = vim.tbl_keys(servers),
 }
 
+require 'lspconfig'.elixirls.setup {
+    cmd = { '/home/tdeneire/bin/language_server.sh' }
+}
+
 mason_lspconfig.setup_handlers {
     function(server_name)
         require('lspconfig')[server_name].setup {
@@ -105,6 +95,7 @@ mason_lspconfig.setup_handlers {
         }
     end,
 }
+
 
 -- nvim-cmp setup
 local cmp = require 'cmp'
@@ -135,8 +126,8 @@ cmp.setup {
     },
     completion = { keyword_length = 2 },
     mapping = cmp.mapping.preset.insert {
-        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        -- ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+        -- ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete {},
         ['<CR>'] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Replace,
@@ -151,15 +142,15 @@ cmp.setup {
                 fallback()
             end
         end, { 'i', 's' }),
-        ['<S-Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-                luasnip.jump(-1)
-            else
-                fallback()
-            end
-        end, { 'i', 's' }),
+        -- ['<S-Tab>'] = cmp.mapping(function(fallback)
+        --     if cmp.visible() then
+        --         cmp.select_prev_item()
+        --     elseif luasnip.jumpable(-1) then
+        --         luasnip.jump(-1)
+        --     else
+        --         fallback()
+        --     end
+        -- end, { 'i', 's' }),
     },
     sources = {
         { name = 'nvim_lsp' },
@@ -170,30 +161,14 @@ cmp.setup {
 }
 
 -- Set configuration for specific filetypes
-cmp.setup.filetype('mfile', {
-    sources = cmp.config.sources({
-        { name = 'luasnip' },
-        { name = 'buffer' },
+for _, qfiletype in pairs({ "mfile", "bfile", "lfile", "dfile", "xfile" }) do
+    cmp.setup.filetype(qfiletype, {
+        sources = cmp.config.sources({
+            { name = 'luasnip' },
+            { name = 'buffer' },
+        })
     })
-})
-cmp.setup.filetype('bfile', {
-    sources = cmp.config.sources({
-        { name = 'luasnip' },
-        { name = 'buffer' },
-    })
-})
-cmp.setup.filetype('lfile', {
-    sources = cmp.config.sources({
-        { name = 'luasnip' },
-        { name = 'buffer' },
-    })
-})
-cmp.setup.filetype('xfile', {
-    sources = cmp.config.sources({
-        { name = 'luasnip' },
-        { name = 'buffer' },
-    })
-})
+end
 
 cmp.setup.cmdline({ '/', '?' }, {
     mapping = cmp.mapping.preset.cmdline(),
@@ -211,15 +186,15 @@ cmp.setup.cmdline({ '/', '?' }, {
             fallback()
         end
     end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-            cmp.select_prev_item()
-        elseif luasnip.jumpable(-1) then
-            luasnip.jump(-1)
-        else
-            fallback()
-        end
-    end, { 'i', 's' }),
+    -- ['<S-Tab>'] = cmp.mapping(function(fallback)
+    --     if cmp.visible() then
+    --         cmp.select_prev_item()
+    --     elseif luasnip.jumpable(-1) then
+    --         luasnip.jump(-1)
+    --     else
+    --         fallback()
+    --     end
+    -- end, { 'i', 's' }),
     sources = {
         { name = 'buffer' }
     }
