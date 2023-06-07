@@ -11,6 +11,10 @@ vim.keymap.set("n", "th", "<cmd>silent :bp<CR>")
 vim.keymap.set("n", "tn", "<cmd>silent :enew<CR>")
 vim.keymap.set("n", "<leader>n", "<cmd>silent :noh<CR>", { desc = 'Toggle nohighlight' })
 
+-- Escape from terminal
+vim.keymap.set("t", "<C-k>", "<cmd>wincmd k<cr><cmd>wincmd l<cr>", { desc = "Go to buffer window" })
+vim.keymap.set("t", "<esc>", "<cmd>wincmd k<cr><cmd>wincmd l<cr>", { desc = "Go to buffer window" })
+
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
@@ -21,13 +25,6 @@ vim.keymap.set("n", "tt", "<cmd>silent :Telescope file_browser<CR>", { desc = 'O
 vim.keymap.set("n", "ff", require('telescope.builtin').live_grep, { desc = 'Telescope live grep in current direcotry' })
 vim.keymap.set("n", "<leader>old", require('telescope.builtin').oldfiles, { desc = 'Telescope list of recent files' })
 vim.keymap.set("n", "<leader>ses", "<cmd>lua RestoreSession()<cr>", { desc = 'Restore previous session files' })
-
--- -- LSP
--- vim.keymap.set("n", "<c-i>", vim.lsp.buf.hover)
--- vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
--- vim.keymap.set("n", "<c-D>", vim.lsp.buf.definition)
--- vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
--- vim.keymap.set("n", "<leader>lsp", vim.diagnostic.open_float)
 
 -- QtechNG functions (to do: refactor Lua functions to local functions like below)
 vim.keymap.set("n", "<c-b>", ":!qtechng file ci<CR>", { desc = 'QtechNG: checkin directory' })
@@ -45,13 +42,13 @@ vim.keymap.set("n", "<leader>ql",
     ":!qtechng file list --changed --cwd=$(qtechng registry get qtechng-work-dir) --recurse | jq -r .DATA[0].qpath<CR>",
     { desc = 'QtechNG: show changed files' })
 
--- Other function
+-- Other functions
 vim.keymap.set("n", "<c-p>", "<cmd>silent lua FindInWorkSpace()<CR>", { desc = 'Find in current workspace' })
 vim.keymap.set("n", "<c-f>", "<cmd>silent lua GrepInWorkSpace()<CR>", { desc = 'Grep in current workspace' })
 vim.keymap.set("v", "<leader>s", "y :lua GrepYanked()<CR>", { desc = 'Yank and grep in current workspace' })
 vim.keymap.set("n", "<leader>grep", "<cmd>silent lua GrepPattern()<CR>", { desc = 'Grep in files with pattern' })
-vim.keymap.set("n", "<leader>flake", ':cexpr system("flake8 " . shellescape(expand("%")))<CR> :copen<CR>',
-    { desc = 'Flake8' })
+-- vim.keymap.set("n", "<leader>flake", ':cexpr system("flake8 " . shellescape(expand("%")))<CR> :copen<CR>',
+--     { desc = 'Flake8' })
 vim.keymap.set("n", "<leader>black", "<cmd>silent :!black %:p --config=/home/tdeneire/.config/black/pyproject.toml<CR>",
     { desc = 'Format with Black' })
 
