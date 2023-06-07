@@ -8,15 +8,6 @@ local diff = {
     color = { bg = '#393836' }
 }
 
-local function get_winbar()
-    local navic = require "nvim-navic"
-    if navic.is_available() then
-        return navic.get_location()
-    else
-        return ""
-    end
-end
-
 local disable_extension = {
     sections = { lualine_a = {} }, filetypes = { 'no-neck-pain' }
 }
@@ -55,22 +46,16 @@ return {
                 lualine_y = {},
                 lualine_z = { 'progress' }
             },
-            -- inactive_sections = {
-            --     lualine_a = {},
-            --     lualine_b = { 'branch' },
-            --     lualine_c = {},
-            --     lualine_x = { 'fileformat' },
-            --     lualine_y = { 'location' },
-            --     lualine_z = {}
-            -- },
+            inactive_sections = {
+                lualine_a = {},
+                lualine_b = { 'branch' },
+                lualine_c = {},
+                lualine_x = { 'fileformat' },
+                lualine_y = { 'location' },
+                lualine_z = {}
+            },
             tabline = {},
             winbar = {
-                lualine_a = { 'filetype' },
-                lualine_b = {},
-                lualine_c = { get_winbar },
-                lualine_x = {},
-                lualine_y = {},
-                lualine_z = {}
             },
             inactive_winbar = {},
             extensions = { disable_extension },
