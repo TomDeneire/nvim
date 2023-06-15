@@ -68,6 +68,7 @@ function JumpToRou()
     mroutine = string.gsub(mroutine, '"', "")
     mroutine = string.gsub(mroutine, 'm4_Routine.', "")
     mroutine = RStrip(mroutine, ")")
+    mroutine = RStrip(mroutine, ",")
     local m = Split(mroutine, "(")
     mroutine = m[1]
     local t = Split(mroutine, "^")
