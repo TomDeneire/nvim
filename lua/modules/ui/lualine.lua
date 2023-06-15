@@ -8,6 +8,11 @@ local diff = {
     color = { bg = '#393836' }
 }
 
+local diagnostics = {
+    'diagnostics',
+    color = { bg = '#393836' }
+}
+
 local disable_extension = {
     sections = { lualine_a = {} }, filetypes = { 'no-neck-pain' }
 }
@@ -40,7 +45,7 @@ return {
             },
             sections = {
                 lualine_a = { 'mode' },
-                lualine_b = { diff, 'diagnostics' },
+                lualine_b = { diff, diagnostics },
                 lualine_c = { branch, "vim.fn.expand('%:p')" },
                 lualine_x = { 'encoding', 'filetype' },
                 lualine_y = {},
