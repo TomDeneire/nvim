@@ -20,6 +20,11 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     command = "silent! lua Trim_trailing_whitespace()",
 })
 
+vim.api.nvim_create_autocmd("Filetype", {
+    pattern = { "help" },
+    command = "wincmd R",
+})
+
 -- Code action
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = { "*.go", "*.js", "*.hs" },
