@@ -2,7 +2,7 @@
 return
 {
     'kevinhwang91/nvim-bqf',
-    filetype = 'qf',
+    ft = 'qf',
     config = function()
         vim.cmd([[
     hi BqfPreviewBorder guifg=#50a14f ctermfg=71
@@ -43,7 +43,7 @@ return
             },
             filter = {
                 fzf = {
-                    action_for = { ['ctrl-s'] = 'split',['ctrl-t'] = 'tab drop' },
+                    action_for = { ['ctrl-s'] = 'split', ['ctrl-t'] = 'tab drop' },
                     extra_opts = { '--bind', 'ctrl-o:toggle-all', '--prompt', '> ' }
                 }
             }

@@ -6,13 +6,14 @@ return {
             -- Prints useful logs about what event are triggered, and reasons actions are executed.
             debug = false,
             -- When `true`, enables the plugin when you start Neovim.
-            enableOnVimEnter = true,
+            autocmds = {
+                enableOnVimEnter = true },
             -- The width of the focused buffer when enabling NNP.
             -- If the available window size is less than `width`, the buffer will take the whole screen.
             width = 120,
             -- Set globally to Neovim, it allows you to toggle the enable/disable state.
             -- When `false`, the mapping is not created.
-            toggleMapping = false,
+            mappings = {},
             -- Disables NNP if the last valid buffer in the list has been closed.
             disableOnLastBuffer = false,
             -- When `true`, disabling NNP kills every split/vsplit buffers except the main NNP buffer.
@@ -41,7 +42,7 @@ return {
                 -- - rose-pine-dawn
                 backgroundColor = nil,
                 -- Brighten (positive) or darken (negative) the side buffers background color. Accepted values are [-1..1].
-                blend = 0,
+                colors = { blend = 0 },
                 -- Hexadecimal color code to override the current text color of the buffer. (e.g. #7480c2)
                 textColor = nil,
                 -- vim buffer-scoped options: any `vim.bo` options is accepted here.
@@ -129,9 +130,6 @@ return {
                 wrap = true,
                 linebreak = true,
             },
-            -- remove keymaps because they conflict with '<leader>n' which disables highlight
-            vim.keymap.del('n', '<leader>n='),
-            vim.keymap.del('n', '<leader>n-'),
         }
     end
 }

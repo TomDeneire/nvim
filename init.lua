@@ -173,6 +173,7 @@ local plugins = {
     -- The configuration is done later on in lua/custom/plugins/lsp.lua
     'neovim/nvim-lspconfig',
     event = "BufReadPre",
+    build = ":MasonUpdate", -- :MasonUpdate updates registry contents
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
       'williamboman/mason.nvim',
