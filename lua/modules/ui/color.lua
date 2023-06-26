@@ -30,7 +30,8 @@ function get_color_opts(colorscheme)
         brown       = '#ce9178'
         brightwhite = '#ffffff'
         grey        = '#a7adba'
-        selection   = '#2D4F67'
+        -- selection   = '#2D4F67'
+        selection   = '#569cd6'
         line_hl     = '#393836'
     elseif colorscheme == "Kanagawa" then
         bg          = "#2a2a2a"
