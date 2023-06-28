@@ -2,6 +2,7 @@ return {
     'shortcuts/no-neck-pain.nvim',
     version = "*",
     config = function()
+        local max_width = math.floor(vim.o.columns * 0.66)
         require("no-neck-pain").setup({
             -- Prints useful logs about what event are triggered, and reasons actions are executed.
             debug = false,
@@ -10,7 +11,7 @@ return {
                 enableOnVimEnter = true },
             -- The width of the focused buffer when enabling NNP.
             -- If the available window size is less than `width`, the buffer will take the whole screen.
-            width = 120,
+            width = max_width,
             -- Set globally to Neovim, it allows you to toggle the enable/disable state.
             -- When `false`, the mapping is not created.
             mappings = {},
