@@ -13,7 +13,9 @@ function get_color_opts(colorscheme)
     local brown       = '#ce9178'
     local brightwhite = '#ffffff'
     local grey        = '#a7adba'
-    local selection   = '#2D4F67'
+    -- local selection   = '#2D4F67'
+    -- local selection   = '#569cd6'
+    local selection   = '#f44747'
     local line_hl     = '#393836'
 
     if colorscheme == "Spunkshui" then
@@ -31,7 +33,7 @@ function get_color_opts(colorscheme)
         brightwhite = '#ffffff'
         grey        = '#a7adba'
         -- selection   = '#2D4F67'
-        selection   = '#569cd6'
+        selection   = '#C34043'
         line_hl     = '#393836'
     elseif colorscheme == "Kanagawa" then
         bg          = "#2a2a2a"
