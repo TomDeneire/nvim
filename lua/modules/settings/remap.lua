@@ -11,16 +11,15 @@ vim.keymap.set("n", "th", "<cmd>silent :bp<CR>")
 vim.keymap.set("n", "tn", "<cmd>silent :enew<CR>")
 vim.keymap.set("n", "<leader>n", "<cmd>silent :noh<CR>", { desc = 'Toggle nohighlight' })
 
--- Escape from terminal
-vim.keymap.set("t", "<C-k>", "<cmd>wincmd k<cr><cmd>wincmd l<cr>", { desc = "Go to buffer window" })
-vim.keymap.set("t", "<esc>", "<cmd>wincmd k<cr><cmd>wincmd l<cr>", { desc = "Go to buffer window" })
+-- Terminal
+vim.keymap.set("n", "<leader>term", "<cmd>lua require('lazy.util').float_term('bash',{})<cr>", { desc = 'Open terminal' })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Specific plugins
-vim.keymap.set("n", "<leader>lg", "<cmd>silent :LazyGit<CR>", { desc = 'Open LazyGit' })
+vim.keymap.set("n", "<leader>lg", "<cmd>lua require('lazy.util').float_term('lazygit',{})<cr>", { desc = 'Open LazyGit' })
 vim.keymap.set("n", "tt", "<cmd>silent :Telescope file_browser<CR>", { desc = 'Open Telescope File Browser' })
 vim.keymap.set("n", "ff", require('telescope.builtin').live_grep, { desc = 'Telescope live grep in current direcotry' })
 vim.keymap.set("n", "<leader>old", require('telescope.builtin').oldfiles, { desc = 'Telescope list of recent files' })
