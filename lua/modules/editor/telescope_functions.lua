@@ -7,7 +7,7 @@ local function getfinddir()
     local qtechng_work_dir = "/home/tdeneire/projects/brocade/source/data"
     local packages_work_dir = "/home/tdeneire/projects/brocade/packages"
     local projects_work_dir = "/home/tdeneire/projects/code"
-    local websites_work_dir = "/home/tdeneire/projects/websites"
+    local websites_work_dir = "/home/tdeneire/Dropbox/websites"
     if string.find(workspace, sourcedir) ~= nil then
         return qtechng_work_dir
     elseif string.find(workspace, packagesdir) ~= nil then
