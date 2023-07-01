@@ -42,12 +42,12 @@ vim.keymap.set("n", "<leader>ql",
     { desc = 'QtechNG: show changed files' })
 
 -- Other functions
-vim.keymap.set("n", "<c-p>", "<cmd>silent lua FindInWorkSpace()<CR>", { desc = 'Find in current workspace' })
-vim.keymap.set("n", "<c-f>", "<cmd>silent lua GrepInWorkSpace()<CR>", { desc = 'Grep in current workspace' })
-vim.keymap.set("v", "<leader>s", "y :lua GrepYanked()<CR>", { desc = 'Yank and grep in current workspace' })
-vim.keymap.set("n", "<leader>grep", "<cmd>silent lua GrepPattern()<CR>", { desc = 'Grep in files with pattern' })
--- vim.keymap.set("n", "<leader>flake", ':cexpr system("flake8 " . shellescape(expand("%")))<CR> :copen<CR>',
---     { desc = 'Flake8' })
+vim.keymap.set("n", "<c-p>", "<cmd>silent lua Find_in_workspace()<CR>", { desc = 'Find in current workspace' })
+vim.keymap.set("n", "<c-f>", "<cmd>silent lua Grep_in_workspace()<CR>", { desc = 'Grep in current workspace' })
+vim.keymap.set("v", "<leader>s", "y :lua Grep_yanked()<CR>", { desc = 'Yank and grep in current workspace' })
+vim.keymap.set("n", "<leader>grep", "<cmd>silent lua Grep_pattern()<CR>", { desc = 'Grep in files with pattern' })
+vim.keymap.set("n", "<leader>flake", ':cexpr system("flake8 " . shellescape(expand("%")))<CR> :copen<CR>',
+    { desc = 'Flake8' })
 vim.keymap.set("n", "<leader>black", "<cmd>silent :!black %:p --config=/home/tdeneire/.config/black/pyproject.toml<CR>",
     { desc = 'Format with Black' })
 

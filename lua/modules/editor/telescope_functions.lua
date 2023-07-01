@@ -1,6 +1,6 @@
 -- Telescope specific functions
 
-local function getfinddir()
+local function _getfinddir()
     local workspace = vim.fn.getcwd()
     local sourcedir = "/brocade/source/data"
     local packagesdir = "/brocade/packages"
@@ -19,57 +19,37 @@ local function getfinddir()
     end
 end
 
-function FindInWorkSpace()
-    local find_dir = getfinddir()
-    require("telescope.builtin").find_files(
-        {
-            hidden = true,
-            find_command = { "rg", "--smart-case", "--files" },
-            no_ignore = true,
-            no_ignore_parent = true,
-            cwd = find_dir
-        })
+local find_command = { "rg", "--smart-case", "--files", "--no-search-zip" }
+
+local find_opts = {
+    hidden = true,
+    find_command = find_command,
+    no_ignore = true,
+    no_ignore_parent = true,
+    cwd = _getfinddir()
+}
+
+function Find_in_workspace()
+    require("telescope.builtin").find_files(find_opts)
 end
 
-function GrepInWorkSpace()
-    local find_dir = getfinddir()
-    require("telescope.builtin").live_grep(
-        {
-            hidden = true,
-            find_command = { "rg", "--smart-case", "--files" },
-            no_ignore = true,
-            no_ignore_parent = true,
-            cwd = find_dir
-        })
+function Grep_in_workspace()
+    require("telescope.builtin").live_grep(find_opts)
 end
 
-function GrepYanked()
+function Grep_yanked()
     local text = vim.fn.getreg("")
     text = string.lower(text)
-    local find_dir = getfinddir()
-    require("telescope.builtin").grep_string(
-        {
-            hidden = true,
-            find_command = { "rg", "--smart-case", "--files" },
-            no_ignore = true,
-            no_ignore_parent = true,
-            cwd = find_dir,
-            search = text
-        })
+    local grep_opts = find_opts
+    grep_opts["search"] = text
+    require("telescope.builtin").grep_string(grep_opts)
 end
 
-function GrepPattern()
-    local find_dir = getfinddir()
+function Grep_pattern()
     local pattern = vim.fn.input("Grep_pattern=", "*.")
-    require("telescope.builtin").live_grep(
-        {
-            hidden = true,
-            find_command = { "rg", "--smart-case", "--files" },
-            no_ignore = true,
-            no_ignore_parent = true,
-            cwd = find_dir,
-            glob_pattern = pattern
-        })
+    local grep_opts = find_opts
+    grep_opts["glob_pattern"] = pattern
+    require("telescope.builtin").live_grep(grep_opts)
 end
 
 return {}
