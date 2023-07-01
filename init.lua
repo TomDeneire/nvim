@@ -31,7 +31,6 @@ local plugins = {
   { import = 'modules.lsp' },
   { import = 'modules.qtechng' },
   { import = 'modules.ui' },
-  { import = 'modules.utils' },
   { import = 'modules.settings' },
 }
 

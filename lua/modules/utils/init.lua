@@ -1,3 +1,20 @@
+local M = {}
+
+
+-- (source editorconfig.nvim)
+function M.trim_trailing_whitespace()
+    local view = vim.fn.winsaveview()
+    vim.api.nvim_command("silent! undojoin")
+    vim.api.nvim_command("silent keepjumps keeppatterns %s/\\s\\+$//e")
+    return vim.fn.winrestview(view)
+end
+
+function M.restore_session()
+    vim.api.nvim_command("NoNeckPain")
+    vim.api.nvim_command("lua require('persistence').load({ last = true })")
+    vim.api.nvim_command("NoNeckPain")
+end
+
 -- Telescope specific functions
 
 local function _getfinddir()
@@ -29,15 +46,15 @@ local find_opts = {
     cwd = _getfinddir()
 }
 
-function Find_in_workspace()
+function M.find_in_workspace()
     require("telescope.builtin").find_files(find_opts)
 end
 
-function Grep_in_workspace()
+function M.grep_in_workspace()
     require("telescope.builtin").live_grep(find_opts)
 end
 
-function Grep_yanked()
+function M.grep_yanked()
     local text = vim.fn.getreg("")
     text = string.lower(text)
     local grep_opts = find_opts
@@ -45,11 +62,11 @@ function Grep_yanked()
     require("telescope.builtin").grep_string(grep_opts)
 end
 
-function Grep_pattern()
+function M.grep_pattern()
     local pattern = vim.fn.input("Grep_pattern=", "*.")
     local grep_opts = find_opts
     grep_opts["glob_pattern"] = pattern
     require("telescope.builtin").live_grep(grep_opts)
 end
 
-return {}
+return M

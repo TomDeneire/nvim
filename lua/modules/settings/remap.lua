@@ -23,7 +23,7 @@ vim.keymap.set("n", "<leader>lg", "<cmd>lua require('lazy.util').float_term('laz
 vim.keymap.set("n", "tt", "<cmd>silent :Telescope file_browser<CR>", { desc = 'Open Telescope File Browser' })
 vim.keymap.set("n", "ff", require('telescope.builtin').live_grep, { desc = 'Telescope live grep in current direcotry' })
 vim.keymap.set("n", "<leader>old", require('telescope.builtin').oldfiles, { desc = 'Telescope list of recent files' })
-vim.keymap.set("n", "<leader>ses", "<cmd>lua RestoreSession()<cr>", { desc = 'Restore previous session files' })
+vim.keymap.set("n", "<leader>ses", require('modules.utils').restore_session, { desc = 'Restore previous session files' })
 
 -- QtechNG functions (to do: refactor Lua functions to local functions like below)
 vim.keymap.set("n", "<c-b>", ":!qtechng file ci<CR>", { desc = 'QtechNG: checkin directory' })
@@ -42,10 +42,11 @@ vim.keymap.set("n", "<leader>ql",
     { desc = 'QtechNG: show changed files' })
 
 -- Other functions
-vim.keymap.set("n", "<c-p>", "<cmd>silent lua Find_in_workspace()<CR>", { desc = 'Find in current workspace' })
-vim.keymap.set("n", "<c-f>", "<cmd>silent lua Grep_in_workspace()<CR>", { desc = 'Grep in current workspace' })
-vim.keymap.set("v", "<leader>s", "y :lua Grep_yanked()<CR>", { desc = 'Yank and grep in current workspace' })
-vim.keymap.set("n", "<leader>grep", "<cmd>silent lua Grep_pattern()<CR>", { desc = 'Grep in files with pattern' })
+vim.keymap.set("n", "<c-p>", require("modules.utils").find_in_workspace, { desc = 'Find in current workspace' })
+vim.keymap.set("n", "<c-f>", require("modules.utils").grep_in_workspace, { desc = 'Grep in current workspace' })
+vim.keymap.set("v", "<leader>s", "y :lua require('modules.utils').grep_yanked()<CR>",
+    { desc = 'Yank and grep in current workspace' })
+vim.keymap.set("n", "<leader>grep", require("modules.utils").grep_pattern, { desc = 'Grep in files with pattern' })
 vim.keymap.set("n", "<leader>flake", ':cexpr system("flake8 " . shellescape(expand("%")))<CR> :copen<CR>',
     { desc = 'Flake8' })
 vim.keymap.set("n", "<leader>black", "<cmd>silent :!black %:p --config=/home/tdeneire/.config/black/pyproject.toml<CR>",
