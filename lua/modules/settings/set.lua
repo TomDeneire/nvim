@@ -14,6 +14,7 @@ vim.o.clipboard = 'unnamedplus'
 vim.o.breakindent = true
 vim.o.background = ""
 vim.wo.colorcolumn = '80'
+vim.o.helpheight = 30
 
 -- line numbers
 vim.opt.nu = true
