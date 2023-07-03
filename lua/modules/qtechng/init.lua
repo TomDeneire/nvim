@@ -8,19 +8,9 @@ SUPPORT_DIR = "$(qtechng registry get qtechng-support-dir)"
 
 -- FUNCTIONS
 
-function Split2(mystring, delim)
-    -- to do: pattern matcht ook op single "m"! (zie vb. 2)
-    local t = {}
-    for str in string.gmatch(mystring, "([^" .. delim .. "]+)") do
-        table.insert(t, str)
-    end
-    return t
-end
+local M = {}
 
-function Split(mystring, delim)
-    -- to do: rigourous testing
-    -- before you can promote to general split!
-
+local function _split(mystring, delim)
     local result = {}
     local start = 1
 
@@ -41,25 +31,17 @@ function Split(mystring, delim)
     return result
 end
 
-function RStrip(mystring, delim)
+function _rstrip(mystring, delim)
     local length = string.len(mystring)
     local minus_one = string.sub(mystring, 1, length - 1)
     if minus_one .. delim == mystring then
-        return RStrip(minus_one, delim)
+        return _rstrip(minus_one, delim)
     else
         return mystring
     end
 end
 
-function Length(mytable)
-    local length = 0
-    for _ in pairs(mytable) do
-        length = length + 1
-    end
-    return length
-end
-
-function JumpToRou()
+function M.jump_to_routine()
     --"d %CSV^ucsvsbld($file,$exec,$delimiter,$mode,$encoding,$fieldnames)»
     --"«s $error=$$%ChckTyp^barsrou($type,$context,$user)»"
     -- action = "d %Lst^blicjapi"
@@ -67,13 +49,13 @@ function JumpToRou()
     mroutine = string.gsub(mroutine, "'", "")
     mroutine = string.gsub(mroutine, '"', "")
     mroutine = string.gsub(mroutine, 'm4_Routine.', "")
-    mroutine = RStrip(mroutine, ")")
-    mroutine = RStrip(mroutine, ",")
-    local m = Split(mroutine, "(")
+    mroutine = _rstrip(mroutine, ")")
+    mroutine = _rstrip(mroutine, ",")
+    local m = _split(mroutine, "(")
     mroutine = m[1]
-    local t = Split(mroutine, "^")
+    local t = _split(mroutine, "^")
     local mlabel = t[1]
-    local l = Split(mlabel, "$$")
+    local l = _split(mlabel, "$$")
     if l[2] ~= nil then
         mlabel = l[2]
     end
@@ -89,7 +71,7 @@ function JumpToRou()
     vim.cmd(cmd)
 end
 
-function DefineMacro()
+function M.jump_to_macro_definition()
     -- m4_getCensorType(type,loi)
     -- m4_documentElementInputDate()
     -- m4_zever
@@ -97,7 +79,7 @@ function DefineMacro()
     if string.find(wordUnderCursor, "m4_") == nil then
         return
     end
-    local t = Split(wordUnderCursor, "m4_")
+    local t = _split(wordUnderCursor, "m4_")
     local macro_name = t[2]
     local macrocmd = "echo "
     macrocmd = macrocmd .. WORK_DIR
@@ -114,7 +96,7 @@ function DefineMacro()
     vim.cmd(cmd)
 end
 
-function SourceList()
+function M.source_list()
     local pattern = vim.fn.input("Search QtechNG repository = ", "")
     local listcmd = "qtechng source list --jsonpath=$..DATA..fileurl --needle=" ..
         pattern .. " | awk -F 'file://' '{print $2}' | awk -F '\"' '{print $1}'"
@@ -134,7 +116,7 @@ function SourceList()
     end
 end
 
-function MacroList()
+function M.macro_list()
     require("telescope.builtin").find_files(
         {
             hidden = true,
@@ -145,14 +127,14 @@ function MacroList()
         })
 end
 
-function OpenInGit()
+function M.open_in_git_browser()
     local current_file = vim.fn.expand("%:p")
     local gitcmd = "sensible-browser $(qtechng file tell " .. current_file
     gitcmd = gitcmd .. " --jsonpath='$..DATA..vcurl' --unquote)"
     io.popen(gitcmd)
 end
 
-function ComparePrevious()
+function M.compare_previous()
     local current_file = vim.fn.expand("%:p")
     local cmd = "export QPATH=$(qtechng file tell " .. current_file
     cmd = cmd .. " --jsonpath='$..DATA..qpath' --unquote) "
@@ -166,7 +148,7 @@ function ComparePrevious()
     io.popen(cmd)
 end
 
-function MumpsIndent()
+function M.mumps_indent()
     local linepos = vim.fn.getcurpos()
     local posinline = linepos[3]
     local current_line = vim.fn.getline(".")
@@ -174,7 +156,7 @@ function MumpsIndent()
     if posinline == linelength then
         -- cursor at end of the line
         local wordUnderCursor = vim.fn.expand("<cword>")
-        local indent_level = Split(current_line, " ")
+        local indent_level = _split(current_line, " ")
         local indent_begin = indent_level[2]
         local indent = ""
         if indent_begin ~= nil then
@@ -219,4 +201,4 @@ function MumpsIndent()
     end
 end
 
-return {}
+return M

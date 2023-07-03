@@ -29,7 +29,6 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
   { import = 'modules.editor' },
   { import = 'modules.lsp' },
-  { import = 'modules.qtechng' },
   { import = 'modules.ui' },
   { import = 'modules.settings' },
 }
