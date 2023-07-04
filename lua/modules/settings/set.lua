@@ -20,6 +20,9 @@ vim.o.helpheight = 30
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
+-- highlighting cursorword
+vim.g.cursorword_disable_filetypes = { "markdown", "html", "xml", "json", "bfile", "dfile" }
+
 -- tabsettings
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
