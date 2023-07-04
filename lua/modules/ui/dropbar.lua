@@ -1,5 +1,6 @@
 return {
   'Bekaboo/dropbar.nvim',
+  event = { "BufReadPre", "BufNewFile" },
   config = function()
     require("dropbar").setup({
       icons = {
