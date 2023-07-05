@@ -38,33 +38,35 @@ end
 
 local find_command = { "rg", "--smart-case", "--files", "--no-search-zip" }
 
-local find_opts = {
-    hidden = true,
-    find_command = find_command,
-    no_ignore = true,
-    no_ignore_parent = true,
-    cwd = _getfinddir()
-}
+local function _get_find_opts()
+    return {
+        hidden = true,
+        find_command = find_command,
+        no_ignore = true,
+        no_ignore_parent = true,
+        cwd = _getfinddir()
+    }
+end
 
 function M.find_in_workspace()
-    require("telescope.builtin").find_files(find_opts)
+    require("telescope.builtin").find_files(_get_find_opts())
 end
 
 function M.grep_in_workspace()
-    require("telescope.builtin").live_grep(find_opts)
+    require("telescope.builtin").live_grep(_get_find_opts())
 end
 
 function M.grep_yanked()
     local text = vim.fn.getreg("")
     text = string.lower(text)
-    local grep_opts = find_opts
+    local grep_opts = _get_find_opts()
     grep_opts["search"] = text
     require("telescope.builtin").grep_string(grep_opts)
 end
 
 function M.grep_pattern()
     local pattern = vim.fn.input("Grep_pattern=", "*.")
-    local grep_opts = find_opts
+    local grep_opts = _get_find_opts()
     grep_opts["glob_pattern"] = pattern
     require("telescope.builtin").live_grep(grep_opts)
 end
