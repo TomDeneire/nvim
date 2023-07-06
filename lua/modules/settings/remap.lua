@@ -21,7 +21,7 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 -- Specific plugins
 vim.keymap.set("n", "<leader>lg", "<cmd>lua require('lazy.util').float_term('lazygit',{})<cr>", { desc = 'Open LazyGit' })
 vim.keymap.set("n", "tt", "<cmd>silent :Telescope file_browser<CR>", { desc = 'Open Telescope File Browser' })
-vim.keymap.set("n", "ff", require('telescope.builtin').live_grep, { desc = 'Telescope live grep in current direcotry' })
+vim.keymap.set("n", "ff", require('telescope.builtin').live_grep, { desc = 'Telescope live grep in current directory' })
 vim.keymap.set("n", "<leader>old", require('telescope.builtin').oldfiles, { desc = 'Telescope list of recent files' })
 vim.keymap.set("n", "<leader>ses", require('modules.utils').restore_session, { desc = 'Restore previous session files' })
 
