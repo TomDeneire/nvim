@@ -11,7 +11,7 @@ end
 
 function M.restore_session()
     vim.api.nvim_command("NoNeckPain")
-    vim.api.nvim_command("lua require('persistence').load({ last = true })")
+    require('persistence').load({ last = true })
     vim.api.nvim_command("NoNeckPain")
 end
 
