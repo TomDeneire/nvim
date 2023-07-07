@@ -11,7 +11,8 @@ return {
             sources = {
                 null_ls.builtins.formatting.xmlformat,
                 null_ls.builtins.formatting.djlint,
-                null_ls.builtins.formatting.prettier
+                null_ls.builtins.formatting.prettier,
+                null_ls.builtins.formatting.golangci_lint,
             },
         })
     end
