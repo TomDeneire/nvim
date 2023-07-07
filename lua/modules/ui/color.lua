@@ -1,6 +1,6 @@
 function get_color_opts(colorscheme)
     -- default = "Spunkshui"
-    local bg          = "#2a2a2a"
+    local bg          = "#303030"
     local white       = "#d4d4d4"
     local blue        = '#569cd6'
     local brightblue  = '#7bbad8'
@@ -17,7 +17,7 @@ function get_color_opts(colorscheme)
     local line_hl     = '#393836'
 
     if colorscheme == "Spunkshui" then
-        bg          = "#2a2a2a"
+        bg          = "#303030"
         white       = "#d4d4d4"
         blue        = '#569cd6'
         brightblue  = '#7bbad8'
