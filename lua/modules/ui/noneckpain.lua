@@ -8,7 +8,7 @@ return {
             debug = false,
             -- When `true`, enables the plugin when you start Neovim.
             autocmds = {
-                enableOnVimEnter = true },
+                enableOnVimEnter = false },
             -- The width of the focused buffer when enabling NNP.
             -- If the available window size is less than `width`, the buffer will take the whole screen.
             width = max_width,
