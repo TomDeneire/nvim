@@ -26,6 +26,7 @@ vim.keymap.set("n", "tt", "<cmd>silent :Telescope file_browser<CR>", { desc = 'O
 vim.keymap.set("n", "ff", require('telescope.builtin').live_grep, { desc = 'Telescope live grep in current directory' })
 vim.keymap.set("n", "<leader>old", require('telescope.builtin').oldfiles, { desc = 'Telescope list of recent files' })
 vim.keymap.set("n", "<leader>ses", require('modules.utils').restore_session, { desc = 'Restore previous session files' })
+vim.keymap.set("n", "<leader>map", require('telescope.builtin').keymaps, { desc = 'Show keymaps' })
 
 -- QtechNG functions (to do: refactor Lua functions to local functions like below)
 vim.keymap.set("n", "<c-b>", ":!qtechng file ci<CR>", { desc = 'QtechNG: checkin directory' })
