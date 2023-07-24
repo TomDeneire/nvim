@@ -20,7 +20,7 @@ vim.opt.nu = true
 vim.opt.relativenumber = true
 
 -- highlighting cursorword
-vim.g.cursorword_disable_filetypes = { "markdown", "html", "xml", "json", "bfile", "dfile" }
+vim.g.cursorword_disable_filetypes = { "markdown", "html", "xml", "json", "bfile", "dfile", "rst" }
 
 -- tabsettings
 vim.opt.expandtab = true
