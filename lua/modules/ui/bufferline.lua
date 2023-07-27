@@ -1,4 +1,4 @@
-local colors = { bg = "#393836", fg = "#a7adba", selected = "#d4d4d4" }
+local colors = { bg = "#393836", fg = "#a7adba", selected = "#99c794" }
 
 return {
     'akinsho/bufferline.nvim',
@@ -147,7 +147,7 @@ return {
                 buffer_selected = {
                     bg = colors.bg,
                     fg = colors.selected,
-                    bold = true,
+                    bold = false,
                 },
                 numbers = {
                     bg = colors.bg,
