@@ -31,7 +31,7 @@ local on_attach = function(client, bufnr)
 
     -- -- Lesser used LSP functionality
     -- nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-    nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+    -- nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
     -- nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
     -- nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
     -- nmap('<leader>wl', function()
@@ -50,6 +50,7 @@ end
 --  Add any additional override configuration in the following tables. They will be passed to
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
+    bashls = {},
     gopls = {},
     golang_ci_lint = {},
     pylsp = {},
