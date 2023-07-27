@@ -12,6 +12,8 @@ vim.keymap.set("n", "tn", "<cmd>silent :enew<CR>")
 vim.keymap.set("n", "<leader>n", "<cmd>silent :noh<CR>", { desc = 'Toggle nohighlight' })
 vim.keymap.set({ "n", "x", "o" }, "H", "^", { desc = 'Jump to start of line' })
 vim.keymap.set({ "n", "x", "o" }, "L", "$", { desc = 'Jump to end of line' })
+vim.keymap.set({ "n", "x", "o" }, "J", "<c-i>", { desc = 'Jump to start of line' })
+vim.keymap.set({ "n", "x", "o" }, "K", "<c-o>", { desc = 'Jump to end of line' })
 
 -- Terminal
 vim.keymap.set("n", "<leader>term", "<cmd>lua require('lazy.util').float_term('bash',{})<cr>", { desc = 'Open terminal' })
