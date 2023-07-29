@@ -10,9 +10,7 @@ function M.trim_trailing_whitespace()
 end
 
 function M.restore_session()
-    vim.api.nvim_command("NoNeckPain")
     require('persistence').load({ last = true })
-    vim.api.nvim_command("NoNeckPain")
 end
 
 -- Telescope specific functions
