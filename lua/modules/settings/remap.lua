@@ -29,7 +29,7 @@ vim.keymap.set("n", "<leader>ses", require('modules.utils').restore_session, { d
 vim.keymap.set("n", "<leader>map", require('telescope.builtin').keymaps, { desc = 'Show keymaps' })
 
 -- QtechNG functions (to do: refactor Lua functions to local functions like below)
-vim.keymap.set("n", "<c-b>", ":!qtechng file ci<CR>", { desc = 'QtechNG: checkin directory' })
+vim.keymap.set("n", "<c-b>", require("modules.qtechng").checkin_current_file, { desc = 'QtechNG: checkin current file' })
 vim.keymap.set("n", "<c-o>", ":!qtechng file refresh<CR>", { desc = 'QtechNG: refresh directory' })
 vim.keymap.set("n", "<leader>rou", require("modules.qtechng").jump_to_routine, { desc = 'QtechNG: jump to M routine' })
 vim.keymap.set("n", "<c-m>", require("modules.qtechng").jump_to_macro_definition,

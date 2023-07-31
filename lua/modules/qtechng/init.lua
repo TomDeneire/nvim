@@ -148,6 +148,11 @@ function M.compare_previous()
     io.popen(cmd)
 end
 
+function M.checkin_current_file()
+    local cmd = ":!qtechng file ci " .. vim.fn.expand("%:p")
+    vim.cmd(cmd)
+end
+
 function M.mumps_indent()
     local linepos = vim.fn.getcurpos()
     local posinline = linepos[3]
