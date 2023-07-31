@@ -173,7 +173,7 @@ function get_color_opts(colorscheme)
                 ["@text.emphasis"] = { fg = white, bold = true },
                 ["@text.underline"] = { fg = white, underline = true },
                 -- ["@text.strike"] = "TSStrike",
-                ["@text.title"] = { fg = white },
+                ["@text.title"] = { fg = blue },
                 ["@text.literal"] = { fg = brightblue },
                 ["@text.uri"] = { fg = red },
                 ["@text.math"] = { fg = red },
