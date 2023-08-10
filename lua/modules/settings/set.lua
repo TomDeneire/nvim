@@ -40,7 +40,7 @@ vim.g.python_highlight_all = 1
 -- to do: why do pylsp and pyright use python3.10 as executable?
 -- this is /usr/bin/python3.10 which is installed as python3 in $PATH
 vim.g.python3_host_prog = '/home/tdeneire/bin/py3'
-vim.g.python_host_prog = '/home/tdeneire/bin/py3'
+vim.g.python = '/home/tdeneire/bin/py3'
 
 -- for markdown
 vim.opt.foldenable = false
