@@ -53,6 +53,7 @@ local servers = {
     bashls = {},
     gopls = {},
     golang_ci_lint = {},
+    html = {},
     pylsp = {},
     marksman = {},
     -- rust_analyzer = {},
