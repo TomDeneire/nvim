@@ -86,6 +86,7 @@ return
                     hijack_netrw = true,
                     dir_icon = "",
                     hidden = true,
+                    respect_gitignore = false
                 }
             }
         }
