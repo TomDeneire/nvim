@@ -74,6 +74,7 @@ end
 function M.jump_to_macro_definition()
     -- m4_getCensorType(type,loi)
     -- m4_documentElementInputDate()
+    -- m4_documentElementRootStart
     -- m4_zever
     local wordUnderCursor = vim.fn.expand("<cword>")
     if string.find(wordUnderCursor, "m4_") == nil then
@@ -92,7 +93,7 @@ function M.jump_to_macro_definition()
     if exists == "null" then
         return
     end
-    local cmd = "e +/" .. macro_name .. "( " .. macro_file
+    local cmd = "e +/" .. macro_name .. ".*: " .. macro_file
     vim.cmd(cmd)
 end
 
