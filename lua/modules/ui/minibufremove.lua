@@ -3,7 +3,8 @@ return {
     version = '*',
     lazy = true,
     keys = {
-        { "td", "<cmd>silent lua MiniBufremove.delete()<cr>", desc = "Remove buffer", mode = "n" } },
+        -- { "td", "<cmd>silent lua MiniBufremove.delete()<cr>", desc = "Remove buffer", mode = "n" } },
+        { "td", ":bd!<cr>", desc = "Remove buffer", mode = "n" } },
     config = function()
         require('mini.bufremove').setup()
     end
