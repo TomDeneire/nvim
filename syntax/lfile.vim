@@ -15,9 +15,9 @@ syn region    lgline        start=/    / keepend end=/$/ contains=lglabel,operat
 
 " Matches
 syn match     lgcodelabel   contained /lgcode/
-syn match     lgcode        contained / [A-Za-z0-9]*/
-syn match     lgcode        contained / [A-Za-z0-9]*\.[A-Za-z0-9]*/
-syn match     lgcode        contained / [A-Za-z0-9]*\.[A-Za-z0-9]*\.scope/
+syn match     lgcode        contained / [A-Za-z0-9_-]*/
+syn match     lgcode        contained / [A-Za-z0-9_-]*\.[A-Za-z0-9_-]*/
+syn match     lgcode        contained / [A-Za-z0-9_-]*\.[A-Za-z0-9_-]*\.scope/
 syn match     lglabel       contained /\CN\:/ contains=lg
 syn match     lglabel       contained /\CE\:/ contains=lg
 syn match     lglabel       contained /\CD\:/ contains=lg
