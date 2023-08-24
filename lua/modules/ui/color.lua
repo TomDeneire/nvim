@@ -1,52 +1,53 @@
 function get_color_opts(colorscheme)
     -- default = "Spunkshui"
-    local bg          = "#303030"
-    local white       = "#d4d4d4"
-    local blue        = '#569cd6'
-    local brightblue  = '#7bbad8'
-    local red         = '#f44747'
-    local orange      = '#ed872d'
-    local yellow      = '#fac863'
-    local green       = '#99c794'
-    local cyan        = '#62b3b2'
-    local purple      = '#c594c5'
-    local brown       = '#ce9178'
-    local brightwhite = '#ffffff'
-    local grey        = '#a7adba'
-    local selection   = '#C34043'
-    local line_hl     = '#393836'
+    local bg = "#303030"
+    local white = "#d4d4d4"
+    local blue = "#569cd6"
+    local brightblue = "#7bbad8"
+    local red = "#f44747"
+    local orange = "#ed872d"
+    local yellow = "#fac863"
+    local green = "#99c794"
+    local cyan = "#62b3b2"
+    local purple = "#c594c5"
+    local brown = "#ce9178"
+    local brightwhite = "#ffffff"
+    local grey = "#a7adba"
+    local selection = "#C34043"
+    local line_hl = "#393836"
 
     if colorscheme == "Spunkshui" then
-        bg          = "#303030"
-        white       = "#d4d4d4"
-        blue        = '#569cd6'
-        brightblue  = '#7bbad8'
-        red         = '#f44747'
-        orange      = '#ed872d'
-        yellow      = '#fac863'
-        green       = '#99c794'
-        cyan        = '#62b3b2'
-        purple      = '#c594c5'
-        brown       = '#ce9178'
-        brightwhite = '#ffffff'
-        grey        = '#a7adba'
-        line_hl     = '#393836'
+        bg = "#303030"
+        white = "#d4d4d4"
+        blue = "#569cd6"
+        brightblue = "#7bbad8"
+        red = "#f44747"
+        orange = "#ed872d"
+        yellow = "#fac863"
+        green = "#99c794"
+        cyan = "#62b3b2"
+        purple = "#c594c5"
+        brown = "#ce9178"
+        brightwhite = "#ffffff"
+        grey = "#a7adba"
+        selection = "#C34043"
+        line_hl = "#393836"
     elseif colorscheme == "Kanagawa" then
-        bg          = "#2a2a2a"
-        white       = "#DCD7BA" -- fujiWhite
-        blue        = '#7FB4CA' -- springBlue
-        brightblue  = '#A3D4D5' -- lightBlue
-        red         = '#C34043' -- autumnRed
-        orange      = '#FF9E3B' -- roninYellow
-        yellow      = '#DCA561' -- autumnYellow
-        green       = '#76946A' -- autumnGreen
-        cyan        = '#7AA89F' -- waveAqua2
-        purple      = '#957FB8' -- oniViolet
-        brown       = '#FFA066' -- surimiOrange
+        bg = "#2a2a2a"
+        white = "#DCD7BA" -- fujiWhite
+        blue = "#7FB4CA"  -- springBlue
+        brightblue = "#A3D4D5" -- lightBlue
+        red = "#C34043"   -- autumnRed
+        orange = "#FF9E3B" -- roninYellow
+        yellow = "#DCA561" -- autumnYellow
+        green = "#76946A" -- autumnGreen
+        cyan = "#7AA89F"  -- waveAqua2
+        purple = "#957FB8" -- oniViolet
+        brown = "#FFA066" -- surimiOrange
         brightwhite = "#DCD7BA" -- fujiWhite
-        grey        = '#717C7C' -- katanaGray
-        selection   = '#2D4F67'
-        line_hl     = '#393836'
+        grey = "#717C7C"  -- katanaGray
+        selection = red
+        line_hl = "#393836"
     end
 
     return {
@@ -72,12 +73,11 @@ function get_color_opts(colorscheme)
                         fg = white,
                         fg_dim = white,
                         pmenu = { fg = white },
-                    }
-                }
-            }
+                    },
+                },
+            },
         },
-        overrides = function(
-            colors)
+        overrides = function(colors)
             local theme = colors.theme
             return {
                 -- Editor (see h: highlight-groups)
@@ -242,19 +242,19 @@ function ChangeColorScheme(color)
             items = fn.getloclist(info.winid, { id = info.id, items = 0 }).items
         end
         local limit = 31
-        local fnameFmt1, fnameFmt2 = '%-' .. limit .. 's', '…%.' .. (limit - 1) .. 's'
-        local validFmt = '%s │%5d:%-3d│%s %s'
+        local fnameFmt1, fnameFmt2 = "%-" .. limit .. "s", "…%." .. (limit - 1) .. "s"
+        local validFmt = "%s │%5d:%-3d│%s %s"
         for i = info.start_idx, info.end_idx do
             local e = items[i]
-            local fname = ''
+            local fname = ""
             local str
             if e.valid == 1 then
                 if e.bufnr > 0 then
                     fname = fn.bufname(e.bufnr)
-                    if fname == '' then
-                        fname = '[No Name]'
+                    if fname == "" then
+                        fname = "[No Name]"
                     else
-                        fname = fname:gsub('^' .. vim.env.HOME, '~')
+                        fname = fname:gsub("^" .. vim.env.HOME, "~")
                     end
                     -- char in fname may occur more than 1 width, ignore this issue in order to keep performance
                     if #fname <= limit then
@@ -265,7 +265,7 @@ function ChangeColorScheme(color)
                 end
                 local lnum = e.lnum > 99999 and -1 or e.lnum
                 local col = e.col > 999 and -1 or e.col
-                local qtype = e.type == '' and '' or ' ' .. e.type:sub(1, 1):upper()
+                local qtype = e.type == "" and "" or " " .. e.type:sub(1, 1):upper()
                 str = validFmt:format(fname, lnum, col, qtype, e.text)
             else
                 str = e.text
@@ -275,8 +275,9 @@ function ChangeColorScheme(color)
         return ret
     end
 
-    vim.o.qftf = '{info -> v:lua._G.qftf(info)}'
+    vim.o.qftf = "{info -> v:lua._G.qftf(info)}"
 end
 
 return {
-    { 'rebelot/kanagawa.nvim', config = true, opts = get_color_opts("Spunkshui") } }
+    { "rebelot/kanagawa.nvim", config = true, opts = get_color_opts("Spunkshui") },
+}
