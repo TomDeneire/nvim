@@ -21,6 +21,7 @@ return
                 "markdown_inline",
                 "python",
                 "regex",
+                "rst",
                 "tsx",
                 "typescript",
                 "vim",
