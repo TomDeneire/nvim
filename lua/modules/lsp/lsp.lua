@@ -55,6 +55,7 @@ local servers = {
     golang_ci_lint = {},
     html = {},
     pylsp = {},
+    php = {},
     marksman = {},
     -- rust_analyzer = {},
     -- tsserver = {},
