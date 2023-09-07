@@ -99,7 +99,7 @@ end
 
 function M.source_list()
     local pattern = vim.fn.input("Search QtechNG repository = ", "")
-    local listcmd = "qtechng source list --jsonpath=$..DATA..fileurl --needle=" ..
+    local listcmd = "qtechng source list --smartcase --jsonpath=$..DATA..fileurl --needle=" ..
         pattern .. " | awk -F 'file://' '{print $2}' | awk -F '\"' '{print $1}'"
     local result = vim.fn.system(listcmd)
     local t = {}
