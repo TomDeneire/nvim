@@ -13,6 +13,10 @@ vim.keymap.set({ "n", "x", "o" }, "H", "^", { desc = "Jump to start of line" })
 vim.keymap.set({ "n", "x", "o" }, "L", "$", { desc = "Jump to end of line" })
 vim.keymap.set({ "n", "x", "o" }, "J", "<c-i>", { desc = "Jump to start of line" })
 vim.keymap.set({ "n", "x", "o" }, "K", "<c-o>", { desc = "Jump to end of line" })
+-- Paste but don't overwrite copy-register
+vim.keymap.set("v", "p", '"_dP')
+-- Make Y behave like C and D
+vim.keymap.set("n", "Y", "y$")
 
 -- Terminal
 vim.keymap.set(
