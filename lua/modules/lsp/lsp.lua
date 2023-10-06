@@ -56,6 +56,7 @@ local servers = {
     html = {},
     jsonls = {},
     pylsp = {},
+    pyright = {},
     php = {},
     marksman = {},
     -- rust_analyzer = {},
