@@ -76,7 +76,7 @@ vim.keymap.set("v", "<leader>qi", ":norm xi .<CR>", { desc = "QtechNG: M indent"
 vim.keymap.set(
     "n",
     "<leader>qn",
-    "mnviwy?^ n <CR>A,<ESC>pviwy`n<cmd>silent :noh<CR>",
+    require("modules.qtechng").new_var,
     { desc = "QtechNG: new M variable" }
 )
 vim.keymap.set(

@@ -154,11 +154,24 @@ function M.checkin_current_file()
     vim.cmd(cmd)
 end
 
+function M.new_var(myvar)
+    if myvar == nil then
+        myvar = vim.fn.expand("<cword>")
+    end
+    local curpos = vim.fn.getcurpos()
+    vim.cmd("?^ n ")
+    local newpos = vim.fn.getcurpos()
+    local newline = vim.fn.getline(".") .. "," .. myvar
+    vim.api.nvim_buf_set_lines(0, newpos[2] - 1, newpos[2], false, { newline })
+    vim.cmd("silent :noh")
+    vim.fn.setpos(".", curpos)
+end
+
 function M.loop_vars()
     -- expand a line like this: RAdata(*nnr,*items,*types,*anr)
     local parts = _split(vim.fn.getline("."), "*")
     local lines = {}
-    local news = ""
+    local loopvars = {}
     local var = ""
     for i, p in ipairs(parts) do
         if i == 1 then
@@ -170,7 +183,7 @@ function M.loop_vars()
             for _, char in ipairs({ ",", ")" }) do
                 loopvar = _rstrip(loopvar, char)
             end
-            news = news .. "," .. loopvar
+            table.insert(loopvars, loopvar)
             local line = " " .. indent .. "s " .. loopvar .. '=""'
             table.insert(lines, line)
             line = " " .. indent .. 'f  s ' .. loopvar .. "=$O("
@@ -185,10 +198,9 @@ function M.loop_vars()
     pos = curpos[2]
     vim.api.nvim_buf_set_lines(0, pos - 1, pos, false, lines)
     -- add loopvars to new instruction
-    vim.cmd("?^ n ")
-    local newpos = vim.fn.getcurpos()
-    local addednews = vim.fn.getline(".") .. news
-    vim.api.nvim_buf_set_lines(0, newpos[2] - 1, newpos[2], false, { addednews })
+    for _, loopvar in ipairs(loopvars) do
+        M.new_var(loopvar)
+    end
     -- go to end of inserted snippet
     curpos[2] = curpos[2] + #lines - 1
     vim.fn.setpos(".", curpos)
