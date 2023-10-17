@@ -40,7 +40,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "mfile",
-    command = [[inoremap <buffer> <c-l> s nr=""<CR>f  s nr=$O(x(nr)) q:nr=""  d]]
+    command = [[noremap <buffer> <c-l> <ESC>:lua require('modules.qtechng').loop_vars()<CR>]]
 })
 
 vim.api.nvim_create_autocmd("FileType", {

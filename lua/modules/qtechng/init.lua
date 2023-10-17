@@ -154,6 +154,48 @@ function M.checkin_current_file()
     vim.cmd(cmd)
 end
 
+function M.loop_vars()
+    -- expand a line like this: RAdata(*nnr,*items,*types,*anr)
+    local parts = _split(vim.fn.getline("."), "*")
+    local lines = {}
+    local news = ""
+    local var = ""
+    for i, p in ipairs(parts) do
+        if i == 1 then
+            var = string.gsub(p, " ", "")
+        else
+            local indent = string.rep(".", i - 2)
+            if indent ~= "" then indent = indent .. " " end
+            local loopvar = p
+            for _, char in ipairs({ ",", ")" }) do
+                loopvar = _rstrip(loopvar, char)
+            end
+            news = news .. "," .. loopvar
+            local line = " " .. indent .. "s " .. loopvar .. '=""'
+            table.insert(lines, line)
+            line = " " .. indent .. 'f  s ' .. loopvar .. "=$O("
+            line = line .. var .. loopvar .. "))"
+            line = line .. " q:" .. loopvar .. '=""  d'
+            table.insert(lines, line)
+            var = var .. loopvar .. ","
+        end
+    end
+    -- replace line with loops
+    local curpos = vim.fn.getcurpos()
+    pos = curpos[2]
+    vim.api.nvim_buf_set_lines(0, pos - 1, pos, false, lines)
+    -- add loopvars to new instruction
+    vim.cmd("?^ n ")
+    local newpos = vim.fn.getcurpos()
+    local addednews = vim.fn.getline(".") .. news
+    vim.api.nvim_buf_set_lines(0, newpos[2] - 1, newpos[2], false, { addednews })
+    -- go to end of inserted snippet
+    curpos[2] = curpos[2] + #lines - 1
+    vim.fn.setpos(".", curpos)
+    vim.fn.feedkeys("A")
+    vim.cmd("silent :noh")
+end
+
 function M.mumps_indent()
     local linepos = vim.fn.getcurpos()
     local posinline = linepos[3]
