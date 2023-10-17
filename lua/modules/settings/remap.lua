@@ -48,7 +48,7 @@ vim.keymap.set(
 )
 vim.keymap.set("n", "<leader>map", require("telescope.builtin").keymaps, { desc = "Show keymaps" })
 
--- QtechNG functions (to do: refactor Lua functions to local functions like below)
+-- QtechNG functions
 vim.keymap.set(
     "n",
     "<c-b>",
