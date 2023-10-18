@@ -18,7 +18,7 @@ syn region  mComment        oneline start="^//" end=/$/
 syn region  mComment        oneline start=";" end=/$/ contained contains=mPragmaLine
 syn region  mLabelLine      oneline start=/^[sub|def|fn]/ end=":" contains=mLabelCode,mLabelLabel,mLabelArgs,mLabelEnd
 syn region  mString         oneline start=/"/ skip=/""/ excludenl end=/"/ contained
-syn region  mMacro          oneline keepend start="m4_" end=")" contained contains=mMacroName,mMacroArgs
+syn region  mMacro          oneline keepend start="m4_" end=")[ |\n]" contained contains=mMacroName,mMacroArgs
 syn region  mMacroArgs      oneline start="(" end=")" contained contains=mParams,mOperator,mString,mNumber,mPName,mUName,mFName,mCName,mGlobalName,mDoGoContained,mFunction
 syn region  mLine           oneline start=/^\s/ end=/$/ contains=mString,mOperator,mComment,mCommand,mZcommand,mNumber,mFunction,mFunctionLabel,mMacro,mPName,mUName,mFName,mCName,mGlobalName,mDoGo,mMacroSingle
 
