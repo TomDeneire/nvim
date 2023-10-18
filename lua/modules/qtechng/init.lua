@@ -5,6 +5,7 @@
 OS_SEP = "$(qtechng registry get os-sep)"
 WORK_DIR = "$(qtechng registry get qtechng-work-dir)"
 SUPPORT_DIR = "$(qtechng registry get qtechng-support-dir)"
+MACRO_DIR = "/home/tdeneire/Dropbox/brocade/support/macros"
 
 -- FUNCTIONS
 
@@ -31,7 +32,7 @@ local function _split(mystring, delim)
     return result
 end
 
-function _rstrip(mystring, delim)
+local function _rstrip(mystring, delim)
     local length = string.len(mystring)
     local minus_one = string.sub(mystring, 1, length - 1)
     if minus_one .. delim == mystring then
@@ -39,6 +40,56 @@ function _rstrip(mystring, delim)
     else
         return mystring
     end
+end
+
+local function _file_exists(file)
+    local f = io.open(file, "rb")
+    if f then f:close() end
+    return f ~= nil
+end
+
+local function _lines_from(file)
+    -- Get all lines from a file
+    if not _file_exists(file) then return {} end
+    local lines = {}
+    for line in io.lines(file) do
+        table.insert(lines, line)
+    end
+    return lines
+end
+
+local function _get_max_line_length(lines)
+    local max_len = 0
+    for _, line in ipairs(lines) do
+        local line_len = #line
+        local tabs = _split(line, "\t")
+        line_len = line_len + (#tabs * 4)
+        if line_len > max_len then max_len = line_len end
+    end
+    return max_len
+end
+
+function M.show_macro(macro)
+    if macro == nil then
+        macro = vim.fn.expand("<cword>")
+        if string.find(macro, "m4_") == nil then
+            return
+        end
+    end
+    local buf = vim.api.nvim_create_buf(false, true)
+    local curpos = vim.fn.getcurpos()
+    local content = _lines_from(MACRO_DIR .. "/" .. macro .. ".d")
+    local max_line_length = _get_max_line_length(content)
+    local opts = {
+        relative = 'win',
+        row = curpos[2],
+        col = curpos[3],
+        width = max_line_length,
+        height = #content
+    }
+    vim.api.nvim_buf_set_lines(buf, 0, 1, false, content)
+    vim.bo[buf].filetype = "dfile"
+    local win = vim.api.nvim_open_win(buf, 1, opts)
 end
 
 function M.jump_to_routine()
