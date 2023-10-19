@@ -19,7 +19,7 @@ syn match     objectcodelabel   contained /^oai/
 syn match     objectcodelabel   contained /^mprocess/
 syn match     objectcodelabel   contained /^mailtrg/
 syn match     objectcodelabel   contained /^usergroup/
-syn match     objectcodelabel   contained /^oujson/
+syn match     objectcodelabel   contained /^ujson/
 syn match     objectcodelabel   contained /^lookup/
 syn match     objectcodelabel   contained /^history/
 syn match     objectcodelabel   contained /^meta/
