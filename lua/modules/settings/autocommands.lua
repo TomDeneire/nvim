@@ -54,6 +54,11 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
+    pattern = "bfile",
+    command = [[noremap <buffer> <C-l> <ESC>:lua require('modules.qtechng').generate_lgcode()<CR>]]
+})
+
+vim.api.nvim_create_autocmd("FileType", {
     pattern = "mfile",
     command = [[setlocal expandtab shiftwidth=1 softtabstop=1 nowrap]]
 })

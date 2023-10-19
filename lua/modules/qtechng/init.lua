@@ -6,6 +6,13 @@ OS_SEP = "$(qtechng registry get os-sep)"
 WORK_DIR = "$(qtechng registry get qtechng-work-dir)"
 SUPPORT_DIR = "$(qtechng registry get qtechng-support-dir)"
 MACRO_DIR = "/home/tdeneire/Dropbox/brocade/support/macros"
+BROBS = {}
+for _, brob in ipairs({ "oaiset", "oai", "mprocess", "mailtrg", "usergroup", "ujson",
+    "lookup", "history", "meta", "listattribute", "listidentity",
+    "listdownloadtype", "cg", "loi", "search",
+    "listsorttype", "nodeattribute", "listconversion" }) do
+    BROBS[brob] = true
+end
 
 -- FUNCTIONS
 
@@ -69,6 +76,75 @@ local function _get_max_line_length(lines)
     return max_len
 end
 
+function _capitalize(mystring)
+    return string.upper(string.sub(mystring, 1, 1))
+        .. string.sub(mystring, 2, #mystring)
+end
+
+function M.generate_lgcode()
+    -- cg execty.catconkvs -> lgcode metaExecty.cgcatconkvs:
+    -- cg mitem.catobject ->  lgcode metaMitem.cgcatobject.scope:
+    -- $attribute: errorwrongcg -> lgcode metaCensor.errorwrongcg:
+    -- $$content: identity -> lgcode metaCensor.titlemetaCensortypeIdentity:
+    local curpos = vim.fn.getcurpos()
+    local current_line = vim.fn.getline(".")
+    local brob = true
+    local lgtype = ""
+    local lgcode = ""
+    local lgcodes = {}
+    for _, ltype in ipairs({ "$attribute: ", "$$content: " }) do
+        if string.find(current_line, ltype) then
+            brob = false
+            lgtype = ltype
+        end
+    end
+    if brob == false then
+        vim.cmd("?^meta ")
+        local metaline = vim.fn.getline(".")
+        local meta = _split(metaline, "meta ")
+        local meta_type = _rstrip(meta[2], ":")
+        meta_type = _capitalize(meta_type)
+        local meta_name = _split(current_line, lgtype)[2]
+        meta_name = _rstrip(meta_name, ":")
+        if lgtype == "$$content: " then
+            meta_name = "titlemeta" .. meta_type .. _capitalize(meta_name)
+        end
+        lgcode = "lgcode meta" .. meta_type
+            .. "." .. meta_name
+    else
+        local words = _split(current_line, " ")
+        local brob_type = words[1]
+        local meta = _split(words[2], ".")
+        local meta_type = meta[1]
+        meta_type = _capitalize(meta_type)
+        local meta_name = meta[2]
+        meta_name = _rstrip(meta_name, ":")
+        if BROBS[brob_type] then
+            if brob_type == "cg" then
+                lgcode = "lgcode meta" .. meta_type
+                    .. "." .. brob_type .. meta_name
+            end
+        end
+    end
+    table.insert(lgcodes, lgcode .. ":")
+    table.insert(lgcodes, "\tN: «»")
+    table.insert(lgcodes, lgcode .. ".scope:")
+    table.insert(lgcodes, "\tN: «»")
+    local buf = vim.api.nvim_create_buf(false, true)
+    local max_line_length = _get_max_line_length(lgcodes)
+    local opts = {
+        relative = 'win',
+        row = curpos[2],
+        col = curpos[3],
+        width = max_line_length,
+        height = #lgcodes
+    }
+    vim.api.nvim_buf_set_lines(buf, 0, 1, false, lgcodes)
+    vim.bo[buf].filetype = "lfile"
+    vim.api.nvim_open_win(buf, 1, opts)
+    vim.cmd("silent :noh")
+end
+
 function M.show_macro(macro)
     if macro == nil then
         macro = vim.fn.expand("<cword>")
@@ -89,7 +165,7 @@ function M.show_macro(macro)
     }
     vim.api.nvim_buf_set_lines(buf, 0, 1, false, content)
     vim.bo[buf].filetype = "dfile"
-    local win = vim.api.nvim_open_win(buf, 1, opts)
+    vim.api.nvim_open_win(buf, 1, opts)
 end
 
 function M.jump_to_routine()
