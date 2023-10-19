@@ -13,6 +13,7 @@
   "indent-blankline.nvim": { "branch": "master", "commit": "13e415c6f70fed2f37162c2fbfd07b33d144e15b" },
   "kanagawa.nvim": { "branch": "master", "commit": "a4e99f089110c6d00bc33f5497709200e914e763" },
   "lazy.nvim": { "branch": "main", "commit": "7ca3bdb566c3ba4492f2d22b37c2c9e26f09470f" },
+  "lsp-timeout.nvim": { "branch": "main", "commit": "2dfcd3e17abb1fca2ffe0f12986c72d7dc6ca325" },
   "lsp_signature.nvim": { "branch": "master", "commit": "bdf3dc7bb03edd25c2173e0e31c2fb122052ed23" },
   "lspkind.nvim": { "branch": "master", "commit": "57610d5ab560c073c465d6faf0c19f200cb67e6e" },
   "lualine.nvim": { "branch": "master", "commit": "45e27ca739c7be6c49e5496d14fcf45a303c3a63" },
@@ -38,5 +39,6 @@
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "6c921ca12321edaa773e324ef64ea301a1d0da62" },
   "telescope.nvim": { "branch": "master", "commit": "54930e1abfc94409e1bb9266e752ef8379008592" },
   "typo.nvim": { "branch": "main", "commit": "a162ec91d6cd1cf3db7a3fd05912302ba322ab99" },
-  "undotree": { "branch": "main", "commit": "41f56b30cc774ad26c4945c7e10673453893e7ad" }
+  "undotree": { "branch": "main", "commit": "41f56b30cc774ad26c4945c7e10673453893e7ad" },
+  "vim-sleuth": { "branch": "master", "commit": "1cc4557420f215d02c4d2645a748a816c220e99b" }
 }
