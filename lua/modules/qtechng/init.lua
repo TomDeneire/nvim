@@ -55,7 +55,7 @@ local function _file_exists(file)
     return f ~= nil
 end
 
-local function _lines_from(file)
+local function _lines_from_file(file)
     -- Get all lines from a file
     if not _file_exists(file) then return {} end
     local lines = {}
@@ -86,7 +86,6 @@ function M.generate_lgcode()
     -- cg mitem.catobject ->  lgcode metaMitem.cgcatobject.scope:
     -- $attribute: errorwrongcg -> lgcode metaCensor.errorwrongcg:
     -- $$content: identity -> lgcode metaCensor.titlemetaCensortypeIdentity:
-    local curpos = vim.fn.getcurpos()
     local current_line = vim.fn.getline(".")
     local brob = true
     local lgtype = ""
@@ -127,15 +126,15 @@ function M.generate_lgcode()
         end
     end
     table.insert(lgcodes, lgcode .. ":")
-    table.insert(lgcodes, "\tN: «»")
+    table.insert(lgcodes, "    N: «»")
     table.insert(lgcodes, lgcode .. ".scope:")
-    table.insert(lgcodes, "\tN: «»")
+    table.insert(lgcodes, "    N: «»")
     local buf = vim.api.nvim_create_buf(false, true)
     local max_line_length = _get_max_line_length(lgcodes)
     local opts = {
-        relative = 'win',
-        row = curpos[2],
-        col = curpos[3],
+        relative = "cursor",
+        row = 1,
+        col = 1,
         width = max_line_length,
         height = #lgcodes
     }
@@ -146,6 +145,7 @@ function M.generate_lgcode()
 end
 
 function M.show_macro(macro)
+    -- m4_getCensorType
     if macro == nil then
         macro = vim.fn.expand("<cword>")
         if string.find(macro, "m4_") == nil then
@@ -153,13 +153,12 @@ function M.show_macro(macro)
         end
     end
     local buf = vim.api.nvim_create_buf(false, true)
-    local curpos = vim.fn.getcurpos()
-    local content = _lines_from(MACRO_DIR .. "/" .. macro .. ".d")
+    local content = _lines_from_file(MACRO_DIR .. "/" .. macro .. ".d")
     local max_line_length = _get_max_line_length(content)
     local opts = {
-        relative = 'win',
-        row = curpos[2],
-        col = curpos[3],
+        relative = 'cursor',
+        row = 1,
+        col = 1,
         width = max_line_length,
         height = #content
     }
