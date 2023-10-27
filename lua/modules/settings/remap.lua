@@ -82,7 +82,7 @@ vim.keymap.set(
 vim.keymap.set(
     "n",
     "<leader>ql",
-    ":!qtechng file list --changed --cwd=$(qtechng registry get qtechng-work-dir) --recurse | jq -r .DATA[0].qpath<CR>",
+    [[<cmd>silent :cexpr system("qtechng file list --changed --cwd=$(qtechng registry get qtechng-work-dir) --recurse | jq -r .DATA[].fileurl | sed 's/$/:0:0/'")<CR>:copen<cr>]],
     { desc = "QtechNG: show changed files" }
 )
 
