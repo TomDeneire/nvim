@@ -13,6 +13,9 @@ local on_attach = function(client, bufnr)
         end
 
         vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+        if client.name == "pyright" then
+            vim.cmd("PyrightSetPythonPath /home/tdeneire/bin/py3")
+        end
     end
 
     nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
