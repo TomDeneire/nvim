@@ -2,7 +2,7 @@
 vim.opt.autoindent = true
 vim.opt.cursorline = true
 vim.opt.autowrite = true
-vim.opt.list = true
+vim.opt.list = false
 vim.opt.hlsearch = true
 vim.opt.termguicolors = true
 vim.opt.showtabline = 2
