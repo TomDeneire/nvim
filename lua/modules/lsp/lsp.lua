@@ -13,18 +13,20 @@ local on_attach = function(client, bufnr)
         end
 
         vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
-        if client.name == "pyright" then
-            vim.cmd("PyrightSetPythonPath /home/tdeneire/bin/py3")
+        if client.name == "ruff_lsp" then
+            client.server_capabilities.hoverProvider = false
         end
     end
 
     nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+    nmap('<c-D>', require('telescope.builtin').lsp_definitions, 'Goto [D]efinition')
     nmap("<leader>f", vim.lsp.buf.format, 'Format')
     nmap("<leader>lsp", vim.diagnostic.open_float, 'LSP open in float')
     nmap('<C-i>', vim.lsp.buf.hover, 'Hover Documentation')
 
     nmap('<leader>gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
     nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+    nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
     nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
     nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols,
         '[W]orkspace [S]ymbols')
@@ -56,9 +58,9 @@ local servers = {
     golang_ci_lint = {},
     html = {},
     jsonls = {},
-    pylsp = {},
     pyright = {},
     php = {},
+    ruff_lsp = {},
     marksman = {},
     -- rust_analyzer = {},
     -- tsserver = {},
@@ -74,6 +76,7 @@ local servers = {
 }
 
 -- Disable LSP diagnostic virtual text (because of LSP diagnostics in notify)
+-- vim.diagnostic.config({ virtual_text = false })
 
 return {
     'neovim/nvim-lspconfig',
