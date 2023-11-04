@@ -55,11 +55,11 @@ end
 local servers = {
     bashls = {},
     gopls = {},
-    golang_ci_lint = {},
+    golangci_lint_ls = {},
     html = {},
     jsonls = {},
     pyright = {},
-    php = {},
+    intelephense = {},
     ruff_lsp = {},
     marksman = {},
     -- rust_analyzer = {},
@@ -101,7 +101,7 @@ return {
                 local mason_lspconfig = require 'mason-lspconfig'
 
                 mason_lspconfig.setup {
-                    -- ensure_installed = { "lua_ls" },
+                    ensure_installed = vim.tbl_keys(servers),
                 }
 
                 -- Do this before setup_handlers!
