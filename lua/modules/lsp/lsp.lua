@@ -19,14 +19,12 @@ local on_attach = function(client, bufnr)
     end
 
     nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-    nmap('<c-D>', vim.lsp.buf.definition, 'Goto [D]efinition')
     nmap("<leader>f", vim.lsp.buf.format, 'Format')
     nmap("<leader>lsp", vim.diagnostic.open_float, 'LSP open in float')
     nmap('<C-i>', vim.lsp.buf.hover, 'Hover Documentation')
 
     nmap('<leader>gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
     nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-    nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
     nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
     nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols,
         '[W]orkspace [S]ymbols')
