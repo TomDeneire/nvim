@@ -75,9 +75,6 @@ local servers = {
     },
 }
 
--- Disable LSP diagnostic virtual text (because of LSP diagnostics in notify)
--- vim.diagnostic.config({ virtual_text = false })
-
 return {
     'neovim/nvim-lspconfig',
     event = "BufReadPre",
@@ -120,6 +117,16 @@ return {
                         }
                     end,
                 }
+                vim.diagnostic.config(
+                    {
+                        underline = true,
+                        virtual_text = {
+                            spacing = 2,
+                            prefix = "●",
+                        },
+                        update_in_insert = false,
+                    }
+                )
             end
         }
     }
