@@ -49,7 +49,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { ".m", ".x" },
+    pattern = { "mfile", "xfile" },
     command = [[noremap <buffer> <C-i> <ESC>:lua require('modules.qtechng').show_macro()<CR>]]
 })
 
