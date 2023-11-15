@@ -39,11 +39,22 @@ local function _split(mystring, delim)
     return result
 end
 
-local function _rstrip(mystring, delim)
+local function _rstrip(mystring, char)
     local length = string.len(mystring)
     local minus_one = string.sub(mystring, 1, length - 1)
-    if minus_one .. delim == mystring then
-        return _rstrip(minus_one, delim)
+    if minus_one .. char == mystring then
+        return _rstrip(minus_one, char)
+    else
+        return mystring
+    end
+end
+
+local function _lstrip(mystring, char)
+    local length = string.len(mystring)
+    local start = string.sub(mystring, 1, 1)
+    if start == char then
+        mystring = string.sub(mystring, 2, lenght)
+        return _lstrip(mystring, char)
     else
         return mystring
     end
@@ -284,6 +295,7 @@ function M.new_var(myvar)
     if myvar == nil then
         myvar = vim.fn.expand("<cword>")
     end
+    myvar = _lstrip(myvar, "_")
     local curpos = vim.fn.getcurpos()
     vim.cmd("?^ n ")
     local newpos = vim.fn.getcurpos()
