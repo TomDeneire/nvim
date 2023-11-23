@@ -53,7 +53,7 @@ local function _lstrip(mystring, char)
     local length = string.len(mystring)
     local start = string.sub(mystring, 1, 1)
     if start == char then
-        mystring = string.sub(mystring, 2, lenght)
+        mystring = string.sub(mystring, 2, length)
         return _lstrip(mystring, char)
     else
         return mystring
@@ -306,34 +306,47 @@ function M.new_var(myvar)
 end
 
 function M.loop_vars()
-    -- expand a line like this: RAdata(*nnr,*items,*types,*anr)
-    local parts = _split(vim.fn.getline("."), "*")
+    -- expand a line like this: " RAdata(*nnr,*items,*types,*anr)"
+    -- or: " ..... RAdata(*nnr,*items,*types,*anr)""
+    local line = vim.fn.getline(".")
+    -- construct loops
+    local parts = _split(line, "*")
     local lines = {}
     local loopvars = {}
-    local var = ""
+    local root_variable = ""
+    local original_len = string.len(line)
+    line = _lstrip(line, " ")
+    line = _lstrip(line, ".")
+    local stripped_len = string.len(line)
+    local difference = original_len - stripped_len
+    local startindent = " " .. string.rep(".", difference - 1)
     for i, p in ipairs(parts) do
         if i == 1 then
-            var = string.gsub(p, " ", "")
+            root_variable = string.gsub(p, " ", "")
+            local oldvar = root_variable
+            root_variable = _lstrip(root_variable, ".")
         else
             local indent = string.rep(".", i - 2)
-            if indent ~= "" then indent = indent .. " " end
             local loopvar = p
             for _, char in ipairs({ ",", ")" }) do
                 loopvar = _rstrip(loopvar, char)
             end
             table.insert(loopvars, loopvar)
-            local line = " " .. indent .. "s " .. loopvar .. '=""'
-            table.insert(lines, line)
-            line = " " .. indent .. 'f  s ' .. loopvar .. "=$O("
-            line = line .. var .. loopvar .. "))"
-            line = line .. " q:" .. loopvar .. '=""  d'
-            table.insert(lines, line)
-            var = var .. loopvar .. ","
+            if i > 2 or difference > 1 then
+                indent = indent .. " "
+            end
+            local setline = startindent .. indent .. "s " .. loopvar .. '=""'
+            table.insert(lines, setline)
+            local forline = startindent .. indent .. 'f  s ' .. loopvar .. "=$O("
+            forline = forline .. root_variable .. loopvar .. "))"
+            forline = forline .. " q:" .. loopvar .. '=""  d'
+            table.insert(lines, forline)
+            root_variable = root_variable .. loopvar .. ","
         end
     end
     -- replace line with loops
     local curpos = vim.fn.getcurpos()
-    pos = curpos[2]
+    local pos = curpos[2]
     vim.api.nvim_buf_set_lines(0, pos - 1, pos, false, lines)
     -- add loopvars to new instruction
     for _, loopvar in ipairs(loopvars) do
