@@ -147,7 +147,7 @@ return {
         vim.fn.sign_define('DapBreakpoint', { text = '', texthl = '', linehl = '', numhl = '' })
 
         -- Keymaps
-        vim.keymap.set("n", "<leader>db", require("dap").toggle_breakpoint,
+        vim.keymap.set({ "n", "v" }, "<leader>db", require("dap").toggle_breakpoint,
             { desc = 'DAP toggle breakpoint' })
         vim.keymap.set("n", "<leader>dc", require("dap").continue,
             { desc = 'DAP continue' })
