@@ -20,9 +20,10 @@ syn region  mLabelLine      oneline start=/^[sub|def|fn]/ end=":" contains=mLabe
 syn region  mString         oneline start=/"/ skip=/""/ excludenl end=/"/ contained
 syn region  mMacro          oneline keepend start="m4_" end=")[ |\n]" contained contains=mMacroName,mMacroArgs
 syn region  mMacroArgs      oneline start="(" end=")" contained contains=mParams,mOperator,mString,mNumber,mPName,mUName,mFName,mCName,mGlobalName,mDoGoContained,mFunction
-syn region  mLine           oneline start=/^\s/ end=/$/ contains=mString,mOperator,mComment,mCommand,mZcommand,mNumber,mFunction,mFunctionLabel,mMacro,mPName,mUName,mFName,mCName,mGlobalName,mDoGo,mMacroSingle
+syn region  mLine           oneline start=/^\s/ end=/$/ contains=mString,mOperator,mComment,mCommand,mZcommand,mNumber,mFunction,mFunctionLabel,mMacro,mPName,mUName,mFName,mCName,mGlobalName,mDoGo,mMacroSingle,mRegistry
 
 " Matches
+syn match   mRegistry       "r4\_[a-zA-Z0-9\_]*" contained
 syn match   mLabelCode      /[sub|def|fn]/ contained
 syn match   mLabelLabel     / [%a-zA-Z0-9]*/ contained
 syn match   mLabelArgs      /([a-zA-Z0-9][ ,a-zA-Z0-9]*)/ contained contains=mOperator,mPName
@@ -83,6 +84,7 @@ hi! link mCName         MumpsCName
 hi! link mRName         MumpsGlobalName
 hi! link mGlobalName    MumpsGlobalName
 hi! link mMacroName     MumpsMacro
+hi! link mRegistry      MumpsMacro
 hi! link mDoGoLabel     MumpsDoGoLabel
 hi! link mDoGoCommand   MumpsCommand
 hi! link mPragma        Function
