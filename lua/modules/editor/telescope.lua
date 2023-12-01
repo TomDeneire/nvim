@@ -63,7 +63,8 @@ return
                     disable_devicons = false,
                     sorting_strategy = "ascending",
                     prompt_prefix = "🔍 ",
-                    scroll_strategy = "limit"
+                    scroll_strategy = "limit",
+                    path_display = { "absolute", "truncate" }
                 },
                 live_grep = {
                     theme = "ivy",
