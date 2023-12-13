@@ -1,6 +1,6 @@
 -- Globals
-LSP_files = { "*.lua", "*.go", "*.js", "*.xml", "*.html",
-    "*.md", "*.json", "*.ts", "*.rst", "*.vim", "*.hs" }
+LSP_files = { "*.lua", "*.go", "*.js", "*.py", "*.xml", "*.html",
+    "*.md", ".phtml", ".php", "*.json", "*.ts", "*.rst", "*.vim", "*.hs" }
 
 QtechNG_files = { "*.m", "*.l", "*.x", "*.i", "*.b", "*.d" }
 
