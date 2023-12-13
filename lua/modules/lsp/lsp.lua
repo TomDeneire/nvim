@@ -67,6 +67,7 @@ local servers = {
     vimls = {},
     -- hls = {},
     elixirls = {},
+    taplo = {},
     lua_ls = {
         Lua = {
             runtime = {
