@@ -54,20 +54,14 @@ end
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
     bashls = {},
+    elixirls = {},
     gopls = {},
     golangci_lint_ls = {},
-    html = {},
-    jsonls = {},
-    pyright = {},
-    intelephense = {},
-    ruff_lsp = {},
-    marksman = {},
-    -- rust_analyzer = {},
-    -- tsserver = {},
-    vimls = {},
     -- hls = {},
-    elixirls = {},
-    taplo = {},
+    html = {},
+    intelephense = {},
+    jsonls = {},
+    lemminx = {},
     lua_ls = {
         Lua = {
             runtime = {
@@ -88,7 +82,14 @@ local servers = {
                 }
             }
         }
-    }
+    },
+    marksman = {},
+    pyright = {},
+    ruff_lsp = {},
+    -- rust_analyzer = {},
+    taplo = {},
+    -- tsserver = {},
+    vimls = {},
 }
 
 return {
