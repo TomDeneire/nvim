@@ -142,6 +142,7 @@ return {
                             prefix = "●",
                         },
                         update_in_insert = false,
+                        severity_sort = true,
                     }
                 )
             end
