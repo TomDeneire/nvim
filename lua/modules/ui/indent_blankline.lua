@@ -6,9 +6,9 @@ return {
             indent = { char = "|" },
             scope = {
                 char = "|",
-                enabled = false,
-                show_start = true,
-                show_end = true
+                enabled = true,
+                show_start = false,
+                show_end = false
             },
         }
     end
