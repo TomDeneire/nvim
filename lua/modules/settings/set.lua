@@ -13,6 +13,7 @@ vim.opt.linebreak = true
 vim.o.clipboard = 'unnamedplus'
 vim.o.breakindent = true
 vim.o.background = ""
+vim.o.mouse = ""
 vim.wo.colorcolumn = '80'
 
 -- line numbers
