@@ -46,7 +46,7 @@ return {
             sections = {
                 lualine_a = { 'mode' },
                 lualine_b = { diff, diagnostics },
-                lualine_c = { branch, "vim.fn.expand('%:p')" },
+                lualine_c = { branch, "vim.fn.expand('%:p')", require('lsp-progress').progress },
                 lualine_x = { 'encoding', 'filetype' },
                 lualine_y = {},
                 lualine_z = { 'progress' }
@@ -65,5 +65,12 @@ return {
             inactive_winbar = {},
             extensions = { disable_extension },
         }
+        -- listen lsp-progress event and refresh lualine
+        vim.api.nvim_create_augroup("lualine_augroup", { clear = true })
+        vim.api.nvim_create_autocmd("User", {
+            group = "lualine_augroup",
+            pattern = "LspProgressStatusUpdated",
+            callback = require("lualine").refresh,
+        })
     end
 }
