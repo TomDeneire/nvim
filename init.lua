@@ -26,6 +26,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Define Lazy plugins
 -- NOTE: Beware of the order of the modules and of the files within the modules!
+-- NOTE: Do not call modules which do not follow plugin spec here (e.g. color, qtechng)
 local plugins = {
   { import = 'modules.editor' },
   { import = 'modules.lsp' },
@@ -34,11 +35,22 @@ local plugins = {
 }
 
 -- Load Lazy plugins
-local lazy_opts = {}
+local lazy_opts = {
+  change_detection = {
+    -- automatically check for config file changes and reload the ui
+    enabled = false,
+    notify = true, -- get a notification when changes are found
+  },
+}
+
 require('lazy').setup(plugins, lazy_opts)
 
--- Colorscheme
-ChangeColorScheme("kanagawa-dragon")
+-- colorscheme
+vim.cmd.colorscheme("gruvbox")
+-- removes tildes
+vim.cmd("set fillchars=eob:\\ ")
+-- better quickfixlist
+require("modules.color").better_quickfixlist()
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

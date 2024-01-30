@@ -1,20 +1,88 @@
+local colors = require("modules.color").colors()
+
+-- Sections
 local branch = {
     'branch',
+    color = { fg = colors.white, bg = colors.statusline_bg },
     icon = ''
+}
+
+local filepath = {
+    "vim.fn.expand('%:p')",
+    color = { fg = colors.white, bg = colors.statusline_bg }
+}
+
+local lsp_progress = {
+    require('lsp-progress').progress,
+    color = { fg = colors.white, bg = colors.statusline_bg }
+}
+
+local mode = {
+    'mode',
+    color = { fg = colors.statusline_bg }
 }
 
 local diff = {
     'diff',
-    color = { bg = '#393836' }
+    color = { fg = colors.white, bg = colors.statusline_bg }
+}
+
+local progress = {
+    'progress',
+    color = { fg = colors.white, bg = colors.statusline_bg }
+}
+
+local encoding = {
+    'encoding',
+    color = { fg = colors.white, bg = colors.statusline_bg }
+}
+
+local filetype = {
+    'filetype',
+    color = { fg = colors.white, bg = colors.statusline_bg }
 }
 
 local diagnostics = {
     'diagnostics',
-    color = { bg = '#393836' }
+    color = { fg = colors.white, bg = colors.statusline_bg }
 }
 
-local disable_extension = {
-    sections = { lualine_a = {} }, filetypes = { 'no-neck-pain' }
+local colors = {
+    color5  = colors.blue,
+    color6  = colors.grey,
+    color7  = colors.grey,
+    color10 = colors.orange,
+    color13 = colors.purple,
+    color14 = colors.green,
+    color0  = colors.white,
+    color1  = colors.grey,
+    color4  = colors.statusline_bg,
+}
+
+-- Custom theme
+local theme = {
+    visual = {
+        b = { fg = colors.color0, bg = colors.color1 },
+        a = { fg = colors.color4, bg = colors.color5, gui = 'bold' },
+    },
+    inactive = {
+        b = { fg = colors.color6, bg = colors.color4 },
+        c = { fg = colors.color6, bg = colors.color4 },
+        a = { fg = colors.color7, bg = colors.color4, gui = 'bold' },
+    },
+    insert = {
+        b = { fg = colors.color0, bg = colors.color1 },
+        a = { fg = colors.color4, bg = colors.color10, gui = 'bold' },
+    },
+    replace = {
+        b = { fg = colors.color0, bg = colors.color1 },
+        a = { fg = colors.color4, bg = colors.color13, gui = 'bold' },
+    },
+    normal = {
+        b = { fg = colors.color0, bg = colors.color1 },
+        c = { fg = colors.color7, bg = colors.color4 },
+        a = { fg = colors.color4, bg = colors.color14, gui = 'bold' },
+    },
 }
 
 return {
@@ -27,7 +95,7 @@ return {
         require("lualine").setup {
             options = {
                 icons_enabled = true,
-                theme = 'auto',
+                theme = theme,
                 component_separators = { left = '|', right = '  ' },
                 section_separators = { left = '  ', right = '  ' },
                 disabled_filetypes = {
@@ -44,26 +112,17 @@ return {
                 }
             },
             sections = {
-                lualine_a = { 'mode' },
+                lualine_a = { mode },
                 lualine_b = { diff, diagnostics },
-                lualine_c = { branch, "vim.fn.expand('%:p')", require('lsp-progress').progress },
-                lualine_x = { 'encoding', 'filetype' },
+                lualine_c = { branch, filepath, lsp_progress },
+                lualine_x = { encoding, filetype },
                 lualine_y = {},
-                lualine_z = { 'progress' }
-            },
-            inactive_sections = {
-                lualine_a = {},
-                lualine_b = { 'branch' },
-                lualine_c = {},
-                lualine_x = { 'fileformat' },
-                lualine_y = { 'location' },
-                lualine_z = {}
+                lualine_z = { progress }
             },
             tabline = {},
             winbar = {
             },
             inactive_winbar = {},
-            extensions = { disable_extension },
         }
         -- listen lsp-progress event and refresh lualine
         vim.api.nvim_create_augroup("lualine_augroup", { clear = true })

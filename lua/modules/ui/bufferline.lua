@@ -1,4 +1,4 @@
-local colors = { bg = "#393836", fg = "#a7adba", selected = "#99c794" }
+local colors = require("modules.color").colors()
 
 return {
     'akinsho/bufferline.nvim',
@@ -104,136 +104,136 @@ return {
             },
             highlights = {
                 fill = {
-                    bg = colors.bg,
+                    bg = colors.statusline_bg,
                 },
                 background = {
-                    bg = colors.bg,
-                    fg = colors.fg,
+                    bg = colors.statusline_bg,
+                    fg = colors.grey,
                 },
                 tab = {
-                    bg = colors.bg,
-                    fg = colors.fg,
+                    bg = colors.statusline_bg,
+                    fg = colors.grey,
                 },
                 tab_close = {
-                    bg = colors.bg,
+                    bg = colors.statusline_bg,
                 },
                 tab_selected = {
-                    bg = colors.bg,
+                    bg = colors.statusline_bg,
                 },
                 tab_separator = {
-                    fg = colors.bg,
-                    bg = colors.bg,
+                    fg = colors.statusline_bg,
+                    bg = colors.statusline_bg,
                 },
                 tab_separator_selected = {
-                    fg = colors.bg,
-                    bg = colors.bg,
-                    sp = colors.fg,
+                    fg = colors.statusline_bg,
+                    bg = colors.statusline_bg,
+                    sp = colors.grey,
                 },
                 close_button = {
-                    bg = colors.bg,
-                    fg = colors.fg,
+                    bg = colors.statusline_bg,
+                    fg = colors.grey,
                 },
                 close_button_visible = {
-                    bg = colors.bg,
-                    fg = colors.fg,
+                    bg = colors.statusline_bg,
+                    fg = colors.grey,
                 },
                 close_button_selected = {
-                    bg = colors.bg,
-                    fg = colors.fg,
+                    bg = colors.statusline_bg,
+                    fg = colors.grey,
                 },
                 buffer_visible = {
-                    bg = colors.bg,
+                    bg = colors.statusline_bg,
                 },
                 buffer_selected = {
-                    bg = colors.bg,
-                    fg = colors.selected,
+                    bg = colors.statusline_bg,
+                    fg = colors.green,
                     bold = false,
                 },
                 numbers = {
-                    bg = colors.bg,
+                    bg = colors.statusline_bg,
                 },
                 numbers_visible = {
-                    bg = colors.bg,
+                    bg = colors.statusline_bg,
                 },
                 numbers_selected = {
-                    bg = colors.bg,
+                    bg = colors.statusline_bg,
                 },
                 hint = {
-                    bg = colors.bg,
+                    bg = colors.statusline_bg,
                 },
                 error = {
-                    bg = colors.bg,
+                    bg = colors.statusline_bg,
                 },
                 warning = {
-                    bg = colors.bg,
+                    bg = colors.statusline_bg,
                 },
                 diagnostic = {
-                    bg = colors.bg,
+                    bg = colors.statusline_bg,
                 },
                 info = {
-                    bg = colors.bg,
+                    bg = colors.statusline_bg,
                 },
                 modified = {
-                    bg = colors.bg,
+                    bg = colors.statusline_bg,
                 },
                 modified_visible = {
-                    bg = colors.bg,
+                    bg = colors.statusline_bg,
                 },
                 modified_selected = {
-                    bg = colors.bg,
+                    bg = colors.statusline_bg,
                 },
                 duplicate = {
-                    fg = colors.fg,
-                    bg = colors.bg,
+                    fg = colors.grey,
+                    bg = colors.statusline_bg,
                 },
                 duplicate_visible = {
-                    fg = colors.fg,
-                    bg = colors.bg,
+                    fg = colors.grey,
+                    bg = colors.statusline_bg,
                 },
                 separator = {
-                    fg = colors.bg,
-                    bg = colors.bg,
+                    fg = colors.statusline_bg,
+                    bg = colors.statusline_bg,
                 },
                 separator_selected = {
-                    fg = colors.bg,
-                    bg = colors.bg,
+                    fg = colors.statusline_bg,
+                    bg = colors.statusline_bg,
                 },
                 separator_visible = {
-                    fg = colors.bg,
-                    bg = colors.bg,
+                    fg = colors.statusline_bg,
+                    bg = colors.statusline_bg,
                 },
                 offset_separator = {
-                    fg = colors.bg,
-                    bg = colors.bg,
+                    fg = colors.statusline_bg,
+                    bg = colors.statusline_bg,
                 },
                 duplicate_selected = {
                     fg = "",
-                    bg = colors.bg,
+                    bg = colors.statusline_bg,
                     italic = true,
                 },
                 indicator_visible = {
                     fg = "",
-                    bg = colors.bg,
+                    bg = colors.statusline_bg,
                 },
                 indicator_selected = {
                     fg = "",
-                    bg = colors.bg,
+                    bg = colors.statusline_bg,
                 },
                 pick_selected = {
                     fg = "",
-                    bg = colors.bg,
+                    bg = colors.statusline_bg,
                     bold = true,
                     italic = true,
                 },
                 pick_visible = {
                     fg = "",
-                    bg = colors.bg,
+                    bg = colors.statusline_bg,
                     bold = true,
                     italic = true,
                 },
                 pick = {
                     fg = "",
-                    bg = colors.bg,
+                    bg = colors.statusline_bg,
                     bold = true,
                     italic = true,
                 },
