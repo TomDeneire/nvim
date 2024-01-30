@@ -12,7 +12,7 @@ vim.opt.autochdir = true
 vim.opt.linebreak = true
 vim.o.clipboard = 'unnamedplus'
 vim.o.breakindent = true
-vim.o.background = ""
+vim.o.background = "dark"
 vim.o.mouse = ""
 vim.wo.colorcolumn = '80'
 
