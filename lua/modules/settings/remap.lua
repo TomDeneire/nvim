@@ -46,7 +46,7 @@ vim.keymap.set("n", "ff", require("telescope.builtin").live_grep, { desc = "Tele
 vim.keymap.set("n", "<leader>old", require("telescope.builtin").oldfiles, { desc = "Telescope list of recent files" })
 vim.keymap.set(
     "n",
-    "<leader>ses",
+    "<leader>s",
     require("modules.utils").restore_session,
     { desc = "Restore previous session files" }
 )
