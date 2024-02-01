@@ -52,8 +52,6 @@ vim.o.timeout = true
 vim.o.timeoutlen = 500
 
 -- Vim style remappings (don't work in pure Lua)
-local cmd = "vmap <silent> cc :call nerdcommenter#Comment('x', 'toggle')<CR>"
-vim.cmd(cmd)
 cmd = "nnoremap <c-[> <c-^>"
 vim.cmd(cmd)
 cmd = "inoremap <c-s> <ESC>:w<CR>"
