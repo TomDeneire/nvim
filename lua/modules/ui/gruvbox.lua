@@ -2,7 +2,7 @@ local colors = require("modules.color").colors()
 
 -- Note: both old (e.g. "String") and new highlight groups (e.g. "[@string]") are necessary
 -- The former for custom (e.g. MUMPS) syntax, the latter for Treesitter!
--- Good source = https://github.com/rose-pine/neovim/blob/main/lua/rose-pine.lua
+-- Reference for hl: https://github.com/ellisonleao/gruvbox.nvim/blob/main/lua/gruvbox.lua
 local overrides = {
     -- UI
     -- CursorIM = {},
@@ -91,13 +91,13 @@ local overrides = {
     LazyNormal = { bg = colors.line_hl, fg = colors.white },
     LineNr = { fg = colors.line_nr },
     MasonNormal = { bg = colors.line_hl, fg = colors.white },
-    MatchParen = { bg = colors.bg, fg = colors.orange },
+    MatchParen = { bg = colors.line_hl, fg = colors.orange },
     ModeMsg = { fg = colors.white },
     MoreMsg = { fg = colors.white },
     NonText = { fg = colors.grey },
     Normal = { fg = colors.white, bg = colors.bg },
     NormalDark = { fg = colors.white, bg = colors.cyan },
-    NormalFloat = { fg = colors.white, bg = colors.line_hl }, -- e.g. whichkey
+    NormalFloat = { fg = colors.white, bg = colors.line_hl },
     NormalNC = { fg = colors.white, bg = colors.bg },
     NvimInternalError = { fg = colors.red },
     Pmenu = { fg = colors.white, bg = colors.bg },
@@ -176,10 +176,12 @@ local overrides = {
     Identifier = { fg = colors.white },
     Include = { fg = colors.purple },
     Keyword = { fg = colors.blue },
+    ["@keyword"] = { fg = colors.blue },
+    ["@keyword.conditional"] = { fg = colors.purple },
     ["@keyword.function"] = { fg = colors.blue },
     ["@keyword.operator"] = { fg = colors.blue, bold = false },
     ["@keyword.return"] = { fg = colors.purple, bold = true },
-    ["@keyword.luap"] = { fg = colors.red },
+    ["@keyword.luap"] = { fg = colors.blue },
     Label = { fg = colors.yellow },
     Number = { fg = colors.green },
     Method = { fg = colors.red, bold = false },
