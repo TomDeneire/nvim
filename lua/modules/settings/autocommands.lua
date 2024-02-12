@@ -22,7 +22,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 -- Code action
 vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = { "*.js", "*.hs" },
+    pattern = { "*.hs" },
     command = "silent! lua vim.lsp.buf.code_action()",
 })
 
