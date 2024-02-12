@@ -125,6 +125,10 @@ return {
                     capabilities = capabilities,
                 }
 
+                require('lspconfig').html.setup({
+                    filetypes = { 'html', 'htmldjango' },
+                })
+
                 mason_lspconfig.setup_handlers {
                     function(server_name)
                         require('lspconfig')[server_name].setup {
