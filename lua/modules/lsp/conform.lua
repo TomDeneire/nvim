@@ -6,7 +6,7 @@ return {
         require("conform").setup({
             formatters_by_ft = {
                 ["lua"] = { "stylua" },
-                ["python"] = { "autopep8" },
+                ["python"] = { "autopep8", "black" },
                 ["rust"] = { "rustfmt" },
                 ["javascript"] = { "prettier" },
                 ["javascriptreact"] = { "prettier" },
@@ -16,7 +16,8 @@ return {
                 ["css"] = { "prettier" },
                 ["scss"] = { "prettier" },
                 ["less"] = { "prettier" },
-                ["html"] = { "prettier" },
+                ["html"] = { "prettier", "html" },
+                ["htmldjango"] = { "prettier", "html", "djlint" },
                 ["json"] = { "prettier" },
                 ["jsonc"] = { "prettier" },
                 ["yaml"] = { "prettier" },
@@ -25,10 +26,6 @@ return {
                 ["graphql"] = { "prettier" },
                 ["handlebars"] = { "prettier" },
                 ["xml"] = { "xmlformatter" },
-                -- -- Conform will run multiple formatters sequentially
-                -- python = { "isort", "black" },
-                -- -- Use a sub-list to run only the first available formatter
-                -- javascript = { { "prettierd", "prettier" } },
             },
             format_on_save = function(bufnr)
                 -- Disable with a global or buffer-local variable
