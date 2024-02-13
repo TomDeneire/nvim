@@ -14,7 +14,7 @@ vim.keymap.set("n", "tb", require("telescope.builtin").buffers, { desc = "Show b
 vim.keymap.set("n", "tp", "<c-^><cr>", { desc = "Go to previously opened buffer" })
 vim.keymap.set("n", "<leader>n", "<cmd>silent :noh<CR>", { desc = "Toggle nohighlight" })
 vim.keymap.set({ "n", "x", "o" }, "H", "^", { desc = "Jump to start of line" })
-vim.keymap.set({ "n", "x", "o" }, "L", "$", { desc = "Jump to end of line" })
+vim.keymap.set({ "n", "x", "o" }, "L", "g_", { desc = "Jump to end of line" })
 vim.keymap.set({ "n", "x", "o" }, "J", "<c-i>", { desc = "Jump to start of line" })
 vim.keymap.set({ "n", "x", "o" }, "K", "<c-o>", { desc = "Jump to end of line" })
 vim.keymap.set('n', '<leader>/', function()
