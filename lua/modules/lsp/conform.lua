@@ -6,7 +6,7 @@ return {
         require("conform").setup({
             formatters_by_ft = {
                 ["lua"] = { "stylua" },
-                ["python"] = { "autopep8", "black" },
+                ["python"] = { "autopep8" },
                 ["rust"] = { "rustfmt" },
                 ["javascript"] = { "prettier" },
                 ["javascriptreact"] = { "prettier" },
