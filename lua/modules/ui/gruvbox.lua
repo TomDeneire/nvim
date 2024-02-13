@@ -185,6 +185,7 @@ local overrides = {
     Number = { fg = colors.green },
     Method = { fg = colors.red, bold = false },
     ["@method.call"] = { fg = colors.yellow },
+    ["@module"] = { fg = colors.white, bold = false },
     ["@namespace"] = { fg = colors.white, bold = false },
     Operator = { fg = colors.yellow },
     ["@parameter"] = { fg = colors.grey },
