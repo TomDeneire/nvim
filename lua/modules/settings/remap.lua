@@ -99,6 +99,8 @@ vim.keymap.set(
 )
 
 -- Other functions
+vim.keymap.set("n", "<leader>y", ':echo synIDattr(synID(line("."), col("."), 1), "name")<cr>',
+    { desc = "Show current syntax highlight" })
 vim.keymap.set("n", "<c-p>", require("modules.utils").find_in_workspace, { desc = "Find in current workspace" })
 vim.keymap.set("n", "<c-f>", require("modules.utils").grep_in_workspace, { desc = "Grep in current workspace" })
 vim.keymap.set(
