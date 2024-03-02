@@ -84,7 +84,36 @@ local servers = {
         }
     },
     marksman = {},
-    pyright = {},
+    -- see https://github.com/microsoft/pyright/blob/main/docs/configuration.md
+    pyright = {
+        pyright = {
+            -- disableLanguageServices = false,
+            -- disableOrganizeImports = true,
+        },
+        python = {
+            -- pythonPath = vim.g.python3_host_prog,
+            analysis = {
+                autoSearchPaths = true,
+                autoImportCompletion = true,
+                diagnosticMode = "openFilesOnly",
+                pythonPlatform = "linux",
+                diagnosticSeverityOverrides = {
+                    reportGeneralTypeIssues = "warning",
+                    -- reportOptionalMemberAccess = "none",
+                    -- reportOptionalSubscript = "none",
+                    -- reportPrivateImportUsage = "none",
+                    -- reportIndexIssue = "none",
+                    -- reportRedeclaration = "none",
+                    reportArgumentType = "warning",
+                    -- reportAssignmentType = "information",
+                    -- reportCallIssue = "none",
+                    -- reportReturnType = "none",
+                    -- reportAttributeAccessIssue = "none",
+                },
+            },
+        }
+    },
+    -- pyright + ruff because only ruff can format
     ruff_lsp = {},
     rust_analyzer = {},
     taplo = {},
