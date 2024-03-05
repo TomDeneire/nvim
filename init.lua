@@ -47,8 +47,6 @@ require('lazy').setup(plugins, lazy_opts)
 
 -- colorscheme
 vim.cmd.colorscheme("gruvbox")
--- removes tildes
-vim.cmd("set fillchars=eob:\\ ")
 -- better quickfixlist
 require("modules.color").better_quickfixlist()
 

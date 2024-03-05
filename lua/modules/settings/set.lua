@@ -61,4 +61,7 @@ vim.cmd(cmd)
 local cmd = "map q <Nop>"
 vim.cmd(cmd)
 
+-- Remove tildes
+vim.cmd("set fillchars=eob:\\ ")
+
 return {}
