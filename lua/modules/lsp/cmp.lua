@@ -2,14 +2,19 @@ return
 {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
-    event = "BufReadPre",
+    event = "InsertEnter",
     dependencies = {
+        -- Adds other completion capabilities.
+        --  nvim-cmp does not ship with all sources by default. They are split
+        --  into multiple repos for maintenance purposes.
         'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-cmdline',
         'hrsh7th/cmp-buffer',
         'hrsh7th/cmp-nvim-lsp-signature-help',
+        -- Snippet Engine & its associated nvim-cmp source
         'L3MON4D3/LuaSnip',
         'saadparwaiz1/cmp_luasnip',
+        -- Completion symbols
         'onsails/lspkind.nvim' },
     config = function()
         local cmp = require 'cmp'
@@ -18,7 +23,6 @@ return
 
         luasnip.config.setup {}
 
-        vim.cmd([[set completeopt=menu,menuone,noselect,preview]])
         cmp.setup {
             formatting = {
                 format = lspkind.cmp_format({
@@ -42,15 +46,14 @@ return
                     luasnip.lsp_expand(args.body)
                 end,
             },
-            completion = { keyword_length = 2 },
+            completion = { completeopt = "menu,menuone,noselect,preview", keyword_length = 2 },
             mapping = cmp.mapping.preset.insert {
-                -- ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-                -- ['<C-f>'] = cmp.mapping.scroll_docs(4),
                 ['<C-Space>'] = cmp.mapping.complete {},
                 ['<CR>'] = cmp.mapping.confirm {
                     behavior = cmp.ConfirmBehavior.Replace,
                     select = true,
                 },
+                -- Select next item
                 ['<Tab>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_next_item()
@@ -60,22 +63,12 @@ return
                         fallback()
                     end
                 end, { 'i', 's' }),
-                -- ['<S-Tab>'] = cmp.mapping(function(fallback)
-                --     if cmp.visible() then
-                --         cmp.select_prev_item()
-                --     elseif luasnip.jumpable(-1) then
-                --         luasnip.jump(-1)
-                --     else
-                --         fallback()
-                --     end
-                -- end, { 'i', 's' }),
             },
             sources = {
                 { name = 'nvim_lsp' },
                 { name = 'luasnip' },
                 { name = 'codeium' },
                 { name = 'nvim_lsp_signature_help' },
-                -- { name = 'buffer' },
             },
         }
 
@@ -91,7 +84,6 @@ return
 
         cmp.setup.cmdline({ '/', '?' }, {
             mapping = cmp.mapping.preset.cmdline(),
-            ['<C-Space>'] = cmp.mapping.complete {},
             ['<CR>'] = cmp.mapping.confirm {
                 behavior = cmp.ConfirmBehavior.Replace,
                 select = true,
@@ -105,15 +97,6 @@ return
                     fallback()
                 end
             end, { 'i', 's' }),
-            -- ['<S-Tab>'] = cmp.mapping(function(fallback)
-            --     if cmp.visible() then
-            --         cmp.select_prev_item()
-            --     elseif luasnip.jumpable(-1) then
-            --         luasnip.jump(-1)
-            --     else
-            --         fallback()
-            --     end
-            -- end, { 'i', 's' }),
             sources = {
                 { name = 'buffer' }
             }
@@ -128,7 +111,8 @@ return
                 { name = 'cmdline' }
             })
         })
-        -- load custom snippets
+
+        -- Load custom snippets
         require("luasnip.loaders.from_vscode").lazy_load({ paths = "~/.config/nvim/snippets" })
     end
 }

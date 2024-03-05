@@ -3,13 +3,12 @@
 QtechNG_files = { "*.m", "*.l", "*.x", "*.i", "*.b", "*.d" }
 
 -- Highlight on yank
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
+    desc = 'Highlight when yanking (copying) text',
+    group = vim.api.nvim_create_augroup('spunkshui-highlight-yank', { clear = true }),
     callback = function()
         vim.highlight.on_yank()
     end,
-    group = highlight_group,
-    pattern = '*',
 })
 
 -- Trim trailing whitespace

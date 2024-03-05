@@ -30,9 +30,6 @@ local opts = {
     -- List of parsers to ignore installing (for "all")
     ignore_install = {},
 
-    ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
-    -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
-
     highlight = {
         -- `false` will disable the whole extension
         enable = true,
@@ -41,14 +38,6 @@ local opts = {
         -- the name of the parser)
         -- list of language that will be disabled
         disable = { "matlab", "dfile", "objc", "mfile", "lfile", "xfile", "ifile", "bfile" },
-        -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
-        --disable = function(lang, buf)
-        --local max_filesize = 100 * 1024 -- 100 KB
-        --local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-        --if ok and stats and stats.size > max_filesize then
-        --return true
-        --end
-        --end,
 
         -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
         -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
@@ -57,15 +46,14 @@ local opts = {
         additional_vim_regex_highlighting = false,
     },
 
+    indent = { enable = true },
+
 }
-return
-{
+
+return {
     'nvim-treesitter/nvim-treesitter',
-    version = false, -- last release is way too old and doesn't work on Windows
     build = ":TSUpdate",
-    event = { "BufReadPost", "BufNewFile" },
     config = function()
-        pcall(require('nvim-treesitter.install').update { with_sync = true })
         require('nvim-treesitter.configs').setup(opts)
     end
 }

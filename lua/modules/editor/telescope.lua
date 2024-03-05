@@ -1,7 +1,7 @@
 return
 {
     'nvim-telescope/telescope.nvim',
-    event = "VeryLazy",
+    event = "VimEnter",
     version = '*',
     dependencies =
     { { 'nvim-lua/plenary.nvim' },
@@ -75,6 +75,7 @@ return
                 },
             },
             extensions = {
+                ['ui-select'] = { require('telescope.themes').get_dropdown() },
                 fzf = {
                     fuzzy = true,                   -- false will only do exact matching
                     override_generic_sorter = true, -- override the generic sorter
@@ -92,8 +93,7 @@ return
             }
         }
 
-        require('telescope').load_extension('fzf')
-
-        require('telescope').load_extension('file_browser')
+        pcall(require('telescope').load_extension('fzf'))
+        pcall(require('telescope').load_extension('file_browser'))
     end
 }

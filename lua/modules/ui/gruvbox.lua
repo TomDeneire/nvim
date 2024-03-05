@@ -292,5 +292,11 @@ return {
             dim_inactive = false,
             transparent_mode = true,
         })
+
+        -- Tell nvim to use this colorscheme
+        vim.cmd.colorscheme("gruvbox")
+
+        -- Better quickfixlist (do this after setting colorscheme!)
+        require("modules.color").better_quickfixlist()
     end
 }
