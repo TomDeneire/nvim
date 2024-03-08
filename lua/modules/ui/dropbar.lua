@@ -3,6 +3,7 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   config = function()
     require("dropbar").setup({
+      opts = { sources = { 'lsp', 'markdown', 'treesitter', 'terminal' } },
       icons = {
         kinds = {
           symbols = {
