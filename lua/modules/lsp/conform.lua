@@ -4,8 +4,7 @@ return {
 	config = function()
 		require("conform").setup({
 			formatters_by_ft = {
-				python = { "blue" },
-				javascript = { "prettier" },
+				["python"] = { "blue" },
 				["rust"] = { "rustfmt" },
 				["javascript"] = { "prettier" },
 				["javascriptreact"] = { "prettier" },
@@ -28,9 +27,12 @@ return {
 			},
 			format_on_save = {
 				-- These options will be passed to conform.format()
-				timeout_ms = 500,
+				-- Timout of 1000 is better for larger files (than suggested 500)
+				timeout_ms = 1000,
 				lsp_fallback = true,
 			},
 		})
+		vim.keymap.set("n", "<leader>c", ":lua require('conform').format({ timeout_ms = 100000 })<cr>",
+			{ desc = "Format with conform with very long timeout" })
 	end
 }
