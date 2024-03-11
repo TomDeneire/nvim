@@ -1,6 +1,7 @@
 -- Basic
 vim.keymap.set("n", "<c-a>", "ggVG")
 vim.keymap.set("n", "<c-s>", ":w<CR>")
+vim.keymap.set("n", "ZZ", ":wqa!<CR>")
 vim.keymap.set({ "n", "v" }, "<c-j>", "10j")
 vim.keymap.set({ "n", "v" }, "<c-k>", "10k")
 vim.keymap.set({ "n", "v" }, "<c-h>", "b")
