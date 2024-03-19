@@ -22,20 +22,24 @@ function M.colors()
         line_hl = "#393836"
 
         -- Kanagawa style
-        -- bg = "#2a2a2a"
-        -- white = "#DCD7BA"       -- fujiWhite
-        -- blue = "#7FB4CA"        -- springBlue
-        -- brightblue = "#A3D4D5"  -- lightBlue
-        -- red = "#C34043"         -- autumnRed
-        -- orange = "#FF9E3B"      -- roninYellow
-        -- yellow = "#DCA561"      -- autumnYellow
-        -- green = "#76946A"       -- autumnGreen
-        -- cyan = "#7AA89F"        -- waveAqua2
-        -- purple = "#957FB8"      -- oniViolet
-        -- brown = "#FFA066"       -- surimiOrange
-        -- brightwhite = "#DCD7BA" -- fujiWhite
-        -- grey = "#717C7C"        -- katanaGray
-        -- line_hl = "#393836"
+        -- bg = "#303030",
+        -- statusline_bg = "#393836",
+        -- white = "#DCD7BA",       -- fujiWhite
+        -- blue = "#7FB4CA",        -- springBlue
+        -- brightblue = "#A3D4D5",  -- lightBlue
+        -- red = "#C34043",         -- autumnRed
+        -- dim_red = "#C34043",
+        -- orange = "#FF9E3B",      -- roninYellow
+        -- yellow = "#DCA561",      -- autumnYellow
+        -- green = "#76946A",       -- autumnGreen
+        -- cyan = "#7AA89F",        -- waveAqua2
+        -- purple = "#957FB8",      -- oniViolet
+        -- brown = "#FFA066",       -- surimiOrange
+        -- brightwhite = "#DCD7BA", -- fujiWhite
+        -- selection = "#C34043",
+        -- line_nr = "#717C7C",
+        -- grey = "#717C7C", -- katanaGray
+        -- line_hl = "#393836",
     }
 end
 
