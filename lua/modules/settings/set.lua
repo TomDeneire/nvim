@@ -3,7 +3,6 @@ vim.opt.autoindent = true
 vim.opt.cursorline = true
 vim.opt.autowrite = true
 vim.opt.hlsearch = true
-vim.opt.termguicolors = true
 vim.opt.showtabline = 2
 vim.opt.ignorecase = true
 vim.o.smartcase = true
