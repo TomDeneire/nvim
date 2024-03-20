@@ -1,4 +1,5 @@
 -- Basic
+vim.keymap.set("n", "<leader>m", "q")
 vim.keymap.set("n", "<c-a>", "ggVG")
 vim.keymap.set("n", "<c-s>", ":w<CR>")
 vim.keymap.set("n", "ZZ", ":wqa!<CR>")
