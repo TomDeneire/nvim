@@ -3,7 +3,8 @@ return {
     ft = { "go", "python" },
     dependencies = {
         "leoluz/nvim-dap-go",
-        "rcarriga/nvim-dap-ui" },
+        "rcarriga/nvim-dap-ui",
+        "nvim-neotest/nvim-nio" },
     config = function()
         local dap = require('dap')
 
@@ -26,6 +27,7 @@ return {
                     },
                 })
             else
+                -- run `py3 -m pip install debugpy` if necessary!
                 cb({
                     type = 'executable',
                     command = 'py3',
@@ -155,5 +157,7 @@ return {
             { desc = 'DAPUI open' })
         vim.keymap.set("n", "<leader>de", require("dapui").eval,
             { desc = 'DAPUI float' })
+        vim.keymap.set("n", "<leader>du", require("dapui").toggle,
+            { desc = 'DAPUI open' })
     end
 }
