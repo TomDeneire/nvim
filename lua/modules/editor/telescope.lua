@@ -22,6 +22,10 @@ return
             'nvim-telescope/telescope-file-browser.nvim',
             event = "VeryLazy"
         },
+        {
+            'catgoose/telescope-helpgrep.nvim',
+            event = "VeryLazy"
+        },
     },
     config = function()
         require('telescope').setup {
@@ -89,11 +93,17 @@ return
                     dir_icon = "",
                     hidden = true,
                     respect_gitignore = false
+                },
+                helpgrep = {
+                    ignore_paths = {
+                        vim.fn.stdpath("state") .. "/lazy/readme",
+                    },
                 }
             }
         }
 
         pcall(require('telescope').load_extension('fzf'))
         pcall(require('telescope').load_extension('file_browser'))
+        pcall(require('telescope').load_extension('helpgrep'))
     end
 }
