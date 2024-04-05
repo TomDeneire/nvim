@@ -30,7 +30,7 @@ vim.api.nvim_create_autocmd("BufwritePost", {
 })
 
 -- Auto-add path to zoxide
-vim.api.nvim_create_autocmd("BufEnter", {
+vim.api.nvim_create_autocmd("BufNew", {
     desc = 'Auto-add path to zoxide',
     command = "silent! !zoxide add %:p:h",
 })
