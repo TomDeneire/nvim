@@ -41,7 +41,7 @@ return {
                 custom_areas = {
                     left = function()
                         return {
-                            { text = "    " },
+                            { text = "    " },
                         }
                     end
                 },
