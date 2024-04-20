@@ -12,6 +12,7 @@ vim.o.breakindent = true
 vim.o.background = "dark"
 vim.o.mouse = ""
 vim.wo.colorcolumn = '80'
+vim.g.have_nerd_font = true
 -- vim.o.scrolloff = 10
 
 -- No whitespace
