@@ -98,7 +98,7 @@ return
                 end
             end, { 'i', 's' }),
             sources = {
-                { name = 'buffer' }
+                { name = 'cmdline' }
             }
         })
 
