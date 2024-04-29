@@ -291,6 +291,72 @@ function M.checkin_current_file()
     vim.cmd(cmd)
 end
 
+function _determine_paragraph(current_line)
+    local index = current_line
+    local begin_of_paragraph = 0
+    local end_of_paragraph = 0
+    while (true) do
+        local previous = index - 1
+        if previous == 0 then
+            break
+        end
+        local line_up = vim.api.nvim_buf_get_lines(0, previous, index, false)[1]
+        if line_up == "" or line_up == nil then
+            break
+        end
+        index = index - 1
+        begin_of_paragraph = index + 1
+    end
+    while (true) do
+        local next = index + 1
+        local line_down = vim.api.nvim_buf_get_lines(0, index, next, false)[1]
+        if line_down == "" or line_down == nil then
+            break
+        end
+        index = index + 1
+        end_of_paragraph = index
+    end
+    return { begin_of_paragraph, end_of_paragraph }
+end
+
+function _get_variables_from_paragraph(lines)
+    local variables = {}
+    for _, line in ipairs(lines) do
+        -- do not check new-line itself and do not check comments!
+        if not line:match("^%sn%s") and (not line:match("^%s;")) then
+            line = string.gsub(line, "%W+", " ")
+            local vars = _split(line, " ")
+            for _, var in ipairs(vars) do
+                if var ~= "" then
+                    variables[var] = true
+                end
+            end
+        end
+    end
+    return variables
+end
+
+function _clean_newline(newline, variables)
+    local newline = string.sub(newline, 4)
+    local new_vars = _split(newline, ",")
+    table.sort(new_vars)
+    local clean_vars = ""
+    local unique_vars = {}
+    for _, var in ipairs(new_vars) do
+        -- check if var is in paragraph
+        if variables[var] ~= nil then
+            -- check if var is unique
+            if unique_vars[var] == nil then
+                clean_vars = clean_vars .. "," .. var
+                unique_vars[var] = true
+            end
+        end
+    end
+    clean_vars = _lstrip(clean_vars, ",")
+    clean_newline = " n " .. clean_vars
+    return clean_newline
+end
+
 function M.new_var(myvar)
     if myvar == nil then
         myvar = vim.fn.expand("<cword>")
@@ -300,6 +366,10 @@ function M.new_var(myvar)
     vim.cmd("?^ n ")
     local newpos = vim.fn.getcurpos()
     local newline = vim.fn.getline(".") .. "," .. myvar
+    local paragraph = _determine_paragraph(curpos[2])
+    local lines = vim.api.nvim_buf_get_lines(0, paragraph[1], paragraph[2], false)
+    local variables = _get_variables_from_paragraph(lines)
+    newline = _clean_newline(newline, variables)
     vim.api.nvim_buf_set_lines(0, newpos[2] - 1, newpos[2], false, { newline })
     vim.cmd("silent :noh")
     vim.fn.setpos(".", curpos)
@@ -381,7 +451,6 @@ function M.mumps_indent()
                 else
                     if string.sub(indent_begin, 1, 1) == "." then
                         local indent_minus_one = string.len(indent_begin) - 1
-                        print(indent_minus_one)
                         if indent_minus_one < 1 then
                             indent = " "
                         else
