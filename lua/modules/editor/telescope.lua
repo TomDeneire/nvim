@@ -2,7 +2,7 @@ return
 {
     'nvim-telescope/telescope.nvim',
     event = "VimEnter",
-    version = '*',
+    branch = '0.1.x',
     dependencies =
     { { 'nvim-lua/plenary.nvim' },
         -- Fuzzy Finder Algorithm which requires local dependencies to be built.
@@ -67,7 +67,7 @@ return
                     disable_devicons = false,
                     sorting_strategy = "ascending",
                     prompt_prefix = "🔍 ",
-                    scroll_strategy = "limit",
+                    scroll_strategy = "cycle",
                     path_display = { "absolute", "truncate" }
                 },
                 live_grep = {
@@ -75,7 +75,7 @@ return
                     disable_devicons = false,
                     prompt_prefix = "🔍 ",
                     sorting_strategy = "ascending",
-                    scroll_strategy = "limit"
+                    scroll_strategy = "cycle"
                 },
             },
             extensions = {
@@ -85,7 +85,6 @@ return
                     override_generic_sorter = true, -- override the generic sorter
                     override_file_sorter = true,    -- override the file sorter
                     case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
-                    -- the default case_mode is "smart_case"
                 },
                 file_browser = {
                     theme = "ivy",
