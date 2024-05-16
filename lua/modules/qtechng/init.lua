@@ -261,6 +261,7 @@ function M.macro_list()
             find_command = { "rg", "--smart-case", "--files" },
             no_ignore = true,
             no_ignore_parent = true,
+            scroll_strategy = "limit",
             cwd = "/home/tdeneire/Dropbox/brocade/support/macros"
         })
 end
