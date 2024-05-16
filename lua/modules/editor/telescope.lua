@@ -63,18 +63,16 @@ return
                 -- Now the picker_config_key will be applied every time you call this
                 -- builtin picker
                 find_files = {
-                    theme = "ivy",
                     disable_devicons = false,
-                    sorting_strategy = "ascending",
+                    sorting_strategy = "descending",
                     prompt_prefix = "🔍 ",
                     scroll_strategy = "cycle",
                     path_display = { "absolute", "truncate" }
                 },
                 live_grep = {
-                    theme = "ivy",
                     disable_devicons = false,
                     prompt_prefix = "🔍 ",
-                    sorting_strategy = "ascending",
+                    sorting_strategy = "descending",
                     scroll_strategy = "cycle"
                 },
             },
