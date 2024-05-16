@@ -23,12 +23,15 @@ local function _getfinddir()
     local packages_work_dir = "/home/tdeneire/Dropbox/brocade/packages"
     local projects_work_dir = "/home/tdeneire/Dropbox/code"
     local websites_work_dir = "/home/tdeneire/Dropbox/websites"
+    local notes_work_dir = "/home/tdeneire/Dropbox/Documents/notes"
     if string.find(workspace, sourcedir) ~= nil then
         return qtechng_work_dir
     elseif string.find(workspace, packagesdir) ~= nil then
         return packages_work_dir
     elseif string.find(workspace, websites_work_dir) ~= nil then
         return websites_work_dir
+    elseif string.find(workspace, notes_work_dir) ~= nil then
+        return notes_work_dir
     else
         return projects_work_dir
     end
