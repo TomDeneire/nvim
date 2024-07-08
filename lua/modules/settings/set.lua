@@ -78,7 +78,7 @@ vim.o.timeoutlen = 500
 vim.cmd("nnoremap <c-[> <c-^>")
 vim.cmd("inoremap <c-s> <ESC>:w<CR>")
 
--- Disable macro recording
+-- Disable q for macro recording
 vim.cmd("map q <Nop>")
 
 -- Remove tildes
