@@ -1,6 +1,34 @@
 local colors = require("modules.color").colors()
 
+local function mode_fmt(mode)
+    local icon = ""
+    if mode == "NORMAL" then
+        icon = "󰆾"
+    elseif mode == "INSERT" then
+        icon = ""
+    elseif mode == "COMMAND" then
+        icon = ""
+    elseif mode == "SELECT" then
+        icon = "󰩬"
+    elseif mode == "VISUAL" then
+        icon = ""
+    elseif mode == "V-LINE" then
+        icon = ""
+    elseif mode == "TERMINAL" then
+        icon = ""
+    else
+        icon = ""
+    end
+    return icon .. " " .. mode
+end
+
 -- Sections
+local mode = {
+    'mode',
+    color = { fg = colors.statusline_bg },
+    fmt = mode_fmt
+}
+
 local branch = {
     'branch',
     color = { fg = colors.white, bg = colors.statusline_bg },
@@ -17,10 +45,6 @@ local lsp_progress = {
     color = { fg = colors.white, bg = colors.statusline_bg }
 }
 
-local mode = {
-    'mode',
-    color = { fg = colors.statusline_bg }
-}
 
 local diff = {
     'diff',
