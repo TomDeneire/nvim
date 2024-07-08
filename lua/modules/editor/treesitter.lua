@@ -9,6 +9,7 @@ local opts = {
         "javascript",
         "json",
         "lua",
+        "make",
         "markdown",
         "markdown_inline",
         "python",
