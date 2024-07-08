@@ -7,6 +7,7 @@
 --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
 --  - settings (table): Override the default settings passed when initializing the server.
 --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+--
 local servers = {
     bashls = {},
     elixirls = {
@@ -17,6 +18,11 @@ local servers = {
     -- hls = {},
     html = {},
     intelephense = {},
+    djlint = {},
+    flake8 = {},
+    shellcheck = {},
+    staticcheck = {},
+    mypy = {},
     jsonls = {},
     lemminx = {},
     lua_ls = {
@@ -38,39 +44,6 @@ local servers = {
                         vim.fn.expand '~/.luarocks/share/lua/5.4',
                         '/usr/share/lua/5.4'
                     }
-                }
-            }
-        }
-    },
-    marksman = {},
-    -- see https://github.com/microsoft/pyright/blob/main/docs/configuration.md
-    pyright = {
-        settings = {
-            pyright = {
-                -- disableLanguageServices = false,
-                -- disableOrganizeImports = true,
-            },
-            python = {
-                -- pythonPath = vim.g.python3_host_prog,
-                analysis = {
-                    autoSearchPaths = true,
-                    autoImportCompletion = true,
-                    diagnosticMode = "openFilesOnly",
-                    pythonPlatform = "linux",
-                    diagnosticSeverityOverrides = {
-                        reportGeneralTypeIssues = "warning",
-                        reportOptionalCall = "warning",
-                        -- reportOptionalMemberAccess = "none",
-                        -- reportOptionalSubscript = "none",
-                        -- reportPrivateImportUsage = "none",
-                        -- reportIndexIssue = "none",
-                        -- reportRedeclaration = "none",
-                        reportArgumentType = "warning",
-                        -- reportAssignmentType = "information",
-                        -- reportCallIssue = "none",
-                        reportReturnType = "warning",
-                        -- reportAttributeAccessIssue = "none",
-                    },
                 },
             }
         }
