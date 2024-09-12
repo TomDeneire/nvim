@@ -188,6 +188,7 @@ function M.jump_to_routine()
     mroutine = string.gsub(mroutine, 'm4_Routine.', "")
     mroutine = _rstrip(mroutine, ")")
     mroutine = _rstrip(mroutine, ",")
+    mroutine = _rstrip(mroutine, "]")
     local m = _split(mroutine, "(")
     mroutine = m[1]
     local t = _split(mroutine, "^")
