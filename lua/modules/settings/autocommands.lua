@@ -66,4 +66,16 @@ vim.api.nvim_create_autocmd("FileType", {
     command = [[setlocal expandtab shiftwidth=1 softtabstop=1 nowrap]]
 })
 
+-- No autoformat in Brocade .py
+vim.api.nvim_create_autocmd("BufEnter", {
+    pattern = { "*.py" },
+    callback = function()
+        local workspace = vim.fn.getcwd()
+        local sourcedir = "/brocade/source/data"
+        if string.find(workspace, sourcedir) ~= nil then
+            vim.api.nvim_command("FormatDisable")
+        end
+    end,
+})
+
 return {}
