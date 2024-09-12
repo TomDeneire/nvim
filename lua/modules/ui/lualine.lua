@@ -22,6 +22,18 @@ local function mode_fmt(mode)
     return icon .. " " .. mode
 end
 
+local function truncate(filepath)
+    local max_length = math.floor(vim.o.columns / 3)
+    local total_length = string.len(filepath)
+    if total_length > max_length then
+        local truncator = "…"
+        local startpos = 1 + (total_length - max_length) + string.len(truncator)
+        return truncator .. string.sub(filepath, startpos, total_length)
+    else
+        return filepath
+    end
+end
+
 -- Sections
 local mode = {
     'mode',
@@ -35,9 +47,11 @@ local branch = {
     icon = ''
 }
 
-local filepath = {
-    "vim.fn.expand('%:p')",
-    color = { fg = colors.white, bg = colors.statusline_bg }
+local filename = {
+    "filename",
+    color = { fg = colors.white, bg = colors.statusline_bg },
+    path = 3,
+    fmt = truncate
 }
 
 local lsp_progress = {
@@ -105,7 +119,7 @@ local theme = {
     normal = {
         b = { fg = colors.color0, bg = colors.color1 },
         c = { fg = colors.color7, bg = colors.color4 },
-        a = { fg = colors.color4, bg = colors.color14, gui = 'bold' },
+        a = { fg = colors.color4, bg = colors.color14 },
     },
 }
 
@@ -120,8 +134,9 @@ return {
             options = {
                 icons_enabled = true,
                 theme = theme,
-                component_separators = { left = '|', right = '  ' },
-                section_separators = { left = '  ', right = '  ' },
+                component_separators = { left = '|', right = '|' },
+                -- section_separators = { left = '', right = '' },
+                section_separators = { left = '', right = '' },
                 disabled_filetypes = {
                     statusline = {},
                     winbar = {},
@@ -138,7 +153,7 @@ return {
             sections = {
                 lualine_a = { mode },
                 lualine_b = { diff, diagnostics },
-                lualine_c = { branch, filepath, lsp_progress },
+                lualine_c = { branch, filename, lsp_progress },
                 lualine_x = { encoding, filetype },
                 lualine_y = {},
                 lualine_z = { progress }
