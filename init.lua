@@ -32,6 +32,7 @@ local plugins = {
   { import = 'modules.lsp' },
   { import = 'modules.ui' },
   { import = 'modules.settings' },
+  { import = 'modules.remap' },
 }
 
 -- Load Lazy plugins
