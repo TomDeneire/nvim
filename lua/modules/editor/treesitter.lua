@@ -15,6 +15,7 @@ local opts = {
         "python",
         "regex",
         "rst",
+        "rust",
         "tsx",
         "typescript",
         "vim",
