@@ -19,7 +19,8 @@ function M.colors()
         grey = "#a7adba",
         selection = "#C34043",
         line_nr = "#717C7C",
-        line_hl = "#393836"
+        line_hl = "#393836",
+        bg_light = "#393836",
 
         -- Kanagawa style
         -- bg = "#303030",
