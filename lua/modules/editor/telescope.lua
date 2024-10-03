@@ -26,6 +26,10 @@ return
             'catgoose/telescope-helpgrep.nvim',
             event = "VeryLazy"
         },
+        {
+            "debugloop/telescope-undo.nvim",
+            event = "VeryLazy"
+        }
     },
     config = function()
         require('telescope').setup {
@@ -102,5 +106,6 @@ return
         pcall(require('telescope').load_extension('fzf'))
         pcall(require('telescope').load_extension('file_browser'))
         pcall(require('telescope').load_extension('helpgrep'))
+        pcall(require('telescope').load_extension('undo'))
     end
 }

@@ -6,9 +6,11 @@ return {
     ft = require("modules.utils").lsp_filetypes,
     config = function()
         require("ibl").setup {
-            indent = { char = "|" },
+            indent = {
+                char = "│",
+                tab_char = "│",
+            },
             scope = {
-                char = "|",
                 enabled = true,
                 show_start = false,
                 show_end = false

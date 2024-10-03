@@ -1,13 +1,8 @@
-return
-{
-    "jcdickinson/codeium.nvim",
+return {
+    "Exafunction/codeium.nvim",
     dependencies = {
         "nvim-lua/plenary.nvim",
         "hrsh7th/nvim-cmp",
     },
-    event = { "BufReadPost", "BufNewFile" },
-    config = function()
-        require("codeium").setup({
-        })
-    end
+    config = true,
 }

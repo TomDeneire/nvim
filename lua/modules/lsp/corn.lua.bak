@@ -1,0 +1,16 @@
+return
+{
+    'RaafatTurki/corn.nvim',
+    config = function()
+        require 'corn'.setup {
+            blacklisted_modes = { 'i' },
+            border_style = 'rounded',
+            icons = {
+                error = " ",
+                warn = " ",
+                hint = " ",
+                info = " ",
+            },
+        }
+    end
+}

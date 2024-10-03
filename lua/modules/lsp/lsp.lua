@@ -14,7 +14,7 @@ local servers = {
         cmd = { '/home/tdeneire/bin/language_server.sh' },
     },
     gopls = {},
-    golangci_lint_ls = {},
+    -- golangci_lint_ls = {},  -- process consumes too much RAM!
     -- hls = {},
     html = {},
     intelephense = {},
@@ -22,7 +22,7 @@ local servers = {
     flake8 = {},
     shellcheck = {},
     staticcheck = {},
-    mypy = {},
+    -- mypy = {},  -- errors too verbose
     jsonls = {},
     lemminx = {},
     lua_ls = {
@@ -97,8 +97,6 @@ return { -- LSP Configuration & Plugins
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities = vim.tbl_deep_extend(
             'force', capabilities, require('cmp_nvim_lsp').default_capabilities())
-
-        local servers = servers
 
         -- Ensure the servers and tools above are installed
         --  To check the current status of installed tools and/or manually install

@@ -1,3 +1,4 @@
+-- SOURCE: https://github.com/nvim-lua/kickstart.nvim
 if vim.g.vscode then
   return
 end
@@ -41,6 +42,21 @@ local lazy_opts = {
     -- automatically check for config file changes and reload the ui
     enabled = false,
     notify = true, -- get a notification when changes are found
+  },
+  performance = {
+    rtp = {
+      -- disable some rtp plugins
+      disabled_plugins = {
+        "gzip",
+        -- "matchit",
+        -- "matchparen",
+        "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
   },
 }
 

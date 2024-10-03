@@ -62,7 +62,12 @@ local lsp_progress = {
 
 local diff = {
     'diff',
-    color = { fg = colors.white, bg = colors.statusline_bg }
+    symbols = {
+        added = " ",
+        modified = " ",
+        removed = " "
+    },
+    color = { fg = colors.white, bg = colors.statusline_bg },
 }
 
 local progress = {
@@ -77,7 +82,8 @@ local encoding = {
 
 local filetype = {
     'filetype',
-    color = { fg = colors.white, bg = colors.statusline_bg }
+    color = { fg = colors.white, bg = colors.statusline_bg },
+    icon_only = true
 }
 
 local diagnostics = {

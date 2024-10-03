@@ -78,4 +78,11 @@ function M.lsp_filetypes()
         "rst", "vim", "haskell", "rust", "bash", "elixir", "toml", "yaml" }
 end
 
+-- Open wezterm in cwd
+function M.wezterm_open()
+    local cmd = { 'wezterm', 'start', '--cwd', vim.fn.getcwd() }
+    -- function from /home/tdeneire/.local/share/nvim/lazy/lazy.nvim/lua/lazy/util.lua
+    require('lazy.util').float_term(cmd, { size = { width = 0.9, height = 0.9 } })
+end
+
 return M

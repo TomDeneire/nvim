@@ -26,7 +26,7 @@ vim.o.clipboard = 'unnamedplus'
 vim.opt.number = true
 vim.opt.relativenumber = true
 
--- Show mode only in satusline
+-- Show mode only in statusline
 vim.opt.showmode = false
 
 -- Highlighting cursorword
@@ -38,17 +38,55 @@ vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 
+-- Split a string on a delimiter
+function _split(mystring, delim)
+    local result = {}
+    local start = 1
+
+    while (true) do
+        local _, pos = string.find(mystring, delim, start, true)
+        if pos == nil then
+            local rest = string.sub(mystring, start, string.len(mystring))
+            table.insert(result, rest)
+            break
+        else
+            local matchlen = pos - string.len(delim)
+            local part = string.sub(mystring, start, matchlen)
+            start = pos + 1
+            table.insert(result, part)
+        end
+    end
+
+    return result
+end
+
 -- LSP settings
 vim.diagnostic.config(
     {
-        underline = true,
+        underline = false,
         virtual_text = false,
         -- virtual_text = {
         --     spacing = 2,
         --     prefix = "●",
+        --     format =
+        --         function(diagnostic)
+        --             local message = diagnostic.message
+        --             if string.match(message, "msg=") then
+        --                 message = _split(message, "msg=")[2]
+        --             end
+        --             return string.sub(message, 1, 50) .. "..."
+        --         end
         -- },
         update_in_insert = false,
         severity_sort = true,
+        signs = {
+            text = {
+                [vim.diagnostic.severity.ERROR] = " ",
+                [vim.diagnostic.severity.WARN] = " ",
+                [vim.diagnostic.severity.HINT] = " ",
+                [vim.diagnostic.severity.INFO] = " ",
+            },
+        },
     }
 )
 

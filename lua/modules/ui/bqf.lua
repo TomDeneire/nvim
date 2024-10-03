@@ -1,11 +1,12 @@
 -- Better quickfix window
+local colors = require("modules.color").colors()
 return
 {
     'kevinhwang91/nvim-bqf',
     ft = 'qf',
     config = function()
         vim.cmd([[
-    hi BqfPreviewBorder guifg=#50a14f ctermfg=71
+    hi BqfPreviewBorder guifg=]] .. colors.green .. [[ ctermfg=71
     hi link BqfPreviewRange Search
     ]])
         require('bqf').setup({
