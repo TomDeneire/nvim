@@ -1,4 +1,1 @@
-return
-{
-    'xiyaowong/nvim-cursorword',
-}
+return { 'xiyaowong/nvim-cursorword' }

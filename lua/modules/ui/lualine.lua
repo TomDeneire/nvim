@@ -1,5 +1,3 @@
-local colors = require("modules.color").colors()
-
 local function mode_fmt(mode)
     local icon = ""
     if mode == "NORMAL" then
@@ -37,26 +35,22 @@ end
 -- Sections
 local mode = {
     'mode',
-    color = { fg = colors.statusline_bg },
     fmt = mode_fmt
 }
 
 local branch = {
     'branch',
-    color = { fg = colors.white, bg = colors.statusline_bg },
     icon = ''
 }
 
 local filename = {
     "filename",
-    color = { fg = colors.white, bg = colors.statusline_bg },
     path = 3,
     fmt = truncate
 }
 
 local lsp_progress = {
     require('lsp-progress').progress,
-    color = { fg = colors.white, bg = colors.statusline_bg }
 }
 
 
@@ -67,66 +61,23 @@ local diff = {
         modified = " ",
         removed = " "
     },
-    color = { fg = colors.white, bg = colors.statusline_bg },
 }
 
 local progress = {
     'progress',
-    color = { fg = colors.white, bg = colors.statusline_bg }
 }
 
 local encoding = {
     'encoding',
-    color = { fg = colors.white, bg = colors.statusline_bg }
 }
 
 local filetype = {
     'filetype',
-    color = { fg = colors.white, bg = colors.statusline_bg },
     icon_only = true
 }
 
 local diagnostics = {
     'diagnostics',
-    color = { fg = colors.white, bg = colors.statusline_bg }
-}
-
-local colors = {
-    color5  = colors.blue,
-    color6  = colors.grey,
-    color7  = colors.grey,
-    color10 = colors.orange,
-    color13 = colors.purple,
-    color14 = colors.green,
-    color0  = colors.white,
-    color1  = colors.grey,
-    color4  = colors.statusline_bg,
-}
-
--- Custom theme
-local theme = {
-    visual = {
-        b = { fg = colors.color0, bg = colors.color1 },
-        a = { fg = colors.color4, bg = colors.color5, gui = 'bold' },
-    },
-    inactive = {
-        b = { fg = colors.color6, bg = colors.color4 },
-        c = { fg = colors.color6, bg = colors.color4 },
-        a = { fg = colors.color7, bg = colors.color4, gui = 'bold' },
-    },
-    insert = {
-        b = { fg = colors.color0, bg = colors.color1 },
-        a = { fg = colors.color4, bg = colors.color10, gui = 'bold' },
-    },
-    replace = {
-        b = { fg = colors.color0, bg = colors.color1 },
-        a = { fg = colors.color4, bg = colors.color13, gui = 'bold' },
-    },
-    normal = {
-        b = { fg = colors.color0, bg = colors.color1 },
-        c = { fg = colors.color7, bg = colors.color4 },
-        a = { fg = colors.color4, bg = colors.color14 },
-    },
 }
 
 return {
@@ -139,9 +90,7 @@ return {
         require("lualine").setup {
             options = {
                 icons_enabled = true,
-                theme = theme,
                 component_separators = { left = '|', right = '|' },
-                -- section_separators = { left = '', right = '' },
                 section_separators = { left = '', right = '' },
                 disabled_filetypes = {
                     statusline = {},
