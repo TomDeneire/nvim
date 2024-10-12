@@ -8,7 +8,7 @@ vim.keymap.set(
 
 vim.keymap.set(
     "n",
-    "<leader>term",
+    "<leader>t",
     require("modules.utils").wezterm_open,
     { desc = "Open wezterm terminal" }
 )
