@@ -1,1 +1,0 @@
-return { 'xiyaowong/nvim-cursorword' }
