@@ -18,7 +18,6 @@ local servers = {
     -- hls = {},
     html = {},
     intelephense = {},
-    djlint = {},
     flake8 = {},
     shellcheck = {},
     staticcheck = {},
@@ -48,10 +47,15 @@ local servers = {
             }
         }
     },
+    pyright = {},
     rust_analyzer = {},
     taplo = {},
     -- ts_ls = {},
     vimls = {},
+    -- formatters
+    blue = {},
+    prettier = {},
+    djlint = {},
 }
 
 return { -- LSP Configuration & Plugins
