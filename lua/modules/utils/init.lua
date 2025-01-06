@@ -17,23 +17,14 @@ end
 
 local function _getfinddir()
     local workspace = vim.fn.getcwd()
-    local sourcedir = "/brocade/source/data"
-    local packagesdir = "/brocade/packages"
-    local qtechng_work_dir = "/home/tdeneire/Dropbox/brocade/source/data"
-    local packages_work_dir = "/home/tdeneire/Dropbox/brocade/packages"
-    local projects_work_dir = "/home/tdeneire/Dropbox/code"
-    local websites_work_dir = "/home/tdeneire/Dropbox/websites"
-    local notes_work_dir = "/home/tdeneire/Dropbox/Documents/notes"
-    if string.find(workspace, sourcedir) ~= nil then
-        return qtechng_work_dir
-    elseif string.find(workspace, packagesdir) ~= nil then
-        return packages_work_dir
-    elseif string.find(workspace, websites_work_dir) ~= nil then
-        return websites_work_dir
-    elseif string.find(workspace, notes_work_dir) ~= nil then
+    local code_work_dir = "/home/tdeneire/projects/code"
+    local notes_work_dir = "/mnt/c/Users/TDN/OneDrive - Verhelst Aannemingen/Notes"
+    if string.find(workspace, "Aannemingen/Notes") ~= nil then
         return notes_work_dir
+    elseif string.find(workspace, "projects/code") ~= nil then
+        return code_work_dir
     else
-        return projects_work_dir
+        return workspace
     end
 end
 
