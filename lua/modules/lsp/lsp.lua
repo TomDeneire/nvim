@@ -24,6 +24,7 @@ local servers = {
     -- mypy = {},  -- errors too verbose
     jsonls = {},
     lemminx = {},
+    ts_ls = {},
     lua_ls = {
         settings = {
             Lua = {
