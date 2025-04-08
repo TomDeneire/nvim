@@ -20,6 +20,7 @@ local opts = {
         "rst",
         "rust",
         "tsx",
+        "toml",
         "typescript",
         "vim",
         "yaml",
