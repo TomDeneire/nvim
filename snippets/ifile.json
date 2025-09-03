@@ -1,1 +1,0 @@
-{"include": {"prefix": "include", "description": "Insert include", "body": ["include ${1:includeid}:", ""]}}

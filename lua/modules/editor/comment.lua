@@ -21,8 +21,5 @@ return {
     lazy = false,
     config = function()
         require('Comment').setup(opts)
-        local ft = require('Comment.ft')
-        ft.mfile = { ';%s' }
-        ft.xfile = { '//%s' }
     end
 }
