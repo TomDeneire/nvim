@@ -36,8 +36,4 @@ vim.keymap.set("n", "Y", "y$")
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- Remaps for dealing with Windows EOL
-vim.keymap.set("n", "<leader>w", ':%s/\r//g<CR>', { noremap = true, silent = true })
-
-
 return {}
