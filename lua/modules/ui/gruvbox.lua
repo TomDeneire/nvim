@@ -3,7 +3,6 @@ return {
     priority = 1000,
     config = function()
         Gruvbox = require("gruvbox")
-        local colors = Gruvbox.palette
         Gruvbox.setup({
             italic = {
                 strings = false,
@@ -20,8 +19,6 @@ return {
                 ErrorMsg = { link = "GruvboxRed" },
                 WarningMsg = { link = "GruvboxOrange" },
                 Function = { link = "GruvboxYellowBold" },
-                -- markdownBold = { link = "GruvboxYellowBold" },
-                -- ["@text.strong"] = { link = "GruvboxYellowBold" },
             },
             dim_inactive = true,
             transparent_mode = true,
