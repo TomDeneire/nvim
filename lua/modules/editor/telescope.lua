@@ -28,6 +28,10 @@ return
         {
             "debugloop/telescope-undo.nvim",
             event = "VeryLazy"
+        },
+        {
+            "nvim-telescope/telescope-ui-select.nvim",
+            event = "VeryLazy"
         }
     },
     config = function()
@@ -106,5 +110,6 @@ return
         pcall(require('telescope').load_extension('file_browser'))
         pcall(require('telescope').load_extension('helpgrep'))
         pcall(require('telescope').load_extension('undo'))
+        pcall(require('telescope').load_extension('ui-select'))
     end
 }
