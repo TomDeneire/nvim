@@ -1,116 +1,150 @@
-return
-{
-    -- Autocompletion
-    'hrsh7th/nvim-cmp',
+return {
+    "saghen/blink.cmp",
+    version = not vim.g.lazyvim_blink_main and "*",
+    opts_extend = {
+        "sources.completion.enabled_providers",
+        "sources.compat",
+        "sources.default",
+    },
     dependencies = {
-        -- Adds other completion capabilities.
-        --  nvim-cmp does not ship with all sources by default. They are split
-        --  into multiple repos for maintenance purposes.
-        'hrsh7th/cmp-nvim-lsp',
-        'hrsh7th/cmp-cmdline',
-        'hrsh7th/cmp-buffer',
-        'hrsh7th/cmp-nvim-lsp-signature-help',
-        -- Snippet Engine & its associated nvim-cmp source
-        'L3MON4D3/LuaSnip',
-        'saadparwaiz1/cmp_luasnip',
-        -- Completion symbols
-        'onsails/lspkind.nvim' },
-    config = function()
-        local cmp = require 'cmp'
-        local luasnip = require 'luasnip'
+        "rafamadriz/friendly-snippets",
+        -- add blink.compat to dependencies
+        {
+            "saghen/blink.compat",
+            optional = true, -- make optional so it's only enabled if any extras need it
+            opts = {},
+            version = "*",
+        },
+    },
+    event = { "InsertEnter", "CmdlineEnter" },
 
-        luasnip.config.setup {}
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
+    opts = {
 
-        cmp.setup {
-            formatting = {
-                format = require('lspkind').cmp_format({
-                    mode = 'symbol-text',  -- show only symbol annotations
-                    maxwidth = 50,         -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-                    ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
-                    symbol_map = { Codeium = "", },
-                    -- The function below will be called before any actual modifications from lspkind
-                    -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
-                    before = function(entry, vim_item)
-                        return vim_item
-                    end
-                })
-            },
-            window = {
-                completion = cmp.config.window.bordered(),
-                documentation = cmp.config.window.bordered(),
-            },
-            snippet = {
-                expand = function(args)
-                    luasnip.lsp_expand(args.body)
-                end,
-            },
-            completion = { completeopt = "menu,menuone,noselect,preview", keyword_length = 2 },
-            mapping = cmp.mapping.preset.insert {
-                ['<C-Space>'] = cmp.mapping.complete {},
-                ['<CR>'] = cmp.mapping.confirm {
-                    behavior = cmp.ConfirmBehavior.Replace,
-                    select = true,
+        appearance = {
+            -- sets the fallback highlight groups to nvim-cmp's highlight groups
+            -- useful for when your theme doesn't support blink.cmp
+            -- will be removed in a future release, assuming themes add support
+            use_nvim_cmp_as_default = false,
+            -- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+            -- adjusts spacing to ensure icons are aligned
+            nerd_font_variant = "mono",
+        },
+
+        completion = {
+            accept = {
+                -- experimental auto-brackets support
+                auto_brackets = {
+                    enabled = true,
                 },
-                -- Select next item
-                ['<Tab>'] = cmp.mapping(function(fallback)
-                    if cmp.visible() then
-                        cmp.select_next_item()
-                    elseif luasnip.expand_or_jumpable() then
-                        luasnip.expand_or_jump()
-                    else
-                        fallback()
-                    end
-                end, { 'i', 's' }),
             },
-            sources = {
-                { name = 'nvim_lsp' },
-                { name = 'luasnip' },
-                { name = 'codeium' },
-                { name = 'nvim_lsp_signature_help' },
+            menu = {
+                draw = {
+                    treesitter = { "lsp" },
+                },
             },
-        }
+            documentation = {
+                auto_show = true,
+                auto_show_delay_ms = 200,
+            },
+            ghost_text = {
+                enabled = vim.g.ai_cmp,
+            },
+        },
 
-        -- Set configuration for specific filetypes
-        for _, qfiletype in pairs({ "mfile", "bfile", "lfile", "dfile", "xfile" }) do
-            cmp.setup.filetype(qfiletype, {
-                sources = cmp.config.sources({
-                    { name = 'luasnip' },
-                    { name = 'buffer' },
-                })
-            })
+        -- experimental signature help support
+        -- signature = { enabled = true },
+
+        sources = {
+            -- adding any nvim-cmp sources here will enable them
+            -- with blink.compat
+            compat = {},
+            default = { "lsp", "path", "snippets", "buffer" },
+        },
+
+        cmdline = {
+            enabled = true,
+            keymap = { preset = "cmdline" },
+            completion = {
+                list = { selection = { preselect = false } },
+                menu = {
+                    auto_show = function(ctx)
+                        return vim.fn.getcmdtype() == ":"
+                    end,
+                },
+                ghost_text = { enabled = true },
+            },
+        },
+
+        keymap = {
+            preset = "enter",
+            ["<CR>"] = { "select_and_accept" },
+        },
+    },
+    ---@param opts blink.cmp.Config | { sources: { compat: string[] } }
+    config = function(_, opts)
+        -- setup compat sources
+        local enabled = opts.sources.default
+        for _, source in ipairs(opts.sources.compat or {}) do
+            opts.sources.providers[source] = vim.tbl_deep_extend(
+                "force",
+                { name = source, module = "blink.compat.source" },
+                opts.sources.providers[source] or {}
+            )
+            if type(enabled) == "table" and not vim.tbl_contains(enabled, source) then
+                table.insert(enabled, source)
+            end
         end
 
-        cmp.setup.cmdline({ '/', '?' }, {
-            mapping = cmp.mapping.preset.cmdline(),
-            ['<CR>'] = cmp.mapping.confirm {
-                behavior = cmp.ConfirmBehavior.Replace,
-                select = true,
-            },
-            ['<Tab>'] = cmp.mapping(function(fallback)
-                if cmp.visible() then
-                    cmp.select_next_item()
-                elseif luasnip.expand_or_jumpable() then
-                    luasnip.expand_or_jump()
-                else
-                    fallback()
+        -- add ai_accept to <Tab> key
+        -- if not opts.keymap["<Tab>"] then
+        --     if opts.keymap.preset == "super-tab" then -- super-tab
+        --         opts.keymap["<Tab>"] = {
+        --             require("blink.cmp.keymap.presets").get("super-tab")["<Tab>"][1],
+        --             LazyVim.cmp.map({ "snippet_forward", "ai_accept" }),
+        --             "fallback",
+        --         }
+        --     else -- other presets
+        --         opts.keymap["<Tab>"] = {
+        --             LazyVim.cmp.map({ "snippet_forward", "ai_accept" }),
+        --             "fallback",
+        --         }
+        --     end
+        -- end
+
+        -- Unset custom prop to pass blink.cmp validation
+        opts.sources.compat = nil
+
+        -- check if we need to override symbol kinds
+        for _, provider in pairs(opts.sources.providers or {}) do
+            ---@cast provider blink.cmp.SourceProviderConfig|{kind?:string}
+            if provider.kind then
+                local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
+                local kind_idx = #CompletionItemKind + 1
+
+                CompletionItemKind[kind_idx] = provider.kind
+                ---@diagnostic disable-next-line: no-unknown
+                CompletionItemKind[provider.kind] = kind_idx
+
+                ---@type fun(ctx: blink.cmp.Context, items: blink.cmp.CompletionItem[]): blink.cmp.CompletionItem[]
+                local transform_items = provider.transform_items
+                ---@param ctx blink.cmp.Context
+                ---@param items blink.cmp.CompletionItem[]
+                provider.transform_items = function(ctx, items)
+                    items = transform_items and transform_items(ctx, items) or items
+                    for _, item in ipairs(items) do
+                        item.kind = kind_idx or item.kind
+                        item.kind_icon = item.kind_icon or nil
+                    end
+                    return items
                 end
-            end, { 'i', 's' }),
-            sources = {
-                { name = 'cmdline' }
-            }
-        })
 
-        -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-        cmp.setup.cmdline(':', {
-            mapping = cmp.mapping.preset.cmdline(),
-            sources = cmp.config.sources({
-                { name = 'path' }
-            }, {
-                { name = 'cmdline' }
-            })
-        })
+                -- Unset custom prop to pass blink.cmp validation
+                provider.kind = nil
+            end
+        end
 
-        -- Load custom snippets
-        require("luasnip.loaders.from_vscode").lazy_load({ paths = "~/.config/nvim/snippets" })
-    end
+        require("blink.cmp").setup(opts)
+    end,
 }
