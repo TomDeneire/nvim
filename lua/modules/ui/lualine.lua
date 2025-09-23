@@ -108,10 +108,10 @@ return {
             sections = {
                 lualine_a = { mode },
                 lualine_b = { diff, diagnostics },
-                lualine_c = { branch, filename, lsp_progress },
-                lualine_x = { encoding, filetype },
+                lualine_c = { lsp_progress },
+                lualine_x = {},
                 lualine_y = {},
-                lualine_z = { progress }
+                lualine_z = {}
             },
             tabline = {},
             winbar = {
