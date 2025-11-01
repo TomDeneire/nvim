@@ -78,8 +78,7 @@ return {
         },
 
         keymap = {
-            preset = "enter",
-            ["<CR>"] = { "select_and_accept" },
+            preset = "super-tab",
         },
     },
     ---@param opts blink.cmp.Config | { sources: { compat: string[] } }
