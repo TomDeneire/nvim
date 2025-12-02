@@ -36,4 +36,7 @@ vim.keymap.set("n", "Y", "y$")
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+-- In terminal mode, map <Esc> to go to normal-mode in the terminal
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
+
 return {}
