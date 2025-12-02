@@ -8,13 +8,6 @@ vim.keymap.set(
 
 vim.keymap.set(
     "n",
-    "<leader>t",
-    require("modules.utils").wezterm_open,
-    { desc = "Open wezterm terminal" }
-)
-
-vim.keymap.set(
-    "n",
     "<leader>s",
     require("modules.utils").restore_session,
     { desc = "Restore previous session files" }
