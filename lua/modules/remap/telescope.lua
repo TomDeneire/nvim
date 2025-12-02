@@ -10,4 +10,6 @@ vim.keymap.set("n", "<leader>map", require("telescope.builtin").keymaps, { desc 
 
 vim.keymap.set("n", "<leader>u", "<cmd>Telescope undo<cr>", { desc = "Undotree" })
 
+vim.keymap.set("n", "tb", require("telescope.builtin").buffers, { desc = "Show buffers" })
+
 return {}
