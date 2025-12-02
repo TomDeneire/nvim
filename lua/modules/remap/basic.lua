@@ -17,14 +17,6 @@ vim.keymap.set("n", "<leader>n", "<cmd>silent :noh<CR>", { desc = "Toggle nohigh
 vim.keymap.set({ "n", "x", "o" }, "H", "^", { desc = "Jump to start of line" })
 vim.keymap.set({ "n", "x", "o" }, "L", "g_", { desc = "Jump to end of line" })
 
-vim.keymap.set('n', '<leader>/', function()
-    require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-        winblend = 0,
-        previewer = false,
-        layout_config = { width = 0.7 }
-    })
-end, { desc = '[/] Fuzzily search in current buffer' })
-
 -- Paste but don't overwrite copy-register
 vim.keymap.set("v", "p", '"_dP')
 
