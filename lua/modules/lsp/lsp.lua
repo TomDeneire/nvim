@@ -1,6 +1,6 @@
 local servers = {
     bashls = {},
-    copilot = {},
+    -- copilot = {},
     elixirls = { cmd = { "/home/tdeneire/bin/language_server.sh" } },
     gopls = {},
     html = {},
