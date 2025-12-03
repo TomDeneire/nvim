@@ -3,6 +3,14 @@ local function augroup(name)
     return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
 end
 
+local function trim_trailing_whitespace()
+    -- (source editorconfig.nvim)
+    local view = vim.fn.winsaveview()
+    vim.api.nvim_command("silent! undojoin")
+    vim.api.nvim_command("silent keepjumps keeppatterns %s/\\s\\+$//e")
+    return vim.fn.winrestview(view)
+end
+
 -- Replace windows newlines
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*",
@@ -32,7 +40,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- Trim trailing whitespace
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = { ".md", "*.vim", "*.py", "*.lua", "*.go", "*.js", "*.rst" },
-    callback = require("modules.utils").trim_trailing_whitespace,
+    callback = trim_trailing_whitespace,
 })
 
 -- Code action

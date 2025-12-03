@@ -30,13 +30,18 @@ return {
         -- input = { enabled = true },
         -- keymap = { enabled = true },
         -- layout = { enabled = true },
-        -- lazygit = { enabled = true },
+        lazygit = {
+            enabled = true,
+        },
         -- notifier = { enabled = true },
         -- notify = { enabled = true },
-        -- picker = {
-        --     enabled = true,
-        --     follow = true,
-        -- },
+        picker = {
+            enabled = true,
+            follow = true,
+            layout = {
+                preset = "telescope",
+            }
+        },
         -- profiler = { enabled = true },
         -- quickfile = { enabled = true },
         -- rename = { enabled = true },

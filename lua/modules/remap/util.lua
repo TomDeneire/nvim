@@ -1,21 +1,8 @@
--- Specific utilities
-vim.keymap.set(
-    "n",
-    "<leader>lg",
-    "<cmd>lua require('lazy.util').float_term('lg',{size = {width = 1, height = 1}})<cr>",
-    { desc = "Open LazyGit" }
-)
-
 vim.keymap.set(
     "n",
     "<leader>s",
-    require("modules.utils").restore_session,
+    require('persistence').load,
     { desc = "Restore previous session files" }
 )
-
--- Other functions
-vim.keymap.set("n", "<c-p>", require("modules.utils").find_in_workspace, { desc = "Find in current workspace" })
-
-vim.keymap.set("n", "<c-f>", require("modules.utils").grep_in_workspace, { desc = "Grep in current workspace" })
 
 return {}

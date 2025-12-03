@@ -20,7 +20,7 @@ return {
                 WarningMsg = { link = "GruvboxOrange" },
                 Function = { link = "GruvboxYellowBold" },
             },
-            dim_inactive = true,
+            dim_inactive = false,
             transparent_mode = true,
         })
 
