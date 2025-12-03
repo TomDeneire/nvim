@@ -63,12 +63,6 @@ function M.grep_pattern()
     require("telescope.builtin").live_grep(grep_opts)
 end
 
-function M.lsp_filetypes()
-    return { "lua", "go", "javascript", "python", "xml", "html",
-        "markdown", "css", "php", "phtml", "json", "typescript",
-        "rst", "vim", "haskell", "rust", "bash", "elixir", "toml", "yaml" }
-end
-
 -- Open wezterm in cwd
 function M.wezterm_open()
     local cmd = { 'wezterm', 'start', '--cwd', vim.fn.getcwd() }
