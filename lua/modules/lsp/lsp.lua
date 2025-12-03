@@ -44,11 +44,7 @@ return {
                 nmap("<leader>lsp", vim.diagnostic.open_float, 'LSP open in float')
                 nmap('<C-i>', vim.lsp.buf.hover, 'Hover Documentation')
                 nmap('<leader>gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-                nmap("<leader>lsp", vim.diagnostic.open_float, 'LSP open in float')
-                nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-                nmap('<c-D>', require('telescope.builtin').lsp_definitions, 'Goto [D]efinition')
                 nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-                nmap('<C-i>', vim.lsp.buf.hover, 'Hover Documentation')
                 nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
                 nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
 
