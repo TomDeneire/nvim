@@ -48,26 +48,4 @@ function M.grep_in_workspace()
     require("telescope.builtin").live_grep(_get_find_opts())
 end
 
-function M.grep_yanked()
-    local text = vim.fn.getreg("")
-    text = string.lower(text)
-    local grep_opts = _get_find_opts()
-    grep_opts["search"] = text
-    require("telescope.builtin").grep_string(grep_opts)
-end
-
-function M.grep_pattern()
-    local pattern = vim.fn.input("Grep_pattern=", "*.")
-    local grep_opts = _get_find_opts()
-    grep_opts["glob_pattern"] = pattern
-    require("telescope.builtin").live_grep(grep_opts)
-end
-
--- Open wezterm in cwd
-function M.wezterm_open()
-    local cmd = { 'wezterm', 'start', '--cwd', vim.fn.getcwd() }
-    -- function from /home/tdeneire/.local/share/nvim/lazy/lazy.nvim/lua/lazy/util.lua
-    require('lazy.util').float_term(cmd, { size = { width = 0.9, height = 0.9 } })
-end
-
 return M
