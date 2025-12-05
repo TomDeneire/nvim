@@ -1,7 +1,6 @@
 return
 {
     'nvim-telescope/telescope.nvim',
-    event = "VimEnter",
     dependencies =
     { { 'nvim-lua/plenary.nvim' },
         {
@@ -12,6 +11,10 @@ return
             "debugloop/telescope-undo.nvim",
             event = "VeryLazy"
         },
+    },
+    keys = {
+        { "tt",        "<cmd>silent :Telescope file_browser<CR>", desc = "Open Telescope File Browser" },
+        { "<leader>u", "<cmd>Telescope undo<cr>",                 desc = "Undotree" }
     },
     config = function()
         require('telescope').setup {
@@ -25,8 +28,5 @@ return
                 },
             }
         }
-
-        pcall(require('telescope').load_extension('file_browser'))
-        pcall(require('telescope').load_extension('undo'))
     end
 }
