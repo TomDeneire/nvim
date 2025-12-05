@@ -39,16 +39,16 @@ return {
                 end
 
                 nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-                nmap('<c-D>', require('telescope.builtin').lsp_definitions, 'Goto [D]efinition')
+                nmap('<c-D>', function() Snacks.picker.lsp_definitions() end, 'Goto [D]efinition')
+                nmap('<leader>D', function() Snacks.picker.lsp_type_definitions() end, 'Type [D]efinition')
+                nmap('<leader>gr', function() Snacks.picker.lsp_references() end, '[G]oto [R]eferences')
+                nmap("gD", function() Snacks.picker.lsp_declarations() end, "[G]oto [D]eclaration")
+                nmap("gI", function() Snacks.picker.lsp_implementations() end, "[G]oto [D]eclaration")
                 nmap("<leader>f", vim.lsp.buf.format, 'Format')
                 nmap("<leader>lsp", vim.diagnostic.open_float, 'LSP open in float')
                 nmap('<C-i>', vim.lsp.buf.hover, 'Hover Documentation')
-                nmap('<leader>gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-                nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
                 nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-                nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
 
-                --
                 -- Create a command `:Format` local to the LSP buffer
                 vim.api.nvim_buf_create_user_command(event.buf, 'Format', function(_)
                     vim.lsp.buf.format()
