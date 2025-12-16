@@ -54,10 +54,6 @@ return {
                 nmap('gr', function() Snacks.picker.lsp_references() end, 'LSP References')
                 nmap("gs", function() Snacks.picker.lsp_symbols() end, "LSP Document Symbols")
                 nmap("gS", function() Snacks.picker.workspace_symbols() end, "LSP Workspace Symbols")
-                -- Create a command `:Format` local to the LSP buffer
-                vim.api.nvim_buf_create_user_command(event.buf, 'Format', function(_)
-                    vim.lsp.buf.format()
-                end, { desc = 'Format current buffer with LSP' })
             end,
         })
 
