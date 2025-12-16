@@ -7,14 +7,9 @@ return
             'nvim-telescope/telescope-file-browser.nvim',
             event = "VeryLazy"
         },
-        {
-            "debugloop/telescope-undo.nvim",
-            event = "VeryLazy"
-        },
     },
     keys = {
-        { "tt",        "<cmd>silent :Telescope file_browser<CR>", desc = "Open Telescope File Browser" },
-        { "<leader>u", "<cmd>Telescope undo<cr>",                 desc = "Undotree" }
+        { "tt", "<cmd>silent :Telescope file_browser<CR>", desc = "Open Telescope File Browser" },
     },
     config = function()
         require('telescope').setup {

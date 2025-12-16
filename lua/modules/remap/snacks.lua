@@ -54,4 +54,10 @@ vim.keymap.set("n", "<leader>lg", function()
     })
 end, { desc = "Open LazyGit" })
 
+-- Undo tree
+vim.keymap.set("n", "<leader>u", function()
+    Snacks.picker.undo({
+    })
+end, { desc = "Undo tree" })
+
 return {}
