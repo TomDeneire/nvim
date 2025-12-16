@@ -38,17 +38,22 @@ return {
                     vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
                 end
 
+                -- actions
+                nmap('<C-i>', vim.lsp.buf.hover, 'Hover Documentation')
                 nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-                nmap('<c-D>', function() Snacks.picker.lsp_definitions() end, 'Goto [D]efinition')
-                nmap('<leader>D', function() Snacks.picker.lsp_type_definitions() end, 'Type [D]efinition')
-                nmap('<leader>gr', function() Snacks.picker.lsp_references() end, '[G]oto [R]eferences')
-                nmap("gD", function() Snacks.picker.lsp_declarations() end, "[G]oto [D]eclaration")
-                nmap("gI", function() Snacks.picker.lsp_implementations() end, "[G]oto [D]eclaration")
                 nmap("<leader>f", vim.lsp.buf.format, 'Format')
                 nmap("<leader>lsp", vim.diagnostic.open_float, 'LSP open in float')
-                nmap('<C-i>', vim.lsp.buf.hover, 'Hover Documentation')
                 nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-
+                -- goto
+                -- (usually there's only one, but several are possible, hence these use a picker)
+                nmap('<C-d>', function() Snacks.picker.lsp_definitions() end, 'Goto [D]efinition(s)')
+                nmap('gd', function() Snacks.picker.lsp_type_definitions() end, 'Goto Type [D]efinition(s)')
+                nmap('gD', function() Snacks.picker.lsp_declarations() end, 'Goto [D]eclaration(s)')
+                nmap("gI", function() Snacks.picker.lsp_implementations() end, "LSP Implementations")
+                -- lists
+                nmap('gr', function() Snacks.picker.lsp_references() end, 'LSP References')
+                nmap("gs", function() Snacks.picker.lsp_symbols() end, "LSP Document Symbols")
+                nmap("gS", function() Snacks.picker.workspace_symbols() end, "LSP Workspace Symbols")
                 -- Create a command `:Format` local to the LSP buffer
                 vim.api.nvim_buf_create_user_command(event.buf, 'Format', function(_)
                     vim.lsp.buf.format()
