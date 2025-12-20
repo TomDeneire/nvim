@@ -60,4 +60,10 @@ vim.keymap.set("n", "<leader>u", function()
     })
 end, { desc = "Undo tree" })
 
+-- Pickers
+vim.keymap.set("n", "<leader>p", function()
+    Snacks.picker.pickers({
+    })
+end, { desc = "Show pickers" })
+
 return {}
