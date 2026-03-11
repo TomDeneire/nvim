@@ -1,7 +1,7 @@
 vim.keymap.set(
     "n",
     "<leader>s",
-    require('persistence').load,
+    function() require('persistence').load() end,
     { desc = "Restore previous session files" }
 )
 

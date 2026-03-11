@@ -4,17 +4,7 @@ return {
     lazy = false,
     ---@type snacks.Config
     opts = {
-        -- animate = { enabled = true },
         bigfile = { enabled = true },
-        -- bufdelete = { enabled = true },
-        -- dashboard = { enabled = true },
-        -- debug = { enabled = true },
-        -- dim = { enabled = true, animate = false },
-        -- explorer = { enabled = true },
-        -- gh = { enabled = true },
-        -- git = { enabled = true },
-        -- gitbrowse = { enabled = true },
-        -- image = { enabled = true },
         indent = {
             enabled = true,
             char = "│",
@@ -27,14 +17,9 @@ return {
                 enabled = false,
             },
         },
-        -- input = { enabled = true },
-        -- keymap = { enabled = true },
-        -- layout = { enabled = true },
         lazygit = {
             enabled = true,
         },
-        -- notifier = { enabled = true },
-        -- notify = { enabled = true },
         picker = {
             enabled = true,
             follow = true,
@@ -42,18 +27,5 @@ return {
                 preset = "telescope",
             }
         },
-        -- profiler = { enabled = true },
-        -- quickfile = { enabled = true },
-        -- rename = { enabled = true },
-        -- scope = { enabled = true },
-        -- scratch = { enabled = true },
-        -- scroll = { enabled = true },
-        -- statuscolumn = { enabled = true },
-        -- terminal = { enabled = true },
-        -- toggle = { enabled = true },
-        -- util = { enabled = true },
-        -- win = { enabled = true },
-        -- words = { enabled = true },
-        -- zen = { enabled = true },
     },
 }

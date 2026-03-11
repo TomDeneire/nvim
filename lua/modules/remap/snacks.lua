@@ -42,27 +42,15 @@ vim.keymap.set("n", "<leader>old", function()
 end, { desc = "Find recent files" })
 
 -- Buffers
-vim.keymap.set("n", "tb", function()
-    Snacks.picker.buffers({
-    })
-end, { desc = "Show buffers" })
+vim.keymap.set("n", "tb", function() Snacks.picker.buffers() end, { desc = "Show buffers" })
 
--- Buffers
-vim.keymap.set("n", "<leader>lg", function()
-    Snacks.lazygit({
-    })
-end, { desc = "Open LazyGit" })
+-- LazyGit
+vim.keymap.set("n", "<leader>lg", function() Snacks.lazygit() end, { desc = "Open LazyGit" })
 
 -- Undo tree
-vim.keymap.set("n", "<leader>u", function()
-    Snacks.picker.undo({
-    })
-end, { desc = "Undo tree" })
+vim.keymap.set("n", "<leader>u", function() Snacks.picker.undo() end, { desc = "Undo tree" })
 
 -- Pickers
-vim.keymap.set("n", "<leader>p", function()
-    Snacks.picker.pickers({
-    })
-end, { desc = "Show pickers" })
+vim.keymap.set("n", "<leader>p", function() Snacks.picker.pickers() end, { desc = "Show pickers" })
 
 return {}

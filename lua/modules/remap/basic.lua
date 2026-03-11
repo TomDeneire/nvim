@@ -1,5 +1,14 @@
--- Basic
+-- Disable q for macro recording, use <leader>m instead
+vim.keymap.set("", "q", "<Nop>")
 vim.keymap.set("n", "<leader>m", "q", { desc = "Record macro" })
+
+-- Switch to alternate buffer
+vim.keymap.set("n", "<c-[>", "<c-^>")
+
+-- Save from insert mode
+vim.keymap.set("i", "<c-s>", "<ESC>:w<CR>")
+
+-- Basic
 vim.keymap.set("n", "<c-a>", "ggVG")
 -- silent so that you don't get popup messages!
 vim.api.nvim_set_keymap('n', '<c-s>', ':w<CR>', { noremap = true, silent = true })
