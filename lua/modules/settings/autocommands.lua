@@ -11,11 +11,14 @@ local function trim_trailing_whitespace()
     return vim.fn.winrestview(view)
 end
 
--- Replace windows newlines
+-- Normalize to unix: set fileformat and strip any embedded \r from pasted text
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*",
     callback = function()
         vim.bo.fileformat = "unix"
+        local view = vim.fn.winsaveview()
+        vim.cmd("silent keepjumps keeppatterns %s/\\r//e")
+        vim.fn.winrestview(view)
     end,
 })
 
@@ -110,15 +113,6 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.opt_local.wrap = true
         -- set to false (because Dutch vs English conflicts)
         vim.opt_local.spell = false
-    end,
-})
-
--- Fix conceallevel for json files
-vim.api.nvim_create_autocmd({ "FileType" }, {
-    group = augroup("json_conceal"),
-    pattern = { "json", "jsonc", "json5" },
-    callback = function()
-        vim.opt_local.conceallevel = 0
     end,
 })
 
