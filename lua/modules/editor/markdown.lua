@@ -8,6 +8,8 @@ return {
     opts = {},
     config = function()
         require('render-markdown').setup({
+            completions = { lsp = { enabled = true }, blink = { enabled = true } },
+            code = { sign = false },
             bullet = {
                 -- Useful context to have when evaluating values.
                 -- | level | how deeply nested the list is, 1-indexed          |
@@ -53,7 +55,7 @@ return {
                 -- level of the heading. Indenting starts from level 2 headings onward by default.
 
                 -- Turn on / off org-indent-mode.
-                enabled = true,
+                enabled = false,
                 -- Additional modes to render indents.
                 render_modes = false,
                 -- Amount of additional padding added for each heading level.
@@ -74,7 +76,7 @@ return {
                 -- Turn on / off heading icon & background rendering
                 enabled = true,
                 -- Turn on / off any sign column related rendering
-                sign = true,
+                sign = false,
                 -- Determines how icons fill the available space:
                 --  right:   '#'s are concealed and icon is appended to right side
                 --  inline:  '#'s are concealed and icon is inlined on left side
@@ -83,7 +85,7 @@ return {
                 -- Replaces '#+' of 'atx_h._marker'
                 -- The number of '#' in the heading determines the 'level'
                 -- The 'level' is used to index into the list using a cycle
-                icons = { '󰲡 ', '󰲣 ', '󰲥 ', '󰲧 ', '󰲩 ', '󰲫 ' },
+                icons = { '# ', '## ', '### ', '### ', '#### ', '##### ' },
                 -- Added to the sign column if enabled
                 -- The 'level' is used to index into the list using a cycle
                 signs = { '󰫎 ' },
