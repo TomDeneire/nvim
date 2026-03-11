@@ -1,5 +1,3 @@
--- SOURCE: https://github.com/nvim-lua/kickstart.nvim
-
 -- Disable config when using Neovim through VSCode
 if vim.g.vscode then
   return
@@ -18,7 +16,7 @@ if not vim.uv.fs_stat(lazypath) then
     'clone',
     '--filter=blob:none',
     'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable', -- latest stable release
+    '--branch=stable',
     lazypath,
   }
 end
@@ -44,8 +42,6 @@ local lazy_opts = {
     rtp = {
       disabled_plugins = {
         "gzip",
-        -- "matchit",
-        -- "matchparen",
         "netrwPlugin",
         "tarPlugin",
         "tohtml",
