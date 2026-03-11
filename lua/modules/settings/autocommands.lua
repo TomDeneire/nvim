@@ -3,21 +3,15 @@ local function augroup(name)
     return vim.api.nvim_create_augroup("spunkshui_" .. name, { clear = true })
 end
 
-local function trim_trailing_whitespace()
-    -- (source editorconfig.nvim)
-    local view = vim.fn.winsaveview()
-    vim.api.nvim_command("silent! undojoin")
-    vim.api.nvim_command("silent keepjumps keeppatterns %s/\\s\\+$//e")
-    return vim.fn.winrestview(view)
-end
-
--- Normalize to unix: set fileformat and strip any embedded \r from pasted text
+-- Normalize to unix, strip \r, and trim trailing whitespace
 vim.api.nvim_create_autocmd("BufWritePre", {
+    group = augroup("normalize_unix"),
     pattern = "*",
     callback = function()
         vim.bo.fileformat = "unix"
         local view = vim.fn.winsaveview()
         vim.cmd("silent keepjumps keeppatterns %s/\\r//e")
+        vim.cmd("silent keepjumps keeppatterns %s/\\s\\+$//e")
         vim.fn.winrestview(view)
     end,
 })
@@ -40,14 +34,9 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     end,
 })
 
--- Trim trailing whitespace
-vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = { ".md", "*.vim", "*.py", "*.lua", "*.go", "*.js", "*.rst" },
-    callback = trim_trailing_whitespace,
-})
-
 -- Auto-add path to zoxide
 vim.api.nvim_create_autocmd("BufNew", {
+    group = augroup("zoxide"),
     desc = 'Auto-add path to zoxide',
     callback = function()
         local dir = vim.fn.expand("%:p:h")
