@@ -1,6 +1,8 @@
-return
-{
+return {
     "folke/persistence.nvim",
     event = "BufReadPre",
-    config = true
+    keys = {
+        { "<leader>s", function() require('persistence').load() end, desc = "Restore previous session" },
+    },
+    config = true,
 }

@@ -11,16 +11,12 @@ return {
                 operators = false,
                 folds = false,
             },
-            contrast = "hard", -- can be "hard", "soft" or empty string
-            palette_overrides = {},
-            -- colors in ~/.local/share/nvim/lazy/gruvbox.nvim/lua/gruvbox.lua
+            contrast = "hard",
             overrides = {
-                -- Gruvbox
                 ErrorMsg = { link = "GruvboxRed" },
                 WarningMsg = { link = "GruvboxOrange" },
                 Function = { link = "GruvboxYellowBold" },
             },
-            dim_inactive = false,
             transparent_mode = true,
         })
 

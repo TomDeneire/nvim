@@ -1,7 +1,6 @@
 return {
     'Sam-programs/cmdline-hl.nvim',
     event = 'VimEnter',
-    config = true,
     opts = {
         -- custom formatting/highlight for commands
         custom_types = {

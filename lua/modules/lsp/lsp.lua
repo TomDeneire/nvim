@@ -7,17 +7,12 @@ local servers = {
     vtsls = {},
     lua_ls = {
         settings = {
-            Lua = {
-                runtime = { version = "LuaJIT" },
-                diagnostics = { globals = { "vim" } },
-                workspace = { checkThirdParty = false },
-                telemetry = { enable = false },
-            },
+            Lua = { workspace = { checkThirdParty = false } },
         },
     },
     pyright = {},
     rust_analyzer = {},
-    taplo = {},
+    taplo = {}, -- toml
     vimls = {},
 }
 
