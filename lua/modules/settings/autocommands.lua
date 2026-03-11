@@ -1,6 +1,6 @@
 -- Locals
 local function augroup(name)
-    return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
+    return vim.api.nvim_create_augroup("spunkshui_" .. name, { clear = true })
 end
 
 local function trim_trailing_whitespace()
@@ -41,12 +41,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = { ".md", "*.vim", "*.py", "*.lua", "*.go", "*.js", "*.rst" },
     callback = trim_trailing_whitespace,
-})
-
--- Code action
-vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = { "*.hs" },
-    command = "silent! lua vim.lsp.buf.code_action()",
 })
 
 -- Auto-add path to zoxide
