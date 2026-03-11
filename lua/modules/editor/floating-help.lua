@@ -1,5 +1,6 @@
 return {
     'Tyler-Barham/floating-help.nvim',
+    cmd = "FloatingHelp",
     config = function()
         local fh = require('floating-help')
 

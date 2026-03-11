@@ -2,8 +2,8 @@ return {
     "ellisonleao/gruvbox.nvim",
     priority = 1000,
     config = function()
-        Gruvbox = require("gruvbox")
-        Gruvbox.setup({
+        local gruvbox = require("gruvbox")
+        gruvbox.setup({
             italic = {
                 strings = false,
                 emphasis = true,

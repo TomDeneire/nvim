@@ -1,5 +1,6 @@
 return {
     'ya2s/nvim-cursorline',
+    event = "BufReadPost",
     config = function()
         require('nvim-cursorline').setup {
             cursorline = {

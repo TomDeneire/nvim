@@ -50,7 +50,7 @@ local filename = {
 }
 
 local lsp_progress = {
-    require('lsp-progress').progress,
+    function() return require('lsp-progress').progress() end,
 }
 
 
