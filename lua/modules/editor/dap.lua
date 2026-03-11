@@ -22,18 +22,14 @@ return {
                     type = 'server',
                     port = assert(port, '`connect.port` is required for a python `attach` configuration'),
                     host = host,
-                    options = {
-                        source_filetype = 'python',
-                    },
+                    options = { source_filetype = 'python' },
                 })
             else
                 cb({
                     type = 'executable',
                     command = vim.fn.exepath('python3'),
                     args = { '-m', 'debugpy.adapter' },
-                    options = {
-                        source_filetype = 'python',
-                    },
+                    options = { source_filetype = 'python' },
                 })
             end
         end
@@ -63,49 +59,17 @@ return {
                 element = "repl",
                 enabled = true,
                 icons = {
-                    disconnect = "",
-                    pause = "",
-                    play = "",
-                    run_last = "",
-                    step_back = "",
-                    step_into = "",
-                    step_out = "",
-                    step_over = "",
-                    terminate = ""
+                    disconnect = "", pause = "", play = "",
+                    run_last = "", step_back = "", step_into = "",
+                    step_out = "", step_over = "", terminate = "",
                 }
             },
-            expand_lines = true,
-            floating = {
-                border = "single",
-                mappings = {
-                    close = { "q", "<Esc>" }
-                }
-            },
-            icons = {
-                collapsed = "",
-                current_frame = "",
-                expanded = ""
-            },
+            icons = { collapsed = "", current_frame = "", expanded = "" },
             layouts = { {
-                elements = { {
-                    id = "scopes",
-                    size = 1
-                } },
+                elements = { { id = "scopes", size = 1 } },
                 position = "bottom",
                 size = 10
             } },
-            mappings = {
-                edit = "e",
-                expand = { "<CR>", "<2-LeftMouse>" },
-                open = "o",
-                remove = "d",
-                repl = "r",
-                toggle = "t"
-            },
-            render = {
-                indent = 1,
-                max_value_lines = 100
-            }
         })
 
         -- Highlight
