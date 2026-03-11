@@ -1,6 +1,5 @@
 return {
     'stevearc/conform.nvim',
-    opts = {},
     event = "BufWritePre",
     config = function()
         require("conform").setup({
@@ -34,7 +33,7 @@ return {
             end,
         })
 
-        vim.keymap.set("n", "<leader>c",
+        vim.keymap.set("n", "<leader>f",
             ":lua require('conform').format({ timeout_ms = 100000,lsp_format = 'fallback'  })<cr>",
             { desc = "Format with conform with very long timeout" })
 

@@ -39,7 +39,6 @@ return {
                 -- actions
                 nmap('<C-i>', vim.lsp.buf.hover, 'Hover Documentation')
                 nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-                nmap("<leader>f", vim.lsp.buf.format, 'Format')
                 nmap("<leader>lsp", vim.diagnostic.open_float, 'LSP open in float')
                 nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
                 -- goto
@@ -72,8 +71,8 @@ return {
         -- LSP servers setup
         --------------------------------------------------------------------------
 
-        for server_name, opts in pairs(servers) do
-            vim.lsp.config[server_name] = { opts }
+        for server_name, server_opts in pairs(servers) do
+            vim.lsp.config[server_name] = server_opts
         end
     end,
 }
