@@ -39,4 +39,7 @@ vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 -- In terminal mode, map <Esc> to go to normal-mode in the terminal
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 
+-- Comment (built-in gc operator remapped to cc)
+vim.keymap.set({ "n", "x", "o" }, "cc", "gc", { remap = true, desc = "Line comment" })
+
 return {}
