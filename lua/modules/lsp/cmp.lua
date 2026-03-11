@@ -4,9 +4,17 @@ return {
     dependencies = {
         {
             "supermaven-inc/supermaven-nvim",
-            opts = {
-                disable_keymaps = true,
-            },
+            config = function()
+                -- Provide a fake cmp module so supermaven doesn't warn about missing nvim-cmp
+                package.preload["cmp"] = function()
+                    return { register_source = function() end }
+                end
+                require("supermaven-nvim").setup({
+                    disable_inline_completion = true,
+                    disable_keymaps = true,
+                })
+                package.preload["cmp"] = nil
+            end,
         },
         {
             "huijiro/blink-cmp-supermaven"
