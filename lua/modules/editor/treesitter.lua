@@ -2,12 +2,10 @@ local opts = {
     -- A list of parser names, or "all"
     ensure_installed = {
         "bash",
-        "elixir",
         "go",
         "gomod",
         "gowork",
         "gosum",
-        "haskell",
         "html",
         "javascript",
         "json",
@@ -17,7 +15,6 @@ local opts = {
         "markdown_inline",
         "python",
         "regex",
-        "rst",
         "rust",
         "tsx",
         "toml",
@@ -58,6 +55,7 @@ local opts = {
 
 return {
     'nvim-treesitter/nvim-treesitter',
+    event = { "BufReadPost", "BufNewFile" },
     build = ":TSUpdate",
     config = function()
         require('nvim-treesitter.configs').setup(opts)

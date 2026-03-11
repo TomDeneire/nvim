@@ -1,11 +1,11 @@
 return {
     'stevearc/conform.nvim',
     opts = {},
-    lazy = false,
+    event = "BufWritePre",
     config = function()
         require("conform").setup({
             formatters_by_ft = {
-                ["python"] = { "blue" },
+                ["python"] = { "ruff_format" },
                 ["rust"] = { "rustfmt" },
                 ["javascript"] = { "prettier" },
                 ["javascriptreact"] = { "prettier" },

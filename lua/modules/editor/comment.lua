@@ -18,7 +18,6 @@ local opts = {
 return {
     'numToStr/Comment.nvim',
     event = { "BufReadPost", "BufNewFile" },
-    lazy = false,
     config = function()
         require('Comment').setup(opts)
     end

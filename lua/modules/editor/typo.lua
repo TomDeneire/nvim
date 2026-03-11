@@ -1,2 +1,2 @@
 return
-{ 'axieax/typo.nvim', config = true }
+{ 'axieax/typo.nvim', event = "BufReadPost", config = true }

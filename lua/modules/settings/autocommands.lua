@@ -52,7 +52,12 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 -- Auto-add path to zoxide
 vim.api.nvim_create_autocmd("BufNew", {
     desc = 'Auto-add path to zoxide',
-    command = "silent! !zoxide add %:p:h",
+    callback = function()
+        local dir = vim.fn.expand("%:p:h")
+        if dir ~= "" then
+            vim.fn.jobstart({ "zoxide", "add", dir }, { detach = true })
+        end
+    end,
 })
 
 -- Go to last loc when opening a buffer
