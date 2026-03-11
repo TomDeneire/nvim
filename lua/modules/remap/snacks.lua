@@ -1,14 +1,14 @@
-PROJECT_DIR = "/home/tdeneire/Dropbox/code"
+PROJECT_DIR = "/home/tdeneire/projects"
 
--- Find in current directory
+-- Grep in git files
 vim.keymap.set("n", "ff", function()
-    Snacks.picker.grep({
-        ignored = true,
+    Snacks.picker.git_grep({
         hidden = true,
+        untracked = true,
     })
-end, { desc = "Directory grep" })
+end, { desc = "Git grep" })
 
--- Find in projects
+-- Grep in projects
 vim.keymap.set("n", "<c-f>", function()
     Snacks.picker.grep({
         ignored = true,
@@ -17,13 +17,12 @@ vim.keymap.set("n", "<c-f>", function()
     })
 end, { desc = "Project grep" })
 
--- Files in current directory
+-- Find git files
 vim.keymap.set("n", "ts", function()
-    Snacks.picker.files({
-        ignored = true,
-        hidden = true,
+    Snacks.picker.git_files({
+        untracked = true,
     })
-end, { desc = "Files in current directory" })
+end, { desc = "Git files" })
 
 -- Files in project directory
 vim.keymap.set("n", "<c-p>", function()
@@ -32,7 +31,7 @@ vim.keymap.set("n", "<c-p>", function()
         hidden = true,
         cwd = PROJECT_DIR,
     })
-end, { desc = "Find Config File" })
+end, { desc = "Project files" })
 
 -- Recent files
 vim.keymap.set("n", "<leader>old", function()
