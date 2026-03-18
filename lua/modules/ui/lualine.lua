@@ -1,12 +1,12 @@
 local function mode_fmt(mode)
     local icons = {
         NORMAL = "󰆾",
-        INSERT = "",
-        COMMAND = "",
+        INSERT = "",
+        COMMAND = "",
         SELECT = "󰩬",
-        VISUAL = "",
-        ["V-LINE"] = "",
-        TERMINAL = "",
+        VISUAL = "",
+        ["V-LINE"] = "",
+        TERMINAL = "",
     }
     return (icons[mode] or "") .. " " .. mode
 end
