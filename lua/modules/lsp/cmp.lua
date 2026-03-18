@@ -1,6 +1,6 @@
 return {
     'saghen/blink.cmp',
-    build = 'cargo build --release',
+    version = '1.*',
     dependencies = {
         {
             "supermaven-inc/supermaven-nvim",
