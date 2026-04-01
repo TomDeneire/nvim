@@ -24,7 +24,14 @@ return {
             sections = {
                 lualine_a = { { 'mode', fmt = mode_fmt } },
                 lualine_b = {
-                    { 'diff', symbols = { added = " ", modified = " ", removed = " " } },
+                    {
+                        'diff',
+                        symbols = {
+                            added = " ",
+                            modified = " ",
+                            removed = " "
+                        }
+                    },
                     'diagnostics',
                 },
                 lualine_c = { { function() return vim.lsp.status() end } },
