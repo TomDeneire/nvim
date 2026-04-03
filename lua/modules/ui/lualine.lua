@@ -11,6 +11,17 @@ local function mode_fmt(mode)
     return (icons[mode] or "") .. " " .. mode
 end
 
+local spinner_frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
+local spinner_idx = 1
+
+local function lsp_spinner()
+    if vim.lsp.status() ~= "" then
+        spinner_idx = (spinner_idx % #spinner_frames) + 1
+        return spinner_frames[spinner_idx] .. " Initializing LSP..."
+    end
+    return ""
+end
+
 return {
     'nvim-lualine/lualine.nvim',
     event = "VeryLazy",
@@ -34,7 +45,7 @@ return {
                     },
                     'diagnostics',
                 },
-                lualine_c = { { function() return vim.lsp.status() end } },
+                lualine_c = { { lsp_spinner } },
                 lualine_x = {},
                 lualine_y = {},
                 lualine_z = {},
