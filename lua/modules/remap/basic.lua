@@ -25,6 +25,7 @@ vim.keymap.set("n", "tp", "<c-^><cr>", { desc = "Go to previously opened buffer"
 vim.keymap.set("n", "<leader>n", "<cmd>silent :noh<CR>", { desc = "Toggle nohighlight" })
 vim.keymap.set({ "n", "x", "o" }, "H", "^", { desc = "Jump to start of line" })
 vim.keymap.set({ "n", "x", "o" }, "L", "g_", { desc = "Jump to end of line" })
+vim.keymap.set('v', '<leader>x', ":s/\\n//g<CR>", { desc = "Remove all newlines in selection" })
 
 -- Paste but don't overwrite copy-register
 vim.keymap.set("v", "p", '"_dP')
