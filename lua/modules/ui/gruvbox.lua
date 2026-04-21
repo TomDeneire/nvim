@@ -16,6 +16,7 @@ return {
                 ErrorMsg = { link = "GruvboxRed" },
                 WarningMsg = { link = "GruvboxOrange" },
                 Function = { link = "GruvboxYellowBold" },
+                Error = { link = "GruvboxRed" },
             },
             transparent_mode = true,
         })
