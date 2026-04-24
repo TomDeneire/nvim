@@ -78,4 +78,7 @@ vim.opt.timeoutlen = 500
 -- Remove tildes
 vim.opt.fillchars = { eob = " " }
 
+-- Rounded borders for floating windows (hover, diagnostics, etc.)
+vim.o.winborder = "rounded"
+
 return {}
