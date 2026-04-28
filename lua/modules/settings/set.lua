@@ -63,8 +63,7 @@ vim.opt.undofile = true
 vim.g.python_version_2 = 0
 vim.g.python_highlight_all = 1
 -- set python executables (not related to LSP)
-vim.g.python3_host_prog = vim.fn.exepath('python3')
-vim.g.python = vim.fn.exepath('python3')
+vim.g.python3_host_prog = '/bin/python3.13'
 
 -- For markdown
 vim.opt.foldenable = false
