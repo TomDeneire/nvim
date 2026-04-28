@@ -45,7 +45,7 @@ return {
                     },
                     'diagnostics',
                 },
-                lualine_c = { { lsp_spinner } },
+                lualine_c = { { lsp_spinner }, { 'filename', path = 3, shorting_target = 40 } },
                 lualine_x = {},
                 lualine_y = {},
                 lualine_z = {},
