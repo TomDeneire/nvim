@@ -6,13 +6,25 @@ return {
         ensure_installed = {
             "bash", "go", "gomod", "gowork", "gosum", "html", "javascript",
             "json", "lua", "make", "markdown", "markdown_inline", "python",
-            "regex", "rust", "tsx", "toml", "typescript", "vim", "yaml",
+            "razor", "regex", "rust", "tsx", "toml", "typescript", "vim",
+            "yaml",
         },
         auto_install = true,
-        highlight = { enable = true },
-        indent = { enable = false },
     },
     config = function(_, opts)
+        vim.filetype.add({
+            extension = {
+                razor = "razor",
+                cshtml = "razor",
+            },
+        })
+
         require('nvim-treesitter').setup(opts)
-    end
+        require('nvim-treesitter').install(opts.ensure_installed)
+
+        vim.api.nvim_create_autocmd("FileType", {
+            pattern = opts.ensure_installed,
+            callback = function() vim.treesitter.start() end,
+        })
+    end,
 }
