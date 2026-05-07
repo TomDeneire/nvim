@@ -9,7 +9,7 @@ return {
             "razor", "regex", "rust", "tsx", "toml", "typescript", "vim",
             "yaml",
         },
-        auto_install = true,
+        auto_install = false,
     },
     config = function(_, opts)
         vim.filetype.add({
@@ -20,7 +20,6 @@ return {
         })
 
         require('nvim-treesitter').setup(opts)
-        require('nvim-treesitter').install(opts.ensure_installed)
 
         vim.api.nvim_create_autocmd("FileType", {
             pattern = opts.ensure_installed,
