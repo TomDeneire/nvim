@@ -22,8 +22,10 @@ return {
         require('nvim-treesitter').setup(opts)
 
         vim.api.nvim_create_autocmd("FileType", {
-            pattern = opts.ensure_installed,
-            callback = function() vim.treesitter.start() end,
+            pattern = "*",
+            callback = function(ev)
+                pcall(vim.treesitter.start, ev.buf)
+            end,
         })
     end,
 }
