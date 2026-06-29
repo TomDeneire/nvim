@@ -13,10 +13,15 @@ return {
             },
             contrast = "hard",
             overrides = {
-                ErrorMsg = { link = "GruvboxRed" },
-                WarningMsg = { link = "GruvboxOrange" },
-                Function = { link = "GruvboxYellowBold" },
-                Error = { link = "GruvboxRed" },
+                ErrorMsg                   = { link = "GruvboxRed" },
+                WarningMsg                 = { link = "GruvboxOrange" },
+                Function                   = { link = "GruvboxYellowBold" },
+                Error                      = { link = "GruvboxRed" },
+
+                -- Verwijder de achtergrondkleur voor Git status in Telescope resultaten
+                TelescopeResultsDiffChange = { bg = "NONE", link = "GruvboxYellow" },
+                TelescopeResultsDiffAdd    = { bg = "NONE", link = "GruvboxGreen" },
+                TelescopeResultsDiffDelete = { bg = "NONE", link = "GruvboxRed" },
             },
             transparent_mode = true,
         })
