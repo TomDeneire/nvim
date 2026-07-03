@@ -7,6 +7,7 @@ return {
     ---@type snacks.Config
     opts = {
         bigfile = { enabled = true },
+        quickfile = { enabled = true },
         indent = {
             enabled = true,
             char = "│",
