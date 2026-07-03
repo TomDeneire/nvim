@@ -80,4 +80,7 @@ vim.opt.fillchars = { eob = " " }
 -- Rounded borders for floating windows (hover, diagnostics, etc.)
 vim.o.winborder = "rounded"
 
+-- Set cmdline highlighting
+require("vim._core.ui2").enable({})
+
 return {}
