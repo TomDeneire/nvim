@@ -10,9 +10,9 @@ local servers = {
             Lua = { workspace = { checkThirdParty = false } },
         },
     },
-    pyright = {},
     rust_analyzer = {},
     taplo = {}, -- toml
+    ty = {},    -- toml
     vimls = {},
 }
 
