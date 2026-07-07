@@ -83,5 +83,8 @@ return {
         for server_name, server_opts in pairs(servers) do
             vim.lsp.config[server_name] = server_opts
         end
+
+        -- Install old :LspInfo commmand for muscle memory
+        vim.api.nvim_create_user_command('LspInfo', 'checkhealth vim.lsp', {})
     end,
 }
