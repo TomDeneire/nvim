@@ -21,7 +21,6 @@ return {
             highlights = {
                 buffer_selected = {
                     fg = "#fabd2f",
-                    bold = false,
                 },
             },
         }
