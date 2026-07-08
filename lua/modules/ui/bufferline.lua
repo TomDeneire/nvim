@@ -1,17 +1,11 @@
 return {
     'akinsho/bufferline.nvim',
     event = "VeryLazy",
-    dependencies = {
-        { "TomDeneire/nerdify.nvim" },
-    },
     config = function()
         local bufferline = require('bufferline')
         bufferline.setup {
             options = {
                 style_preset = bufferline.style_preset.no_italic,
-                numbers = function(opts)
-                    return require("nerdify").style("numeric", tostring(opts.ordinal))
-                end,
                 indicator = { style = 'none' },
                 separator_style = { "" },
                 truncate_names = false,
