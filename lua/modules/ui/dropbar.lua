@@ -24,7 +24,7 @@ return {
                 end,
             },
         })
-        -- nicer background for WinBar
-        vim.api.nvim_set_hl(0, "WinBar", { link = "TabLine" })
+        vim.api.nvim_set_hl(0, "WinBar", { link = "Comment" })
+        vim.api.nvim_set_hl(0, "WinBarNC", { link = "Comment" })
     end
 }
