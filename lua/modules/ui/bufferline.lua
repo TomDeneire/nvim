@@ -17,7 +17,7 @@ return {
                 truncate_names = false,
                 custom_areas = {
                     left = function()
-                        return { { text = "    " } }
+                        return { { text = "  " } }
                     end
                 },
                 show_buffer_close_icons = false,
