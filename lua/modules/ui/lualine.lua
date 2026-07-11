@@ -60,6 +60,23 @@ return {
                                 if icon_hl then
                                     local buf_hl = buf.current and 'LualineBufferActive' or 'LualineBufferInactive'
                                     buf.icon = '%#' .. icon_hl .. '#' .. buf.icon .. '%#' .. buf_hl .. '#'
+                                    local mt = getmetatable(buf)
+                                    if mt and not mt.__is_wrapped then
+                                        setmetatable(buf, {
+                                            __is_wrapped = true,
+                                            __index = mt,
+                                            __newindex = function(t, k, v)
+                                                if k == 'len' then
+                                                    local raw_icon_len = vim.fn.strchars(t.icon)
+                                                    local clean_icon = string.gsub(t.icon, '%%#[^#]*#', '')
+                                                    local clean_icon_len = vim.fn.strchars(clean_icon)
+                                                    local highlight_len = raw_icon_len - clean_icon_len
+                                                    v = v - highlight_len
+                                                end
+                                                rawset(t, k, v)
+                                            end
+                                        })
+                                    end
                                 end
                             end
                             return name
