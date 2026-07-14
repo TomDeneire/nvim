@@ -67,7 +67,6 @@ vim.g.python3_host_prog = '/bin/python3.13'
 
 -- For markdown
 vim.opt.foldenable = false
-vim.opt.conceallevel = 0
 
 -- Decrease update time
 vim.opt.updatetime = 250
