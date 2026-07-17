@@ -1,18 +1,14 @@
 local servers = {
     bashls = {},
-    gopls = {},
+    gopls = require("modules.lsp.servers.gopls"),
     html = {},
     jsonls = {},
     lemminx = {},
     vtsls = {},
-    lua_ls = {
-        settings = {
-            Lua = { workspace = { checkThirdParty = false } },
-        },
-    },
-    rust_analyzer = {},
+    lua_ls = require("modules.lsp.servers.lua_ls"),
+    rust_analyzer = require("modules.lsp.servers.rust_analyzer"),
     taplo = {}, -- toml
-    ty = {},    -- toml
+    ty = require("modules.lsp.servers.ty"),
     vimls = {},
 }
 
@@ -30,11 +26,26 @@ return {
                 })
             end,
         },
+        {
+            "folke/lazydev.nvim",
+            ft = "lua",
+            opts = {},
+        },
     },
     config = function()
         vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("my-lsp-attach", { clear = true }),
             callback = function(event)
+                local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+                if client.server_capabilities.inlayHintProvider then
+                    vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
+                end
+
+                if client.server_capabilities.codeLensProvider then
+                    vim.lsp.codelens.enable(true, { bufnr = event.buf })
+                end
+
                 -- Updated helper function to accept an optional 4th argument for extra options
                 local nmap = function(keys, func, desc, opts)
                     opts = opts or {}
@@ -46,6 +57,7 @@ return {
                 nmap('<C-i>', vim.lsp.buf.hover, 'Hover Documentation')
                 nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
                 nmap("<leader>lsp", vim.diagnostic.open_float, 'LSP open in float')
+                nmap("<leader>cl", vim.lsp.codelens.run, '[C]ode [L]ens run')
                 nmap("<leader>rn", function()
                     return ":IncRename " .. vim.fn.expand("<cword>")
                 end, "[R]e[n]ame", { expr = true })
