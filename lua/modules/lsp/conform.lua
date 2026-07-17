@@ -7,6 +7,8 @@ local prettier_fts = {
 local formatters_by_ft = {
     python = { "ruff_format" },
     rust = { "rustfmt" },
+    go = { "gofumpt" },
+    lua = { "stylua" },
     htmldjango = { "prettier", "djlint" },
     xml = { "xmlformatter" },
 }

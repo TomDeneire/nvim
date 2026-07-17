@@ -82,7 +82,7 @@ return {
         require("mason").setup()
 
         require("mason-tool-installer").setup {
-            ensure_installed = vim.tbl_keys(servers),
+            ensure_installed = vim.list_extend(vim.tbl_keys(servers), { "gofumpt", "stylua" }),
         }
 
         require("mason-lspconfig").setup {
