@@ -2,7 +2,7 @@ return {
     settings = {
         Lua = {
             workspace = { checkThirdParty = false },
-            diagnostics = { globals = { "vim" } },
+            diagnostics = { globals = { "vim", "Snacks" } },
             hint = {
                 enable = true,
                 arrayIndex = "Auto",
