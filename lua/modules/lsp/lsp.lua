@@ -6,6 +6,7 @@ local servers = {
     lemminx = {},
     vtsls = {},
     lua_ls = require("modules.lsp.servers.lua_ls"),
+    marksman = {},
     rust_analyzer = require("modules.lsp.servers.rust_analyzer"),
     taplo = {}, -- toml
     ty = require("modules.lsp.servers.ty"),
