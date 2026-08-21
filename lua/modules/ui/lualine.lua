@@ -35,6 +35,7 @@ return {
                 component_separators = { left = '', right = '' },
                 section_separators = { left = '', right = '' },
                 always_divide_middle = false,
+                disabled_filetypes = { statusline = { 'no-neck-pain' } },
             },
             tabline = {
                 lualine_a = {
