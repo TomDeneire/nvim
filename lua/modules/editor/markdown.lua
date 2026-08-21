@@ -22,10 +22,17 @@ return {
                     enabled = true,
                     sign = false,
                     position = 'overlay',
-                    icons = { '# ', '## ', '### ', '### ', '#### ', '##### ' },
+                    icons = { '# ', '## ', '### ', '#### ', '##### ', '###### ' },
                     width = 'block',
+                    backgrounds = {},
                 },
             })
+
+            local heading_colors = { '#fb4934', '#fe8019', '#fabd2f', '#b8bb26', '#83a598', '#d3869b' }
+            for i, color in ipairs(heading_colors) do
+                vim.api.nvim_set_hl(0, 'RenderMarkdownH' .. i, { fg = color, bold = true })
+                vim.api.nvim_set_hl(0, '@markup.heading.' .. i .. '.markdown', { fg = color, bold = true })
+            end
 
             vim.api.nvim_create_autocmd('FileType', {
                 pattern = 'markdown',
