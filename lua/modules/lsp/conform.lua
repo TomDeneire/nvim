@@ -24,6 +24,11 @@ return {
     config = function()
         require("conform").setup({
             formatters_by_ft = formatters_by_ft,
+            formatters = {
+                prettier = {
+                    prepend_args = { "--tab-width", "4" },
+                },
+            },
             format_on_save = function(bufnr)
                 if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
                     return
