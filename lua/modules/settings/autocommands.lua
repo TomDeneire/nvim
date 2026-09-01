@@ -37,7 +37,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- Auto-add path to zoxide
 vim.api.nvim_create_autocmd("BufNew", {
     group = augroup("zoxide"),
-    desc = 'Auto-add path to zoxide',
+    desc = "Auto-add path to zoxide",
     callback = function()
         local dir = vim.fn.expand("%:p:h")
         if dir ~= "" then
