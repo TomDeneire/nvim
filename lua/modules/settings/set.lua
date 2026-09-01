@@ -79,6 +79,9 @@ vim.opt.fillchars = { eob = " " }
 -- Rounded borders for floating windows (hover, diagnostics, etc.)
 vim.o.winborder = "rounded"
 
+-- Prompt to save/discard/cancel instead of erroring on unsaved changes
+vim.o.confirm = true
+
 -- Set cmdline highlighting
 require("vim._core.ui2").enable({})
 
