@@ -34,6 +34,9 @@ local plugins = {
 
 -- Lazy options
 local lazy_opts = {
+  ui = {
+    border = "rounded",
+  },
   change_detection = {
     enabled = false,
     notify = true,
