@@ -11,7 +11,7 @@ vim.opt.linebreak = true
 vim.opt.breakindent = true
 vim.opt.background = "dark"
 vim.opt.mouse = ""
-vim.opt.colorcolumn = '80'
+vim.opt.colorcolumn = "80"
 vim.g.have_nerd_font = true
 
 -- No whitespace
@@ -19,7 +19,7 @@ vim.opt.list = false
 
 -- Sync clipboard between OS and Neovim
 -- on Linux this needs xsel
-vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard = "unnamedplus"
 
 -- Line numbers
 vim.opt.number = true
@@ -63,7 +63,7 @@ vim.opt.undofile = true
 vim.g.python_version_2 = 0
 vim.g.python_highlight_all = 1
 -- set python executables (not related to LSP)
-vim.g.python3_host_prog = '/bin/python3.13'
+vim.g.python3_host_prog = "/bin/python3.13"
 
 -- For markdown
 vim.opt.foldenable = false
@@ -81,6 +81,10 @@ vim.o.winborder = "rounded"
 
 -- Prompt to save/discard/cancel instead of erroring on unsaved changes
 vim.o.confirm = true
+
+-- Don't save empty/unnamed buffer windows in sessions (avoids stray
+-- [No Name] buffers from no-neck-pain's padding windows on restore)
+vim.opt.sessionoptions:remove("blank")
 
 -- Set cmdline highlighting
 require("vim._core.ui2").enable({})
