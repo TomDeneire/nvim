@@ -1,79 +1,84 @@
 return {
     {
-        'MeanderingProgrammer/render-markdown.nvim',
-        dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' },
+        "MeanderingProgrammer/render-markdown.nvim",
+        dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" },
         ---@module 'render-markdown'
         ---@type render.md.UserConfig
         opts = {},
         config = function()
-            require('render-markdown').setup({
+            require("render-markdown").setup({
                 completions = { lsp = { enabled = true }, blink = { enabled = true } },
                 code = { sign = false },
                 bullet = {
                     enabled = true,
-                    icons = { '●', '○', '◆', '◇' },
+                    icons = { "●", "○", "◆", "◇" },
                     ordered_icons = function(ctx)
                         local value = vim.trim(ctx.value)
                         local index = tonumber(value:sub(1, #value - 1))
-                        return ('%d.'):format(index > 1 and index or ctx.index)
+                        return ("%d."):format(index > 1 and index or ctx.index)
                     end,
                 },
                 heading = {
                     enabled = true,
                     sign = false,
-                    position = 'overlay',
-                    icons = { '# ', '## ', '### ', '#### ', '##### ', '###### ' },
-                    width = 'block',
+                    position = "overlay",
+                    icons = { "# ", "## ", "### ", "#### ", "##### ", "###### " },
+                    width = "block",
                     backgrounds = {},
                 },
             })
 
-            local heading_colors = { '#fb4934', '#fe8019', '#fabd2f', '#b8bb26', '#83a598', '#d3869b' }
+            local heading_colors = { "#fb4934", "#fe8019", "#fabd2f", "#b8bb26", "#83a598", "#d3869b" }
             for i, color in ipairs(heading_colors) do
-                vim.api.nvim_set_hl(0, 'RenderMarkdownH' .. i, { fg = color, bold = true })
-                vim.api.nvim_set_hl(0, '@markup.heading.' .. i .. '.markdown', { fg = color, bold = true })
+                vim.api.nvim_set_hl(0, "RenderMarkdownH" .. i, { fg = color, bold = true })
+                vim.api.nvim_set_hl(0, "@markup.heading." .. i .. ".markdown", { fg = color, bold = true })
             end
 
-            vim.api.nvim_create_autocmd('FileType', {
-                pattern = 'markdown',
-                callback = function()
+            vim.api.nvim_create_autocmd("FileType", {
+                pattern = "markdown",
+                callback = function(args)
                     vim.opt_local.conceallevel = 2
-                    vim.opt_local.concealcursor = 'nc'
+                    vim.opt_local.concealcursor = "nc"
+
+                    vim.keymap.set("v", "<c-b>", 'c**<C-r>"**<Esc>', { buffer = args.buf, desc = "Bold selection" })
+                    vim.keymap.set("v", "<c-i>", 'c*<C-r>"*<Esc>', { buffer = args.buf, desc = "Italicize selection" })
+                    vim.keymap.set("n", "<c-b>", 'viwc**<C-r>"**<Esc>', { buffer = args.buf, desc = "Bold word" })
+                    vim.keymap.set("n", "<c-i>", 'viwc*<C-r>"*<Esc>', { buffer = args.buf, desc = "Italicize word" })
                 end,
             })
-        end
+        end,
     },
     {
-        'shortcuts/no-neck-pain.nvim',
-        version = '*',
-        opts = { width = 100, buffers = { wo = { statusline = ' ' } } },
+        "shortcuts/no-neck-pain.nvim",
+        version = "*",
+        opts = { width = 100, buffers = { wo = { statusline = " " } } },
         config = function(_, opts)
-            require('no-neck-pain').setup(opts)
+            require("no-neck-pain").setup(opts)
 
-            vim.api.nvim_create_autocmd('BufEnter', {
+            vim.api.nvim_create_autocmd("BufEnter", {
                 callback = function(args)
                     vim.schedule(function()
                         if not vim.api.nvim_buf_is_valid(args.buf) then
                             return
                         end
-                        if vim.bo[args.buf].buftype ~= '' or not vim.bo[args.buf].buflisted then
+                        if vim.bo[args.buf].buftype ~= "" or not vim.bo[args.buf].buflisted then
                             return
                         end
-                        if vim.api.nvim_win_get_config(0).relative ~= '' then
+                        if vim.api.nvim_win_get_config(0).relative ~= "" then
                             return
                         end
 
                         local enabled = _G.NoNeckPain and _G.NoNeckPain.state and _G.NoNeckPain.state.enabled
-                        local is_markdown = vim.bo[args.buf].filetype == 'markdown'
+                        local is_markdown = vim.bo[args.buf].filetype == "markdown"
 
                         if is_markdown and not enabled then
-                            require('no-neck-pain').enable()
+                            require("no-neck-pain").enable()
                         elseif not is_markdown and enabled then
-                            require('no-neck-pain').disable()
+                            require("no-neck-pain").disable()
                         end
                     end)
                 end,
             })
-        end
+        end,
     },
 }
