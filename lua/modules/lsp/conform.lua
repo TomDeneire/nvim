@@ -9,7 +9,7 @@ local formatters_by_ft = {
     rust = { "rustfmt" },
     go = { "gofumpt" },
     lua = { "stylua" },
-    htmldjango = { "prettier", "djlint" },
+    htmldjango = { "djlint" },
     xml = { "xmlformatter" },
 }
 

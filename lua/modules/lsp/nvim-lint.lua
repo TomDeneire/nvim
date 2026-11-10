@@ -6,6 +6,7 @@ return {
             python = { "ruff" },
             go = { "golangcilint" },
             lua = { "selene" },
+            htmldjango = { "djlint" },
         }
 
         vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {

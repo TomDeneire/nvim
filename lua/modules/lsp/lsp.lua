@@ -13,7 +13,7 @@ local servers = {
     vimls = {},
 }
 
-local linters = { "gofumpt", "stylua", "golangci-lint", "selene" }
+local linters = { "gofumpt", "stylua", "golangci-lint", "selene", "djlint" }
 
 return {
     "neovim/nvim-lspconfig",
