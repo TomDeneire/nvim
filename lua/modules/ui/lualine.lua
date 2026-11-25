@@ -22,10 +22,28 @@ local function lsp_spinner()
     return ""
 end
 
+-- Brocade file icon (the default icons claim .m, .x and .d for other languages);
+-- name sets the highlight group (DevIconBrocade) that colours the icon
+local brocade_icon = { icon = "󰰯", color = "#458588", name = "Brocade" }
+
 return {
     'nvim-lualine/lualine.nvim',
     event = "VeryLazy",
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    dependencies = {
+        {
+            'nvim-tree/nvim-web-devicons',
+            opts = {
+                override_by_extension = {
+                    m = brocade_icon,
+                    b = brocade_icon,
+                    l = brocade_icon,
+                    x = brocade_icon,
+                    i = brocade_icon,
+                    d = brocade_icon,
+                },
+            },
+        },
+    },
     config = function()
         vim.api.nvim_set_hl(0, 'LualineBufferActive', { fg = '#fabd2f', bg = 'NONE' })
         vim.api.nvim_set_hl(0, 'LualineBufferInactive', { link = 'Normal' })
