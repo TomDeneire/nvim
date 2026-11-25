@@ -1,3 +1,7 @@
+-- Globals
+
+QtechNG_files = { "*.m", "*.l", "*.x", "*.i", "*.b", "*.d" }
+
 -- Locals
 local function augroup(name)
     return vim.api.nvim_create_augroup("spunkshui_" .. name, { clear = true })
@@ -42,6 +46,55 @@ vim.api.nvim_create_autocmd("BufNew", {
         local dir = vim.fn.expand("%:p:h")
         if dir ~= "" then
             vim.fn.jobstart({ "zoxide", "add", dir }, { detach = true })
+        end
+    end,
+})
+
+-- Qtechng file format
+vim.api.nvim_create_autocmd("BufwritePost", {
+    pattern = QtechNG_files,
+    command = "silent! !qtechng file format --inplace %:p",
+})
+
+-- MUMPS
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "mfile",
+    command = [[inoremap <buffer> <TAB> .]]
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "mfile",
+    command = [[noremap <buffer> <c-l> <ESC>:lua require('modules.qtechng').loop_vars()<CR>]]
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "mfile",
+    command = [[inoremap <buffer> <CR> <ESC>:lua require('modules.qtechng').mumps_indent()<CR>]]
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "mfile", "xfile" },
+    command = [[noremap <buffer> <C-i> <ESC>:lua require('modules.qtechng').show_macro()<CR>]]
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "bfile",
+    command = [[noremap <buffer> <C-l> <ESC>:lua require('modules.qtechng').generate_lgcode()<CR>]]
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "mfile",
+    command = [[setlocal expandtab shiftwidth=1 softtabstop=1]]
+})
+
+-- No autoformat in Brocade .py
+vim.api.nvim_create_autocmd("BufEnter", {
+    pattern = { "*.py" },
+    callback = function()
+        local workspace = vim.fn.getcwd()
+        local sourcedir = "/brocade/source/data"
+        if string.find(workspace, sourcedir) ~= nil then
+            vim.api.nvim_command("FormatDisable")
         end
     end,
 })
