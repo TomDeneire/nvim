@@ -1,8 +1,4 @@
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-    pattern = { "*.l" },
-    group = vim.api.nvim_create_augroup('qtechng-lfile', { clear = true }),
-    command = "set filetype=lfile"
-})
+vim.filetype.add({ extension = { l = "lfile" } })
 
 
 vim.api.nvim_create_autocmd("FileType", {

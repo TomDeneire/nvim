@@ -1,8 +1,4 @@
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-    pattern = { "*.d" },
-    group = vim.api.nvim_create_augroup('qtechng-dfile', { clear = true }),
-    command = "set filetype=dfile"
-})
+vim.filetype.add({ extension = { d = "dfile" } })
 
 
 vim.api.nvim_create_autocmd("FileType", {

@@ -1,8 +1,4 @@
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-    pattern = { "*.x" },
-    group = vim.api.nvim_create_augroup('qtechng-xfile', { clear = true }),
-    command = "set filetype=xfile"
-})
+vim.filetype.add({ extension = { x = "xfile" } })
 
 
 vim.api.nvim_create_autocmd("FileType", {
