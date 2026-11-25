@@ -69,7 +69,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "mfile",
-    command = [[inoremap <buffer> <CR> <ESC>:lua require('modules.qtechng').mumps_indent()<CR>]]
+    command = [[inoremap <buffer> <CR> <Cmd>lua require('modules.qtechng').mumps_indent()<CR>]]
 })
 
 vim.api.nvim_create_autocmd("FileType", {

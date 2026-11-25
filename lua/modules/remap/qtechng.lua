@@ -8,7 +8,7 @@ vim.keymap.set("n", "<c-o>", ":!qtechng file refresh<CR>", { desc = "QtechNG: re
 vim.keymap.set("n", "<leader>rou", require("modules.qtechng").jump_to_routine, { desc = "QtechNG: jump to M routine" })
 vim.keymap.set(
     "n",
-    "<c-m>",
+    "<leader>qd",
     require("modules.qtechng").jump_to_macro_definition,
     { desc = "QtechNG: jump to macro definition" }
 )

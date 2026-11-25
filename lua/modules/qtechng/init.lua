@@ -81,15 +81,60 @@ local function _get_max_line_length(lines)
     for _, line in ipairs(lines) do
         local line_len = #line
         local tabs = _split(line, "\t")
-        line_len = line_len + (#tabs * 4)
+        line_len = line_len + ((#tabs - 1) * 4)
         if line_len > max_len then max_len = line_len end
     end
     return max_len
 end
 
-function _capitalize(mystring)
+local function _capitalize(mystring)
     return string.upper(string.sub(mystring, 1, 1))
         .. string.sub(mystring, 2, #mystring)
+end
+
+local function _notify(msg)
+    vim.notify("QtechNG: " .. msg, vim.log.levels.WARN)
+end
+
+local function _is_label_line(line)
+    return line:match("^sub%s") ~= nil or line:match("^def%s") ~= nil or line:match("^fn%s") ~= nil
+end
+
+local function _function_bounds(lnum)
+    -- Label line and last line of the sub/fn/def that contains lnum (1-based)
+    local first = lnum
+    while first >= 1 and not _is_label_line(vim.fn.getline(first)) do
+        first = first - 1
+    end
+    if first < 1 then
+        return nil
+    end
+    local last = vim.fn.line("$")
+    for l = first + 1, last do
+        if _is_label_line(vim.fn.getline(l)) then
+            last = l - 1
+            break
+        end
+    end
+    return first, last
+end
+
+local function _goto_label(label)
+    -- Put the cursor on the sub/fn/def line that defines label in the current buffer
+    vim.fn.cursor(1, 1)
+    local pattern = [[^\%(sub\|def\|fn\) \V]] .. vim.fn.escape(label, [[\]]) .. [=[\m[(:]]=]
+    if vim.fn.search(pattern, "cW") == 0 then
+        _notify("label " .. label .. " not found")
+    end
+end
+
+local function _keyword_under_cursor()
+    -- Word under the cursor, without "_" (the MUMPS concatenation operator)
+    local saved = vim.bo.iskeyword
+    vim.opt_local.iskeyword:remove("_")
+    local word = vim.fn.expand("<cword>")
+    vim.bo.iskeyword = saved
+    return word
 end
 
 function M.generate_lgcode()
@@ -109,8 +154,12 @@ function M.generate_lgcode()
         end
     end
     if brob == false then
-        vim.cmd("?^meta ")
-        local metaline = vim.fn.getline(".")
+        local meta_lnum = vim.fn.search("^meta ", "bnW")
+        if meta_lnum == 0 then
+            _notify("no meta line found above the cursor")
+            return
+        end
+        local metaline = vim.fn.getline(meta_lnum)
         local meta = _split(metaline, "meta ")
         local meta_type = _rstrip(meta[2], ":")
         meta_type = _capitalize(meta_type)
@@ -124,17 +173,21 @@ function M.generate_lgcode()
     else
         local words = _split(current_line, " ")
         local brob_type = words[1]
-        local meta = _split(words[2], ".")
-        local meta_type = meta[1]
-        meta_type = _capitalize(meta_type)
-        local meta_name = meta[2]
-        meta_name = _rstrip(meta_name, ":")
-        if BROBS[brob_type] then
+        local meta = _split(words[2] or "", ".")
+        if BROBS[brob_type] and meta[2] ~= nil then
+            local meta_type = meta[1]
+            meta_type = _capitalize(meta_type)
+            local meta_name = meta[2]
+            meta_name = _rstrip(meta_name, ":")
             if brob_type == "cg" then
                 lgcode = "lgcode meta" .. meta_type
                     .. "." .. brob_type .. meta_name
             end
         end
+    end
+    if lgcode == "" then
+        _notify("no lgcode for this line")
+        return
     end
     table.insert(lgcodes, lgcode .. ":")
     table.insert(lgcodes, "    N: «»")
@@ -152,7 +205,6 @@ function M.generate_lgcode()
     vim.api.nvim_buf_set_lines(buf, 0, 1, false, lgcodes)
     vim.bo[buf].filetype = "lfile"
     vim.api.nvim_open_win(buf, 1, opts)
-    vim.cmd("silent :noh")
 end
 
 function M.show_macro(macro)
@@ -163,8 +215,13 @@ function M.show_macro(macro)
             return
         end
     end
+    local macro_file = MACRO_DIR .. "/" .. macro .. ".d"
+    local content = _lines_from_file(macro_file)
+    if #content == 0 then
+        _notify("macro file not found: " .. macro_file)
+        return
+    end
     local buf = vim.api.nvim_create_buf(false, true)
-    local content = _lines_from_file(MACRO_DIR .. "/" .. macro .. ".d")
     local max_line_length = _get_max_line_length(content)
     local opts = {
         relative = 'cursor',
@@ -197,6 +254,11 @@ function M.jump_to_routine()
     if l[2] ~= nil then
         mlabel = l[2]
     end
+    if t[2] == nil then
+        -- Label without routine: it lives in the current file
+        _goto_label(mlabel)
+        return
+    end
     local mfile = t[2] .. ".m"
     local jumpcmd = "echo "
     jumpcmd = jumpcmd .. WORK_DIR
@@ -204,9 +266,14 @@ function M.jump_to_routine()
     jumpcmd = jumpcmd .. "$(jq -r '." .. '"' .. mfile .. '"' .. "' "
     jumpcmd = jumpcmd .. SUPPORT_DIR .. OS_SEP .. "m_unique_map.json)"
     jumpcmd = jumpcmd .. OS_SEP .. mfile
-    local resultfile = vim.fn.system(jumpcmd)
-    local cmd = "e +/" .. mlabel .. " " .. resultfile
-    vim.cmd(cmd)
+    local resultfile = vim.trim(vim.fn.system(jumpcmd))
+    -- jq prints "null" for a routine that is not in the map
+    if resultfile:match("[/\\]null[/\\][^/\\]*$") then
+        _notify("routine " .. t[2] .. " not found")
+        return
+    end
+    vim.cmd.edit(vim.fn.fnameescape(resultfile))
+    _goto_label(mlabel)
 end
 
 function M.jump_to_macro_definition()
@@ -237,8 +304,11 @@ end
 
 function M.source_list()
     local pattern = vim.fn.input("Search QtechNG repository = ", "")
+    if pattern == "" then
+        return
+    end
     local listcmd = "qtechng source list --smartcase --jsonpath=$..DATA..fileurl --needle=" ..
-        pattern .. " | awk -F 'file://' '{print $2}' | awk -F '\"' '{print $1}'"
+        vim.fn.shellescape(pattern) .. " | awk -F 'file://' '{print $2}' | awk -F '\"' '{print $1}'"
     local result = vim.fn.system(listcmd)
     local t = {}
     for str in string.gmatch(result, "([^" .. "\n" .. "]+)") do
@@ -271,7 +341,7 @@ function M.open_in_git_browser()
     local current_file = vim.fn.expand("%:p")
     local gitcmd = "sensible-browser $(qtechng file tell " .. current_file
     gitcmd = gitcmd .. " --jsonpath='$..DATA..vcurl' --unquote)"
-    io.popen(gitcmd)
+    vim.fn.jobstart({ "sh", "-c", gitcmd }, { detach = true })
 end
 
 function M.compare_previous()
@@ -285,43 +355,17 @@ function M.compare_previous()
     cmd = cmd .. "&& meld $PREVIOUS/$(qtechng file tell " .. current_file
     cmd = cmd .. " --jsonpath='$..DATA..relpath' --unquote) "
     cmd = cmd .. current_file
-    io.popen(cmd)
+    vim.fn.jobstart({ "sh", "-c", cmd }, { detach = true })
 end
 
 function M.checkin_current_file()
+    -- Write unsaved changes first, so they are part of the check-in
+    vim.cmd("silent update")
     local cmd = ":!qtechng file ci " .. vim.fn.expand("%:p")
     vim.cmd(cmd)
 end
 
-function _determine_paragraph(current_line)
-    local index = current_line
-    local begin_of_paragraph = 0
-    local end_of_paragraph = 0
-    while (true) do
-        local previous = index - 1
-        if previous == 0 then
-            break
-        end
-        local line_up = vim.api.nvim_buf_get_lines(0, previous, index, false)[1]
-        if line_up == "" or line_up == nil then
-            break
-        end
-        index = index - 1
-        begin_of_paragraph = index + 1
-    end
-    while (true) do
-        local next = index + 1
-        local line_down = vim.api.nvim_buf_get_lines(0, index, next, false)[1]
-        if line_down == "" or line_down == nil then
-            break
-        end
-        index = index + 1
-        end_of_paragraph = index
-    end
-    return { begin_of_paragraph, end_of_paragraph }
-end
-
-function _get_variables_from_paragraph(lines)
+local function _get_variables(lines)
     local variables = {}
     for _, line in ipairs(lines) do
         -- do not check new-line itself and do not check comments!
@@ -338,9 +382,11 @@ function _get_variables_from_paragraph(lines)
     return variables
 end
 
-function _clean_newline(newline, variables)
-    local newline = string.sub(newline, 4)
-    local new_vars = _split(newline, ",")
+local function _clean_newline(newline, myvar, variables)
+    -- Arguments end at the first space; keep what follows (e.g. a comment)
+    local args, rest = string.sub(newline, 4):match("^(%S*)(.*)$")
+    local new_vars = _split(args, ",")
+    table.insert(new_vars, myvar)
     table.sort(new_vars)
     local clean_vars = ""
     local unique_vars = {}
@@ -355,25 +401,49 @@ function _clean_newline(newline, variables)
         end
     end
     clean_vars = _lstrip(clean_vars, ",")
-    clean_newline = " n " .. clean_vars
-    return clean_newline
+    -- " n " without arguments would NEW all variables
+    if clean_vars == "" then
+        return nil
+    end
+    return " n " .. clean_vars .. rest
 end
 
 function M.new_var(myvar)
     if myvar == nil then
-        myvar = vim.fn.expand("<cword>")
+        myvar = _keyword_under_cursor()
     end
     myvar = _lstrip(myvar, "_")
     local curpos = vim.fn.getcurpos()
-    vim.cmd("?^ n ")
-    local newpos = vim.fn.getcurpos()
-    local newline = vim.fn.getline(".") .. "," .. myvar
-    local paragraph = _determine_paragraph(curpos[2])
-    local lines = vim.api.nvim_buf_get_lines(0, paragraph[1], paragraph[2], false)
-    local variables = _get_variables_from_paragraph(lines)
-    newline = _clean_newline(newline, variables)
-    vim.api.nvim_buf_set_lines(0, newpos[2] - 1, newpos[2], false, { newline })
-    vim.cmd("silent :noh")
+    local first, last = _function_bounds(curpos[2])
+    if first == nil then
+        _notify("no sub/fn/def label above the cursor")
+        return
+    end
+    -- Body of the function, without its label line
+    local lines = vim.api.nvim_buf_get_lines(0, first, last, false)
+    local variables = _get_variables(lines)
+    local new_lnum = nil
+    for i, line in ipairs(lines) do
+        if line:match("^ n ") then
+            new_lnum = first + i
+            break
+        end
+    end
+    if new_lnum == nil then
+        if variables[myvar] == nil then
+            return
+        end
+        -- Function has no new line yet: add one under the label
+        vim.api.nvim_buf_set_lines(0, first, first, false, { " n " .. myvar })
+        if curpos[2] > first then
+            curpos[2] = curpos[2] + 1
+        end
+    else
+        local newline = _clean_newline(vim.fn.getline(new_lnum), myvar, variables)
+        if newline ~= nil then
+            vim.api.nvim_buf_set_lines(0, new_lnum - 1, new_lnum, false, { newline })
+        end
+    end
     vim.fn.setpos(".", curpos)
 end
 
@@ -381,6 +451,10 @@ function M.loop_vars()
     -- expand a line like this: " RAdata(*nnr,*items,*types,*anr)"
     -- or: " ..... RAdata(*nnr,*items,*types,*anr)""
     local line = vim.fn.getline(".")
+    if string.find(line, "*", 1, true) == nil then
+        _notify("no *loop variables on this line")
+        return
+    end
     -- construct loops
     local parts = _split(line, "*")
     local lines = {}
@@ -420,25 +494,25 @@ function M.loop_vars()
     local curpos = vim.fn.getcurpos()
     local pos = curpos[2]
     vim.api.nvim_buf_set_lines(0, pos - 1, pos, false, lines)
+    -- go to end of inserted snippet (new_var keeps the cursor on it)
+    curpos[2] = curpos[2] + #lines - 1
+    vim.fn.setpos(".", curpos)
     -- add loopvars to new instruction
     for _, loopvar in ipairs(loopvars) do
         M.new_var(loopvar)
     end
-    -- go to end of inserted snippet
-    curpos[2] = curpos[2] + #lines - 1
-    vim.fn.setpos(".", curpos)
     vim.fn.feedkeys("A")
     vim.cmd("silent :noh")
 end
 
 function M.mumps_indent()
-    local linepos = vim.fn.getcurpos()
-    local posinline = linepos[3]
-    local current_line = vim.fn.getline(".")
+    -- Called from insert mode via <Cmd>, so the cursor column is the insert position
+    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+    local current_line = vim.api.nvim_get_current_line()
     local linelength = string.len(current_line)
-    if posinline == linelength then
+    if col == linelength then
         -- cursor at end of the line
-        local wordUnderCursor = vim.fn.expand("<cword>")
+        local wordUnderCursor = current_line:match("(%w+)$")
         local indent_level = _split(current_line, " ")
         local indent_begin = indent_level[2]
         local indent = ""
@@ -470,16 +544,15 @@ function M.mumps_indent()
                 end
             end
         end
-        local line = vim.fn.line(".")
-        vim.fn.append(line, indent)
-        local curpos = vim.fn.getcurpos()
-        curpos[2] = curpos[2] + 1
-        vim.fn.setpos(".", curpos)
-        vim.fn.feedkeys("A")
+        vim.api.nvim_buf_set_lines(0, row, row, false, { indent })
+        vim.api.nvim_win_set_cursor(0, { row + 1, string.len(indent) })
+    elseif col == 0 then
+        -- cursor at start of the line: open a line above, keeping the leading space of this one
+        vim.api.nvim_buf_set_lines(0, row - 1, row - 1, false, { "" })
+        vim.api.nvim_win_set_cursor(0, { row + 1, 0 })
     else
         -- cursor within the line
-        vim.fn.feedkeys("a")
-        vim.fn.feedkeys("\n")
+        vim.api.nvim_feedkeys(vim.keycode("<CR>"), "ni", false)
     end
 end
 
